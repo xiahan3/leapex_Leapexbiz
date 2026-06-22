@@ -1,0 +1,16 @@
+*.pem
+*.key
+.env
+.env.*
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.db
+*.sqlite
+*.sqlite3
+.DS_Store
+.idea/
+.vscode/
+*.log
+.claude/
