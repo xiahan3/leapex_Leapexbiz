@@ -347,13 +347,28 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue'
         <!-- 待办 -->
         <div class="sec-t">待办事项</div>
         <div class="card">
+          <div class="cell" style="border-bottom:1px solid var(--line)" onclick="go('s-namecheck')">
+            <div class="cell-ic" style="background:var(--red-bg);color:var(--red)"><i class="ti ti-alert-circle"></i></div>
+            <div class="cell-main"><div class="cell-t">核名未通过 · 需改名重核</div><div class="cell-d">星辰科技 · 与已注册公司近似，请更换名称</div></div>
+            <span class="cell-arrow"><i class="ti ti-chevron-right"></i></span>
+          </div>
+          <div class="cell" style="border-bottom:1px solid var(--line)" onclick="go('s-bill')">
+            <div class="cell-ic" style="background:var(--red-bg);color:var(--red)"><i class="ti ti-credit-card-off"></i></div>
+            <div class="cell-main"><div class="cell-t">支付失败 · 请重新支付</div><div class="cell-d">ORD-2026-0205 · 上次微信支付未完成</div></div>
+            <span class="cell-arrow"><i class="ti ti-chevron-right"></i></span>
+          </div>
+          <div class="cell" style="border-bottom:1px solid var(--line)" onclick="go('s-kyc')">
+            <div class="cell-ic" style="background:var(--red-bg);color:var(--red)"><i class="ti ti-user-x"></i></div>
+            <div class="cell-main"><div class="cell-t">KYC 未通过 · 需修改资料</div><div class="cell-d">地址证明不清晰，请重新上传后再审</div></div>
+            <span class="cell-arrow"><i class="ti ti-chevron-right"></i></span>
+          </div>
           <div class="cell" style="border-bottom:1px solid var(--line)" onclick="go('s-kyc')">
             <div class="cell-ic" style="background:var(--yellow-bg);color:var(--orange)"><i class="ti ti-file-upload"></i></div>
             <div class="cell-main"><div class="cell-t">补充地址证明</div><div class="cell-d">星辰科技 · KYC 第 3 步</div></div>
             <span class="cell-arrow"><i class="ti ti-chevron-right"></i></span>
           </div>
           <div class="cell" style="border-bottom:1px solid var(--line)" onclick="go('s-bill')">
-            <div class="cell-ic" style="background:var(--red-bg);color:var(--red)"><i class="ti ti-receipt"></i></div>
+            <div class="cell-ic" style="background:var(--yellow-bg);color:var(--orange)"><i class="ti ti-receipt"></i></div>
             <div class="cell-main"><div class="cell-t">账单待支付</div><div class="cell-d">LEA-2026-0188-1 · HKD 2,750</div></div>
             <span class="cell-arrow"><i class="ti ti-chevron-right"></i></span>
           </div>
@@ -1040,6 +1055,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue'
 
         <!-- 退款安心保障 -->
         <div class="card card-pad" style="background:var(--green-bg);margin-top:10px"><div class="note" style="color:var(--green-d)"><i class="ti ti-shield-check"></i> 安心保障：安排会计师前可随时退款；<b>KYC 审核不通过全额退款</b>。</div></div>
+        <button class="btn ghost" style="margin-top:10px;color:var(--red);border-color:var(--red)" onclick="cancelOrder()"><i class="ti ti-x"></i> 取消订单</button>
       </div>
     </div>
 
@@ -1399,12 +1415,9 @@ function showResult(o){
 function resNext(){ if(typeof _resNext==='function') _resNext(); }
 function ncAccept(){
   toast('名称已确认 · 记录已存档');
-  if(BUYING && FLOW_TYPE==='register'){
-    var nm=document.getElementById('nc-en'); nm=nm?nm.value:'';
-    showResult({title:'核名完成', desc:'「'+nm+'」预检通过、可注册，已为你存档。接下来支付即可开始办理。', steps:REG_STEPS, cur:1, btn:'去支付', next:goPay});
-  } else {
-    showResult({title:'核名完成', desc:'名称预检通过、可注册，已为你存档。办理注册时可直接复用此结果。', btn:'去办理注册服务', next:function(){ openSvc('pkg-std'); }});
-  }
+  // 核名通过后直接进入下一步（已去掉中间结果页）
+  if(BUYING && FLOW_TYPE==='register'){ goPay(); }                          // 购买流程 → 直接去支付
+  else { setTimeout(function(){ openSvc('pkg-std'); }, 700); }               // 独立免费核名 → 去办理注册服务
 }
 function pickCompany(name){ CURRENT_COMPANY=name; toast('已选择：'+name); goPay(); }
 function goPay(){
@@ -1441,6 +1454,11 @@ function infoDone(){
   showResult({title:'信息已提交', desc:'办理所需信息已提交。最后一步：完成 KYC 实名认证（香港持牌 TCSP 合规必做）。', steps:flowSteps(), cur:3, btn:'去完成 KYC 认证', next:goKyc});
 }
 function goKyc(){ kycStep(1); go('s-kyc'); }
+function cancelOrder(){
+  if(CURRENT_ORDER){ CURRENT_ORDER.status='已取消'; if(CURRENT_ORDER.services&&CURRENT_ORDER.services[0]) CURRENT_ORDER.services[0].bs='已作废'; }
+  toast('订单已取消');
+  setTimeout(function(){ goHome(); }, 700);
+}
 function setCur(c){
   var cny = c==='cny';
   var el;
