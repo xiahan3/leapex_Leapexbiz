@@ -69,8 +69,18 @@ tbody tr:hover{background:#FAFAF8}
 .btn-g{background:var(--gold);color:#1A1A1A;border-color:var(--gold)}
 .btn-xs{padding:4px 9px;font-size:11px}
 .btn-green{color:var(--green);border-color:var(--green)}.btn-red{color:var(--red);border-color:var(--red)}
-.inp{padding:7px 11px;border:1px solid var(--line2);border-radius:7px;font-size:12.5px;font-family:inherit;outline:none}
+.inp{padding:7px 11px;border:1px solid var(--line2);border-radius:7px;font-size:12.5px;font-family:inherit;outline:none;background:var(--card)}
 .inp:focus{border-color:var(--gold)}
+select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
+.flbl{display:block;font-size:11.5px;color:var(--text3);margin-bottom:5px;font-weight:500}
+.rt-tb{display:flex;align-items:center;gap:2px;border:1px solid var(--line2);border-bottom:none;border-radius:7px 7px 0 0;padding:5px 6px;background:#FAFAF8}
+.rt-tb button{width:28px;height:26px;border:none;background:none;border-radius:5px;cursor:pointer;color:var(--text2);font-size:14px;display:inline-flex;align-items:center;justify-content:center}
+.rt-tb button:hover{background:var(--line)}
+.rt-sep{width:1px;height:16px;background:var(--line2);margin:0 3px}
+.rt-ed{border:1px solid var(--line2);border-radius:0 0 7px 7px;padding:11px 12px;min-height:110px;max-height:200px;overflow-y:auto;font-size:12.5px;line-height:1.7;outline:none}
+.rt-ed:focus{border-color:var(--gold)}
+.rt-ed ul,.rt-ed ol{padding-left:20px;margin:6px 0}
+.rt-ed h4{font-size:13.5px;margin:8px 0 4px;font-weight:700}
 .filters{display:flex;gap:8px;align-items:center;margin-bottom:14px;flex-wrap:wrap}
 .chip{padding:5px 12px;border:1px solid var(--line2);border-radius:14px;font-size:12px;cursor:pointer;background:var(--card);color:var(--text2)}
 .chip.on{background:#1A1A1A;color:#fff;border-color:#1A1A1A}
@@ -121,6 +131,8 @@ tbody tr:hover{background:#FAFAF8}
     <nav class="nav">
       <div class="ng">01 · 概览</div>
       <div class="ni on" data-p="dash" onclick="go(this)"><i class="ti ti-layout-dashboard"></i>数据驾驶舱</div>
+      <div class="ni" data-p="supplierwt" onclick="go(this)"><i class="ti ti-tool"></i>供应商工作台</div>
+      <div class="ni" data-p="partner" onclick="go(this)"><i class="ti ti-briefcase"></i>渠道商工作台</div>
 
       <div class="ng">02 · 客户管理</div>
       <div class="ni" data-p="customers" onclick="go(this)"><i class="ti ti-users"></i>客户信息</div>
@@ -135,23 +147,16 @@ tbody tr:hover{background:#FAFAF8}
       <div class="ni" data-p="annual" onclick="go(this)"><i class="ti ti-calendar-repeat"></i>年审 / 变更</div>
 
       <div class="ng">04 · 商品管理</div>
-      <div class="ni" data-p="products" onclick="go(this)"><i class="ti ti-package"></i>服务（单项 / 组合）</div>
+      <div class="ni" data-p="products" onclick="go(this)"><i class="ti ti-package"></i>服务管理</div>
 
-      <div class="ng">05 · 供应商管理（履约）</div>
-      <div class="ni" data-p="supplier" onclick="go(this)"><i class="ti ti-building-warehouse"></i>供应商 / 结算规则</div>
+      <div class="ng">05 · 供应商管理</div>
+      <div class="ni" data-p="supplier" onclick="go(this)"><i class="ti ti-building-warehouse"></i>供应商管理</div>
+      <div class="ni" data-p="assign" onclick="go(this)"><i class="ti ti-arrows-split"></i>订单分配<span class="nb">2</span></div>
+      <div class="ni" data-p="suppliersettle" onclick="go(this)"><i class="ti ti-businessplan"></i>订单结算</div>
 
-      <div class="ng">06 · 渠道商管理（投流）</div>
-      <div class="ni" data-p="channel" onclick="go(this)"><i class="ti ti-affiliate"></i>渠道商 / 分佣规则</div>
-      <div class="ni" data-p="assign" onclick="go(this)"><i class="ti ti-arrows-split"></i>无码订单分配<span class="nb">2</span></div>
-      <div class="ni" data-p="commission" onclick="go(this)"><i class="ti ti-cash"></i>佣金 / 结算</div>
-
-      <div class="ng">07 · 工作台</div>
-      <div class="ni" data-p="supplierwt" onclick="go(this)"><i class="ti ti-tool"></i>供应商工作台</div>
-      <div class="ni" data-p="partner" onclick="go(this)"><i class="ti ti-briefcase"></i>渠道商工作台</div>
-
-      <div class="ng">08 · 投流 & 线索</div>
-      <div class="ni" data-p="leads" onclick="go(this)"><i class="ti ti-headset"></i>企微线索<span class="nb">9</span></div>
-      <div class="ni" data-p="ads" onclick="go(this)"><i class="ti ti-ad-2"></i>投流数据<span class="nb" style="background:var(--text3)">二期</span></div>
+      <div class="ng">06 · 渠道商管理</div>
+      <div class="ni" data-p="channel" onclick="go(this)"><i class="ti ti-affiliate"></i>渠道商管理</div>
+      <div class="ni" data-p="commission" onclick="go(this)"><i class="ti ti-cash"></i>佣金结算</div>
 
       <div class="ng">系统</div>
       <div class="ni" data-p="rbac" onclick="go(this)"><i class="ti ti-lock"></i>员工与角色</div>
@@ -370,84 +375,77 @@ tbody tr:hover{background:#FAFAF8}
 
       <!-- ════ 渠道商管理 ════ -->
       <div class="page" id="p-channel">
+        <div class="card cp" style="background:var(--gold-bg);border-color:var(--gold)"><div style="font-size:12px;color:var(--gold)"><i class="ti ti-affiliate"></i> <b>渠道商 = 提供客户线索的渠道（投流 / 推广），不提供具体服务</b>。由<b>超管新增</b>，不支持自助申请；每个渠道商可配置<b>专属推荐码</b>与<b>结算规则（佣金）</b>。客户填推荐码下单即归属该渠道；订单<b>已完成</b>才进入「佣金结算」。</div></div>
         <div class="card">
-          <div class="ch"><span class="ct">渠道商入驻申请</span><span class="pill p-amber">2 待审核</span></div>
+          <div class="ch"><span class="ct">渠道商列表</span><button class="btn btn-xs btn-p" onclick="toast('新增渠道商（超管录入资料 + 生成推荐码）')"><i class="ti ti-plus"></i>新增渠道商</button></div>
           <table>
-            <thead><tr><th>申请方</th><th>类型</th><th>预估月单量</th><th>申请分佣档</th><th>资料</th><th>状态</th><th></th></tr></thead>
+            <thead><tr><th>渠道商</th><th>推荐码</th><th>本月线索 / 成交</th><th>本月成交额</th><th>累计佣金</th><th>状态</th><th></th></tr></thead>
             <tbody>
-              <tr><td><b>智汇财税</b><div style="color:var(--text3);font-size:11px">深圳 · 推荐人 AGT001</div></td><td>财税代理</td><td>15–20</td><td>标准 10%</td><td><span class="pill p-blue">已齐全</span></td><td><span class="pill p-amber">待审核</span></td><td><button class="btn btn-xs btn-p" onclick="toast('已通过入驻 · 生成 Channel Code AGT004')">通过</button></td></tr>
-              <tr><td><b>启航出海</b><div style="color:var(--text3);font-size:11px">杭州</div></td><td>出海服务商</td><td>5–8</td><td>基础 8%</td><td><span class="pill p-amber">待补营业执照</span></td><td><span class="pill p-amber">待审核</span></td><td><button class="btn btn-xs">要求补充</button></td></tr>
+              <tr><td><b>星投资本</b><div style="color:var(--text3);font-size:11px">AGT001</div></td><td><b>LEX888</b></td><td>32 / 18</td><td>HKD 96,000</td><td>HKD 14,200</td><td><span class="pill p-green">合作中</span></td><td><button class="btn btn-xs">配置详情</button></td></tr>
+              <tr><td><b>正弦咨询</b><div style="color:var(--text3);font-size:11px">AGT002</div></td><td>SINE10</td><td>20 / 12</td><td>HKD 64,000</td><td>HKD 11,800</td><td><span class="pill p-green">合作中</span></td><td><button class="btn btn-xs">配置详情</button></td></tr>
+              <tr><td><b>湾区财税</b><div style="color:var(--text3);font-size:11px">AGT003</div></td><td>GBA08</td><td>14 / 9</td><td>HKD 48,000</td><td>HKD 8,200</td><td><span class="pill p-green">合作中</span></td><td><button class="btn btn-xs">配置详情</button></td></tr>
             </tbody>
           </table>
         </div>
         <div class="card">
-          <div class="ch"><span class="ct">渠道商列表</span><button class="btn btn-xs"><i class="ti ti-plus"></i>生成 Channel Code</button></div>
-          <table>
-            <thead><tr><th>渠道</th><th>Channel Code</th><th>分佣档</th><th>本月订单</th><th>本月营收</th><th>累计佣金</th><th>状态</th></tr></thead>
-            <tbody>
-              <tr><td>星投资本</td><td><b>AGT001 / LEX888</b></td><td><span class="pill p-gold">金牌 12%</span></td><td>18</td><td>HKD 96,000</td><td>HKD 14,200</td><td><span class="pill p-green">合作中</span></td></tr>
-              <tr><td>正弦咨询</td><td>AGT002</td><td><span class="pill p-blue">标准 10%</span></td><td>12</td><td>HKD 64,000</td><td>HKD 11,800</td><td><span class="pill p-green">合作中</span></td></tr>
-              <tr><td>湾区财税</td><td>AGT003</td><td><span class="pill p-gray">基础 8%</span></td><td>9</td><td>HKD 48,000</td><td>HKD 8,200</td><td><span class="pill p-green">合作中</span></td></tr>
-            </tbody>
-          </table>
+          <div class="ch"><span class="ct">渠道商详情 · 星投资本（AGT001）</span><button class="btn btn-xs btn-p" onclick="toast('渠道商配置已保存')"><i class="ti ti-check"></i>保存配置</button></div>
+          <div class="cp">
+            <div style="font-size:10.5px;color:var(--text3);font-weight:600;letter-spacing:.4px;margin-bottom:8px">专属推荐码</div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap">
+              <input class="inp" value="LEX888" style="width:140px;font-weight:700;letter-spacing:1px">
+              <button class="btn btn-xs"><i class="ti ti-refresh"></i>重新生成</button>
+              <span style="font-size:11px;color:var(--text3)">客户在小程序填此码下单即归属本渠道</span>
+            </div>
+            <div style="font-size:10.5px;color:var(--text3);font-weight:600;letter-spacing:.4px;margin-bottom:8px">结算规则（按服务 · 佣金，订单已完成才计佣）</div>
+            <table>
+              <thead><tr><th>服务</th><th>佣金方式</th><th>佣金率 / 额</th></tr></thead>
+              <tbody>
+                <tr><td>公司注册</td><td><select class="inp" style="padding:4px 8px"><option>按比例</option><option>固定额</option></select></td><td><input class="cell-in" value="12%" style="width:80px"></td></tr>
+                <tr><td>公司年审</td><td><select class="inp" style="padding:4px 8px"><option>按比例</option><option>固定额</option></select></td><td><input class="cell-in" value="10%" style="width:80px"></td></tr>
+                <tr><td>变更 / 股份转让</td><td><select class="inp" style="padding:4px 8px"><option>按比例</option><option>固定额</option></select></td><td><input class="cell-in" value="6%" style="width:80px"></td></tr>
+                <tr><td>记账报税</td><td><select class="inp" style="padding:4px 8px"><option>按比例</option><option>固定额</option></select></td><td><input class="cell-in" value="8%" style="width:80px"></td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-        <div class="card">
-          <div class="ch"><span class="ct">分佣规则（渠道档 × 服务佣金率）</span><button class="btn btn-xs btn-p" onclick="toast('分佣规则已保存')"><i class="ti ti-check"></i>保存</button></div>
-          <div class="cp" style="overflow-x:auto"><table class="matrix">
-            <thead><tr><th>服务项</th><th>金牌（AGT001）</th><th>标准（AGT002）</th><th>基础（AGT003）</th></tr></thead>
-            <tbody>
-              <tr><td>公司注册（基础 / 标准）</td><td><input class="cell-in" value="12%"></td><td><input class="cell-in" value="10%"></td><td><input class="cell-in" value="8%"></td></tr>
-              <tr><td>年审服务</td><td><input class="cell-in" value="10%"></td><td><input class="cell-in" value="8%"></td><td><input class="cell-in" value="6%"></td></tr>
-              <tr><td>变更 / 股份转让</td><td><input class="cell-in" value="6%"></td><td><input class="cell-in" value="5%"></td><td><input class="cell-in" value="4%"></td></tr>
-              <tr><td>记账报税（年）</td><td><input class="cell-in" value="8%"></td><td><input class="cell-in" value="6%"></td><td><input class="cell-in" value="5%"></td></tr>
-            </tbody>
-          </table></div>
-        </div>
-        <div class="card cp" style="background:var(--gold-bg);border-color:var(--gold)"><div style="font-size:12px;color:var(--gold)"><i class="ti ti-affiliate"></i> 渠道商入驻：提交资料 → 审核 → 通过后生成 Channel Code 与分佣档。客户填该推荐码下单即归属该渠道，按「分佣档 × 服务」计佣。佣金台账与结算见「佣金结算」。</div></div>
+        <div class="card cp" style="background:var(--bg2)"><div style="font-size:12px;color:var(--text2)"><i class="ti ti-info-circle"></i> 渠道商只提供线索、不履约；佣金 = 客户实付 × 佣金率（或固定额）。订单状态变更为「已完成」后，佣金项才进入「佣金结算」待结算列表。</div></div>
       </div>
 
       <!-- ════ 供应商管理（履约 / 结算）════ -->
       <div class="page" id="p-supplier">
-        <div class="card cp" style="background:var(--blue-bg);border-color:var(--blue)"><div style="font-size:12px;color:var(--blue)"><i class="ti ti-building-warehouse"></i> <b>供应商 = 履约乙方</b>（提供服务/实物）。平台收款后按"<b>固定额 / 比例</b>"结算给供应商；生态合作伙伴（办公租赁等）也归此类。与「渠道商（投流获客 · 返点）」是两回事。</div></div>
+        <div class="card cp" style="background:var(--blue-bg);border-color:var(--blue)"><div style="font-size:12px;color:var(--blue)"><i class="ti ti-building-warehouse"></i> <b>供应商 = 为下单用户提供服务 / 履约的乙方</b>。由<b>超管新增</b>，不支持自助申请；每个供应商可配置<b>支持的服务</b>与<b>结算规则</b>。订单分配见「订单分配」，结算见「订单结算」（订单<b>已完成</b>才进入结算）。</div></div>
         <div class="card">
-          <div class="ch"><span class="ct">供应商入驻 / 列表</span><button class="btn btn-xs"><i class="ti ti-plus"></i>新建供应商账号</button></div>
-          <table><thead><tr><th>供应商</th><th>类型</th><th>结算方式</th><th>进行中任务</th><th>本月应付</th><th>状态</th></tr></thead>
+          <div class="ch"><span class="ct">供应商列表</span><button class="btn btn-xs btn-p" onclick="toast('新增供应商（超管录入资料）')"><i class="ti ti-plus"></i>新增供应商</button></div>
+          <table><thead><tr><th>供应商</th><th>支持服务</th><th>结算方式</th><th>合作订单</th><th>状态</th><th></th></tr></thead>
             <tbody>
-              <tr><td>金印堂</td><td>印章 / 实物制作</td><td>固定额 · 每单结</td><td>3</td><td>HKD 4,800</td><td><span class="pill p-green">合作中</span></td></tr>
-              <tr><td>正诚公证行</td><td>公证认证</td><td>固定额 · 每单结</td><td>1</td><td>HKD 3,800</td><td><span class="pill p-green">合作中</span></td></tr>
-              <tr><td>湾景商务中心</td><td>办公租赁（生态）</td><td>比例 30% · 月结</td><td>2</td><td>—（留资引流）</td><td><span class="pill p-green">合作中</span></td></tr>
+              <tr><td><b>Leapexbiz 直营</b><div style="color:var(--text3);font-size:11px">SUP-001 · 自营</div></td><td>注册 / 年审 / 变更 / 记账</td><td>内部核算</td><td>86</td><td><span class="pill p-green">合作中</span></td><td><button class="btn btn-xs">配置详情</button></td></tr>
+              <tr><td><b>金印堂</b><div style="color:var(--text3);font-size:11px">SUP-002 · 印章 / 实物</div></td><td>印章制作 · 文件册</td><td>固定额 · 完成后结</td><td>12</td><td><span class="pill p-green">合作中</span></td><td><button class="btn btn-xs">配置详情</button></td></tr>
+              <tr><td><b>正诚公证行</b><div style="color:var(--text3);font-size:11px">SUP-003 · 公证</div></td><td>公证认证</td><td>固定额 · 完成后结</td><td>5</td><td><span class="pill p-green">合作中</span></td><td><button class="btn btn-xs">配置详情</button></td></tr>
+              <tr><td><b>湾景商务中心</b><div style="color:var(--text3);font-size:11px">SUP-004 · 生态</div></td><td>办公租赁 / 注册地址</td><td>比例 30% · 月结</td><td>3</td><td><span class="pill p-green">合作中</span></td><td><button class="btn btn-xs">配置详情</button></td></tr>
             </tbody>
           </table>
         </div>
         <div class="card">
-          <div class="ch"><span class="ct">结算规则（服务 / 任务 × 供应商 · 固定额 / 比例）</span><button class="btn btn-xs btn-p" onclick="toast('结算规则已保存')"><i class="ti ti-check"></i>保存</button></div>
-          <div class="cp" style="overflow-x:auto"><table class="matrix">
-            <thead><tr><th>服务 / 任务</th><th>金印堂</th><th>正诚公证</th><th>湾景（生态）</th><th>结算时点</th></tr></thead>
-            <tbody>
-              <tr><td>公司印章 ×1 套</td><td><input class="cell-in" value="HKD 480"></td><td>—</td><td>—</td><td>每单结</td></tr>
-              <tr><td>章程公证 ×1</td><td>—</td><td><input class="cell-in" value="HKD 1,900"></td><td>—</td><td>每单结</td></tr>
-              <tr><td>办公租赁引流</td><td>—</td><td>—</td><td><input class="cell-in" value="比例 30%"></td><td>月结</td></tr>
-            </tbody>
-          </table></div>
+          <div class="ch"><span class="ct">供应商详情 · 金印堂（SUP-002）</span><button class="btn btn-xs btn-p" onclick="toast('供应商配置已保存')"><i class="ti ti-check"></i>保存配置</button></div>
+          <div class="cp">
+            <div style="font-size:10.5px;color:var(--text3);font-weight:600;letter-spacing:.4px;margin-bottom:8px">支持的服务（勾选该供应商可承接的服务）</div>
+            <div style="display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;margin-bottom:18px">
+              <label style="display:flex;align-items:center;gap:5px"><input type="checkbox" checked> 公司印章制作</label>
+              <label style="display:flex;align-items:center;gap:5px"><input type="checkbox" checked> 公司文件册</label>
+              <label style="display:flex;align-items:center;gap:5px"><input type="checkbox"> 公证认证</label>
+              <label style="display:flex;align-items:center;gap:5px"><input type="checkbox"> 注册地址</label>
+            </div>
+            <div style="font-size:10.5px;color:var(--text3);font-weight:600;letter-spacing:.4px;margin-bottom:8px">结算规则（每项服务：固定额 / 比例 + 结算时点）</div>
+            <table>
+              <thead><tr><th>服务</th><th>结算方式</th><th>结算额 / 比例</th><th>结算时点</th></tr></thead>
+              <tbody>
+                <tr><td>公司印章制作 ×1 套</td><td><select class="inp" style="padding:4px 8px"><option>固定额</option><option>比例</option></select></td><td><input class="cell-in" value="HKD 480" style="width:92px"></td><td><select class="inp" style="padding:4px 8px"><option>订单完成后结</option><option>月结</option><option>确认收货后结</option></select></td></tr>
+                <tr><td>公司文件册 ×1</td><td><select class="inp" style="padding:4px 8px"><option>固定额</option><option>比例</option></select></td><td><input class="cell-in" value="HKD 260" style="width:92px"></td><td><select class="inp" style="padding:4px 8px"><option>订单完成后结</option><option>月结</option><option>确认收货后结</option></select></td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-        <div class="card">
-          <div class="ch"><span class="ct">交付任务</span></div>
-          <table><thead><tr><th>任务</th><th>供应商</th><th>关联订单</th><th>截止</th><th>状态</th><th></th></tr></thead>
-            <tbody>
-              <tr><td>公司圆章 + 签字章 ×1 套</td><td>金印堂</td><td>ORD-0188</td><td>06-13</td><td><span class="pill p-blue">进行中</span></td><td><button class="btn btn-xs">查看</button></td></tr>
-              <tr><td>章程公证 ×1</td><td>正诚公证行</td><td>ORD-0190</td><td>06-15</td><td><span class="pill p-amber">已上传待确认</span></td><td><button class="btn btn-xs btn-green">确认</button></td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="card">
-          <div class="ch"><span class="ct">供应商应付账单（线下结算）</span></div>
-          <table><thead><tr><th>账单号</th><th>供应商</th><th>服务内容</th><th>金额</th><th>周期</th><th>结算</th><th></th></tr></thead>
-            <tbody>
-              <tr><td>SUP-2026-006</td><td>金印堂</td><td>印章制作 ×5 套</td><td>HKD 4,800</td><td>2026-06</td><td><span class="pill p-amber">待结算</span></td><td><button class="btn btn-xs btn-green">标记已结算</button></td></tr>
-              <tr><td>SUP-2026-005</td><td>正诚公证行</td><td>公证 ×2</td><td>HKD 3,800</td><td>2026-06</td><td><span class="pill p-amber">待结算</span></td><td><button class="btn btn-xs btn-green">标记已结算</button></td></tr>
-            </tbody>
-          </table>
-        </div>
+        <div class="card cp" style="background:var(--bg2)"><div style="font-size:12px;color:var(--text2)"><i class="ti ti-info-circle"></i> 结算只对<b>已完成</b>订单生效：订单状态变更为「已完成」后，该供应商的结算项才进入「订单结算」待结算列表。</div></div>
       </div>
 
       <!-- ════ 企微线索 ════ -->
@@ -522,71 +520,97 @@ tbody tr:hover{background:#FAFAF8}
       <!-- ════ 商品管理 · 服务与套餐 ════ -->
       <div class="page" id="p-products">
         <div class="filters">
-          <span class="chip on">全部</span><span class="chip">组合服务</span><span class="chip">单项服务</span><span class="chip">增值服务</span><span class="chip">已下架</span>
-          <button class="btn btn-p" style="margin-left:auto"><i class="ti ti-plus"></i>新建商品</button>
+          <span class="chip on">全部</span><span class="chip">注册</span><span class="chip">年审 / 变更</span><span class="chip">记账报税</span><span class="chip">增值</span><span class="chip">已下架</span>
+          <button class="btn btn-p" style="margin-left:auto" onclick="openProduct()"><i class="ti ti-plus"></i>新增商品</button>
         </div>
-        <div class="card cp" style="background:var(--gold-bg);border-color:var(--gold)"><div style="font-size:12px;color:var(--gold)"><i class="ti ti-package"></i> 商品分 <b>单项服务 / 组合服务</b>，<b>字段统一</b>（类型 · 标准价（双币）· 包含明细 · 适用人群 · 前置流程）。注册=一个"组合服务"（非"套餐"）。「适用人群」供小程序新客画像推荐；「前置流程」驱动办理步骤。</div></div>
+        <div class="card cp" style="background:var(--gold-bg);border-color:var(--gold)"><div style="font-size:12px;color:var(--gold)"><i class="ti ti-package"></i> 全部为 <b>单项服务</b>（已取消"组合 / 套餐"概念，注册 = 一个单项服务）。字段统一：类型 · 标准价（港币 / 人民币双币）· 时效 · 适用人群 · 前置流程 · 交付物 · <b>富文本详细描述</b>。前端服务市场与新客推荐实时读取。</div></div>
         <div class="card">
-          <div class="ch"><span class="ct">组合服务（注册类）</span><span class="pill p-gold">小程序首页展示</span></div>
+          <div class="ch"><span class="ct">服务列表（单项服务）</span><span class="pill p-gold">前端服务市场数据源</span></div>
           <table>
-            <thead><tr><th>商品</th><th>类型</th><th>标准价</th><th>包含明细</th><th>适用人群</th><th>前置流程</th><th>状态</th><th></th></tr></thead>
+            <thead><tr><th>商品</th><th>类型</th><th>标准价 HKD / ¥</th><th>时效</th><th>适用人群</th><th>前置流程</th><th>状态</th><th></th></tr></thead>
             <tbody>
-              <tr><td><b>基础注册</b></td><td><span class="pill p-gray">组合</span></td><td>HKD 3,800</td><td>注册 + 法定秘书 + 注册地址</td><td>单股东 / 预算优先</td><td>核名 + 资料 + KYC</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs">编辑</button> <button class="btn btn-xs btn-red">下架</button></td></tr>
-              <tr><td><b>标准注册</b> <span class="pill p-gold">推荐</span></td><td><span class="pill p-gray">组合</span></td><td>HKD 5,800</td><td>基础 + 首年年审 + 全套印章</td><td>要一步到位（最多人选）</td><td>核名 + 资料 + KYC</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs">编辑</button> <button class="btn btn-xs btn-red">下架</button></td></tr>
-              <tr><td><b>高级注册</b></td><td><span class="pill p-gray">组合</span></td><td>HKD 8,800</td><td>标准 + 开户协助 + 公证 + SCR</td><td>需开户 / 公证全配套</td><td>核名 + 资料 + KYC</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs">编辑</button> <button class="btn btn-xs btn-red">下架</button></td></tr>
+              <tr><td><b>基础公司注册</b></td><td><span class="pill p-gold">注册</span></td><td>3,800 / 3,420</td><td>3–5 工作日</td><td>单股东 / 预算优先</td><td>核名 + 资料 + KYC</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('基础公司注册')">编辑</button> <button class="btn btn-xs btn-red">下架</button></td></tr>
+              <tr><td><b>标准公司注册</b> <span class="pill p-gold">推荐</span></td><td><span class="pill p-gold">注册</span></td><td>5,800 / 5,220</td><td>3–5 工作日</td><td>要年审 + 印章一步到位</td><td>核名 + 资料 + KYC</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('标准公司注册')">编辑</button> <button class="btn btn-xs btn-red">下架</button></td></tr>
+              <tr><td><b>高级公司注册</b></td><td><span class="pill p-gold">注册</span></td><td>8,800 / 7,920</td><td>5–10 工作日</td><td>需开户 / 公证全配套</td><td>核名 + 资料 + KYC</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('高级公司注册')">编辑</button> <button class="btn btn-xs btn-red">下架</button></td></tr>
+              <tr><td>公司年审 NAR1</td><td><span class="pill p-blue">年审</span></td><td>2,800 / 2,520</td><td>5–7 工作日</td><td>到期公司</td><td>资料</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('公司年审 NAR1')">编辑</button></td></tr>
+              <tr><td>董事 / 秘书变更</td><td><span class="pill p-blue">变更</span></td><td>1,500 / 1,350</td><td>3–5 工作日</td><td>运营中公司</td><td>资料 + KYC</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('董事 / 秘书变更')">编辑</button></td></tr>
+              <tr><td>股份转让</td><td><span class="pill p-blue">变更</span></td><td>2,000 / 1,800</td><td>5 工作日</td><td>股权变动</td><td>资料 + 印花税</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('股份转让')">编辑</button></td></tr>
+              <tr><td>记账报税（月度）</td><td><span class="pill p-green">记账</span></td><td>顾问报价</td><td>按月</td><td>有经营公司</td><td>资料</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('记账报税（月度）')">编辑</button></td></tr>
+              <tr><td>银行开户协助</td><td><span class="pill p-purple">增值</span></td><td>顾问报价</td><td>视银行</td><td>新注册公司</td><td>KYC</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('银行开户协助')">编辑</button></td></tr>
+              <tr><td>香港移民 / 身份规划</td><td><span class="pill p-purple">增值</span></td><td>顾问报价</td><td>—</td><td>出海创业者</td><td>咨询留资</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('香港移民 / 身份规划')">编辑</button></td></tr>
+              <tr><td>办公租赁（生态合作）</td><td><span class="pill p-purple">增值</span></td><td>顾问报价</td><td>—</td><td>需实体办公</td><td>留资工单</td><td><span class="pill p-gray">下架</span></td><td><button class="btn btn-xs" onclick="openProduct('办公租赁')">上架</button></td></tr>
             </tbody>
           </table>
         </div>
-        <div class="card">
-          <div class="ch"><span class="ct">单项 / 增值服务</span></div>
-          <table>
-            <thead><tr><th>商品</th><th>类型</th><th>标准价</th><th>适用人群</th><th>前置流程</th><th>主要交付物</th><th>状态</th><th></th></tr></thead>
-            <tbody>
-              <tr><td>公司年审 NAR1</td><td><span class="pill p-blue">单项</span></td><td>HKD 2,800</td><td>到期公司</td><td>资料</td><td>周年申报表 + BR 续期</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs">编辑</button></td></tr>
-              <tr><td>董事 / 秘书变更</td><td><span class="pill p-blue">单项</span></td><td>HKD 1,500</td><td>运营中公司</td><td>资料 + KYC</td><td>ND2A / NSC1 + SCR 更新</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs">编辑</button></td></tr>
-              <tr><td>股份转让</td><td><span class="pill p-blue">单项</span></td><td>HKD 2,000</td><td>股权变动</td><td>资料 + 印花税</td><td>转让文书 + 印花税 0.2%</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs">编辑</button></td></tr>
-              <tr><td>记账报税（月度）</td><td><span class="pill p-blue">单项</span></td><td>顾问报价</td><td>有经营公司</td><td>资料</td><td>账簿 + 利得税表</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs">编辑</button></td></tr>
-              <tr><td>银行开户协助</td><td><span class="pill p-purple">增值</span></td><td>顾问报价</td><td>新注册公司</td><td>KYC</td><td>开户引导（客户本人开立）</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs">编辑</button></td></tr>
-              <tr><td>香港移民 / 身份规划</td><td><span class="pill p-purple">增值</span></td><td>顾问报价</td><td>出海创业者</td><td>咨询留资</td><td>方案咨询（优才 / 高才）</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs">编辑</button></td></tr>
-              <tr><td>办公租赁（生态合作）</td><td><span class="pill p-purple">增值</span></td><td>顾问报价</td><td>需实体办公</td><td>留资工单</td><td>生态伙伴提供（留资引流）</td><td><span class="pill p-gray">下架</span></td><td><button class="btn btn-xs">上架</button></td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="card cp" style="background:var(--bg2)"><div style="font-size:12px;color:var(--text2)"><i class="ti ti-info-circle"></i> 价格统一为<b>标准价</b>（支持双币，无"每渠道一价"）；渠道差异在「渠道商管理 · 分佣规则」配佣金，不改售价。前端服务市场与新客推荐实时读取本数据源。</div></div>
+        <div class="card cp" style="background:var(--bg2)"><div style="font-size:12px;color:var(--text2)"><i class="ti ti-info-circle"></i> 价格统一为<b>标准价</b>（双币展示）；渠道差异在「渠道商管理 · 结算规则」配佣金，不改售价。点「新增商品 / 编辑」维护字段与富文本详情。</div></div>
       </div>
 
-      <!-- ════ 无码订单分配 ════ -->
+      <!-- ════ 订单分配（给供应商履约）════ -->
       <div class="page" id="p-assign">
-        <div class="filters"><span class="chip on">待分配 2</span><span class="chip">已分配</span><span class="chip">分配规则</span></div>
+        <div class="filters"><span class="chip on">待分配 2</span><span class="chip">履约中</span><span class="chip">分配规则</span></div>
         <div class="card">
-          <div class="ch"><span class="ct">无推荐码订单（自然流量）· 待分配渠道商</span><span class="pill p-amber">2 待分配</span></div>
+          <div class="ch"><span class="ct">已付款待履约订单 · 分配供应商</span><span class="pill p-amber">2 待分配</span></div>
           <table>
-            <thead><tr><th>订单号</th><th>客户</th><th>服务</th><th>金额</th><th>来源</th><th>建议渠道</th><th></th></tr></thead>
+            <thead><tr><th>订单号</th><th>客户</th><th>服务</th><th>需履约任务</th><th>建议供应商</th><th></th></tr></thead>
             <tbody>
-              <tr><td>ORD-2026-0205</td><td>李美琪</td><td>年审服务</td><td>HKD 2,800</td><td><span class="pill p-gray">自然流量</span></td><td><span class="pill p-blue">正弦咨询（就近 / 负载）</span></td><td><button class="btn btn-xs btn-p" onclick="toast('已分配给 正弦咨询 AGT002')">分配</button></td></tr>
-              <tr><td>ORD-2026-0212</td><td>周敏</td><td>基础注册套餐</td><td>HKD 3,800</td><td><span class="pill p-gray">自然流量</span></td><td><span class="pill p-blue">星投资本（金牌优先）</span></td><td><button class="btn btn-xs btn-p" onclick="toast('已分配给 星投资本 AGT001')">分配</button></td></tr>
+              <tr><td>ORD-2026-0188</td><td>陈大文</td><td>标准公司注册</td><td>公司印章 + 文件册</td><td><span class="pill p-blue">金印堂（支持 · 负载低）</span></td><td><button class="btn btn-xs btn-p" onclick="toast('已分配给 金印堂 SUP-002')">分配</button></td></tr>
+              <tr><td>ORD-2026-0190</td><td>李美琪</td><td>高级公司注册</td><td>章程公证</td><td><span class="pill p-blue">正诚公证行（支持）</span></td><td><button class="btn btn-xs btn-p" onclick="toast('已分配给 正诚公证行 SUP-003')">分配</button></td></tr>
             </tbody>
           </table>
         </div>
         <div class="card">
-          <div class="ch"><span class="ct">已分配记录</span></div>
+          <div class="ch"><span class="ct">履约中（已分配任务）</span></div>
           <table>
-            <thead><tr><th>订单号</th><th>客户</th><th>分配渠道</th><th>分配人</th><th>分佣率</th><th>进度</th></tr></thead>
+            <thead><tr><th>订单号</th><th>履约任务</th><th>供应商</th><th>截止</th><th>履约进度</th><th>状态</th></tr></thead>
             <tbody>
-              <tr><td>ORD-2026-0198</td><td>陈先生</td><td>湾区财税 AGT003</td><td>系统自动</td><td>8%</td><td><span class="pill p-blue">服务中</span></td></tr>
+              <tr><td>ORD-2026-0185</td><td>公司圆章 + 签字章</td><td>金印堂</td><td>06-13</td><td>制作中</td><td><span class="pill p-blue">履约中</span></td></tr>
+              <tr><td>ORD-2026-0182</td><td>章程公证 ×1</td><td>正诚公证行</td><td>06-15</td><td>已寄出</td><td><span class="pill p-amber">待确认收货</span></td></tr>
+              <tr><td>ORD-2026-0142</td><td>注册全流程</td><td>Leapexbiz 直营</td><td>06-09</td><td>已交付</td><td><span class="pill p-green">已完成</span></td></tr>
             </tbody>
           </table>
         </div>
         <div class="card">
-          <div class="ch"><span class="ct">自动分配规则</span><button class="btn btn-xs btn-p" onclick="toast('分配规则已保存')">保存</button></div>
+          <div class="ch"><span class="ct">自动分配规则（订单 → 供应商）</span><button class="btn btn-xs btn-p" onclick="toast('分配规则已保存')">保存</button></div>
           <div class="cp">
-            <label style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><input type="checkbox" checked> 优先级 1：按渠道商<b>所在地 / 业务匹配</b>（内地客户 → 内地渠道商）</label>
-            <label style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><input type="checkbox" checked> 优先级 2：按渠道商<b>负载均衡</b>（在办订单少者优先）</label>
-            <label style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><input type="checkbox"> 优先级 3：<b>金牌渠道优先</b>（高分佣档优先派单）</label>
-            <label style="display:flex;align-items:center;gap:8px"><input type="checkbox" checked> 兜底：无合适渠道则<b>转直营运营</b>承接</label>
+            <label style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><input type="checkbox" checked> 优先级 1：按<b>支持该服务</b>的供应商匹配</label>
+            <label style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><input type="checkbox" checked> 优先级 2：按供应商<b>负载均衡</b>（在办任务少者优先）</label>
+            <label style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><input type="checkbox"> 优先级 3：按<b>结算成本</b>择优</label>
+            <label style="display:flex;align-items:center;gap:8px"><input type="checkbox" checked> 兜底：无合适供应商则<b>转 Leapexbiz 直营</b>履约</label>
           </div>
         </div>
-        <div class="card cp" style="background:var(--blue-bg);border-color:var(--blue)"><div style="font-size:12px;color:var(--blue)"><i class="ti ti-arrows-split"></i> 无推荐码 = 自然流量 / 投流来的订单。系统按规则给出建议渠道，运营一键分配；分配后该订单归属渠道商，进入其工作台并按对应分佣率计佣。</div></div>
+        <div class="card cp" style="background:var(--blue-bg);border-color:var(--blue)"><div style="font-size:12px;color:var(--blue)"><i class="ti ti-arrows-split"></i> 订单付款后进入待履约：按"供应商支持的服务 + 负载"分配给供应商，供应商在其工作台维护进度。订单<b>已完成</b>后，对应结算项进入「订单结算」。</div></div>
+      </div>
+
+      <!-- ════ 订单结算（供应商 · 订单已完成才结算）════ -->
+      <div class="page" id="p-suppliersettle">
+        <div class="grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:16px">
+          <div class="kpi"><div class="l">待结算（已完成订单）</div><div class="v">HKD 6.2K</div><div class="d" style="color:var(--amber)">3 笔</div></div>
+          <div class="kpi"><div class="l">本月已结算</div><div class="v">HKD 4.8K</div><div class="d" style="color:var(--green)">金印堂等</div></div>
+          <div class="kpi"><div class="l">待处理提现</div><div class="v">1</div><div class="d">供应商发起</div></div>
+        </div>
+        <div class="card cp" style="background:var(--gold-bg);border-color:var(--gold)"><div style="font-size:12px;color:var(--gold)"><i class="ti ti-businessplan"></i> 仅<b>订单状态 = 已完成</b>的供应商结算项进入此列表；按供应商详情配置的"固定额 / 比例 + 结算时点"计算应结金额。未完成订单不可结算。</div></div>
+        <div class="card">
+          <div class="ch"><span class="ct">待结算明细（订单已完成）</span><button class="btn btn-xs"><i class="ti ti-download"></i>导出</button></div>
+          <table>
+            <thead><tr><th>订单号</th><th>供应商</th><th>履约任务</th><th>结算方式</th><th>应结</th><th>订单状态</th><th></th></tr></thead>
+            <tbody>
+              <tr><td>ORD-2026-0142</td><td>金印堂</td><td>印章 ×1 套</td><td>固定额</td><td><b>HKD 480</b></td><td><span class="pill p-green">已完成</span></td><td><button class="btn btn-xs btn-green" onclick="toast('已结算给 金印堂')">结算</button></td></tr>
+              <tr><td>ORD-2026-0130</td><td>正诚公证行</td><td>公证 ×1</td><td>固定额</td><td><b>HKD 1,900</b></td><td><span class="pill p-green">已完成</span></td><td><button class="btn btn-xs btn-green" onclick="toast('已结算给 正诚公证行')">结算</button></td></tr>
+              <tr><td>ORD-2026-0125</td><td>湾景商务中心</td><td>注册地址引流</td><td>比例 30%</td><td><b>HKD 3,840</b></td><td><span class="pill p-green">已完成</span></td><td><button class="btn btn-xs btn-green" onclick="toast('已结算给 湾景商务中心')">结算</button></td></tr>
+              <tr style="opacity:.5"><td>ORD-2026-0188</td><td>金印堂</td><td>印章 + 文件册</td><td>固定额</td><td>HKD 740</td><td><span class="pill p-blue">服务中</span></td><td><span style="font-size:11px;color:var(--text3)">未完成不可结算</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <div class="ch"><span class="ct">供应商提现申请</span><span class="pill p-amber">1 待审核</span></div>
+          <table>
+            <thead><tr><th>申请号</th><th>供应商</th><th>金额</th><th>收款方式</th><th>申请时间</th><th>状态</th><th></th></tr></thead>
+            <tbody>
+              <tr><td>WD-S-2026-007</td><td>金印堂</td><td><b>HKD 4,800</b></td><td>银行转账</td><td>06-09</td><td><span class="pill p-amber">待审核</span></td><td><button class="btn btn-xs btn-p" onclick="toast('已确认打款 · 标记结算')">确认打款</button></td></tr>
+              <tr><td>WD-S-2026-006</td><td>正诚公证行</td><td>HKD 3,800</td><td>银行转账</td><td>05-31</td><td><span class="pill p-green">已到账</span></td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <!-- ════ 佣金结算 ════ -->
@@ -596,6 +620,7 @@ tbody tr:hover{background:#FAFAF8}
           <div class="kpi"><div class="l">本月已结算</div><div class="v">HKD 8.2K</div><div class="d" style="color:var(--green)">湾区财税</div></div>
           <div class="kpi"><div class="l">待处理提现申请</div><div class="v">2</div><div class="d">渠道商发起</div></div>
         </div>
+        <div class="card cp" style="background:var(--gold-bg);border-color:var(--gold)"><div style="font-size:12px;color:var(--gold)"><i class="ti ti-affiliate"></i> 渠道商佣金结算：渠道商只供线索不履约；按渠道商详情配置的佣金率/固定额计佣，<b>订单「已完成」才进入下方待结算台账</b>。</div></div>
         <div class="card">
           <div class="ch"><span class="ct">月度佣金台账（2026-06）· 应付分账</span><button class="btn btn-xs"><i class="ti ti-download"></i>导出</button></div>
           <table>
@@ -617,7 +642,7 @@ tbody tr:hover{background:#FAFAF8}
             </tbody>
           </table>
         </div>
-        <div class="card cp" style="background:var(--gold-bg);border-color:var(--gold)"><div style="font-size:12px;color:var(--gold)"><i class="ti ti-calculator"></i> 佣金 = 客户实付（渠道专属价）× 渠道档 × 服务佣金率。订单「已到账」时入应付台账；渠道商发起提现 → 财务审核 → 线下打款 → 标记已结算。客户不可见佣金。</div></div>
+        <div class="card cp" style="background:var(--gold-bg);border-color:var(--gold)"><div style="font-size:12px;color:var(--gold)"><i class="ti ti-calculator"></i> 佣金 = 客户实付 × 渠道商结算规则（佣金率 / 固定额）。<b>仅订单状态变更为「已完成」后</b>才入应付台账；渠道商发起提现 → 财务审核 → 线下打款 → 标记已结算。客户不可见佣金。</div></div>
       </div>
 
       <!-- ════ 投流数据 ════ -->
@@ -817,6 +842,54 @@ tbody tr:hover{background:#FAFAF8}
   </div>
 </div>
 
+<!-- 新增 / 编辑商品 Modal -->
+<div class="mask" id="m-product" onclick="if(event.target===this)closeM('m-product')">
+  <div class="modal" style="max-width:680px">
+    <div class="mh"><div><b style="font-size:14px" id="prod-title">新增商品</b><div style="font-size:11px;color:var(--text3)">单项服务 · 字段统一 · 富文本详情</div></div><button class="x" onclick="closeM('m-product')">×</button></div>
+    <div class="mb">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 16px">
+        <div style="grid-column:1 / -1"><label class="flbl">商品名称 *</label><input class="inp" style="width:100%" id="prod-name" placeholder="如 标准公司注册"></div>
+        <div><label class="flbl">服务类型 *</label><select class="inp" style="width:100%"><option>注册</option><option>年审</option><option>变更</option><option>记账报税</option><option>增值</option></select></div>
+        <div><label class="flbl">上 / 下架</label><select class="inp" style="width:100%"><option>上架</option><option>下架</option></select></div>
+        <div><label class="flbl">标准价 · 港币 (HKD)</label><input class="inp" style="width:100%" placeholder="5800"></div>
+        <div><label class="flbl">标准价 · 人民币 (¥)</label><input class="inp" style="width:100%" placeholder="5220"></div>
+        <div><label class="flbl">办理时效</label><input class="inp" style="width:100%" placeholder="3–5 工作日"></div>
+        <div><label class="flbl">适用人群（画像推荐）</label><input class="inp" style="width:100%" placeholder="要一步到位"></div>
+        <div style="grid-column:1 / -1"><label class="flbl">前置流程（办理前需完成）</label>
+          <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:4px;font-size:12.5px">
+            <label style="display:flex;align-items:center;gap:5px"><input type="checkbox" checked> 公司核名</label>
+            <label style="display:flex;align-items:center;gap:5px"><input type="checkbox" checked> 提交资料</label>
+            <label style="display:flex;align-items:center;gap:5px"><input type="checkbox" checked> KYC 认证</label>
+            <label style="display:flex;align-items:center;gap:5px"><input type="checkbox"> 印花税</label>
+            <label style="display:flex;align-items:center;gap:5px"><input type="checkbox"> 选择公司</label>
+          </div>
+        </div>
+        <div style="grid-column:1 / -1"><label class="flbl">主要交付物</label><input class="inp" style="width:100%" placeholder="CI + BR + 章程 + 名册 …"></div>
+        <div style="grid-column:1 / -1">
+          <label class="flbl">详细描述（富文本 · 前端服务详情页直接渲染）</label>
+          <div class="rt-tb">
+            <button type="button" onclick="rt('bold')" title="加粗"><i class="ti ti-bold"></i></button>
+            <button type="button" onclick="rt('italic')" title="斜体"><i class="ti ti-italic"></i></button>
+            <button type="button" onclick="rt('underline')" title="下划线"><i class="ti ti-underline"></i></button>
+            <span class="rt-sep"></span>
+            <button type="button" onclick="rt('insertUnorderedList')" title="无序列表"><i class="ti ti-list"></i></button>
+            <button type="button" onclick="rt('insertOrderedList')" title="有序列表"><i class="ti ti-list-numbers"></i></button>
+            <span class="rt-sep"></span>
+            <button type="button" onclick="rt('formatBlock','h4')" title="小标题"><i class="ti ti-heading"></i></button>
+            <button type="button" onclick="rtLink()" title="插入链接"><i class="ti ti-link"></i></button>
+          </div>
+          <div class="rt-ed" id="prod-desc" contenteditable="true"><p><b>服务说明</b></p><ul><li>公司注册（CI + BR）+ 首年法定秘书 + 注册地址</li><li>办理周期约 3–5 个工作日，全程进度可见</li></ul><p>适合首次在港设立公司的创业者。</p></div>
+          <div style="font-size:11px;color:var(--text3);margin-top:5px">支持 加粗 / 斜体 / 列表 / 小标题 / 链接，保存为 HTML。</div>
+        </div>
+      </div>
+    </div>
+    <div class="mf">
+      <button class="btn" onclick="closeM('m-product')">取消</button>
+      <button class="btn btn-p" onclick="closeM('m-product');toast('商品已保存')">保存商品</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -826,11 +899,19 @@ function go(el){
   var p=el.dataset.p;
   document.querySelectorAll('.page').forEach(pg=>pg.classList.remove('on'));
   document.getElementById('p-'+p).classList.add('on');
-  var meta={dash:['数据驾驶舱','实时运营 + 业务流程总览'],customers:['客户信息','客户档案与画像'],companies:['客户公司','法人主体 / CI·BR / SCR / 状态'],kyc:['KYC / EDD 审核','AMLO 尽职调查'],namecheck:['核名查册','iCRIS + 五级风险'],orders:['订单列表','全流程跟踪'],bills:['账单 / 回单确认','财务核对到账'],deliver:['交付物管理','PDF + 实物 + 供应商'],annual:['年审 / 变更','6 轮递进提醒'],products:['服务（单项 / 组合）','统一字段 + 标准价'],supplier:['供应商管理','履约乙方 · 结算规则（额/比例）'],channel:['渠道商管理','投流获客 · 分佣（返点）'],assign:['无码订单分配','自然流量派单'],commission:['佣金 / 结算','渠道应付台账 + 提现'],ads:['投流数据','广告投放 ROI（二期）'],leads:['企微线索','承接转化'],rbac:['员工与角色','RBAC 7 角色'],compliance:['合规与审计','制裁 / SCR / 哈希链'],config:['系统配置','参数'],supplierwt:['供应商工作台','供应商自助：订单 / 进度 / 结算 / 提现'],partner:['渠道商工作台','渠道商自助：订单 / 佣金 / 提现']};
+  var meta={dash:['数据驾驶舱','实时运营 + 业务流程总览'],supplierwt:['供应商工作台','供应商自助：订单 / 进度 / 结算 / 提现'],partner:['渠道商工作台','渠道商自助：订单 / 佣金 / 提现'],customers:['客户信息','客户档案与画像'],companies:['客户公司','法人主体 / CI·BR / SCR / 状态'],kyc:['KYC / EDD 审核','AMLO 尽职调查'],namecheck:['核名查册','iCRIS + 五级风险'],orders:['订单列表','全流程跟踪'],bills:['账单 / 回单确认','财务核对到账'],deliver:['交付物管理','PDF + 实物 + 供应商'],annual:['年审 / 变更','6 轮递进提醒'],products:['服务管理','单项服务 · 富文本详情'],supplier:['供应商管理','超管新增 · 支持服务 + 结算规则'],assign:['订单分配','派单给供应商履约'],suppliersettle:['订单结算','已完成订单 → 供应商结算'],channel:['渠道商管理','超管新增 · 推荐码 + 结算规则'],commission:['佣金结算','已完成订单 → 渠道返点'],rbac:['员工与角色','RBAC 7 角色'],compliance:['合规与审计','制裁 / SCR / 哈希链'],config:['系统配置','参数']};
   var m=meta[p]||['',''];document.getElementById('pt').textContent=m[0];document.getElementById('ps').textContent=m[1];
   document.querySelector('.content').scrollTop=0;
 }
 function closeM(id){document.getElementById(id).classList.remove('on')}
+/* 新增/编辑商品 + 富文本 */
+function openProduct(name){
+  document.getElementById('prod-title').textContent = name ? '编辑商品 · '+name : '新增商品';
+  var n=document.getElementById('prod-name'); if(n) n.value = name||'';
+  document.getElementById('m-product').classList.add('on');
+}
+function rt(cmd,val){ document.execCommand(cmd,false,val||null); var e=document.getElementById('prod-desc'); if(e) e.focus(); }
+function rtLink(){ var u=prompt('链接地址','https://'); if(u) document.execCommand('createLink',false,u); }
 function toast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._);t._=setTimeout(()=>t.classList.remove('show'),1800)}
 
 /* ═══════ 真后端桥接（/api/tcsp/*）═══════ */
