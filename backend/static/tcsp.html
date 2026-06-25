@@ -357,7 +357,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue'
             <div class="cell-main"><div class="cell-t">支付失败 · 请重新支付</div><div class="cell-d">ORD-2026-0205 · 上次微信支付未完成</div></div>
             <span class="cell-arrow"><i class="ti ti-chevron-right"></i></span>
           </div>
-          <div class="cell" style="border-bottom:1px solid var(--line)" onclick="go('s-kyc')">
+          <div class="cell" id="todo-kyc" style="border-bottom:1px solid var(--line)" onclick="go('s-kycfix')">
             <div class="cell-ic" style="background:var(--red-bg);color:var(--red)"><i class="ti ti-user-x"></i></div>
             <div class="cell-main"><div class="cell-t">KYC 未通过 · 需修改资料</div><div class="cell-d">地址证明不清晰，请重新上传后再审</div></div>
             <span class="cell-arrow"><i class="ti ti-chevron-right"></i></span>
@@ -816,6 +816,62 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue'
         <div class="card card-pad" style="background:var(--accent-bg);margin-top:12px">
           <div class="note" style="color:var(--accent-d)">还没有香港公司？<b onclick="openSvc('pkg-std')" style="text-decoration:underline;cursor:pointer">先办理注册服务 ›</b>（无公司将为你推荐注册）</div>
         </div>
+      </div>
+    </div>
+
+    <!-- ════════ KYC 资料修改（审核未通过）════════ -->
+    <div class="screen" id="s-kycfix" data-title="KYC 资料修改" data-back="s-home">
+      <div class="body-pad">
+        <div class="card card-pad" style="background:var(--red-bg);border-color:var(--red)">
+          <div style="display:flex;align-items:flex-start;gap:8px">
+            <i class="ti ti-alert-triangle" style="color:var(--red);font-size:18px"></i>
+            <div><div style="font-weight:700;color:var(--red);font-size:13.5px">KYC 审核未通过</div><div class="note" style="color:var(--red);margin-top:2px">以下 <b>2 项</b> 资料需修改后重新提交。审核：合规部 · 06-09 14:05</div></div>
+          </div>
+        </div>
+
+        <div class="sec-t">已提交资料</div>
+        <div class="card" style="padding:0">
+          <!-- 通过：身份证件 -->
+          <div class="cell" style="border-bottom:1px solid var(--line)">
+            <div class="cell-ic" style="background:var(--green-bg);color:var(--green-d)"><i class="ti ti-id"></i></div>
+            <div class="cell-main"><div class="cell-t">身份证件（香港身份证）</div><div class="cell-d">A123456(7) · OCR 置信度 96%</div></div>
+            <span class="tag t-green">已通过</span>
+          </div>
+
+          <!-- 未通过：地址证明（重新上传） -->
+          <div style="padding:13px 14px;border-bottom:1px solid var(--line)">
+            <div style="display:flex;align-items:center;gap:8px">
+              <div class="cell-ic" style="background:var(--red-bg);color:var(--red)"><i class="ti ti-map-pin"></i></div>
+              <div style="flex:1;font-weight:600;font-size:13.5px">地址证明</div>
+              <span class="tag t-red">未通过</span>
+            </div>
+            <div class="note" style="color:var(--red);margin-top:6px"><i class="ti ti-info-circle"></i> 须为近 3 个月内、显示完整姓名与地址；你上传的银行对账单已超期。</div>
+            <div id="fix-addr" onclick="fixUpload('fix-addr','address_2026-06.jpg')" style="margin-top:10px;border:1px dashed var(--line2);border-radius:9px;padding:14px;text-align:center;color:var(--text3);cursor:pointer">
+              <i class="ti ti-upload" style="font-size:20px"></i><div style="font-size:12px;margin-top:4px">点击重新上传地址证明</div>
+            </div>
+          </div>
+
+          <!-- 未通过：资金来源说明（修改文本） -->
+          <div style="padding:13px 14px;border-bottom:1px solid var(--line)">
+            <div style="display:flex;align-items:center;gap:8px">
+              <div class="cell-ic" style="background:var(--red-bg);color:var(--red)"><i class="ti ti-cash"></i></div>
+              <div style="flex:1;font-weight:600;font-size:13.5px">业务性质 / 资金来源说明</div>
+              <span class="tag t-red">未通过</span>
+            </div>
+            <div class="note" style="color:var(--red);margin-top:6px"><i class="ti ti-info-circle"></i> 描述过于简单，请补充具体业务与资金来源。</div>
+            <input class="input" id="fix-fund" style="margin-top:10px" placeholder="如：跨境电商销售收入 / 顾问服务费" value="贸易">
+          </div>
+
+          <!-- 通过：制裁筛查 -->
+          <div class="cell" style="border:none">
+            <div class="cell-ic" style="background:var(--green-bg);color:var(--green-d)"><i class="ti ti-shield-check"></i></div>
+            <div class="cell-main"><div class="cell-t">PEP / 制裁名单筛查</div><div class="cell-d">UN / EU / HKMA</div></div>
+            <span class="tag t-green">未命中</span>
+          </div>
+        </div>
+
+        <div class="note" style="margin:2px 2px 0;color:var(--text3)"><i class="ti ti-lock"></i> 仅需修改标记「未通过」的项；其余已通过项无需重传。</div>
+        <button class="btn" style="margin-top:14px" onclick="kycResubmit()">修改完成 · 重新提交审核</button>
       </div>
     </div>
 
@@ -1458,6 +1514,23 @@ function cancelOrder(){
   if(CURRENT_ORDER){ CURRENT_ORDER.status='已取消'; if(CURRENT_ORDER.services&&CURRENT_ORDER.services[0]) CURRENT_ORDER.services[0].bs='已作废'; }
   toast('订单已取消');
   setTimeout(function(){ goHome(); }, 700);
+}
+/* KYC 资料修改：重新上传 + 重新提交审核 */
+function fixUpload(id, fname){
+  var e=document.getElementById(id); if(!e) return;
+  e.style.borderStyle='solid'; e.style.borderColor='var(--green)'; e.style.color='var(--green-d)';
+  e.innerHTML='<i class="ti ti-circle-check" style="font-size:22px;color:var(--green)"></i><div style="font-size:12px;margin-top:4px;color:var(--green-d)">✓ 已重新上传：'+fname+'</div>';
+}
+function kycResubmit(){
+  // 待办：KYC 未通过 → 审核中
+  var t=document.getElementById('todo-kyc');
+  if(t){
+    var ic=t.querySelector('.cell-ic'); if(ic){ ic.style.background='var(--blue-bg)'; ic.style.color='var(--blue)'; ic.innerHTML='<i class="ti ti-clock-hour-4"></i>'; }
+    var tt=t.querySelector('.cell-t'); if(tt) tt.textContent='KYC 审核中';
+    var td=t.querySelector('.cell-d'); if(td) td.textContent='资料已重新提交 · 预计 1 个工作日';
+    t.setAttribute('onclick',"toast('KYC 审核中，请耐心等待结果')");
+  }
+  showResult({title:'资料已重新提交', desc:'已重新进入 <b>KYC 审核中</b>（约 1 个工作日）。审核通过后我们将继续为你办理。', btn:'返回首页', next:goHome});
 }
 function setCur(c){
   var cny = c==='cny';
