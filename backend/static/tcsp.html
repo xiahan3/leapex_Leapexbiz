@@ -148,6 +148,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue'
 .check-big i{font-size:36px;color:var(--green)}
 
 .amount{font-size:30px;font-weight:700;letter-spacing:-.5px}
+.cur-tab{padding:5px 14px;font-size:12px;color:var(--text2);cursor:pointer;background:#fff}
+.cur-tab.on{background:var(--accent);color:#fff;font-weight:600}
 .divider-or{display:flex;align-items:center;gap:10px;color:var(--text4);font-size:12px;margin:14px 0}
 .divider-or::before,.divider-or::after{content:'';flex:1;height:1px;background:var(--line2)}
 .aml-box{background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:14px;font-size:12.5px;color:var(--text2);line-height:1.7;max-height:230px;overflow-y:auto;margin-bottom:14px}
@@ -265,9 +267,21 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue'
         </div>
 
         <!-- 双通道 CTA -->
-        <div style="display:flex;gap:9px;margin-bottom:14px">
+        <div style="display:flex;gap:9px;margin-bottom:12px">
           <button class="btn" style="flex:1.3;padding:12px" onclick="go('s-services')"><i class="ti ti-apps" style="font-size:15px"></i> 查看所有服务</button>
           <button class="btn ghost" style="flex:1;padding:12px" onclick="openWecom('新客首页')"><i class="ti ti-headset" style="font-size:15px"></i> 免费咨询顾问</button>
+        </div>
+
+        <!-- 免费核名钩子 -->
+        <div class="card cp" style="margin-bottom:14px;background:linear-gradient(135deg,var(--accent-bg),#fff);border-color:var(--accent);cursor:pointer" onclick="go('s-namecheck')">
+          <div style="display:flex;align-items:center;gap:11px">
+            <div class="svc-dot" style="background:var(--accent);color:#fff;width:40px;height:40px"><i class="ti ti-search" style="font-size:19px"></i></div>
+            <div style="flex:1">
+              <div style="font-weight:700;font-size:14px">免费核名 · 先查再注册 <span class="tag t-green" style="font-size:9px">0 元</span></div>
+              <div class="note" style="margin-top:2px">输入心仪公司名 → 秒查香港有没有近似 → 结果存档，下单可复用</div>
+            </div>
+            <i class="ti ti-chevron-right" style="color:var(--accent);font-size:18px"></i>
+          </div>
         </div>
 
         <!-- 能帮你做什么 -->
@@ -331,52 +345,46 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue'
           </div>
         </div>
 
-        <!-- 待办 -->
-        <div class="sec-t">待办事项</div>
-        <div class="card">
-          <div class="cell" style="border-bottom:1px solid var(--line)" onclick="go('s-kyc')">
-            <div class="cell-ic" style="background:var(--yellow-bg);color:var(--orange)"><i class="ti ti-file-upload"></i></div>
-            <div class="cell-main"><div class="cell-t">补充地址证明</div><div class="cell-d">星辰科技 · KYC 第 3 步</div></div>
-            <span class="cell-arrow"><i class="ti ti-chevron-right"></i></span>
+        <!-- 进行中订单 · 待办（每单走到哪步 + 缺什么 → 继续办理）-->
+        <div class="sec-t">进行中订单 · 待办</div>
+
+        <div class="card cp" style="margin-bottom:12px" onclick="go('s-orderdetail')">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+            <div class="svc-dot" style="background:var(--accent-bg);color:var(--accent-d)"><i class="ti ti-building-plus"></i></div>
+            <div style="flex:1"><div style="font-weight:600;font-size:13.5px">新公司注册 · 星辰科技</div><div class="note">ORD-2026-0188</div></div>
+            <span class="tag t-orange" style="font-size:10px">进行中</span>
           </div>
-          <div class="cell" style="border-bottom:1px solid var(--line)" onclick="go('s-bill')">
-            <div class="cell-ic" style="background:var(--red-bg);color:var(--red)"><i class="ti ti-receipt"></i></div>
-            <div class="cell-main"><div class="cell-t">账单待支付</div><div class="cell-d">LEA-2026-0188-1 · HKD 2,750</div></div>
-            <span class="cell-arrow"><i class="ti ti-chevron-right"></i></span>
+          <div class="steps" style="padding:2px 2px 10px">
+            <div class="step-i done"><div class="step-dot">✓</div><div class="step-lab">核名</div></div><div class="step-line done"></div>
+            <div class="step-i act"><div class="step-dot">2</div><div class="step-lab">填资料</div></div><div class="step-line"></div>
+            <div class="step-i"><div class="step-dot">3</div><div class="step-lab">付款</div></div><div class="step-line"></div>
+            <div class="step-i"><div class="step-dot">4</div><div class="step-lab">KYC</div></div><div class="step-line"></div>
+            <div class="step-i"><div class="step-dot">5</div><div class="step-lab">交付</div></div>
           </div>
-          <div class="cell" style="border:none" onclick="openSvc('annual')">
-            <div class="cell-ic" style="background:var(--blue-bg);color:var(--blue)"><i class="ti ti-calendar-due"></i></div>
-            <div class="cell-main"><div class="cell-t">恒丰贸易 年审到期</div><div class="cell-d">距到期 85 天 · 第 1 轮提醒</div></div>
-            <span class="cell-arrow"><i class="ti ti-chevron-right"></i></span>
+          <div style="display:flex;align-items:center;gap:8px;background:var(--yellow-bg);border-radius:9px;padding:9px 11px">
+            <i class="ti ti-alert-circle" style="color:var(--orange);font-size:15px"></i>
+            <div style="flex:1;font-size:12px;color:#9a4a1f">待你补充：经营范围 + 股东证件</div>
+            <button class="btn" style="padding:6px 13px;font-size:12px" onclick="event.stopPropagation();go('s-svcform')">继续办理</button>
           </div>
         </div>
 
-        <!-- 推荐服务（基于企业状态 + 用户画像智能推荐）-->
-        <div class="sec-t" style="display:flex;justify-content:space-between"><span>为你推荐</span><span style="color:var(--accent);font-weight:500;cursor:pointer" onclick="go('s-services')">全部服务 ›</span></div>
-        <div class="card" style="padding:0">
-          <div class="svc-row" onclick="openSvc('annual')">
-            <div class="svc-dot" style="background:var(--yellow-bg);color:var(--orange)"><i class="ti ti-calendar-check"></i></div>
-            <div style="flex:1"><div style="font-size:13.5px;font-weight:600">公司年审 NAR1 <span class="tag t-amber" style="font-size:9px">恒丰贸易 · 临期</span></div><div class="note">距到期 85 天 · 逾期罚款递增，建议提前办理</div></div>
-            <div class="price" style="font-size:12.5px">HKD 2,800</div>
+        <div class="card cp" onclick="go('s-orderdetail')">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+            <div class="svc-dot" style="background:var(--blue-bg);color:var(--blue)"><i class="ti ti-calendar-check"></i></div>
+            <div style="flex:1"><div style="font-weight:600;font-size:13.5px">公司年审 · 恒丰贸易</div><div class="note">ORD-2026-0205</div></div>
+            <span class="tag t-red" style="font-size:10px">待付款</span>
           </div>
-          <div class="svc-row" onclick="openWecom('记账报税咨询')">
-            <div class="svc-dot" style="background:var(--green-bg);color:var(--green-d)"><i class="ti ti-calculator"></i></div>
-            <div style="flex:1"><div style="font-size:13.5px;font-weight:600">记账报税 + 利得税申报 <span class="tag t-blue" style="font-size:9px">恒丰贸易 · 年度</span></div><div class="note">财政年度将结束，需做账 + 审计 + 报税</div></div>
-            <div class="price" style="font-size:12.5px">面议</div>
+          <div class="steps" style="padding:2px 2px 10px">
+            <div class="step-i done"><div class="step-dot">✓</div><div class="step-lab">下单</div></div><div class="step-line done"></div>
+            <div class="step-i act"><div class="step-dot">2</div><div class="step-lab">付款</div></div><div class="step-line"></div>
+            <div class="step-i"><div class="step-dot">3</div><div class="step-lab">办理</div></div><div class="step-line"></div>
+            <div class="step-i"><div class="step-dot">4</div><div class="step-lab">交付</div></div>
           </div>
-          <div class="svc-row" onclick="openWecom('银行开户协助')">
-            <div class="svc-dot" style="background:var(--accent-bg);color:var(--accent-d)"><i class="ti ti-building-bank"></i></div>
-            <div style="flex:1"><div style="font-size:13.5px;font-weight:600">银行开户协助 <span class="tag t-gray" style="font-size:9px">星辰科技 · 注册后</span></div><div class="note">新公司注册完成即可启动开户</div></div>
-            <div class="price" style="font-size:12.5px">面议</div>
+          <div style="display:flex;align-items:center;gap:8px;background:var(--red-bg);border-radius:9px;padding:9px 11px">
+            <i class="ti ti-receipt" style="color:var(--red);font-size:15px"></i>
+            <div style="flex:1;font-size:12px;color:#a32b2b">账单待支付：¥ 2,520（约 HKD 2,800）</div>
+            <button class="btn" style="padding:6px 13px;font-size:12px" onclick="event.stopPropagation();go('s-bill')">去支付</button>
           </div>
-          <div class="svc-row" style="border-bottom:none" onclick="openSvc('immigration')">
-            <div class="svc-dot" style="background:var(--purple-bg);color:var(--purple)"><i class="ti ti-plane-departure"></i></div>
-            <div style="flex:1"><div style="font-size:13.5px;font-weight:600">香港移民 / 身份规划 <span class="tag t-purple" style="font-size:9px">为你</span></div><div class="note">已设立香港公司，可规划优才 / 高才身份</div></div>
-            <div class="price" style="font-size:12.5px">面议</div>
-          </div>
-        </div>
-        <div class="card card-pad" style="background:var(--bg2)">
-          <div class="note"><i class="ti ti-bulb" style="color:var(--accent)"></i> 推荐由系统按你的企业状态与画像智能生成（年审临期 / 财年结束 / 注册完成 / 出海身份），合规刚需优先排序。</div>
         </div>
       </div>
     </div>
@@ -426,7 +434,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue'
             <div class="prog-d"></div>
           </div>
           <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text4);margin-top:5px">
-            <span>KYC</span><span>核名</span><span style="color:var(--green);font-weight:700">签约</span><span>支付</span><span>交付</span>
+            <span>核名</span><span>资料</span><span style="color:var(--green);font-weight:700">付款</span><span>KYC</span><span>交付</span>
           </div>
         </div>
 
@@ -580,7 +588,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue'
             <div class="prog-d"></div><div class="prog-l"></div><div class="prog-d"></div>
           </div>
           <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text4);margin-top:5px">
-            <span>KYC</span><span>核名</span><span style="color:var(--accent);font-weight:700">签约</span><span>支付</span><span>交付</span>
+            <span>核名</span><span>资料</span><span style="color:var(--accent);font-weight:700">付款</span><span>KYC</span><span>交付</span>
           </div>
         </div>
 
@@ -719,7 +727,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue'
         </div>
         <div id="sf-fields"></div>
         <div class="card card-pad" style="background:var(--accent-bg)">
-          <div class="note" style="color:var(--accent-d)"><i class="ti ti-info-circle"></i> <span id="sf-kyc-note">新公司注册将进入 KYC 尽调 + 核名 + NNC1 注册完整流程。</span></div>
+          <div class="note" style="color:var(--accent-d)"><i class="ti ti-info-circle"></i> <span id="sf-kyc-note">流程顺序：核名（免费可前置）→ 填注册资料 → 付款 → KYC 尽调（最后）→ NNC1 注册交付。</span></div>
         </div>
       </div>
       <div class="buybar">
@@ -764,18 +772,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue'
     <div class="screen" id="s-paysuccess" data-title="支付提交成功">
       <div class="body-pad" style="text-align:center">
         <div class="success-ring"><i class="ti ti-check"></i></div>
-        <div style="font-size:18px;font-weight:700">回单已提交</div>
-        <div class="note" style="margin:6px 0 18px">运营核对到账后，订单将进入「服务中」并开始办理</div>
+        <div style="font-size:18px;font-weight:700">支付成功</div>
+        <div class="note" style="margin:6px 0 14px">还差最后一步——完成 KYC 实名认证，我们即开始为你办理</div>
         <div class="card card-pad" style="text-align:left">
           <div class="qty-line"><span style="color:var(--text2)">订单号</span><span style="font-family:monospace" id="ps-order">ORD-2026-0205</span></div>
-          <div class="qty-line"><span style="color:var(--text2)">账单号</span><span style="font-family:monospace" id="ps-bill">LEA-2026-0205-1</span></div>
-          <div class="qty-line"><span style="color:var(--text2)">服务</span><span id="ps-svc">标准注册套餐</span></div>
-          <div class="qty-line"><span style="color:var(--text2)">金额</span><span class="price" id="ps-amt">HKD 5,800</span></div>
-          <div class="qty-line"><span style="color:var(--text2)">状态</span><span class="tag t-blue">待确认</span></div>
+          <div class="qty-line"><span style="color:var(--text2)">服务</span><span id="ps-svc">标准注册服务</span></div>
+          <div class="qty-line"><span style="color:var(--text2)">实付</span><span class="price" id="ps-amt">¥ 5,220</span></div>
+          <div class="qty-line"><span style="color:var(--text2)">状态</span><span class="tag t-green">已支付</span></div>
         </div>
+        <div class="card card-pad" style="background:var(--accent-bg);text-align:left;margin-top:10px"><div class="note" style="color:var(--accent-d)"><i class="ti ti-info-circle"></i> KYC 为香港持牌 TCSP 合规必做；如审核不通过将全额退款。</div></div>
         <div style="display:flex;gap:8px;margin-top:14px">
-          <button class="btn ghost" onclick="goHome()">返回首页</button>
-          <button class="btn" onclick="go('s-orders')">查看订单</button>
+          <button class="btn ghost" onclick="go('s-orders')">查看订单</button>
+          <button class="btn" style="flex:1.4" onclick="setPersona('user');go('s-kyc')">去完成 KYC（最后一步）</button>
         </div>
       </div>
     </div>
@@ -879,7 +887,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue'
     <div class="screen" id="s-namecheck" data-title="公司核名" data-back="s-home">
       <div class="body-pad">
         <div id="nc-input-pane">
-          <div class="note" style="margin-bottom:14px;background:var(--bg2);padding:12px;border-radius:10px">核名分三阶段：前端实时校验 → 智能预检（近似名 + IPD 商标）→ iCRIS 人工查册。通过后名称锁定 30 天。</div>
+          <div class="note" style="margin-bottom:14px;background:var(--bg2);padding:12px;border-radius:10px"><b style="color:var(--green-d)">免费核名</b>：前端实时校验 → 智能预检（近似名 + IPD 商标）→ 顾问人工查册（异步，约 1–2 小时出结果）。<b>提交后可直接继续下单办理，无需等待</b>；结果自动存档，下单时可复用。</div>
           <div class="field"><div class="field-l">英文名称（须以 Limited 结尾，≤32 字符）</div><input class="input" id="nc-en" placeholder="Star Tech Limited" value="Star Tech Limited" oninput="ncCheck()"></div>
           <div class="field"><div class="field-l">中文名称（须以"有限公司"结尾，≤8 字）</div><input class="input" id="nc-zh" placeholder="星辰科技有限公司" value="星辰科技有限公司" oninput="ncCheck()"></div>
           <div class="card card-pad" id="nc-live" style="font-size:12.5px">
@@ -903,11 +911,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue'
             <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">iCRIS 人工查册</span><span class="tag t-green">可注册</span></div>
           </div>
           <div class="card card-pad" style="background:var(--yellow-bg)">
-            <div class="note" style="color:#B8860B">近似名：「Star Technology Limited」。Yellow 等级可由您确认后继续使用；如担心混淆可更换名称（免费重查）。</div>
+            <div class="note" style="color:#B8860B">近似名：「Star Technology Limited」。Yellow 等级可由您确认后继续使用；如担心混淆可更换名称（免费重查）。<br>注：核名为查近似 + 给建议，最终以注册时香港公司注册处核准为准。</div>
           </div>
           <div style="display:flex;gap:8px;margin-top:6px">
             <button class="btn ghost" onclick="go('s-namecheck');location.reload" style="flex:1">更换名称</button>
-            <button class="btn" style="flex:1.4" onclick="ncAccept()">确认使用并锁定 30 天</button>
+            <button class="btn" style="flex:1.4" onclick="ncAccept()">确认使用此名称</button>
           </div>
         </div>
       </div>
@@ -926,8 +934,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue'
 
         <div class="reg-pane" id="reg-1">
           <div style="font-size:16px;font-weight:700;margin-bottom:4px">Step 1 · 公司名称</div>
-          <div class="note" style="margin-bottom:12px">已核名通过的名称自动填充（锁定至 2026-07-11）</div>
-          <div class="card"><div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">英文名</span><span style="font-weight:600">Star Tech Limited</span></div><div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">中文名</span><span style="font-weight:600">星辰科技有限公司</span></div><div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">核名状态</span><span class="tag t-green">已锁定 30 天</span></div></div>
+          <div class="note" style="margin-bottom:12px">已核名通过的名称自动填充（可复用此前免费核名记录）</div>
+          <div class="card"><div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">英文名</span><span style="font-weight:600">Star Tech Limited</span></div><div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">中文名</span><span style="font-weight:600">星辰科技有限公司</span></div><div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">核名状态</span><span class="tag t-green">预检通过 · 可注册</span></div></div>
           <div class="fixed-foot"><button class="btn" onclick="regStep(2)">下一步</button></div>
         </div>
 
@@ -981,29 +989,41 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue'
       <div class="body-pad">
         <div class="card card-pad" style="text-align:center">
           <div class="note" id="bill-no">账单号 LEA-2026-0188-1</div>
-          <div class="amount" style="margin:8px 0;color:var(--text)" id="bill-amt">HKD 2,800.00</div>
-          <span class="tag t-orange" id="bill-status">待支付</span>
-          <div class="note" style="margin-top:8px">7 天内有效 · 逾期自动作废 · 此账单对应 1 项服务</div>
+          <div style="display:inline-flex;border:1px solid var(--line2);border-radius:8px;overflow:hidden;margin:9px 0 4px">
+            <div id="cur-cny" class="cur-tab on" onclick="setCur('cny')">人民币 ¥</div>
+            <div id="cur-hkd" class="cur-tab" onclick="setCur('hkd')">港币 HK$</div>
+          </div>
+          <div class="amount" style="margin:4px 0;color:var(--text)" id="bill-amt">¥ 5,220.00</div>
+          <span class="tag t-orange">待支付</span>
+          <div class="note" style="margin-top:8px">7 天内有效 · 此账单对应 1 项服务</div>
         </div>
-        <div class="sec-t">费用明细（账单 ↔ 服务 一一对应）</div>
+        <div class="sec-t">费用明细</div>
         <div class="card">
-          <div class="label-line" style="padding:12px 14px"><span id="bill-svc">标准注册套餐</span><span style="font-weight:600" id="bill-svc-amt">5,800.00</span></div>
-          <div class="label-line" style="padding:12px 14px;font-weight:700"><span>应付合计</span><span style="color:var(--green-d)" id="bill-total">HKD 5,800.00</span></div>
+          <div class="label-line" style="padding:12px 14px"><span>标准注册服务</span><span style="font-weight:600" id="bill-svc-amt">¥ 5,220.00</span></div>
+          <div class="label-line" style="padding:12px 14px;font-weight:700"><span>应付合计</span><span style="color:var(--green-d)" id="bill-total">¥ 5,220.00</span></div>
         </div>
-        <div class="card card-pad" style="background:var(--bg2)">
-          <div class="sec-t" style="padding:0 0 8px">线下转账 · Leapexbiz 收款账户</div>
-          <div style="font-size:13px;line-height:2">
+
+        <!-- 在线支付（默认 · 国内主体）-->
+        <div class="sec-t">支付方式</div>
+        <div id="pay-online">
+          <button class="btn" style="margin-bottom:9px" onclick="go('s-paysuccess')"><i class="ti ti-brand-wechat"></i> 微信支付</button>
+          <button class="btn ghost" onclick="go('s-paysuccess')"><i class="ti ti-brand-alipay"></i> 支付宝</button>
+          <div class="note" style="margin:9px 2px 0">收款主体：立佰思（上海）信息科技有限公司 · 支持聚合码收款</div>
+        </div>
+
+        <!-- 港币线下转账（切到港币时展示）-->
+        <div class="card card-pad" id="pay-hkd" style="background:var(--bg2);margin-top:10px;display:none">
+          <div class="sec-t" style="padding:0 0 8px">港币线下转账 · 香港 HSBC</div>
+          <div style="font-size:12.5px;line-height:1.95">
             <div style="display:flex;justify-content:space-between"><span style="color:var(--text3)">收款人</span><span>Leapexbiz Limited</span></div>
-            <div style="display:flex;justify-content:space-between"><span style="color:var(--text3)">银行</span><span>HSBC (004)</span></div>
-            <div style="display:flex;justify-content:space-between"><span style="color:var(--text3)">账号</span><span style="font-family:monospace">123-456789-001</span></div>
-            <div style="display:flex;justify-content:space-between"><span style="color:var(--text3)">FPS ID</span><span style="font-family:monospace">163088888</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--text3)">银行 / FPS</span><span>HSBC (004) · 163088888</span></div>
             <div style="display:flex;justify-content:space-between"><span style="color:var(--text3)">转账附言</span><span style="color:var(--red);font-weight:600">LEA-2026-0188-1</span></div>
           </div>
+          <button class="btn ghost" style="margin-top:10px" onclick="go('s-proof')"><i class="ti ti-upload"></i> 已转港币 · 上传回单</button>
         </div>
-        <div class="note" style="text-align:center;margin:4px 0 12px">请线下转账后上传回单，运营核对到账后服务启动</div>
-        <button class="btn" onclick="go('s-proof')"><i class="ti ti-upload"></i> 上传汇款回单</button>
-        <div class="divider-or">未来支持</div>
-        <button class="btn gray" onclick="toast('微信支付 / 支付宝为后续迭代功能')">微信支付（即将上线）</button>
+
+        <!-- 退款安心保障 -->
+        <div class="card card-pad" style="background:var(--green-bg);margin-top:10px"><div class="note" style="color:var(--green-d)"><i class="ti ti-shield-check"></i> 安心保障：安排会计师前可随时退款；<b>KYC 审核不通过全额退款</b>。</div></div>
       </div>
     </div>
 
@@ -1083,7 +1103,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue'
       <div class="body-pad">
         <div class="sec-t">合规通知 · 不可关闭</div>
         <div class="msg-item"><div class="msg-ic" style="background:var(--green-bg);color:var(--green-d)"><i class="ti ti-circle-check"></i></div><div style="flex:1"><div style="font-weight:600;font-size:14px">KYC 审核已通过</div><div class="note" style="margin-top:2px">您的尽职调查已通过，可继续核名与注册流程</div><div style="font-size:11px;color:var(--text4);margin-top:4px">今天 09:32</div></div></div>
-        <div class="msg-item"><div class="msg-ic" style="background:var(--yellow-bg);color:var(--amber)"><i class="ti ti-alert-triangle"></i></div><div style="flex:1"><div style="font-weight:600;font-size:14px">核名结果：Yellow 轻微近似</div><div class="note" style="margin-top:2px">「星辰科技有限公司」可使用，请确认后锁定</div><div style="font-size:11px;color:var(--text4);margin-top:4px">今天 10:15</div></div></div>
+        <div class="msg-item"><div class="msg-ic" style="background:var(--yellow-bg);color:var(--amber)"><i class="ti ti-alert-triangle"></i></div><div style="flex:1"><div style="font-weight:600;font-size:14px">核名结果：Yellow 轻微近似</div><div class="note" style="margin-top:2px">「星辰科技有限公司」可使用，请确认后继续</div><div style="font-size:11px;color:var(--text4);margin-top:4px">今天 10:15</div></div></div>
         <div class="sec-t">流程通知</div>
         <div class="msg-item"><div class="msg-ic" style="background:var(--yellow-bg);color:var(--orange)"><i class="ti ti-file-invoice"></i></div><div style="flex:1"><div style="font-weight:600;font-size:14px">首付款账单已生成</div><div class="note" style="margin-top:2px">LEA-2026-0188-1 · HKD 2,800 · 7 天内有效</div><div style="font-size:11px;color:var(--text4);margin-top:4px">今天 10:20</div></div></div>
         <div class="sec-t">年审提醒 · 6 轮递进</div>
@@ -1339,7 +1359,17 @@ function ncRun(){
     document.getElementById('s-namecheck').scrollTop = 0;
   }, 1200);
 }
-function ncAccept(){ toast('名称已锁定 30 天'); setTimeout(function(){ go('s-reg'); }, 800); }
+function ncAccept(){ toast('名称已确认 · 记录已存档'); setTimeout(function(){ go('s-reg'); }, 800); }
+function setCur(c){
+  var cny = c==='cny';
+  var el;
+  if(el=document.getElementById('cur-cny')) el.classList.toggle('on', cny);
+  if(el=document.getElementById('cur-hkd')) el.classList.toggle('on', !cny);
+  var amt = cny ? '¥ 5,220.00' : 'HK$ 5,800.00';
+  ['bill-amt','bill-svc-amt','bill-total'].forEach(function(id){ var e=document.getElementById(id); if(e) e.textContent=amt; });
+  if(el=document.getElementById('pay-online')) el.style.display = cny ? 'block' : 'none';
+  if(el=document.getElementById('pay-hkd')) el.style.display = cny ? 'none' : 'block';
+}
 
 /* Registration */
 function regStep(n){
@@ -1462,7 +1492,7 @@ var SVC_FORM = {
   deregister:[['公司名称',''],['注销原因',''],['税务是否已结清','是 / 否']],
 };
 var KYC_NOTE = {
-  register:'新公司注册将进入 KYC 尽调 + 核名 + NNC1 注册完整流程。',
+  register:'流程顺序：核名（免费可前置）→ 填注册资料 → 付款 → KYC 尽调（最后）→ NNC1 注册交付。',
   director:'新任董事需完成 KYC 尽职调查（含 PEP / 制裁名单筛查）。',
   transfer:'受让方需完成 KYC；系统将预估应缴印花税。',
   rename:'名称变更需重新走核名流程，通过后方可继续。',
