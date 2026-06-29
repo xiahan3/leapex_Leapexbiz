@@ -156,6 +156,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue'
 .sheet-panel{animation:sheetUp .26s cubic-bezier(.22,.61,.36,1)}
 .sheet-row{padding:12px 0;border-bottom:1px solid var(--line)}
 .sheet-row:last-child{border-bottom:none}
+.reg-grp{font-size:13.5px;font-weight:700;color:var(--text);margin:8px 2px 10px}
+.chk-pill{padding:8px 16px;border:1px solid var(--line2);border-radius:18px;font-size:13px;color:var(--text2);cursor:pointer;background:var(--card)}
+.chk-pill.on{background:var(--accent-bg);border-color:var(--accent);color:var(--accent-d);font-weight:600}
+select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239b9b9b' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:34px}
 .divider-or{display:flex;align-items:center;gap:10px;color:var(--text4);font-size:12px;margin:14px 0}
 .divider-or::before,.divider-or::after{content:'';flex:1;height:1px;background:var(--line2)}
 .aml-box{background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:14px;font-size:12.5px;color:var(--text2);line-height:1.7;max-height:230px;overflow-y:auto;margin-bottom:14px}
@@ -1065,7 +1069,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue'
         </div>
         <div class="card card-pad" style="background:var(--accent-bg)"><div class="note" style="color:var(--accent-d);line-height:1.7"><i class="ti ti-bulb"></i> <b>顾问建议</b>：名称「TimeLeap」已有在册公司、商标「Leapex」已注册（类别 9 / 35 / 42）。如经营相同业务，建议更换名称或避开冲突商标类别；最终能否注册以香港公司注册处核准为准。</div></div>
 
-        <button class="btn" style="margin-top:14px" onclick="ncAccept()">继续办理</button>
+        <button class="btn" style="margin-top:14px" onclick="startNewReg()">新公司注册</button>
+        <div style="text-align:center;margin-top:12px"><span onclick="ncReset();go('s-namecheck')" style="color:var(--accent);font-size:13px;text-decoration:underline;cursor:pointer">重新核名</span></div>
       </div>
     </div>
 
@@ -1073,62 +1078,175 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue'
     <div class="screen" id="s-reg" data-title="公司注册 · NNC1" data-back="s-home">
       <div class="body-pad">
         <div class="steps" id="reg-steps">
-          <div class="step-i act"><div class="step-dot">1</div><div class="step-lab">公司名称</div></div><div class="step-line"></div>
-          <div class="step-i"><div class="step-dot">2</div><div class="step-lab">地址股本</div></div><div class="step-line"></div>
-          <div class="step-i"><div class="step-dot">3</div><div class="step-lab">章程</div></div><div class="step-line"></div>
-          <div class="step-i"><div class="step-dot">4</div><div class="step-lab">董事秘书</div></div><div class="step-line"></div>
-          <div class="step-i"><div class="step-dot">5</div><div class="step-lab">创办成员</div></div>
+          <div class="step-i act"><div class="step-dot">1</div><div class="step-lab">公司资料</div></div><div class="step-line"></div>
+          <div class="step-i"><div class="step-dot">2</div><div class="step-lab">成员/董事/秘书</div></div><div class="step-line"></div>
+          <div class="step-i"><div class="step-dot">3</div><div class="step-lab">人工预审</div></div><div class="step-line"></div>
+          <div class="step-i"><div class="step-dot">4</div><div class="step-lab">业务办理</div></div><div class="step-line"></div>
+          <div class="step-i"><div class="step-dot">5</div><div class="step-lab">完结</div></div>
         </div>
 
         <div class="reg-pane" id="reg-1">
-          <div style="font-size:16px;font-weight:700;margin-bottom:4px">Step 1 · 公司名称</div>
-          <div class="note" style="margin-bottom:12px">已核名通过的名称自动填充（可复用此前免费核名记录）</div>
-          <div class="card"><div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">英文名</span><span style="font-weight:600">Star Tech Limited</span></div><div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">中文名</span><span style="font-weight:600">星辰科技有限公司</span></div><div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">核名状态</span><span class="tag t-green">预检通过 · 可注册</span></div></div>
-          <div class="fixed-foot"><button class="btn" onclick="regStep(2)">下一步</button></div>
+          <div style="font-size:16px;font-weight:700;margin-bottom:12px">公司资料</div>
+
+          <!-- 建议采用的公司名称 -->
+          <div class="reg-grp">建议采用的公司名称</div>
+          <div class="field"><div class="field-l">建议采用的公司英文名称</div><input class="input" value="TimeLeap Limited" placeholder="须以 Limited 结尾"></div>
+          <div class="field"><div class="field-l">建议采用的公司中文名称（可选）</div><input class="input" placeholder="须以「有限公司」结尾"></div>
+          <div class="note" style="margin:-2px 2px 16px">中、英文名称可只填其一；已复用此前免费核名记录。</div>
+
+          <!-- 拟经营业务性质 -->
+          <div class="reg-grp">拟经营业务性质</div>
+          <div class="field">
+            <select class="input">
+              <option value="">请选择行业（香港标准行业分类 HSIC）</option>
+              <option>001 – 农作物及动物养殖、狩猎及相关服务活动</option>
+              <option>002 – 林业活动</option>
+              <option>003 – 捕鱼及水产养殖</option>
+              <option selected>620 – 电脑程序编制、顾问及相关活动</option>
+              <option>631 – 数据处理、寄存及相关活动</option>
+              <option>702 – 管理顾问活动</option>
+              <option>463 – 食品、饮品及烟草批发</option>
+              <option>999 – 其他（请于办理时与顾问确认）</option>
+            </select>
+          </div>
+
+          <!-- 注册办事处地址 -->
+          <div class="reg-grp">公司在香港的注册办事处的建议地址</div>
+          <div style="display:flex;gap:8px;margin-bottom:10px"><div class="nc-mode on">香港地址</div><div class="nc-mode" style="opacity:.45;cursor:not-allowed">非香港地址</div></div>
+          <input class="input" placeholder="室 / 楼 / 座等" style="margin-bottom:8px">
+          <input class="input" placeholder="大厦" style="margin-bottom:8px">
+          <input class="input" placeholder="街道 / 屋苑 / 地段 / 村等" style="margin-bottom:8px">
+          <select class="input" style="margin-bottom:8px"><option value="">区</option><option>中西区</option><option>湾仔区</option><option selected>中西区（中环）</option><option>东区</option><option>南区</option><option>油尖旺区</option><option>观塘区</option><option>沙田区</option></select>
+          <input class="input" value="Hong Kong" disabled>
+          <div class="note" style="margin:5px 2px 16px">地区默认 <b>香港</b>，不可修改；可选用 Leapexbiz 法定秘书注册地址。</div>
+
+          <!-- 公司联络资料 -->
+          <div class="reg-grp">公司的联络资料</div>
+          <div class="field"><div class="field-l">电邮地址</div><input class="input" placeholder="name@email.com"></div>
+          <div class="field"><div class="field-l">香港联络电话号码</div>
+            <div style="display:flex;gap:8px"><input class="input" value="+852" disabled style="width:64px;text-align:center"><input class="input" placeholder="电话号码" style="flex:1"></div>
+          </div>
+
+          <!-- 股本 -->
+          <div class="reg-grp">公司组成时的股本及最初的股份持有情况</div>
+          <div class="grid2">
+            <div class="field"><div class="field-l">股份类别</div><select class="input"><option>普通股</option><option>优先股</option></select></div>
+            <div class="field"><div class="field-l">货币单位</div><select class="input"><option>HKD</option><option>USD</option><option>CNY</option></select></div>
+          </div>
+          <div class="grid2">
+            <div class="field"><div class="field-l">建议发行的股份总数</div><input class="input" value="10,000"></div>
+            <div class="field"><div class="field-l">创办成员认购股本总额</div><input class="input" value="10,000"></div>
+          </div>
+          <div class="note" style="margin:-2px 2px 0">已缴款额按认购股本计；尚未缴付款额自动结算。</div>
+
+          <div class="fixed-foot"><button class="btn" onclick="regStep(2)">下一步 · 成员 / 董事 / 秘书</button></div>
         </div>
 
         <div class="reg-pane" id="reg-2" style="display:none">
-          <div style="font-size:16px;font-weight:700;margin-bottom:10px">Step 2 · 地址与股本</div>
-          <div class="field"><div class="field-l">注册地址</div>
-            <div class="radio-card on"><div class="radio-dot"></div><div><div style="font-weight:600;font-size:14px">Leapexbiz 虚拟注册地址</div><div class="note">中环干诺道中 XX 号 · 含法定秘书服务</div></div></div>
-            <div class="radio-card"><div class="radio-dot"></div><div><div style="font-weight:600;font-size:14px">自有地址</div><div class="note">需提供地址证明</div></div></div>
-          </div>
-          <div class="grid2">
-            <div class="field"><div class="field-l">股份总数</div><input class="input" value="10,000"></div>
-            <div class="field"><div class="field-l">每股面值</div><input class="input" value="HKD 1.00"></div>
-          </div>
-          <div class="field"><div class="field-l">总股本</div><input class="input" value="HKD 10,000" disabled></div>
-          <div class="fixed-foot" style="display:flex;gap:8px"><button class="btn ghost" style="width:90px" onclick="regStep(1)">上一步</button><button class="btn" onclick="regStep(3)">下一步</button></div>
-        </div>
-
-        <!-- Step 3 Articles -->
-        <div class="reg-pane" id="reg-3" style="display:none">
-          <div style="font-size:16px;font-weight:700;margin-bottom:4px">Step 3 · 确认公司章程</div>
-          <div class="note" style="margin-bottom:12px">根据您的单股东简单股本结构，<b style="color:var(--green)">智能推荐 Sample A 标准章程</b></div>
-          <div class="radio-card on" onclick="pickArt(this)"><div class="radio-dot"></div><div style="flex:1"><div style="display:flex;justify-content:space-between"><div style="font-weight:600;font-size:14px">标准章程 Sample A</div><span class="tag t-green">推荐</span></div><div class="note">基于《公司条例》附表 1，简单股权结构</div></div></div>
-          <div class="radio-card" onclick="pickArt(this)"><div class="radio-dot"></div><div><div style="font-weight:600;font-size:14px">增强版章程 Sample B</div><div class="note">含优先购买权、转让限制、董事权限细化</div></div></div>
-          <div class="radio-card" onclick="pickArt(this)"><div class="radio-dot"></div><div><div style="font-weight:600;font-size:14px">自定义章程</div><div class="note">复杂股权 / 特殊条款，由 Leapexbiz 法务起草</div></div></div>
-          <div class="card" onclick="toast('打开 ZAA_Sample_A.pdf 全文预览')" style="cursor:pointer"><div class="cell" style="border:none"><div class="cell-ic" style="background:var(--red-bg);color:var(--red)"><i class="ti ti-file-type-pdf"></i></div><div class="cell-main"><div class="cell-t">预览章程全文</div><div class="cell-d">ZAA_Sample_A.pdf · v1.2</div></div><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div></div>
-          <div class="check-row" onclick="toggleCheck('art-agree')"><div class="cbox" id="art-agree"><i class="ti ti-check"></i></div><div style="font-size:13px">本人确认已阅读并同意以上章程细则</div></div>
-          <div class="fixed-foot" style="display:flex;gap:8px"><button class="btn ghost" style="width:90px" onclick="regStep(2)">上一步</button><button class="btn" id="reg-3-btn" disabled onclick="regStep(4)">下一步</button></div>
-        </div>
-
-        <div class="reg-pane" id="reg-4" style="display:none">
-          <div style="font-size:16px;font-weight:700;margin-bottom:10px">Step 4 · 董事与秘书</div>
-          <div class="card"><div class="cell" style="border:none"><div class="cell-ic" style="background:var(--green-bg);color:var(--green-d)"><i class="ti ti-user"></i></div><div class="cell-main"><div class="cell-t">陳大文（董事）</div><div class="cell-d">身份信息复用 KYC · 已认证</div></div><span class="tag t-green">✓</span></div></div>
-          <button class="btn ghost btn-sm" style="width:100%;margin-bottom:12px" onclick="toast('添加董事（至少 1 名自然人）')">+ 添加董事</button>
+          <div style="font-size:16px;font-weight:700;margin-bottom:4px">创办成员 / 董事 / 公司秘书</div>
+          <div class="note" style="margin-bottom:12px">至少需 1 名董事（自然人）与 1 名创办成员；身份信息可由 KYC 复用，无需重复填写。</div>
+          <div id="reg-persons"></div>
+          <button class="btn ghost" style="width:100%;margin-bottom:12px" onclick="openPerson()"><i class="ti ti-user-plus"></i> 添加创办成员 / 董事 / 公司秘书</button>
           <div class="card card-pad" style="background:var(--green-bg)"><div style="font-size:13px;color:var(--green-d);font-weight:600"><i class="ti ti-shield-check"></i> 法定秘书：Leapexbiz（内嵌服务）</div><div class="note" style="color:var(--green-d);margin-top:3px">已含于注册服务，自动担任公司法定秘书</div></div>
-          <div class="fixed-foot" style="display:flex;gap:8px"><button class="btn ghost" style="width:90px" onclick="regStep(3)">上一步</button><button class="btn" onclick="regStep(5)">下一步</button></div>
+          <div class="fixed-foot" style="display:flex;gap:8px"><button class="btn ghost" style="width:90px" onclick="regStep(1)">上一步</button><button class="btn" onclick="regStep(3)">下一步 · 人工预审</button></div>
         </div>
 
-        <div class="reg-pane" id="reg-5" style="display:none">
-          <div style="font-size:16px;font-weight:700;margin-bottom:10px">Step 5 · 创办成员（股东）</div>
-          <div class="card"><div class="cell" style="border:none"><div class="cell-ic" style="background:var(--blue-bg);color:var(--blue)"><i class="ti ti-user-star"></i></div><div class="cell-main"><div class="cell-t">陳大文</div><div class="cell-d">持股 10,000 股 · 100%</div></div><span class="tag t-green">✓</span></div></div>
-          <button class="btn ghost btn-sm" style="width:100%;margin-bottom:12px" onclick="toast('添加创办成员')">+ 添加创办成员</button>
-          <div class="card"><div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">股份总数</span><span>10,000 股</span></div><div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">已分配</span><span style="color:var(--green-d)">10,000 股（100%）</span></div></div>
-          <div class="card card-pad" style="background:var(--bg2)"><div class="note">提交后系统将依 NNC1 表格汇总信息，生成首付款账单。</div></div>
-          <div class="fixed-foot" style="display:flex;gap:8px"><button class="btn ghost" style="width:90px" onclick="regStep(4)">上一步</button><button class="btn" onclick="regSubmit()">提交注册信息</button></div>
+        <!-- Step 3 人工预审 -->
+        <div class="reg-pane" id="reg-3" style="display:none">
+          <div style="font-size:16px;font-weight:700;margin-bottom:4px">人工预审</div>
+          <div class="note" style="margin-bottom:12px">提交后由顾问依 NNC1 表格<b>人工预审</b>（约 1 个工作日）；通过后递交香港公司注册处办理。</div>
+          <div class="sec-t" style="padding-top:0">资料汇总</div>
+          <div class="card">
+            <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">公司名称</span><span style="font-weight:600">TimeLeap Limited</span></div>
+            <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">业务性质</span><span>620 电脑程序编制…</span></div>
+            <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">注册地址</span><span>Leapexbiz 法定秘书地址</span></div>
+            <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">股本</span><span>HKD 10,000 · 10,000 股（普通股）</span></div>
+            <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">公司章程</span><span>Sample A 标准章程</span></div>
+            <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">成员 / 董事 / 秘书</span><span id="reg-person-count">共 1 人 + 法定秘书</span></div>
+          </div>
+          <div class="card" onclick="toast('打开 NNC1 表格预览')" style="cursor:pointer"><div class="cell" style="border:none"><div class="cell-ic" style="background:var(--red-bg);color:var(--red)"><i class="ti ti-file-type-pdf"></i></div><div class="cell-main"><div class="cell-t">预览 NNC1 法团成立表格</div><div class="cell-d">系统依你填写信息自动生成</div></div><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div></div>
+          <div class="check-row" onclick="toggleCheck('reg-confirm')"><div class="cbox" id="reg-confirm"><i class="ti ti-check"></i></div><div style="font-size:13px">本人确认以上资料属实，同意提交予香港公司注册处办理</div></div>
+          <div class="fixed-foot" style="display:flex;gap:8px"><button class="btn ghost" style="width:90px" onclick="regStep(2)">上一步</button><button class="btn" id="reg-submit-btn" disabled onclick="regSubmit()">提交人工预审</button></div>
         </div>
+
+        <!-- Step 4 业务办理 -->
+        <div class="reg-pane" id="reg-4" style="display:none">
+          <div style="font-size:16px;font-weight:700;margin-bottom:10px">业务办理</div>
+          <div class="card cp" style="text-align:center;padding:22px 18px">
+            <div style="width:58px;height:58px;border-radius:50%;background:var(--blue-bg);color:var(--blue);display:flex;align-items:center;justify-content:center;margin:0 auto 12px"><i class="ti ti-building-bank" style="font-size:27px"></i></div>
+            <div style="font-size:16px;font-weight:700">预审通过，办理中</div>
+            <div class="note" style="margin:8px 16px 0;line-height:1.7">顾问已将 NNC1 表格递交香港公司注册处，政府审批通常约 <b style="color:var(--blue)">1–2 个工作日</b>，进度实时更新。</div>
+          </div>
+          <div class="card" style="padding:16px 16px 6px">
+            <div class="vnode done"><div class="vdot"><i class="ti ti-check" style="font-size:13px"></i></div><div class="vbody"><div class="vtitle">人工预审通过</div><div class="vsub">顾问已核对 NNC1 资料 · 今天 11:20</div></div></div>
+            <div class="vnode act"><div class="vdot">2</div><div class="vbody"><div class="vtitle">递交香港公司注册处</div><div class="vsub">e-Registry 已提交，等待政府审批</div></div></div>
+            <div class="vnode"><div class="vdot">3</div><div class="vbody"><div class="vtitle">政府审批</div><div class="vsub">约 1–2 个工作日</div></div></div>
+            <div class="vnode"><div class="vdot">4</div><div class="vbody"><div class="vtitle">签发 CI 公司注册证 + BR 商业登记证</div><div class="vsub">出证后进入完结</div></div></div>
+          </div>
+          <div class="note" style="margin:4px 2px 0">办理期间可随时在「订单」查看进度；如需补充材料会消息通知你。</div>
+          <div class="fixed-foot" style="display:flex;gap:8px"><button class="btn ghost" onclick="go('s-orders')">查看订单</button><button class="btn" style="flex:1.4" onclick="regStep(5)">模拟出证 · 下一步</button></div>
+        </div>
+
+        <!-- Step 5 完结 -->
+        <div class="reg-pane" id="reg-5" style="display:none">
+          <div class="success-ring" style="margin:8px auto 0"><i class="ti ti-check"></i></div>
+          <div style="text-align:center;font-size:18px;font-weight:700;margin-top:8px">公司注册完成</div>
+          <div class="note" style="text-align:center;margin:6px 18px 14px;line-height:1.7"><b>TimeLeap Limited</b> 已成功注册，CI 与 BR 已签发，交付物已送达交付物中心。</div>
+          <div class="card">
+            <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">公司名称</span><span style="font-weight:600">TimeLeap Limited</span></div>
+            <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">公司编号 CI</span><span style="font-family:monospace">7935 1188</span></div>
+            <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">商业登记证 BR</span><span style="font-family:monospace">7935 1188-000-06-26-A</span></div>
+            <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">成立日期</span><span>2026-06-29</span></div>
+          </div>
+          <div class="card" onclick="go('s-deliverables')" style="cursor:pointer"><div class="cell" style="border:none"><div class="cell-ic" style="background:var(--blue-bg);color:var(--blue)"><i class="ti ti-files"></i></div><div class="cell-main"><div class="cell-t">查看交付物</div><div class="cell-d">CI / BR / 章程 / 法定文件册 等</div></div><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div></div>
+          <div class="fixed-foot" style="display:flex;gap:8px"><button class="btn ghost" onclick="goHome()">返回首页</button><button class="btn" style="flex:1.4" onclick="setPersona('user');go('s-orders')">查看我的订单</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════ 添加 创办成员 / 董事 / 公司秘书 ════════ -->
+    <div class="screen" id="s-regperson" data-title="添加成员 / 董事 / 秘书" data-back="s-reg">
+      <div class="body-pad">
+        <div class="field"><div class="field-l">类型</div>
+          <div style="display:flex;gap:8px"><div class="nc-mode on" id="pt-natural" onclick="ptype('natural')">自然人</div><div class="nc-mode" id="pt-corp" onclick="ptype('corp')">法人团体</div></div>
+        </div>
+        <div class="field"><div class="field-l">身分（可多选）</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <div class="chk-pill" id="role-founder" onclick="toggleRole(this)">创办成员</div>
+            <div class="chk-pill on" id="role-director" onclick="toggleRole(this)">董事</div>
+            <div class="chk-pill" id="role-secretary" onclick="toggleRole(this)">公司秘书</div>
+          </div>
+        </div>
+        <div class="field"><div class="field-l">中文姓名</div><input class="input" id="p-zhname" placeholder="如 夏晗"></div>
+        <div class="grid2">
+          <div class="field"><div class="field-l">英文姓氏</div><input class="input" id="p-ensur" placeholder="XIA"></div>
+          <div class="field"><div class="field-l">英文名字</div><input class="input" id="p-engiven" placeholder="HAN"></div>
+        </div>
+        <div class="note" style="margin:-2px 2px 6px">曾用姓名 / 别名（中英）如有可在办理时补充。</div>
+
+        <div class="reg-grp">通讯地址</div>
+        <div style="display:flex;gap:8px;margin-bottom:8px"><div class="nc-mode on">香港地址</div><div class="nc-mode">非香港地址</div></div>
+        <input class="input" placeholder="室 / 楼 / 座等" style="margin-bottom:8px">
+        <input class="input" placeholder="大厦" style="margin-bottom:8px">
+        <input class="input" placeholder="街道 / 屋苑 / 地段 / 村等" style="margin-bottom:8px">
+        <input class="input" placeholder="区 / 市 / 省 / 州 / 邮递区号等" style="margin-bottom:8px">
+        <input class="input" placeholder="国家 / 地区" value="China">
+
+        <div class="reg-grp">通常住址</div>
+        <div class="note" style="color:var(--red);margin:-4px 2px 8px">通常住址将不会供公众查阅。</div>
+        <div class="check-row" style="margin-bottom:10px" onclick="this.querySelector('.cbox').classList.toggle('on')"><div class="cbox on"><i class="ti ti-check"></i></div><div style="font-size:13px">同通讯地址</div></div>
+
+        <div class="reg-grp">身分识别</div>
+        <div class="note" style="margin:-4px 2px 8px">部分香港身分证号码 / 护照号码会供公众查阅。</div>
+        <div class="field"><div class="field-l">完整香港身分证号码（如没有请填「无」）</div><input class="input" placeholder="A123456(7) 或 无" value="无"></div>
+        <div class="field"><div class="field-l">完整护照号码</div><input class="input" placeholder="护照号码" value="E12090343"></div>
+        <div class="field"><div class="field-l">护照签发国家 / 地区</div><input class="input" value="China"></div>
+        <div class="field"><div class="field-l">电邮地址</div><input class="input" placeholder="name@email.com"></div>
+
+        <div class="check-row" onclick="this.querySelector('.cbox').classList.toggle('on')"><div class="cbox on"><i class="ti ti-check"></i></div><div style="font-size:13px">董事将会签署表格内的出任董事职位同意书</div></div>
+        <div class="note" style="margin:8px 2px 0"><i class="ti ti-bulb" style="color:var(--accent)"></i> 通讯地址 / 通常住址 / 证件等身份信息可由 KYC 环节复用，无需重复填写。</div>
+
+        <div class="fixed-foot" style="display:flex;gap:8px"><button class="btn ghost" style="width:90px" onclick="go('s-reg')">取消</button><button class="btn" onclick="savePerson()">保存</button></div>
       </div>
     </div>
 
@@ -1444,7 +1562,8 @@ function toggleCheck(id){
   var el = document.getElementById(id);
   el.classList.toggle('on');
   if(id==='kyc-agree') document.getElementById('kyc-1-btn').disabled = !el.classList.contains('on');
-  if(id==='art-agree') document.getElementById('reg-3-btn').disabled = !el.classList.contains('on');
+  if(id==='art-agree'){ var b=document.getElementById('reg-3-btn'); if(b) b.disabled = !el.classList.contains('on'); }
+  if(id==='reg-confirm') document.getElementById('reg-submit-btn').disabled = !el.classList.contains('on');
 }
 
 /* Channel code */
@@ -1677,7 +1796,42 @@ function pickArt(el){
   document.querySelectorAll('#reg-3 .radio-card').forEach(function(c){ c.classList.remove('on'); });
   el.classList.add('on');
 }
-function regSubmit(){ toast('注册信息已提交'); infoDone(); }
+function regSubmit(){ toast('已提交，顾问人工预审中'); setTimeout(function(){ regStep(4); }, 800); }
+/* 新公司注册：从核名结果页进入，重置到第 1 步 */
+function startNewReg(){ PERSONS = defaultPersons(); renderPersons(); var c=document.getElementById('reg-confirm'); if(c) c.classList.remove('on'); var b=document.getElementById('reg-submit-btn'); if(b) b.disabled=true; regStep(1); go('s-reg'); }
+/* 创办成员/董事/公司秘书 人员管理 */
+function defaultPersons(){ return [{zh:'夏晗', en:'XIA HAN', roles:['创办成员','董事'], idtype:'护照', idno:'E*****343', share:'10,000 股 · 100%'}]; }
+var PERSONS = defaultPersons();
+var ROLE_TAG = {'创办成员':'t-blue','董事':'t-green','公司秘书':'t-purple'};
+function renderPersons(){
+  var box=document.getElementById('reg-persons'); if(!box) return;
+  if(!PERSONS.length){ box.innerHTML='<div class="card card-pad" style="text-align:center;color:var(--text3);font-size:12.5px">尚未添加，请点下方按钮添加</div>'; return; }
+  box.innerHTML = PERSONS.map(function(p,i){
+    var tags=p.roles.map(function(r){return '<span class="tag '+(ROLE_TAG[r]||'t-gray')+'" style="font-size:9.5px">'+r+'</span>';}).join(' ');
+    return '<div class="card cp" style="padding:12px 14px;margin-bottom:10px">'
+      +'<div style="display:flex;align-items:center;gap:8px"><div class="cell-ic" style="background:var(--accent-bg);color:var(--accent-d)"><i class="ti ti-user"></i></div>'
+      +'<div style="flex:1"><div style="font-weight:600;font-size:13.5px">'+p.zh+(p.en?'　'+p.en:'')+'</div><div style="margin-top:3px">'+tags+'</div></div>'
+      +'<span onclick="removePerson('+i+')" style="color:var(--text4);font-size:12px;cursor:pointer">删除</span></div>'
+      +'<div class="note" style="margin-top:7px">证件 '+p.idtype+' '+p.idno+(p.share?' · 持股 '+p.share:'')+'</div></div>';
+  }).join('');
+  var cnt=document.getElementById('reg-person-count'); if(cnt) cnt.textContent='共 '+PERSONS.length+' 人 + 法定秘书';
+}
+function removePerson(i){ PERSONS.splice(i,1); renderPersons(); toast('已删除'); }
+var P_TYPE='natural';
+function openPerson(){ ptype('natural'); ['role-founder','role-director','role-secretary'].forEach(function(id){var e=document.getElementById(id); if(e) e.classList.toggle('on', id==='role-director');}); var z=document.getElementById('p-zhname'); if(z) z.value=''; go('s-regperson'); }
+function ptype(t){ P_TYPE=t; var a=document.getElementById('pt-natural'),b=document.getElementById('pt-corp'); if(a)a.classList.toggle('on',t==='natural'); if(b)b.classList.toggle('on',t==='corp'); }
+function toggleRole(el){ el.classList.toggle('on'); }
+function savePerson(){
+  var roles=[]; if(document.getElementById('role-founder').classList.contains('on')) roles.push('创办成员'); if(document.getElementById('role-director').classList.contains('on')) roles.push('董事'); if(document.getElementById('role-secretary').classList.contains('on')) roles.push('公司秘书');
+  if(!roles.length){ toast('请至少选择一个身分'); return; }
+  var zh=(document.getElementById('p-zhname').value||'').trim();
+  var sur=(document.getElementById('p-ensur').value||'').trim(), giv=(document.getElementById('p-engiven').value||'').trim();
+  var en=((sur+' '+giv).trim()||'').toUpperCase();
+  if(!zh && !en){ toast('请填写中文姓名或英文姓名'); return; }
+  PERSONS.push({zh:zh||en, en:zh?en:'', roles:roles, idtype:P_TYPE==='corp'?'法人编号':'护照/身份证', idno:'已填', share:roles.indexOf('创办成员')>=0?'待分配':''});
+  renderPersons();
+  toast('已保存'); go('s-reg');
+}
 
 /* Payment proof */
 function proofUploaded(){
@@ -1909,6 +2063,7 @@ function renderOrders(){
   else { goHome(); }
   var ic = document.getElementById('persona-ic'); if(ic) ic.textContent = (PERSONA==='user'?'老':'新');
   if(typeof renderOrders==='function') renderOrders();
+  if(typeof renderPersons==='function') renderPersons();
 })();
 </script>
 </body>
