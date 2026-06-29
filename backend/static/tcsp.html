@@ -1069,7 +1069,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
         </div>
         <div class="card card-pad" style="background:var(--accent-bg)"><div class="note" style="color:var(--accent-d);line-height:1.7"><i class="ti ti-bulb"></i> <b>顾问建议</b>：名称「TimeLeap」已有在册公司、商标「Leapex」已注册（类别 9 / 35 / 42）。如经营相同业务，建议更换名称或避开冲突商标类别；最终能否注册以香港公司注册处核准为准。</div></div>
 
-        <button class="btn" style="margin-top:14px" onclick="startNewReg()">新公司注册</button>
+        <button class="btn" style="margin-top:14px" onclick="openSvc('reg')">新公司注册</button>
         <div style="text-align:center;margin-top:12px"><span onclick="ncReset();go('s-namecheck')" style="color:var(--accent);font-size:13px;text-decoration:underline;cursor:pointer">重新核名</span></div>
       </div>
     </div>
@@ -1647,6 +1647,7 @@ function kycStep(n){
   document.getElementById('s-kyc').scrollTop = 0;
 }
 function kycSubmit(){
+  if(FLOW_TYPE==='register'){ toast('KYC 认证已提交'); setTimeout(function(){ regStep(4); go('s-reg'); }, 800); return; }   // 注册类：KYC → 业务办理
   showResult({title:'KYC 认证已提交', desc:'合规尽调审核中（约 1 个工作日）。通过后我们即开始为你办理；如审核不通过将全额退款。', steps:flowSteps(), cur:4, btn:'查看我的订单', next:function(){ go('s-orders'); }});
 }
 
@@ -1737,7 +1738,12 @@ function payDone(){
   showResult({title:'支付成功', desc:'已收到你的款项。请继续提交本次办理所需的信息。', steps:flowSteps(), cur:2, btn:'提交办理信息', next:goInfo});
 }
 function goInfo(){
-  if(FLOW_TYPE==='register'){ regStep(1); go('s-reg'); return; }
+  if(FLOW_TYPE==='register'){
+    PERSONS=defaultPersons(); renderPersons();
+    var c=document.getElementById('reg-confirm'); if(c) c.classList.remove('on');
+    var b=document.getElementById('reg-submit-btn'); if(b) b.disabled=true;
+    regStep(1); go('s-reg'); return;
+  }
   var s=CURRENT_SVC, e;
   if(e=document.getElementById('sf-icon')) e.innerHTML='<i class="ti '+(s?s.icon:'ti-package')+'"></i>';
   if(e=document.getElementById('sf-name')) e.textContent=s?s.name:'';
@@ -1796,7 +1802,7 @@ function pickArt(el){
   document.querySelectorAll('#reg-3 .radio-card').forEach(function(c){ c.classList.remove('on'); });
   el.classList.add('on');
 }
-function regSubmit(){ toast('已提交，顾问人工预审中'); setTimeout(function(){ regStep(4); }, 800); }
+function regSubmit(){ toast('公司注册信息已提交'); setTimeout(function(){ goKyc(); }, 800); }   // 公司注册信息 → KYC 认证
 /* 新公司注册：从核名结果页进入，重置到第 1 步 */
 function startNewReg(){ PERSONS = defaultPersons(); renderPersons(); var c=document.getElementById('reg-confirm'); if(c) c.classList.remove('on'); var b=document.getElementById('reg-submit-btn'); if(b) b.disabled=true; regStep(1); go('s-reg'); }
 /* 创办成员/董事/公司秘书 人员管理 */
@@ -1847,13 +1853,13 @@ var CHANNEL = 'LEX888';
 var SVC_DATA = {
   'pkg-basic':{name:'基础注册服务',icon:'ti-package',price:3800,old:0,form:'register',tags:'含 4 项服务',
     incl:['公司注册（CI + BR）','首年法定秘书','注册地址','商业登记证'],
-    process:['核名','支付','提交信息','KYC认证'],meta:'办理时效：3-5 个工作日<br>所需材料：董事/股东身份证或护照、地址证明<br>交付物：注册证书 CI、商业登记证 BR、章程、名册等'},
+    process:['支付','公司注册信息','KYC认证'],meta:'办理时效：3-5 个工作日<br>所需材料：董事/股东身份证或护照、地址证明<br>交付物：注册证书 CI、商业登记证 BR、章程、名册等'},
   'pkg-std':{name:'标准注册服务',icon:'ti-package',price:5800,old:6800,form:'register',tags:'推荐 · 含 7 项服务',
     incl:['基础服务全部内容','首年公司年审','公司文件册 Company Kit','公司圆章 + 签字章'],
-    process:['核名','支付','提交信息','KYC认证'],meta:'办理时效：3-5 个工作日<br>所需材料：身份证/护照、地址证明<br>交付物：19 项（含印章、文件册）'},
+    process:['支付','公司注册信息','KYC认证'],meta:'办理时效：3-5 个工作日<br>所需材料：身份证/护照、地址证明<br>交付物：19 项（含印章、文件册）'},
   'pkg-pro':{name:'高级注册服务',icon:'ti-package',price:8800,old:0,form:'register',tags:'含 10 项服务',
     incl:['标准服务全部内容','银行开户协助','SCR 重要控制人登记册建立','公证认证'],
-    process:['核名','支付','提交信息','KYC认证'],meta:'办理时效：5-10 个工作日<br>含银行开户预约与公证认证<br>交付物：19 项 + 开户文件包 + 公证件'},
+    process:['支付','公司注册信息','KYC认证'],meta:'办理时效：5-10 个工作日<br>含银行开户预约与公证认证<br>交付物：19 项 + 开户文件包 + 公证件'},
   'reg':null, // alias → pkg-std
   'annual':{name:'年审服务',icon:'ti-calendar-check',price:2800,old:0,form:'annual',tags:'NAR1 周年申报 · 7 项交付物',
     incl:['周年申报表 NAR1 编制与提交','更新商业登记证 BR','董事/股东名册更新','公司秘书确认函','KYC 年度复核'],
@@ -1958,7 +1964,7 @@ function openSvc(key){
 function buyNow(){
   if(!CURRENT_SVC) return;
   BUYING = true; CURRENT_ORDER = null; CURRENT_COMPANY = '';
-  if(CURRENT_SVC.form==='register'){ FLOW_TYPE='register'; ncReset(); go('s-namecheck'); }   // 注册类：先核名
+  if(CURRENT_SVC.form==='register'){ FLOW_TYPE='register'; goPay(); }   // 注册类：立即办理 → 支付（核名已在前置免费核名完成）
   else { FLOW_TYPE='service'; go('s-selectcompany'); }                              // 非注册：先选公司
 }
 function toOrderConfirm(){
