@@ -1039,11 +1039,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue'
       <div class="body-pad">
         <!-- 公司名称查册结果 -->
         <div class="sec-t" style="padding-top:0;display:flex;justify-content:space-between;align-items:center"><span>公司名称查册结果</span><span style="color:var(--accent);font-weight:500;cursor:pointer;font-size:12px" onclick="openSheet('sheet-company')">查看全部 ›</span></div>
-        <div class="card card-pad" style="background:var(--bg2);font-size:11.5px;color:var(--text3);line-height:1.8">
-          <div>系统时间：2026-06-29 10:40 GMT+8</div>
-          <div>你的查询：<span id="ncr-query" style="color:var(--text2)">以名称起首查册 · TimeLeap · 公司现况 = 所有</span></div>
-          <div>查册语言：英文 · 显示记录 1–2 共 <b style="color:var(--text2)">2</b> 条</div>
-        </div>
         <div class="card cp" style="padding:13px 14px;margin-bottom:10px">
           <div style="font-weight:600;font-size:13px;color:var(--blue);line-height:1.4">TIMELEAP MEDIA COMPANY LIMITED</div>
           <div style="display:flex;justify-content:space-between;align-items:center;margin-top:7px"><span class="note">商业登记号码 62445343</span><span class="tag t-gray">已告解散</span></div>
@@ -1567,7 +1562,6 @@ function ncRun(){
   if(el=document.getElementById('nc-r-mode')) el.textContent = modeLabel;
   if(el=document.getElementById('nc-r-name')) el.textContent = nm;
   if(el=document.getElementById('nc-r-tm'))   el.textContent = tm||'（未填）';
-  if(el=document.getElementById('ncr-query')) el.textContent = modeLabel+' · '+nm+' · 公司现况 = 所有';
   if(el=document.getElementById('ncr-tm-kw')) el.textContent = tm||'—';
   if(el=document.getElementById('sheet-company-kw')) el.textContent = nm;
   if(el=document.getElementById('sheet-tm-kw')) el.textContent = tm||'—';
