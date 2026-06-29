@@ -318,7 +318,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue'
         <div style="background:linear-gradient(135deg,#1C1B19,#2C2722);border-radius:14px;padding:4px 16px;margin-bottom:14px">
           <div style="display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.07)">
             <div style="width:36px;height:36px;border-radius:9px;background:rgba(212,168,83,.15);color:#D4A853;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-license" style="font-size:18px"></i></div>
-            <div style="flex:1"><div style="color:#fff;font-weight:600;font-size:13.5px">香港持牌 TCSP</div><div style="color:rgba(255,255,255,.5);font-size:11.5px;margin-top:2px">合规可信 · 资料加密留存 7 年</div></div>
+            <div style="flex:1"><div style="color:#fff;font-weight:600;font-size:13.5px">香港持牌 TCSP</div><div style="color:rgba(255,255,255,.5);font-size:11.5px;margin-top:2px">合规可信 · 资料加密，隐私保护</div></div>
           </div>
           <div style="display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.07)">
             <div style="width:36px;height:36px;border-radius:9px;background:rgba(212,168,83,.15);color:#D4A853;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-map-pin" style="font-size:18px"></i></div>
@@ -1136,14 +1136,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue'
     <div class="screen" id="s-bill" data-title="账单支付" data-back="s-home">
       <div class="body-pad">
         <div class="card card-pad" style="text-align:center">
-          <div class="note" id="bill-no">账单号 LEA-2026-0188-1</div>
-          <div style="display:inline-flex;border:1px solid var(--line2);border-radius:8px;overflow:hidden;margin:9px 0 4px">
+          <div style="display:inline-flex;border:1px solid var(--line2);border-radius:8px;overflow:hidden;margin:2px 0 6px">
             <div id="cur-cny" class="cur-tab on" onclick="setCur('cny')">人民币 ¥</div>
             <div id="cur-hkd" class="cur-tab" onclick="setCur('hkd')">港币 HK$</div>
           </div>
           <div class="amount" style="margin:4px 0;color:var(--text)" id="bill-amt">¥ 5,220.00</div>
           <span class="tag t-orange">待支付</span>
-          <div class="note" style="margin-top:8px">7 天内有效 · 此账单对应 1 项服务</div>
         </div>
         <div class="sec-t">费用明细</div>
         <div class="card">
@@ -1162,18 +1160,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue'
         <div class="card card-pad" id="pay-hkd" style="background:var(--bg2);margin-top:10px;display:none">
           <div class="sec-t" style="padding:0 0 10px">港币线下转账 · 收款账户</div>
           <div style="font-size:13px;line-height:1.5">
-            <div style="margin-bottom:9px"><div style="color:var(--text3);font-size:11px">户名</div><div style="font-weight:600">利柏思商务服务（上海）有限公司</div></div>
-            <div style="margin-bottom:9px"><div style="color:var(--text3);font-size:11px">账号</div><div style="font-weight:600;font-family:monospace">125925255310000</div></div>
-            <div style="margin-bottom:9px"><div style="color:var(--text3);font-size:11px">联行号</div><div style="font-weight:600;font-family:monospace">308301006029</div></div>
-            <div style="margin-bottom:9px"><div style="color:var(--text3);font-size:11px">开户行</div><div style="font-weight:600">招商银行股份有限公司南京分行营业部</div></div>
-            <div><div style="color:var(--text3);font-size:11px">转账附言</div><div style="font-weight:600;color:var(--red)">LEA-2026-0188-1</div></div>
+            <div style="margin-bottom:9px"><div style="color:var(--text3);font-size:11px">户名</div><div style="font-weight:600">TimeLeap Technology (Hong Kong) Limited</div></div>
+            <div style="margin-bottom:9px"><div style="color:var(--text3);font-size:11px">开户行</div><div style="font-weight:600">招商永隆銀行有限公司 CMB Wing Lung Bank Limited</div></div>
+            <div style="margin-bottom:9px"><div style="color:var(--text3);font-size:11px">港币账号</div><div style="font-weight:600;font-family:monospace">60100807956</div></div>
+            <div><div style="color:var(--text3);font-size:11px">SWIFT CODE</div><div style="font-weight:600;font-family:monospace">WUBAHKHH</div></div>
           </div>
           <button class="btn ghost" style="margin-top:12px" onclick="go('s-proof')"><i class="ti ti-upload"></i> 已转账 · 上传回单</button>
         </div>
 
-        <!-- 退款安心保障 -->
-        <div class="card card-pad" style="background:var(--green-bg);margin-top:10px"><div class="note" style="color:var(--green-d)"><i class="ti ti-shield-check"></i> 安心保障：安排会计师前可随时退款；<b>KYC 审核不通过全额退款</b>。</div></div>
-        <button class="btn ghost" style="margin-top:10px;color:var(--red);border-color:var(--red)" onclick="cancelOrder()"><i class="ti ti-x"></i> 取消订单</button>
+        <div style="text-align:center;margin-top:18px"><span onclick="cancelOrder()" style="color:var(--text3);font-size:12px;text-decoration:underline;cursor:pointer">取消订单</span></div>
       </div>
     </div>
 
