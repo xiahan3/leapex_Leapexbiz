@@ -279,12 +279,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue'
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
             <div style="font-weight:700;font-size:15px">免费核名</div>
             <span style="font-size:10px;font-weight:700;color:#fff;background:var(--accent);border-radius:6px;padding:2px 7px">先查再注册</span>
-            <span style="margin-left:auto;font-size:11px;color:var(--accent-d);font-weight:600">约 10–20 分钟</span>
           </div>
           <div style="display:flex;flex-direction:column;gap:10px">
-            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text2)"><span style="width:18px;height:18px;border-radius:50%;background:var(--accent);color:#fff;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">1</span>AI 实时校验</div>
-            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text2)"><span style="width:18px;height:18px;border-radius:50%;background:var(--accent);color:#fff;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">2</span>智能预检 · 近似名 + IPD 商标</div>
-            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text2)"><span style="width:18px;height:18px;border-radius:50%;background:var(--accent);color:#fff;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">3</span>顾问人工查册</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text2)"><span style="width:18px;height:18px;border-radius:50%;background:var(--accent);color:#fff;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">1</span>公司核名查册</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text2)"><span style="width:18px;height:18px;border-radius:50%;background:var(--accent);color:#fff;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">2</span>商标查询</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text2)"><span style="width:18px;height:18px;border-radius:50%;background:var(--accent);color:#fff;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">3</span>1–2 日出结果</div>
           </div>
           <div style="margin-top:13px;padding-top:11px;border-top:1px solid rgba(193,95,60,.18);text-align:center;font-size:13.5px;font-weight:600;color:var(--accent-d)">立即免费核名 ›</div>
         </div>
@@ -992,24 +991,25 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue'
     <div class="screen" id="s-namecheck" data-title="公司核名" data-back="s-home">
       <div class="body-pad">
         <div id="nc-input-pane">
-          <div class="note" style="margin-bottom:14px;background:var(--bg2);padding:12px;border-radius:10px"><b style="color:var(--green-d)">免费核名</b>：选择查册方式并输入拟用公司名称，提交后由顾问在香港公司注册处<b>人工查册</b>（约 1–2 天）。查册语言<b>只支持英文或繁体中文</b>。</div>
+          <div class="note" style="margin-bottom:14px;background:var(--bg2);padding:12px;border-radius:10px"><b style="color:var(--green-d)">免费核名</b>：公司名称查册 + 商标查询，提交后由顾问在香港公司注册处与知识产权署<b>人工查册</b>（约 1–2 天）。查册语言<b>只支持英文或繁体中文</b>。</div>
 
+          <!-- 公司核名查册 -->
+          <div class="sec-t" style="padding-top:0">① 公司核名查册</div>
           <div class="field"><div class="field-l">查册方式（香港公司注册处）</div>
             <div style="display:flex;gap:8px">
               <div class="nc-mode on" id="nc-mode-full" onclick="ncMode('full')">以全名查册</div>
               <div class="nc-mode" id="nc-mode-start" onclick="ncMode('start')">以名称起首查册</div>
             </div>
           </div>
+          <div class="field"><div class="field-l" id="nc-input-label">拟用公司全名（英文或繁体中文）</div><input class="input" id="nc-name" placeholder="如 TimeLeap Limited" value="TimeLeap" oninput="ncCheck()"></div>
+          <div class="card card-pad" id="nc-mode-hint" style="background:var(--blue-bg);font-size:12px;color:var(--blue);margin-bottom:16px">「以全名查册」：输入<b>整个</b>拟用公司名称，结果显示与输入字元<b>完全符合</b>、仍在登记册上的公司现用名称。</div>
 
-          <div class="field"><div class="field-l" id="nc-input-label">拟用公司全名（英文或繁体中文）</div><input class="input" id="nc-name" placeholder="如 Star Tech Limited" value="Star Tech Limited" oninput="ncCheck()"></div>
+          <!-- 商标查询 -->
+          <div class="sec-t">② 商标查询</div>
+          <div class="field"><div class="field-l">商标关键字（英文或繁体中文）</div><input class="input" id="nc-tm" placeholder="如 Leapex" value="Leapex"></div>
+          <div class="card card-pad" style="background:var(--bg2);font-size:12px;color:var(--text3);margin-bottom:16px">取名称关键字在香港知识产权署商标库查询同名 / 近似商标，返回各类别（Class）注册结果。</div>
 
-          <div class="card card-pad" id="nc-mode-hint" style="background:var(--blue-bg);font-size:12px;color:var(--blue);margin-bottom:14px">「以全名查册」：输入<b>整个</b>拟用公司名称，结果显示与输入字元<b>完全符合</b>、仍在登记册上的公司现用名称。</div>
-
-          <div class="card card-pad" id="nc-live" style="font-size:12.5px">
-            <div style="display:flex;align-items:center;gap:6px;color:var(--green-d);margin-bottom:5px"><i class="ti ti-circle-check"></i> 格式校验通过（后缀正确、长度合规）</div>
-            <div style="display:flex;align-items:center;gap:6px;color:var(--green-d)"><i class="ti ti-circle-check"></i> 语言校验通过（英文 / 繁体中文）</div>
-          </div>
-          <div style="font-size:11px;color:var(--text3);margin:8px 4px">免费核名 · 顾问人工查册</div>
+          <div style="font-size:12px;color:var(--text3);margin:6px 4px"><i class="ti ti-gift" style="color:var(--green-d)"></i> <b style="color:var(--green-d)">剩余 3 次免费</b></div>
           <button class="btn" style="margin-top:6px" onclick="ncRun()">提交人工核名</button>
         </div>
 
@@ -1021,11 +1021,52 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue'
           </div>
           <div class="card">
             <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">查册方式</span><span id="nc-r-mode" style="font-weight:600">以全名查册</span></div>
-            <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">拟用名称</span><span id="nc-r-name" style="font-weight:600">Star Tech Limited</span></div>
+            <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">拟用名称</span><span id="nc-r-name" style="font-weight:600">TimeLeap</span></div>
+            <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">商标关键字</span><span id="nc-r-tm" style="font-weight:600">Leapex</span></div>
             <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">状态</span><span class="tag t-amber">人工核名中 · 1–2 天</span></div>
           </div>
-          <button class="btn" style="margin-top:6px" onclick="ncAccept()">好的，进入下一步</button>
+          <button class="btn" style="margin-top:6px" onclick="go('s-ncresult')">好的，进入下一步</button>
         </div>
+      </div>
+    </div>
+
+    <!-- ════════ 核名 & 商标查询结果 ════════ -->
+    <div class="screen" id="s-ncresult" data-title="核名 & 商标查询结果" data-back="s-namecheck">
+      <div class="body-pad">
+        <!-- 公司名称查册结果 -->
+        <div class="sec-t" style="padding-top:0">公司名称查册结果</div>
+        <div class="card card-pad" style="background:var(--bg2);font-size:11.5px;color:var(--text3);line-height:1.8">
+          <div>系统时间：2026-06-29 10:40 GMT+8</div>
+          <div>你的查询：<span id="ncr-query" style="color:var(--text2)">以名称起首查册 · TimeLeap · 公司现况 = 所有</span></div>
+          <div>查册语言：英文 · 显示记录 1–2 共 <b style="color:var(--text2)">2</b> 条</div>
+        </div>
+        <div class="card cp" style="padding:13px 14px;margin-bottom:10px">
+          <div style="font-weight:600;font-size:13px;color:var(--blue);line-height:1.4">TIMELEAP MEDIA COMPANY LIMITED</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:7px"><span class="note">商业登记号码 62445343</span><span class="tag t-gray">已告解散</span></div>
+          <div class="note" style="margin-top:3px">名称现况 现用 · 名称类别 –</div>
+        </div>
+        <div class="card cp" style="padding:13px 14px">
+          <div style="font-weight:600;font-size:13px;color:var(--blue);line-height:1.4">TimeLeap Technology (Hong Kong) Limited</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:7px"><span class="note">商业登记号码 79110775</span><span class="tag t-green">仍注册</span></div>
+          <div class="note" style="margin-top:3px">名称现况 现用 · 名称类别 –</div>
+        </div>
+        <div class="note" style="margin:6px 2px 16px;font-size:10.5px;line-height:1.6">名称类别：1 – 法团名称；2 – 其他法团名称；3 – 在香港经营业务时采用的经核准名称。按公司名称可查阅基本资料。</div>
+
+        <!-- 商标查询结果 -->
+        <div class="sec-t">商标查询结果 · 关键字「<span id="ncr-tm-kw">Leapex</span>」</div>
+        <div class="card cp" style="padding:13px 14px">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="width:60px;height:42px;border:1px solid var(--line2);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-weight:700;font-size:13px;flex-shrink:0;background:#fff">Leapex</div>
+            <div style="flex:1">
+              <div style="font-weight:600;font-size:13.5px">Leapex <span class="tag t-green" style="font-size:9px">Registered</span></div>
+              <div class="note" style="margin-top:3px">商标编号 307147585 · 类别 9 / 35 / 42</div>
+              <div class="note" style="margin-top:2px">拥有人 TimeLeap Technology (Hong Kong) Limited</div>
+            </div>
+          </div>
+        </div>
+        <div class="card card-pad" style="background:var(--accent-bg)"><div class="note" style="color:var(--accent-d);line-height:1.7"><i class="ti ti-bulb"></i> <b>顾问建议</b>：名称「TimeLeap」已有在册公司、商标「Leapex」已注册（类别 9 / 35 / 42）。如经营相同业务，建议更换名称或避开冲突商标类别；最终能否注册以香港公司注册处核准为准。</div></div>
+
+        <button class="btn" style="margin-top:14px" onclick="ncAccept()">继续办理</button>
       </div>
     </div>
 
@@ -1466,7 +1507,7 @@ function ncMode(m){
   document.getElementById('nc-mode-full').classList.toggle('on', m==='full');
   document.getElementById('nc-mode-start').classList.toggle('on', m==='start');
   document.getElementById('nc-input-label').textContent = m==='full' ? '拟用公司全名（英文或繁体中文）' : '名称起首关键字（英文或繁体中文）';
-  document.getElementById('nc-name').placeholder = m==='full' ? '如 Star Tech Limited' : '如 Star';
+  document.getElementById('nc-name').placeholder = m==='full' ? '如 TimeLeap Limited' : '如 TimeLeap';
   document.getElementById('nc-mode-hint').innerHTML = m==='full'
     ? '「以全名查册」：输入<b>整个</b>拟用公司名称，结果显示与输入字元<b>完全符合</b>、仍在登记册上的公司现用名称。'
     : '「以名称起首查册」：输入名称<b>起首</b>关键字，结果显示以该字元<b>起首</b>、仍在登记册上的公司。';
@@ -1476,10 +1517,16 @@ function ncReset(){
   if(i) i.style.display='block'; if(r) r.style.display='none';
 }
 function ncRun(){
-  // 人工核名：不出 AI 结果，提交后展示「人工核名中」
+  // 人工核名：提交公司名查册 + 商标查询，展示「人工核名中」；结果回显到结果页
   var nm=document.getElementById('nc-name'); nm=nm?nm.value:'';
-  document.getElementById('nc-r-mode').textContent = NC_MODE==='full' ? '以全名查册' : '以名称起首查册';
-  document.getElementById('nc-r-name').textContent = nm;
+  var tm=document.getElementById('nc-tm'); tm=tm?tm.value:'';
+  var modeLabel = NC_MODE==='full' ? '以全名查册' : '以名称起首查册';
+  var el;
+  if(el=document.getElementById('nc-r-mode')) el.textContent = modeLabel;
+  if(el=document.getElementById('nc-r-name')) el.textContent = nm;
+  if(el=document.getElementById('nc-r-tm'))   el.textContent = tm||'（未填）';
+  if(el=document.getElementById('ncr-query')) el.textContent = modeLabel+' · '+nm+' · 公司现况 = 所有';
+  if(el=document.getElementById('ncr-tm-kw')) el.textContent = tm||'—';
   toast('已提交，顾问人工核名中');
   setTimeout(function(){
     document.getElementById('nc-input-pane').style.display='none';
