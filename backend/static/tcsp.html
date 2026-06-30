@@ -821,15 +821,9 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
     <!-- ════════ 支付完成（注册流程）════════ -->
     <div class="screen" id="s-paydone" data-title="支付完成">
       <div class="body-pad">
-        <div class="steps" style="padding:6px 4px 16px">
-          <div class="step-i done"><div class="step-dot">✓</div><div class="step-lab">支付</div></div><div class="step-line done"></div>
-          <div class="step-i act"><div class="step-dot">2</div><div class="step-lab">KYC认证</div></div><div class="step-line"></div>
-          <div class="step-i"><div class="step-dot">3</div><div class="step-lab">提交注册信息</div></div>
-        </div>
         <div style="text-align:center">
-          <div class="success-ring"><i class="ti ti-check"></i></div>
-          <div style="font-size:18px;font-weight:700;margin-top:8px">支付完成</div>
-          <div class="note" style="margin:6px 18px 16px;line-height:1.7">还需完成以下两步，我们即开始为你办理公司注册。</div>
+          <div class="success-ring" style="margin-top:6px"><i class="ti ti-check"></i></div>
+          <div style="font-size:18px;font-weight:700;margin:8px 0 16px">支付完成</div>
         </div>
 
         <!-- 豆腐块 1：KYC 认证 -->
@@ -839,7 +833,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
             <div style="flex:1"><div style="font-weight:700;font-size:14.5px">完成 KYC 实名认证</div><div class="note">持牌 TCSP 合规必做</div></div>
             <span class="tag t-amber" style="font-size:10px">待完成</span>
           </div>
-          <div class="note" style="line-height:1.75;margin-bottom:11px">依香港《打击洗钱条例》(AMLO)，持牌 TCSP 提供服务前须核实董事 / 股东身份。<b>未完成 KYC 无法递交注册处</b>；如审核不通过将全额退款。</div>
+          <div class="note" style="line-height:1.75;margin-bottom:11px">依香港《打击洗钱条例》(AMLO)，持牌 TCSP 提供服务前须核实董事 / 股东身份。<b>未完成 KYC 无法递交注册处</b>。</div>
           <button class="btn" onclick="goKyc()">去完成 KYC 认证</button>
         </div>
 
@@ -1075,7 +1069,9 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
             <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">商标关键字</span><span id="nc-r-tm" style="font-weight:600">Leapex</span></div>
             <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">状态</span><span class="tag t-amber">人工核名中 · 1–2 天</span></div>
           </div>
-          <button class="btn" style="margin-top:6px" onclick="go('s-ncresult')">好的，进入下一步</button>
+          <button class="btn" style="margin-top:6px" onclick="openSvc('reg')">新公司注册</button>
+          <div style="text-align:center;margin-top:12px"><span onclick="goHome()" style="color:var(--accent);font-size:13px;text-decoration:underline;cursor:pointer">返回首页</span></div>
+          <div style="text-align:right;margin-top:10px"><span onclick="go('s-ncresult')" style="color:var(--text3);font-size:12px;text-decoration:underline;cursor:pointer">测试下一步</span></div>
         </div>
       </div>
     </div>
@@ -1112,7 +1108,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
         <div class="card card-pad" style="background:var(--accent-bg)"><div class="note" style="color:var(--accent-d);line-height:1.7"><i class="ti ti-bulb"></i> <b>顾问建议</b>：名称「TimeLeap」已有在册公司、商标「Leapex」已注册（类别 9 / 35 / 42）。如经营相同业务，建议更换名称或避开冲突商标类别；最终能否注册以香港公司注册处核准为准。</div></div>
 
         <button class="btn" style="margin-top:14px" onclick="openSvc('reg')">新公司注册</button>
-        <div style="text-align:center;margin-top:12px"><span onclick="ncReset();go('s-namecheck')" style="color:var(--accent);font-size:13px;text-decoration:underline;cursor:pointer">重新核名</span></div>
+        <div style="text-align:center;margin-top:12px"><span onclick="goHome()" style="color:var(--accent);font-size:13px;text-decoration:underline;cursor:pointer">返回首页</span></div>
       </div>
     </div>
 
@@ -1235,13 +1231,12 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
         </div>
         <div class="card" style="padding:16px 16px 6px">
           <div class="vnode done"><div class="vdot"><i class="ti ti-check" style="font-size:13px"></i></div><div class="vbody"><div class="vtitle">人工预审通过</div><div class="vsub">顾问已核对 NNC1 资料</div></div></div>
-          <div class="vnode act"><div class="vdot">2</div><div class="vbody"><div class="vtitle">递交香港公司注册处</div><div class="vsub">e-Registry 已提交，等待政府审批</div></div></div>
-          <div class="vnode"><div class="vdot">3</div><div class="vbody"><div class="vtitle">政府审批</div><div class="vsub">约 1–2 个工作日</div></div></div>
-          <div class="vnode"><div class="vdot">4</div><div class="vbody"><div class="vtitle">签发 CI 公司注册证 + BR 商业登记证</div><div class="vsub">出证后进入完结</div></div></div>
+          <div class="vnode act"><div class="vdot">2</div><div class="vbody"><div class="vtitle">递交香港公司注册处</div><div class="vsub">e-Registry 已提交，等待政府审批，约 1–2 个工作日</div></div></div>
+          <div class="vnode"><div class="vdot">3</div><div class="vbody"><div class="vtitle">签发 CI 公司注册证 + BR 商业登记证</div><div class="vsub">出证后进入完结</div></div></div>
         </div>
         <div class="note" style="margin:4px 2px 0">办理期间可随时在「订单」查看进度；如需补充材料会消息通知你。</div>
+        <div style="text-align:right;margin-top:14px"><span onclick="go('s-regdone')" style="color:var(--text3);font-size:12px;text-decoration:underline;cursor:pointer">测试下一步</span></div>
         <div class="fixed-foot"><button class="btn" onclick="setPersona('user');goHome()">返回首页</button></div>
-        <div style="text-align:center;margin-top:12px"><span onclick="go('s-regdone')" style="color:var(--text3);font-size:12px;text-decoration:underline;cursor:pointer">测试下一步</span></div>
       </div>
     </div>
 
@@ -1258,7 +1253,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
           <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">成立日期</span><span>2026-06-29</span></div>
         </div>
         <div class="card" onclick="go('s-deliverables')" style="cursor:pointer"><div class="cell" style="border:none"><div class="cell-ic" style="background:var(--blue-bg);color:var(--blue)"><i class="ti ti-files"></i></div><div class="cell-main"><div class="cell-t">查看交付物</div><div class="cell-d">CI / BR / 章程 / 法定文件册 等</div></div><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div></div>
-        <div class="fixed-foot" style="display:flex;gap:8px"><button class="btn ghost" onclick="goHome()">返回首页</button><button class="btn" style="flex:1.4" onclick="setPersona('user');go('s-orders')">查看我的订单</button></div>
+        <div class="fixed-foot" style="display:flex;gap:8px"><button class="btn ghost" style="flex:0 0 auto;width:auto;padding:13px 22px;white-space:nowrap" onclick="setPersona('user');goHome()">返回首页</button><button class="btn" style="flex:1" onclick="setPersona('user');go('s-orders')">查看我的订单</button></div>
       </div>
     </div>
 
