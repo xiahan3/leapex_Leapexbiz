@@ -853,8 +853,9 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
           <div style="background:var(--bg2);border-radius:9px;padding:11px 13px;margin-bottom:11px">
             <div style="display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--text2);margin-bottom:8px"><span class="rg-num">1</span>公司资料</div>
             <div style="display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--text2);margin-bottom:8px"><span class="rg-num">2</span>成员 / 董事 / 秘书</div>
-            <div style="display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--text2);margin-bottom:8px"><span class="rg-num">3</span>人工预审</div>
-            <div style="display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--text2)"><span class="rg-num">4</span>业务办理</div>
+            <div style="display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--text2);margin-bottom:8px"><span class="rg-num">3</span>组织章程</div>
+            <div style="display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--text2);margin-bottom:8px"><span class="rg-num">4</span>人工预审</div>
+            <div style="display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--text2)"><span class="rg-num">5</span>业务办理</div>
           </div>
           <button class="btn ghost" onclick="goInfo()">去提交注册信息</button>
         </div>
@@ -1121,9 +1122,8 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
         <div class="steps" id="reg-steps">
           <div class="step-i act"><div class="step-dot">1</div><div class="step-lab">公司资料</div></div><div class="step-line"></div>
           <div class="step-i"><div class="step-dot">2</div><div class="step-lab">成员/董事/秘书</div></div><div class="step-line"></div>
-          <div class="step-i"><div class="step-dot">3</div><div class="step-lab">人工预审</div></div><div class="step-line"></div>
-          <div class="step-i"><div class="step-dot">4</div><div class="step-lab">业务办理</div></div><div class="step-line"></div>
-          <div class="step-i"><div class="step-dot">5</div><div class="step-lab">完结</div></div>
+          <div class="step-i"><div class="step-dot">3</div><div class="step-lab">组织章程</div></div><div class="step-line"></div>
+          <div class="step-i"><div class="step-dot">4</div><div class="step-lab">人工预审</div></div>
         </div>
 
         <div class="reg-pane" id="reg-1">
@@ -1189,59 +1189,76 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
           <div id="reg-persons"></div>
           <button class="btn ghost" style="width:100%;margin-bottom:12px" onclick="openPerson()"><i class="ti ti-user-plus"></i> 添加创办成员 / 董事 / 公司秘书</button>
           <div class="card card-pad" style="background:var(--green-bg)"><div style="font-size:13px;color:var(--green-d);font-weight:600"><i class="ti ti-shield-check"></i> 法定秘书：Leapexbiz（内嵌服务）</div><div class="note" style="color:var(--green-d);margin-top:3px">已含于注册服务，自动担任公司法定秘书</div></div>
-          <div class="fixed-foot" style="display:flex;gap:8px"><button class="btn ghost" style="width:90px" onclick="regStep(1)">上一步</button><button class="btn" onclick="regStep(3)">下一步 · 人工预审</button></div>
+          <div class="fixed-foot" style="display:flex;gap:8px"><button class="btn ghost" style="width:90px" onclick="regStep(1)">上一步</button><button class="btn" onclick="regStep(3)">下一步 · 组织章程</button></div>
         </div>
 
         <!-- Step 3 人工预审 -->
+        <!-- Step 3 组织章程 -->
         <div class="reg-pane" id="reg-3" style="display:none">
+          <div style="font-size:16px;font-weight:700;margin-bottom:4px">组织章程</div>
+          <div class="note" style="margin-bottom:12px">公司章程（Articles of Association）依《公司条例》订立。<b style="color:var(--green)">推荐样本 A（简化格式）</b>，适合单一 / 简单股权结构。</div>
+          <div class="radio-card on" onclick="pickArt(this)"><div class="radio-dot"></div><div style="flex:1"><div style="display:flex;justify-content:space-between"><div style="font-weight:600;font-size:14px">样本 A（简化格式）</div><span class="tag t-green">推荐</span></div><div class="note">公司注册处标准章程，单一 / 简单股权适用</div></div></div>
+          <div class="radio-card" onclick="pickArt(this)"><div class="radio-dot"></div><div><div style="font-weight:600;font-size:14px">样本 B</div><div class="note">较完整条款（股份转让限制、董事权限等）</div></div></div>
+          <div class="radio-card" onclick="pickArt(this)"><div class="radio-dot"></div><div><div style="font-weight:600;font-size:14px">自订（英文）</div><div class="note">自拟英文章程，由 Leapexbiz 法务协助起草</div></div></div>
+          <div class="radio-card" onclick="pickArt(this)"><div class="radio-dot"></div><div><div style="font-weight:600;font-size:14px">自订（中文）</div><div class="note">自拟中文章程，由 Leapexbiz 法务协助起草</div></div></div>
+          <div class="card" onclick="toast('打开 样本 A 章程全文预览')" style="cursor:pointer"><div class="cell" style="border:none"><div class="cell-ic" style="background:var(--red-bg);color:var(--red)"><i class="ti ti-file-type-pdf"></i></div><div class="cell-main"><div class="cell-t">预览章程全文</div><div class="cell-d">Articles_SampleA.pdf</div></div><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div></div>
+          <div class="fixed-foot" style="display:flex;gap:8px"><button class="btn ghost" style="width:90px" onclick="regStep(2)">上一步</button><button class="btn" onclick="regStep(4)">下一步 · 人工预审</button></div>
+        </div>
+
+        <!-- Step 4 人工预审 -->
+        <div class="reg-pane" id="reg-4" style="display:none">
           <div style="font-size:16px;font-weight:700;margin-bottom:4px">人工预审</div>
-          <div class="note" style="margin-bottom:12px">提交后由顾问依 NNC1 表格<b>人工预审</b>（约 1 个工作日）；通过后递交香港公司注册处办理。</div>
+          <div class="note" style="margin-bottom:12px">提交后由顾问依 NNC1 表格<b>人工预审</b>；通过后进入业务办理（递交香港公司注册处）。</div>
           <div class="sec-t" style="padding-top:0">资料汇总</div>
           <div class="card">
             <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">公司名称</span><span style="font-weight:600">TimeLeap Limited</span></div>
             <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">业务性质</span><span>620 电脑程序编制…</span></div>
             <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">注册地址</span><span>Leapexbiz 法定秘书地址</span></div>
             <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">股本</span><span>HKD 10,000 · 10,000 股（普通股）</span></div>
-            <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">公司章程</span><span>Sample A 标准章程</span></div>
+            <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">公司章程</span><span>样本 A（简化格式）</span></div>
             <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">成员 / 董事 / 秘书</span><span id="reg-person-count">共 1 人 + 法定秘书</span></div>
           </div>
           <div class="card" onclick="toast('打开 NNC1 表格预览')" style="cursor:pointer"><div class="cell" style="border:none"><div class="cell-ic" style="background:var(--red-bg);color:var(--red)"><i class="ti ti-file-type-pdf"></i></div><div class="cell-main"><div class="cell-t">预览 NNC1 法团成立表格</div><div class="cell-d">系统依你填写信息自动生成</div></div><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div></div>
           <div class="check-row" onclick="toggleCheck('reg-confirm')"><div class="cbox" id="reg-confirm"><i class="ti ti-check"></i></div><div style="font-size:13px">本人确认以上资料属实，同意提交予香港公司注册处办理</div></div>
-          <div class="fixed-foot" style="display:flex;gap:8px"><button class="btn ghost" style="width:90px" onclick="regStep(2)">上一步</button><button class="btn" id="reg-submit-btn" disabled onclick="regSubmit()">提交人工预审</button></div>
+          <div class="fixed-foot" style="display:flex;gap:8px"><button class="btn ghost" style="width:90px" onclick="regStep(3)">上一步</button><button class="btn" id="reg-submit-btn" disabled onclick="regSubmit()">提交人工预审</button></div>
         </div>
+      </div>
+    </div>
 
-        <!-- Step 4 业务办理 -->
-        <div class="reg-pane" id="reg-4" style="display:none">
-          <div style="font-size:16px;font-weight:700;margin-bottom:10px">业务办理</div>
-          <div class="card cp" style="text-align:center;padding:22px 18px">
-            <div style="width:58px;height:58px;border-radius:50%;background:var(--blue-bg);color:var(--blue);display:flex;align-items:center;justify-content:center;margin:0 auto 12px"><i class="ti ti-building-bank" style="font-size:27px"></i></div>
-            <div style="font-size:16px;font-weight:700">预审通过，办理中</div>
-            <div class="note" style="margin:8px 16px 0;line-height:1.7">顾问已将 NNC1 表格递交香港公司注册处，政府审批通常约 <b style="color:var(--blue)">1–2 个工作日</b>，进度实时更新。</div>
-          </div>
-          <div class="card" style="padding:16px 16px 6px">
-            <div class="vnode done"><div class="vdot"><i class="ti ti-check" style="font-size:13px"></i></div><div class="vbody"><div class="vtitle">人工预审通过</div><div class="vsub">顾问已核对 NNC1 资料 · 今天 11:20</div></div></div>
-            <div class="vnode act"><div class="vdot">2</div><div class="vbody"><div class="vtitle">递交香港公司注册处</div><div class="vsub">e-Registry 已提交，等待政府审批</div></div></div>
-            <div class="vnode"><div class="vdot">3</div><div class="vbody"><div class="vtitle">政府审批</div><div class="vsub">约 1–2 个工作日</div></div></div>
-            <div class="vnode"><div class="vdot">4</div><div class="vbody"><div class="vtitle">签发 CI 公司注册证 + BR 商业登记证</div><div class="vsub">出证后进入完结</div></div></div>
-          </div>
-          <div class="note" style="margin:4px 2px 0">办理期间可随时在「订单」查看进度；如需补充材料会消息通知你。</div>
-          <div class="fixed-foot" style="display:flex;gap:8px"><button class="btn ghost" onclick="go('s-orders')">查看订单</button><button class="btn" style="flex:1.4" onclick="regStep(5)">模拟出证 · 下一步</button></div>
+    <!-- ════════ 业务办理（人工预审提交后）════════ -->
+    <div class="screen" id="s-bizhandle" data-title="业务办理" data-back="s-home">
+      <div class="body-pad">
+        <div class="card cp" style="text-align:center;padding:22px 18px">
+          <div style="width:58px;height:58px;border-radius:50%;background:var(--blue-bg);color:var(--blue);display:flex;align-items:center;justify-content:center;margin:0 auto 12px"><i class="ti ti-building-bank" style="font-size:27px"></i></div>
+          <div style="font-size:16px;font-weight:700">业务办理中</div>
+          <div class="note" style="margin:8px 16px 0;line-height:1.7">人工预审通过后，我们将依 NNC1 递交香港公司注册处并跟进政府审批与签证，<b style="color:var(--blue)">大约需要 3–5 个工作日</b>。</div>
         </div>
+        <div class="card" style="padding:16px 16px 6px">
+          <div class="vnode done"><div class="vdot"><i class="ti ti-check" style="font-size:13px"></i></div><div class="vbody"><div class="vtitle">人工预审通过</div><div class="vsub">顾问已核对 NNC1 资料</div></div></div>
+          <div class="vnode act"><div class="vdot">2</div><div class="vbody"><div class="vtitle">递交香港公司注册处</div><div class="vsub">e-Registry 已提交，等待政府审批</div></div></div>
+          <div class="vnode"><div class="vdot">3</div><div class="vbody"><div class="vtitle">政府审批</div><div class="vsub">约 1–2 个工作日</div></div></div>
+          <div class="vnode"><div class="vdot">4</div><div class="vbody"><div class="vtitle">签发 CI 公司注册证 + BR 商业登记证</div><div class="vsub">出证后进入完结</div></div></div>
+        </div>
+        <div class="note" style="margin:4px 2px 0">办理期间可随时在「订单」查看进度；如需补充材料会消息通知你。</div>
+        <div class="fixed-foot"><button class="btn" onclick="setPersona('user');goHome()">返回首页</button></div>
+        <div style="text-align:center;margin-top:12px"><span onclick="go('s-regdone')" style="color:var(--text3);font-size:12px;text-decoration:underline;cursor:pointer">测试下一步</span></div>
+      </div>
+    </div>
 
-        <!-- Step 5 完结 -->
-        <div class="reg-pane" id="reg-5" style="display:none">
-          <div class="success-ring" style="margin:8px auto 0"><i class="ti ti-check"></i></div>
-          <div style="text-align:center;font-size:18px;font-weight:700;margin-top:8px">公司注册完成</div>
-          <div class="note" style="text-align:center;margin:6px 18px 14px;line-height:1.7"><b>TimeLeap Limited</b> 已成功注册，CI 与 BR 已签发，交付物已送达交付物中心。</div>
-          <div class="card">
-            <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">公司名称</span><span style="font-weight:600">TimeLeap Limited</span></div>
-            <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">公司编号 CI</span><span style="font-family:monospace">7935 1188</span></div>
-            <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">商业登记证 BR</span><span style="font-family:monospace">7935 1188-000-06-26-A</span></div>
-            <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">成立日期</span><span>2026-06-29</span></div>
-          </div>
-          <div class="card" onclick="go('s-deliverables')" style="cursor:pointer"><div class="cell" style="border:none"><div class="cell-ic" style="background:var(--blue-bg);color:var(--blue)"><i class="ti ti-files"></i></div><div class="cell-main"><div class="cell-t">查看交付物</div><div class="cell-d">CI / BR / 章程 / 法定文件册 等</div></div><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div></div>
-          <div class="fixed-foot" style="display:flex;gap:8px"><button class="btn ghost" onclick="goHome()">返回首页</button><button class="btn" style="flex:1.4" onclick="setPersona('user');go('s-orders')">查看我的订单</button></div>
+    <!-- ════════ 完结 ════════ -->
+    <div class="screen" id="s-regdone" data-title="公司注册完成" data-back="s-home">
+      <div class="body-pad">
+        <div class="success-ring" style="margin:8px auto 0"><i class="ti ti-check"></i></div>
+        <div style="text-align:center;font-size:18px;font-weight:700;margin-top:8px">公司注册完成</div>
+        <div class="note" style="text-align:center;margin:6px 18px 14px;line-height:1.7"><b>TimeLeap Limited</b> 已成功注册，CI 与 BR 已签发，交付物已送达交付物中心。</div>
+        <div class="card">
+          <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">公司名称</span><span style="font-weight:600">TimeLeap Limited</span></div>
+          <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">公司编号 CI</span><span style="font-family:monospace">7935 1188</span></div>
+          <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">商业登记证 BR</span><span style="font-family:monospace">7935 1188-000-06-29-A</span></div>
+          <div class="label-line" style="padding:12px 14px"><span style="color:var(--text3)">成立日期</span><span>2026-06-29</span></div>
         </div>
+        <div class="card" onclick="go('s-deliverables')" style="cursor:pointer"><div class="cell" style="border:none"><div class="cell-ic" style="background:var(--blue-bg);color:var(--blue)"><i class="ti ti-files"></i></div><div class="cell-main"><div class="cell-t">查看交付物</div><div class="cell-d">CI / BR / 章程 / 法定文件册 等</div></div><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div></div>
+        <div class="fixed-foot" style="display:flex;gap:8px"><button class="btn ghost" onclick="goHome()">返回首页</button><button class="btn" style="flex:1.4" onclick="setPersona('user');go('s-orders')">查看我的订单</button></div>
       </div>
     </div>
 
@@ -1288,6 +1305,23 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
         <div class="note" style="margin:8px 2px 0"><i class="ti ti-bulb" style="color:var(--accent)"></i> 通讯地址 / 通常住址 / 证件等身份信息可由 KYC 环节复用，无需重复填写。</div>
 
         <div class="fixed-foot" style="display:flex;gap:8px"><button class="btn ghost" style="width:90px" onclick="go('s-reg')">取消</button><button class="btn" onclick="savePerson()">保存</button></div>
+      </div>
+    </div>
+
+    <!-- ════════ KYC 认证 · 人工审核中 ════════ -->
+    <div class="screen" id="s-kycaudit" data-title="KYC 认证" data-back="s-home">
+      <div class="body-pad">
+        <div class="card cp" style="text-align:center;padding:24px 18px">
+          <div style="width:60px;height:60px;border-radius:50%;background:var(--accent-bg);color:var(--accent-d);display:flex;align-items:center;justify-content:center;margin:0 auto 12px"><i class="ti ti-user-search" style="font-size:28px"></i></div>
+          <div style="font-size:17px;font-weight:700">人工审核中</div>
+          <div class="note" style="margin:8px 16px 0;line-height:1.7">顾问正在依 AMLO 对你的 KYC 资料进行人工审核（约 1 个工作日）。<b style="color:var(--accent-d)">审核通过后，会将 NNC1 表格递交香港公司注册处，政府审批通常约 1–2 个工作日</b>。</div>
+        </div>
+        <div class="card" style="padding:16px 16px 6px">
+          <div class="vnode done"><div class="vdot"><i class="ti ti-check" style="font-size:13px"></i></div><div class="vbody"><div class="vtitle">KYC 资料已提交</div><div class="vsub">身份 / 地址 / 业务证明 · 今天 11:20</div></div></div>
+          <div class="vnode act"><div class="vdot">2</div><div class="vbody"><div class="vtitle">合规人工审核中</div><div class="vsub">PEP / 制裁筛查 + 尽职调查 · 约 1 个工作日</div></div></div>
+          <div class="vnode"><div class="vdot">3</div><div class="vbody"><div class="vtitle">审核通过 → 递交香港公司注册处</div><div class="vsub">政府审批约 1–2 个工作日</div></div></div>
+        </div>
+        <div class="fixed-foot"><button class="btn" onclick="setPersona('user');goHome()">查看剩余待办</button></div>
       </div>
     </div>
 
@@ -1688,7 +1722,7 @@ function kycStep(n){
   document.getElementById('s-kyc').scrollTop = 0;
 }
 function kycSubmit(){
-  if(FLOW_TYPE==='register'){ toast('KYC 认证已提交'); setTimeout(function(){ regStep(4); go('s-reg'); }, 800); return; }   // 注册类：KYC → 业务办理
+  if(FLOW_TYPE==='register'){ toast('KYC 认证已提交'); setTimeout(function(){ go('s-kycaudit'); }, 800); return; }   // 注册类：KYC → 人工审核中
   showResult({title:'KYC 认证已提交', desc:'合规尽调审核中（约 1 个工作日）。通过后我们即开始为你办理；如审核不通过将全额退款。', steps:flowSteps(), cur:4, btn:'查看我的订单', next:function(){ go('s-orders'); }});
 }
 
@@ -1833,7 +1867,7 @@ function setCur(c){
 
 /* Registration */
 function regStep(n){
-  for(var i=1;i<=5;i++){ document.getElementById('reg-'+i).style.display = (i===n)?'block':'none'; }
+  for(var i=1;i<=4;i++){ document.getElementById('reg-'+i).style.display = (i===n)?'block':'none'; }
   var items = document.querySelectorAll('#reg-steps .step-i');
   var lines = document.querySelectorAll('#reg-steps .step-line');
   items.forEach(function(it,idx){ it.classList.toggle('done', idx<n-1); it.classList.toggle('act', idx===n-1); });
@@ -1844,7 +1878,7 @@ function pickArt(el){
   document.querySelectorAll('#reg-3 .radio-card').forEach(function(c){ c.classList.remove('on'); });
   el.classList.add('on');
 }
-function regSubmit(){ toast('公司注册信息已提交'); setTimeout(function(){ goKyc(); }, 800); }   // 公司注册信息 → KYC 认证
+function regSubmit(){ toast('已提交人工预审'); setTimeout(function(){ go('s-bizhandle'); }, 800); }   // 人工预审 → 业务办理
 /* 新公司注册：从核名结果页进入，重置到第 1 步 */
 function startNewReg(){ PERSONS = defaultPersons(); renderPersons(); var c=document.getElementById('reg-confirm'); if(c) c.classList.remove('on'); var b=document.getElementById('reg-submit-btn'); if(b) b.disabled=true; regStep(1); go('s-reg'); }
 /* 创办成员/董事/公司秘书 人员管理 */
@@ -1895,13 +1929,13 @@ var CHANNEL = 'LEX888';
 var SVC_DATA = {
   'pkg-basic':{name:'基础注册服务',icon:'ti-package',price:3800,old:0,form:'register',tags:'含 4 项服务',
     incl:['公司注册（CI + BR）','首年法定秘书','注册地址','商业登记证'],
-    process:['支付','公司注册信息','KYC认证'],meta:'办理时效：3-5 个工作日<br>所需材料：董事/股东身份证或护照、地址证明<br>交付物：注册证书 CI、商业登记证 BR、章程、名册等'},
+    process:['支付','KYC 认证','提交注册信息'],meta:'办理时效：3-5 个工作日<br>所需材料：董事/股东身份证或护照、地址证明<br>交付物：注册证书 CI、商业登记证 BR、章程、名册等'},
   'pkg-std':{name:'标准注册服务',icon:'ti-package',price:5800,old:6800,form:'register',tags:'推荐 · 含 7 项服务',
     incl:['基础服务全部内容','首年公司年审','公司文件册 Company Kit','公司圆章 + 签字章'],
-    process:['支付','公司注册信息','KYC认证'],meta:'办理时效：3-5 个工作日<br>所需材料：身份证/护照、地址证明<br>交付物：19 项（含印章、文件册）'},
+    process:['支付','KYC 认证','提交注册信息'],meta:'办理时效：3-5 个工作日<br>所需材料：身份证/护照、地址证明<br>交付物：19 项（含印章、文件册）'},
   'pkg-pro':{name:'高级注册服务',icon:'ti-package',price:8800,old:0,form:'register',tags:'含 10 项服务',
     incl:['标准服务全部内容','银行开户协助','SCR 重要控制人登记册建立','公证认证'],
-    process:['支付','公司注册信息','KYC认证'],meta:'办理时效：5-10 个工作日<br>含银行开户预约与公证认证<br>交付物：19 项 + 开户文件包 + 公证件'},
+    process:['支付','KYC 认证','提交注册信息'],meta:'办理时效：5-10 个工作日<br>含银行开户预约与公证认证<br>交付物：19 项 + 开户文件包 + 公证件'},
   'reg':null, // alias → pkg-std
   'annual':{name:'年审服务',icon:'ti-calendar-check',price:2800,old:0,form:'annual',tags:'NAR1 周年申报 · 7 项交付物',
     incl:['周年申报表 NAR1 编制与提交','更新商业登记证 BR','董事/股东名册更新','公司秘书确认函','KYC 年度复核'],
