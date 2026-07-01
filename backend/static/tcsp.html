@@ -202,6 +202,8 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
 .splash-btn{width:100%;padding:15px;border:none;border-radius:13px;background:#fff;color:#1A1A1A;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;box-shadow:0 10px 30px rgba(0,0,0,.35)}
 .splash-btn:active{opacity:.85}
 .splash-skip{width:100%;padding:13px;border:1px solid rgba(255,255,255,.25);border-radius:13px;background:transparent;color:rgba(255,255,255,.9);font-size:14px;cursor:pointer;font-family:inherit;margin-top:10px}
+.rg-pill{padding:8px 16px;border:1px solid rgba(255,255,255,.25);border-radius:20px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.85);font-size:13px;cursor:pointer}
+.rg-pill.on{background:#D4A853;border-color:#D4A853;color:#1A1A1A;font-weight:700}
 
 /* ── 订单 > 服务 > 账单 层级 ── */
 .order-card{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:10px;overflow:hidden;margin-bottom:12px}
@@ -524,7 +526,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
               <div class="vbody">
                 <div class="vtitle">Step 2 · 身份认证<span class="tag t-green" style="font-size:9.5px">已完成</span></div>
                 <div class="vsub"><b>核心内容：</b>上传身份证 / 护照，OCR 自动识别 + 人工复核。</div>
-                <div class="vnote"><i class="ti ti-point" style="font-size:11px"></i> <b>关键规则：</b>支持香港身份证、中国内地身份证、护照；<b>PEP 审查含家庭成员</b>（配偶/子女/父母/兄弟姐妹）；邮箱在此步采集并验证。</div>
+                <div class="vnote"><i class="ti ti-point" style="font-size:11px"></i> <b>关键规则：</b>证件支持香港身份证、护照、其他证件；本人验证用<b>手机验证码 / 人脸识别</b>；资料加密留存 7 年。</div>
               </div>
             </div>
             <!-- Step 3 current -->
@@ -976,9 +978,9 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
           <div class="field">
             <div class="field-l">证件类型</div>
             <div style="display:flex;gap:8px">
-              <div class="tag t-green" style="padding:8px 14px;cursor:pointer">香港身份证</div>
-              <div class="tag t-gray" style="padding:8px 14px;cursor:pointer">内地身份证</div>
-              <div class="tag t-gray" style="padding:8px 14px;cursor:pointer">护照</div>
+              <div class="tag t-green kyc-idtype on" onclick="pickIdType(this)" style="padding:8px 14px;cursor:pointer">香港身份证</div>
+              <div class="tag t-gray kyc-idtype" onclick="pickIdType(this)" style="padding:8px 14px;cursor:pointer">护照</div>
+              <div class="tag t-gray kyc-idtype" onclick="pickIdType(this)" style="padding:8px 14px;cursor:pointer">其他证件</div>
             </div>
           </div>
           <div class="uz" onclick="toast('调用 wx.chooseMedia 拍摄/上传证件')">
@@ -988,11 +990,10 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
           <div class="card card-pad" style="background:var(--green-bg);margin-bottom:12px">
             <div style="font-size:12px;color:var(--green-d)"><i class="ti ti-circle-check"></i> OCR 已识别：陳大文 CHAN TAI MAN · A123456(7)</div>
           </div>
-          <div class="field"><div class="field-l">邮箱（用于接收通知，需验证）</div>
-            <div style="display:flex;gap:8px"><input class="input" placeholder="name@email.com" value="taiman@example.hk"><button class="btn-sm btn" style="flex-shrink:0;color:#fff" onclick="toast('验证码已发送至邮箱')">发送验证码</button></div>
-          </div>
-          <div class="field"><div class="field-l">PEP 自我声明</div>
-            <div class="note">您或家庭成员是否为政治公众人物？<span style="color:var(--green)">否</span> · 如是将进入 EDD 增强尽调</div>
+          <div class="field"><div class="field-l">本人验证（二选一）</div>
+            <div style="display:flex;gap:8px;margin-bottom:8px"><input class="input" placeholder="手机号 +852 / +86" value="+852 9123 4567"><button class="btn-sm btn" style="flex-shrink:0;color:#fff" onclick="toast('验证码已发送至手机')">获取验证码</button></div>
+            <input class="input" placeholder="输入 6 位短信验证码" style="margin-bottom:8px">
+            <button class="btn ghost" onclick="toast('调用人脸识别 · 活体检测')"><i class="ti ti-face-id"></i> 或用人脸识别验证</button>
           </div>
           <div class="fixed-foot" style="display:flex;gap:8px"><button class="btn ghost" style="width:90px" onclick="kycStep(1)">上一步</button><button class="btn" onclick="kycStep(3)">下一步</button></div>
         </div>
@@ -1022,9 +1023,8 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
           <div class="card">
             <div class="label-line" style="padding:11px 14px"><span style="color:var(--text3)">客户类型</span><span>个人客户</span></div>
             <div class="label-line" style="padding:11px 14px"><span style="color:var(--text3)">证件</span><span>香港身份证 ✓</span></div>
-            <div class="label-line" style="padding:11px 14px"><span style="color:var(--text3)">邮箱</span><span>已验证 ✓</span></div>
+            <div class="label-line" style="padding:11px 14px"><span style="color:var(--text3)">本人验证</span><span>手机 / 人脸 · 已验证 ✓</span></div>
             <div class="label-line" style="padding:11px 14px"><span style="color:var(--text3)">地址证明</span><span>已上传 ✓</span></div>
-            <div class="label-line" style="padding:11px 14px"><span style="color:var(--text3)">PEP / 制裁筛查</span><span class="tag t-green">未命中</span></div>
           </div>
           <div class="card card-pad" style="background:var(--red-bg)"><div class="note" style="color:var(--red)"><i class="ti ti-alert-circle"></i> 提交后资料不可修改，将转后台合规审核（约 48 小时）。</div></div>
           <div class="fixed-foot" style="display:flex;gap:8px"><button class="btn ghost" style="width:90px" onclick="kycStep(4)">上一步</button><button class="btn" onclick="kycSubmit()">提交审核</button></div>
@@ -1046,7 +1046,8 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
               <div class="nc-mode" id="nc-mode-start" onclick="ncMode('start')">以名称起首查册</div>
             </div>
           </div>
-          <div class="field"><div class="field-l" id="nc-input-label">拟用公司全名（英文或繁体中文）</div><input class="input" id="nc-name" placeholder="如 TimeLeap Limited" value="TimeLeap" oninput="ncCheck()"></div>
+          <div class="field"><div class="field-l" id="nc-input-label">拟用公司全名（繁体中文）</div><input class="input" id="nc-name-zh" placeholder="如 時躍有限公司" oninput="ncZhConv()"><div id="nc-zh-hint" style="font-size:12px;color:var(--green-d);margin:6px 2px 0;display:none"></div></div>
+          <div class="field"><div class="field-l" id="nc-input-label-en">拟用公司全名（英文）</div><input class="input" id="nc-name-en" placeholder="如 TimeLeap Limited" value="TimeLeap"></div>
           <div class="card card-pad" id="nc-mode-hint" style="background:var(--blue-bg);font-size:12px;color:var(--blue);margin-bottom:16px">「以全名查册」：输入<b>整个</b>拟用公司名称，结果显示与输入字元<b>完全符合</b>、仍在登记册上的公司现用名称。</div>
 
           <!-- 商标查询 -->
@@ -1196,9 +1197,13 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
           <div class="note" style="margin-bottom:12px">公司章程（Articles of Association）依《公司条例》订立。<b style="color:var(--green)">推荐样本 A（简化格式）</b>，适合单一 / 简单股权结构。</div>
           <div class="radio-card on" onclick="pickArt(this)"><div class="radio-dot"></div><div style="flex:1"><div style="display:flex;justify-content:space-between"><div style="font-weight:600;font-size:14px">样本 A（简化格式）</div><span class="tag t-green">推荐</span></div><div class="note">公司注册处标准章程，单一 / 简单股权适用</div></div></div>
           <div class="radio-card" onclick="pickArt(this)"><div class="radio-dot"></div><div><div style="font-weight:600;font-size:14px">样本 B</div><div class="note">较完整条款（股份转让限制、董事权限等）</div></div></div>
-          <div class="radio-card" onclick="pickArt(this)"><div class="radio-dot"></div><div><div style="font-weight:600;font-size:14px">自订（英文）</div><div class="note">自拟英文章程，由 Leapexbiz 法务协助起草</div></div></div>
-          <div class="radio-card" onclick="pickArt(this)"><div class="radio-dot"></div><div><div style="font-weight:600;font-size:14px">自订（中文）</div><div class="note">自拟中文章程，由 Leapexbiz 法务协助起草</div></div></div>
-          <div class="card" onclick="toast('打开 样本 A 章程全文预览')" style="cursor:pointer"><div class="cell" style="border:none"><div class="cell-ic" style="background:var(--red-bg);color:var(--red)"><i class="ti ti-file-type-pdf"></i></div><div class="cell-main"><div class="cell-t">预览章程全文</div><div class="cell-d">Articles_SampleA.pdf</div></div><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div></div>
+          <div class="field" style="margin-top:14px"><div class="field-l">章程语言</div>
+            <div style="display:flex;gap:8px">
+              <div class="nc-mode on" id="art-lang-en" onclick="pickArtLang('en')">英文</div>
+              <div class="nc-mode" id="art-lang-zh" onclick="pickArtLang('zh')">繁体中文</div>
+            </div>
+          </div>
+          <div class="card" onclick="toast('打开 样本章程全文预览')" style="cursor:pointer"><div class="cell" style="border:none"><div class="cell-ic" style="background:var(--red-bg);color:var(--red)"><i class="ti ti-file-type-pdf"></i></div><div class="cell-main"><div class="cell-t">预览章程全文</div><div class="cell-d" id="art-preview-file">Articles_SampleA_EN.pdf</div></div><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div></div>
           <div class="fixed-foot" style="display:flex;gap:8px"><button class="btn ghost" style="width:90px" onclick="regStep(2)">上一步</button><button class="btn" onclick="regStep(4)">下一步 · 人工预审</button></div>
         </div>
 
@@ -1228,12 +1233,12 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
         <div class="card cp" style="text-align:center;padding:22px 18px">
           <div style="width:58px;height:58px;border-radius:50%;background:var(--blue-bg);color:var(--blue);display:flex;align-items:center;justify-content:center;margin:0 auto 12px"><i class="ti ti-building-bank" style="font-size:27px"></i></div>
           <div style="font-size:16px;font-weight:700">业务办理中</div>
-          <div class="note" style="margin:8px 16px 0;line-height:1.7">人工预审通过后，我们将依 NNC1 递交香港公司注册处并跟进政府审批与签证，<b style="color:var(--blue)">大约需要 3–5 个工作日</b>。</div>
+          <div class="note" style="margin:8px 16px 0;line-height:1.7">人工预审通过后，顾问将<b>线下递交 NNC1 表</b>至香港公司注册处；<b style="color:var(--blue)">交表后约 1 周</b>可领取 CI / BR 正本。</div>
         </div>
         <div class="card" style="padding:16px 16px 6px">
           <div class="vnode done"><div class="vdot"><i class="ti ti-check" style="font-size:13px"></i></div><div class="vbody"><div class="vtitle">人工预审通过</div><div class="vsub">顾问已核对 NNC1 资料</div></div></div>
-          <div class="vnode act"><div class="vdot">2</div><div class="vbody"><div class="vtitle">递交香港公司注册处</div><div class="vsub">e-Registry 已提交，等待政府审批，约 1–2 个工作日</div></div></div>
-          <div class="vnode"><div class="vdot">3</div><div class="vbody"><div class="vtitle">签发 CI 公司注册证 + BR 商业登记证</div><div class="vsub">出证后进入完结</div></div></div>
+          <div class="vnode act"><div class="vdot">2</div><div class="vbody"><div class="vtitle">线下递交 NNC1 表 · 香港公司注册处</div><div class="vsub">顾问已递交，约 1 周后领取 CI / BR 正本</div></div></div>
+          <div class="vnode"><div class="vdot">3</div><div class="vbody"><div class="vtitle">签发 CI 公司注册证 + BR 商业登记证</div><div class="vsub">领取正本后进入完结</div></div></div>
         </div>
         <div class="note" style="margin:4px 2px 0">办理期间可随时在「订单」查看进度；如需补充材料会消息通知你。</div>
         <div style="text-align:right;margin-top:14px"><span onclick="go('s-regdone')" style="color:var(--text3);font-size:12px;text-decoration:underline;cursor:pointer">测试下一步</span></div>
@@ -1335,8 +1340,12 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
         <div class="sec-t">费用明细</div>
         <div class="card">
           <div class="label-line" style="padding:12px 14px"><span>标准注册服务</span><span style="font-weight:600" id="bill-svc-amt">¥ 5,220.00</span></div>
+          <div class="label-line" id="bill-coupon-row" style="padding:12px 14px;display:none"><span style="color:var(--accent-d)">优惠券抵扣</span><span style="color:var(--accent-d);font-weight:600" id="bill-discount">− ¥ 180.00</span></div>
           <div class="label-line" style="padding:12px 14px;font-weight:700"><span>应付合计</span><span style="color:var(--green-d)" id="bill-total">¥ 5,220.00</span></div>
         </div>
+
+        <div class="sec-t">优惠券</div>
+        <div class="card"><div class="cell" style="border:none;cursor:pointer" onclick="openSheet('coupon-sheet')"><div class="cell-ic" style="background:var(--accent-bg);color:var(--accent-d)"><i class="ti ti-ticket"></i></div><div class="cell-main"><div class="cell-t" id="bill-coupon-t">未使用优惠券</div><div class="cell-d" id="bill-coupon-d">1 张可用</div></div><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div></div>
 
         <!-- 在线支付（默认 · 国内主体）-->
         <div class="sec-t">支付方式</div>
@@ -1440,6 +1449,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
         <div class="card" style="margin-top:12px">
           <div class="cell" onclick="go('s-mycompany')"><div class="cell-ic" style="background:var(--green-bg);color:var(--green-d)"><i class="ti ti-building"></i></div><div class="cell-main"><div class="cell-t">我的公司</div></div><span style="color:var(--text3);font-size:13px">2 家</span><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div>
           <div class="cell" onclick="go('s-bill')"><div class="cell-ic" style="background:var(--yellow-bg);color:var(--orange)"><i class="ti ti-file-invoice"></i></div><div class="cell-main"><div class="cell-t">我的账单</div></div><span class="tag t-orange" style="margin-right:4px">1 待付</span><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div>
+          <div class="cell" onclick="go('s-coupons')"><div class="cell-ic" style="background:var(--accent-bg);color:var(--accent-d)"><i class="ti ti-ticket"></i></div><div class="cell-main"><div class="cell-t">优惠券</div></div><span class="tag t-green" style="margin-right:4px">1 可用</span><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div>
           <div class="cell" onclick="go('s-kycdone')"><div class="cell-ic" style="background:var(--blue-bg);color:var(--blue)"><i class="ti ti-shield-check"></i></div><div class="cell-main"><div class="cell-t">KYC认证</div><div class="cell-d">已认证 · 查看尽调资料清单</div></div><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div>
         </div>
         <div class="card">
@@ -1506,6 +1516,48 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
       </div>
     </div>
 
+    <!-- ════════ 优惠券 ════════ -->
+    <div class="screen" id="s-coupons" data-title="优惠券" data-back="s-me">
+      <div class="body-pad">
+        <div class="sec-t" style="padding-top:0">可用（2）</div>
+        <div style="display:flex;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:12px;cursor:pointer" onclick="ncReset();go('s-namecheck')">
+          <div style="width:96px;background:linear-gradient(135deg,var(--accent),#D97757);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0"><div style="font-size:20px;font-weight:800">免费</div><div style="font-size:12px;margin-top:2px">核名券</div></div>
+          <div style="flex:1;padding:13px 14px"><div style="font-weight:700;font-size:15px">免费核名券 × 1</div><div class="note" style="margin-top:3px">公司名称查册 + 商标查询 · 顾问人工</div><div style="display:flex;justify-content:space-between;align-items:center;margin-top:9px"><span style="font-size:11px;color:var(--text3)">有效期至 2026-12-31</span><span style="font-size:12px;color:var(--accent-d);font-weight:600">去使用 ›</span></div></div>
+        </div>
+        <div style="display:flex;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:12px;cursor:pointer" onclick="openSvc('reg')">
+          <div style="width:96px;background:linear-gradient(135deg,#1A1A1A,#4A4A4A);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0"><div style="font-size:21px;font-weight:800">HK$200</div><div style="font-size:11px;margin-top:2px">立减</div></div>
+          <div style="flex:1;padding:13px 14px"><div style="font-weight:700;font-size:15px">新客注册立减券</div><div class="note" style="margin-top:3px">标准 / 高级注册服务满 HK$3,800 可用</div><div style="display:flex;justify-content:space-between;align-items:center;margin-top:9px"><span style="font-size:11px;color:var(--text3)">有效期至 2026-09-30</span><span style="font-size:12px;color:var(--accent-d);font-weight:600">去使用 ›</span></div></div>
+        </div>
+        <div class="sec-t">已使用 / 已过期</div>
+        <div style="display:flex;background:var(--bg2);border:1px solid var(--line);border-radius:14px;overflow:hidden;opacity:.55">
+          <div style="width:96px;background:#B8B8B8;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0"><div style="font-size:20px;font-weight:800">免费</div><div style="font-size:12px;margin-top:2px">核名券</div></div>
+          <div style="flex:1;padding:13px 14px"><div style="font-weight:700;font-size:15px">免费核名券 × 1</div><div class="note" style="margin-top:3px">已于 2026-06-20 使用</div><div style="font-size:11px;color:var(--text3);margin-top:9px">已使用</div></div>
+        </div>
+        <div class="note" style="text-align:center;margin-top:16px">优惠券不可提现、不可叠加；具体以使用规则为准。</div>
+      </div>
+    </div>
+
+    <!-- ════════ 登录 ════════ -->
+    <div class="screen" id="s-login" data-title="登录">
+      <div class="body-pad">
+        <div style="text-align:center;padding:18px 0 6px">
+          <div style="width:56px;height:56px;border-radius:15px;background:linear-gradient(135deg,#1A1A1A,#A94E30);display:flex;align-items:center;justify-content:center;margin:0 auto 12px">
+            <svg viewBox="0 0 16 16" width="26" height="26"><rect x="1" y="1" width="6" height="6" rx="1" fill="#fff"/><rect x="9" y="1" width="6" height="6" rx="1" fill="#C15F3C"/><rect x="1" y="9" width="6" height="6" rx="1" fill="#D9A05B"/><rect x="9" y="9" width="6" height="6" rx="1" fill="#fff"/></svg>
+          </div>
+          <div style="font-size:18px;font-weight:700">登录 Leapexbiz</div>
+          <div class="note" style="margin-top:4px">香港持牌 TCSP · 公司秘书线上办 · <span id="login-region">香港</span>区</div>
+        </div>
+        <div class="field" style="margin-top:8px"><div class="field-l">手机号</div>
+          <div style="display:flex;gap:8px"><input class="input" id="login-phone" placeholder="+852 / +86 手机号" value="+852 9123 4567"><button class="btn-sm btn" style="flex-shrink:0;color:#fff" onclick="toast('验证码已发送')">获取验证码</button></div>
+        </div>
+        <div class="field"><div class="field-l">短信验证码</div><input class="input" placeholder="输入 6 位验证码"></div>
+        <button class="btn" onclick="loginDone()">登录 / 注册</button>
+        <div class="divider-or">或</div>
+        <button class="btn ghost" onclick="loginDone()"><i class="ti ti-brand-wechat" style="color:#09BB07"></i> 微信授权登录</button>
+        <div class="note" style="text-align:center;margin-top:16px;line-height:1.7">登录即代表同意《服务条款》与《隐私政策》<br>未注册手机号将自动创建账户</div>
+      </div>
+    </div>
+
   </div><!-- /screens -->
 
   <!-- TabBar -->
@@ -1515,6 +1567,20 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
     <div class="tab" data-tab="orders" onclick="go('s-orders')"><i class="ti ti-clipboard-list"></i><span>订单</span></div>
     <div class="tab" data-tab="messages" onclick="go('s-messages')"><i class="ti ti-bell"></i><span>消息</span></div>
     <div class="tab" data-tab="me2" onclick="go('s-me')"><i class="ti ti-user"></i><span>我的</span></div>
+  </div>
+
+  <!-- 优惠券选择 · 底部弹窗 -->
+  <div id="coupon-sheet" style="display:none;position:absolute;inset:0;z-index:80;background:rgba(0,0,0,.45);align-items:flex-end" onclick="if(event.target===this)closeSheet('coupon-sheet')">
+    <div class="sheet-panel" style="width:100%;background:var(--card);border-radius:18px 18px 0 0;max-height:80%;display:flex;flex-direction:column">
+      <div style="display:flex;align-items:center;gap:10px;padding:16px 18px 12px;border-bottom:1px solid var(--line)">
+        <div style="flex:1"><div style="font-size:15px;font-weight:700">选择优惠券</div><div style="font-size:11.5px;color:var(--text3)">本订单可用 1 张</div></div>
+        <div onclick="closeSheet('coupon-sheet')" style="width:28px;height:28px;border-radius:50%;background:var(--bg2);display:flex;align-items:center;justify-content:center;color:var(--text3);cursor:pointer"><i class="ti ti-x" style="font-size:15px"></i></div>
+      </div>
+      <div style="overflow-y:auto;padding:12px 18px calc(16px + env(safe-area-inset-bottom))">
+        <div class="radio-card on" id="cp-opt-none" onclick="applyCoupon('none')"><div class="radio-dot"></div><div style="flex:1"><div style="font-weight:600;font-size:14px">不使用优惠券</div><div class="note">按原价支付</div></div></div>
+        <div class="radio-card" id="cp-opt-reg" onclick="applyCoupon('reg')"><div class="radio-dot"></div><div style="flex:1"><div style="display:flex;justify-content:space-between"><div style="font-weight:600;font-size:14px">新客注册立减券</div><span class="tag t-green">− HK$200</span></div><div class="note">标准 / 高级注册满 HK$3,800 可用 · 至 2026-09-30</div></div></div>
+      </div>
+    </div>
   </div>
 
   <!-- ════════ SPLASH · 整页渠道入口 ════════ -->
@@ -1536,13 +1602,22 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
 
       <div style="flex:1"></div>
 
-      <div style="margin-bottom:8px">
-        <div style="font-size:12.5px;color:rgba(255,255,255,.75);margin-bottom:10px;display:flex;align-items:center;gap:6px"><i class="ti ti-ticket"></i>输入合作伙伴渠道码（选填，可跳过）</div>
+      <div style="margin-bottom:14px">
+        <div style="font-size:12.5px;color:rgba(255,255,255,.75);margin-bottom:9px;display:flex;align-items:center;gap:6px"><i class="ti ti-map-pin"></i>选择注册地区</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <div class="rg-pill on" id="rg-hk" onclick="pickRegion('香港')">香港</div>
+          <div class="rg-pill" id="rg-sg" onclick="pickRegion('新加坡')">新加坡</div>
+          <div class="rg-pill" id="rg-dxb" onclick="pickRegion('迪拜')">迪拜</div>
+          <div class="rg-pill" id="rg-bvi" onclick="pickRegion('BVI')">BVI</div>
+        </div>
+      </div>
+      <div style="margin-bottom:12px">
+        <div style="font-size:12.5px;color:rgba(255,255,255,.75);margin-bottom:9px;display:flex;align-items:center;gap:6px"><i class="ti ti-ticket"></i>合作伙伴渠道码（选填）</div>
         <input class="glass-input" id="sp-input" maxlength="6" placeholder="如 LEX888" oninput="this.value=this.value.toUpperCase();spValidate()">
         <div id="sp-hint" style="font-size:12px;margin:8px 2px 0;height:16px;color:rgba(255,255,255,.85)"></div>
       </div>
-      <button class="splash-btn" onclick="spEnter()">输入渠道码 · 进入</button>
-      <button class="splash-skip" onclick="spSkip()">没有渠道码？跳过 · 以自然流量进入</button>
+      <button class="splash-btn" onclick="loginGo()">登录</button>
+      <button class="splash-skip" onclick="splashSkip()">跳过登录 · 先逛逛</button>
       <div style="text-align:center;font-size:10.5px;color:rgba(255,255,255,.4);margin-top:14px">© 2026 Leapexbiz · 持牌 TCSP · 符合 AMLO / PDPO</div>
     </div>
   </div>
@@ -1655,6 +1730,7 @@ function go(id, isBack){
   // page hooks
   if(id==='s-orders' && typeof renderOrders==='function') renderOrders();
   if(id==='s-mycompany' && typeof renderCompanies==='function') renderCompanies();
+  if(id==='s-bill' && typeof renderBill==='function') renderBill();
 }
 function goBack(){
   var cur = document.querySelector('.screen.on');
@@ -1723,6 +1799,24 @@ function togglePersona(){ setPersona(PERSONA==='user' ? 'new' : 'user'); }
 function _markRegistered(){ try{ localStorage.setItem('tcsp_registered','1'); }catch(e){} }
 function _hideSplash(){ document.getElementById('splash').classList.remove('on'); }
 function openSplash(){ document.getElementById('sp-input').value=''; document.getElementById('sp-hint').textContent=''; document.getElementById('splash').classList.add('on'); }
+/* 首屏：地区选择 + 登录 */
+var REGION='香港';
+function pickRegion(r){
+  REGION=r;
+  var map={'香港':'rg-hk','新加坡':'rg-sg','迪拜':'rg-dxb','BVI':'rg-bvi'};
+  for(var k in map){ var el=document.getElementById(map[k]); if(el) el.classList.toggle('on', k===r); }
+  if(r!=='香港') toast(r+' 公司注册即将开放 · 当前以香港为例');
+}
+function loginGo(){
+  var v=document.getElementById('sp-input').value;
+  if(v && v.length>=6 && v!=='000000'){ document.getElementById('home-ch').textContent=v; document.getElementById('home-ch-d').textContent='星投资本 · 渠道合作伙伴'; }
+  var lr=document.getElementById('login-region'); if(lr) lr.textContent=REGION;
+  _hideSplash();
+  try{ histStack.length=0; }catch(e){}
+  go('s-login');
+}
+function splashSkip(){ _hideSplash(); try{ histStack.length=0; }catch(e){} go('s-init'); }
+function loginDone(){ _markRegistered(); toast('登录成功'); setTimeout(function(){ go('s-init'); }, 500); }
 function spEnter(){
   var v = document.getElementById('sp-input').value;
   if(v.length<6 || v==='000000'){ document.getElementById('sp-hint').innerHTML='✗ 请输入有效的 6 位渠道码'; document.getElementById('sp-hint').style.color='#FCA5A5'; return; }
@@ -1827,13 +1921,26 @@ function kycSubmit(){
 /* Name check */
 function ncCheck(){ /* live validation is static-positive in demo */ }
 var NC_MODE='full';
+/* 简体→繁体（常用商业用字；未覆盖字原样保留，demo 用）*/
+var S2T={"时":"時","间":"間","跃":"躍","动":"動","贸":"貿","发":"發","国":"國","际":"際","资":"資","环":"環","华":"華","电":"電","网":"網","络":"絡","达":"達","丰":"豐","远":"遠","东":"東","长":"長","兴":"興","广":"廣","业":"業","产":"產","团":"團","龙":"龍","凤":"鳳","乐":"樂","会":"會","银":"銀","财":"財","务":"務","万":"萬","数":"數","单":"單","图":"圖","价":"價","购":"購","销":"銷","营":"營","运":"運","车":"車","门":"門","开":"開","来":"來","进":"進","这":"這","里":"裡","现":"現","实":"實","传":"傳","简":"簡","亚":"亞","顺":"順","顾":"顧","优":"優","为":"為","场":"場","区":"區","铁":"鐵","钢":"鋼","医":"醫","师":"師","员":"員","经":"經","云":"雲","岛":"島","齐":"齊","丽":"麗","宝":"寶","恒":"恆","联":"聯","创":"創","码":"碼","饮":"飲","饰":"飾","药":"藥","问":"問","计":"計","险":"險","证":"證","认":"認","识":"識","类":"類","户":"戶","号":"號","权":"權","责":"責","处":"處","请":"請","应":"應","该":"該","对":"對","还":"還","过":"過","转":"轉","汇":"匯","签":"簽","审":"審","岭":"嶺","陈":"陳","张":"張","刘":"劉","郑":"鄭","罗":"羅","赵":"趙","孙":"孫","韩":"韓","杨":"楊","吴":"吳","冯":"馮"};
+function s2t(str){ var o=''; for(var i=0;i<str.length;i++){ var c=str.charAt(i); o += (S2T[c]||c); } return o; }
+function ncZhConv(){
+  var el=document.getElementById('nc-name-zh'), hint=document.getElementById('nc-zh-hint');
+  if(!el||!hint) return;
+  var v=el.value;
+  if(v.trim()){ hint.style.display='block'; hint.innerHTML='已帮您转为繁体：<b>'+s2t(v)+'</b>'; }
+  else { hint.style.display='none'; hint.textContent=''; }
+}
 function ncMode(m){
   NC_MODE=m;
   document.getElementById('nc-mode-full').classList.toggle('on', m==='full');
   document.getElementById('nc-mode-start').classList.toggle('on', m==='start');
-  document.getElementById('nc-input-label').textContent = m==='full' ? '拟用公司全名（英文或繁体中文）' : '名称起首关键字（英文或繁体中文）';
-  document.getElementById('nc-name').placeholder = m==='full' ? '如 TimeLeap Limited' : '如 TimeLeap';
-  document.getElementById('nc-mode-hint').innerHTML = m==='full'
+  var isFull = m==='full';
+  document.getElementById('nc-input-label').textContent = isFull ? '拟用公司全名（繁体中文）' : '名称起首关键字（繁体中文）';
+  var elEn=document.getElementById('nc-input-label-en'); if(elEn) elEn.textContent = isFull ? '拟用公司全名（英文）' : '名称起首关键字（英文）';
+  document.getElementById('nc-name-zh').placeholder = isFull ? '如 時躍有限公司' : '如 時躍';
+  document.getElementById('nc-name-en').placeholder = isFull ? '如 TimeLeap Limited' : '如 TimeLeap';
+  document.getElementById('nc-mode-hint').innerHTML = isFull
     ? '「以全名查册」：输入<b>整个</b>拟用公司名称，结果显示与输入字元<b>完全符合</b>、仍在登记册上的公司现用名称。'
     : '「以名称起首查册」：输入名称<b>起首</b>关键字，结果显示以该字元<b>起首</b>、仍在登记册上的公司。';
 }
@@ -1842,8 +1949,10 @@ function ncReset(){
   if(i) i.style.display='block'; if(r) r.style.display='none';
 }
 function ncRun(){
-  // 人工核名：提交公司名查册 + 商标查询，展示「人工核名中」；结果回显到结果页
-  var nm=document.getElementById('nc-name'); nm=nm?nm.value:'';
+  // 人工核名：提交公司名查册（中/英）+ 商标查询，展示「人工核名中」；结果回显到结果页
+  var zh=document.getElementById('nc-name-zh'); zh=zh?zh.value.trim():'';
+  var en=document.getElementById('nc-name-en'); en=en?en.value.trim():'';
+  var nm=[en, zh?s2t(zh):''].filter(Boolean).join(' / ') || '（未填）';
   var tm=document.getElementById('nc-tm'); tm=tm?tm.value:'';
   var modeLabel = NC_MODE==='full' ? '以全名查册' : '以名称起首查册';
   var el;
@@ -1952,15 +2061,49 @@ function kycResubmit(){
   }
   showResult({title:'资料已重新提交', desc:'已重新进入 <b>KYC 审核中</b>（约 1 个工作日）。审核通过后我们将继续为你办理。', btn:'返回首页', next:goHome});
 }
-function setCur(c){
-  var cny = c==='cny';
+var BILL_CUR='cny', BILL_COUPON='none';
+function renderBill(){
+  var cny = BILL_CUR==='cny';
+  var base = cny ? 5220 : 5800;
+  var disc = BILL_COUPON==='reg' ? (cny?180:200) : 0;
+  var sym = cny ? '¥' : 'HK$';
+  function fmt(n){ return sym+' '+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}); }
   var el;
+  if(el=document.getElementById('bill-svc-amt')) el.textContent=fmt(base);
+  if(el=document.getElementById('bill-total')) el.textContent=fmt(base-disc);
+  if(el=document.getElementById('bill-amt')) el.textContent=fmt(base-disc);
+  var row=document.getElementById('bill-coupon-row'), d=document.getElementById('bill-discount');
+  if(row){ if(disc>0){ row.style.display='flex'; if(d) d.textContent='− '+fmt(disc); } else { row.style.display='none'; } }
+}
+function setCur(c){
+  BILL_CUR = c==='cny' ? 'cny' : 'hkd';
+  var cny = BILL_CUR==='cny', el;
   if(el=document.getElementById('cur-cny')) el.classList.toggle('on', cny);
   if(el=document.getElementById('cur-hkd')) el.classList.toggle('on', !cny);
-  var amt = cny ? BILL_CNY : BILL_HKD;
-  ['bill-amt','bill-svc-amt','bill-total'].forEach(function(id){ var e=document.getElementById(id); if(e) e.textContent=amt; });
+  renderBill();
   if(el=document.getElementById('pay-online')) el.style.display = cny ? 'block' : 'none';
   if(el=document.getElementById('pay-hkd')) el.style.display = cny ? 'none' : 'block';
+}
+function applyCoupon(type){
+  BILL_COUPON = type;
+  var el;
+  if(el=document.getElementById('cp-opt-none')) el.classList.toggle('on', type==='none');
+  if(el=document.getElementById('cp-opt-reg')) el.classList.toggle('on', type==='reg');
+  var t=document.getElementById('bill-coupon-t'), d=document.getElementById('bill-coupon-d');
+  if(type==='reg'){ if(t) t.textContent='新客注册立减券'; if(d) d.textContent='已抵扣 · 点此更换'; toast('已使用新客注册立减券'); }
+  else { if(t) t.textContent='未使用优惠券'; if(d) d.textContent='1 张可用'; }
+  renderBill();
+  closeSheet('coupon-sheet');
+}
+function pickIdType(el){
+  document.querySelectorAll('.kyc-idtype').forEach(function(x){ x.classList.remove('on','t-green'); x.classList.add('t-gray'); });
+  el.classList.add('on','t-green'); el.classList.remove('t-gray');
+}
+function pickArtLang(l){
+  var en=document.getElementById('art-lang-en'), zh=document.getElementById('art-lang-zh');
+  if(en) en.classList.toggle('on', l==='en');
+  if(zh) zh.classList.toggle('on', l==='zh');
+  var f=document.getElementById('art-preview-file'); if(f) f.textContent = l==='en' ? 'Articles_SampleA_EN.pdf' : 'Articles_SampleA_TC.pdf';
 }
 
 /* Registration */
