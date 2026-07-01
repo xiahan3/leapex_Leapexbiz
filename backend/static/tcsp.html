@@ -489,10 +489,8 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
           <input class="input" id="ch-input" maxlength="6" placeholder="例如 LEX888" style="text-align:center;font-size:22px;letter-spacing:6px;font-weight:700;text-transform:uppercase" oninput="this.value=this.value.toUpperCase();chValidate()">
           <div id="ch-hint" style="text-align:center;font-size:12.5px;margin-top:8px;height:18px"></div>
         </div>
-        <button class="btn" id="ch-btn" onclick="chConfirm()">确认 · 进入</button>
-        <div class="divider-or">或</div>
-        <button class="btn ghost" onclick="chSkip()">跳过 · 直接进入</button>
-        <div class="note" style="text-align:center;margin-top:14px">跳过后订单归属 Leapexbiz 直营</div>
+        <button class="btn" id="ch-btn" onclick="chConfirm()">提交</button>
+        <div style="text-align:center;margin-top:16px"><span onclick="chSkip()" style="color:var(--text3);font-size:13px;text-decoration:underline;cursor:pointer">回到首页</span></div>
       </div>
     </div>
 
@@ -1603,7 +1601,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
       <div style="flex:1"></div>
 
       <div style="margin-bottom:14px">
-        <div style="font-size:12.5px;color:rgba(255,255,255,.75);margin-bottom:9px;display:flex;align-items:center;gap:6px"><i class="ti ti-map-pin"></i>选择注册地区</div>
+        <div style="font-size:12.5px;color:rgba(255,255,255,.75);margin-bottom:9px;display:flex;align-items:center;gap:6px"><i class="ti ti-map-pin"></i>选择服务地区</div>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
           <div class="rg-pill on" id="rg-hk" onclick="pickRegion('香港')">香港</div>
           <div class="rg-pill" id="rg-sg" onclick="pickRegion('新加坡')">新加坡</div>
@@ -1765,14 +1763,13 @@ function chValidate(){
   else { hint.innerHTML='✓ 有效渠道码 · 渠道合作伙伴：星投资本'; hint.style.color='var(--green-d)'; }
 }
 function chConfirm(){
-  var v = document.getElementById('ch-input').value;
-  if(v.length<6 || v==='000000'){ toast('请确认渠道码'); return; }
-  document.getElementById('home-ch').textContent = v;
-  document.getElementById('home-ch-d').textContent = '星投资本 · 渠道合作伙伴';
-  toast('渠道码 '+v+' 已绑定');
-  setTimeout(function(){ go('s-init'); }, 700);
+  var v = (document.getElementById('ch-input').value||'').trim();
+  if(v && (v.length<6 || v==='000000')){ toast('请确认渠道码（6 位）'); return; }
+  if(v){ document.getElementById('home-ch').textContent = v; document.getElementById('home-ch-d').textContent = '星投资本 · 渠道合作伙伴'; toast('渠道码 '+v+' 已绑定'); }
+  else { toast('已提交'); }
+  setTimeout(function(){ go('s-home-new'); }, 600);
 }
-function chSkip(){ toast('已跳过渠道码'); setTimeout(function(){ go('s-init'); }, 500); }
+function chSkip(){ go('s-home-new'); }
 
 /* ── Splash · 整页渠道入口 ── */
 function spValidate(){
@@ -1815,20 +1812,20 @@ function loginGo(){
   try{ histStack.length=0; }catch(e){}
   go('s-login');
 }
-function splashSkip(){ _hideSplash(); try{ histStack.length=0; }catch(e){} go('s-init'); }
-function loginDone(){ _markRegistered(); toast('登录成功'); setTimeout(function(){ go('s-init'); }, 500); }
+function splashSkip(){ _hideSplash(); try{ histStack.length=0; }catch(e){} go('s-home-new'); }
+function loginDone(){ _markRegistered(); toast('登录成功'); setTimeout(function(){ go('s-home-new'); }, 500); }
 function spEnter(){
   var v = document.getElementById('sp-input').value;
   if(v.length<6 || v==='000000'){ document.getElementById('sp-hint').innerHTML='✗ 请输入有效的 6 位渠道码'; document.getElementById('sp-hint').style.color='#FCA5A5'; return; }
   document.getElementById('home-ch').textContent = v;
   document.getElementById('home-ch-d').textContent = '星投资本 · 渠道合作伙伴';
-  _markRegistered(); _hideSplash(); go('s-init');
+  _markRegistered(); _hideSplash(); go('s-home-new');
   toast('渠道码 '+v+' 已绑定');
 }
 function spSkip(){
   document.getElementById('home-ch').textContent = '自然流量';
   document.getElementById('home-ch-d').textContent = 'Leapexbiz 直营';
-  _markRegistered(); _hideSplash(); go('s-init');
+  _markRegistered(); _hideSplash(); go('s-home-new');
   toast('已跳过渠道码');
 }
 
