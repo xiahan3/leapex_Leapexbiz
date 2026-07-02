@@ -223,6 +223,24 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
 .price-old{color:var(--text4);font-size:12px;text-decoration:line-through;font-weight:500;margin-left:5px}
 .svc-row{display:flex;align-items:center;gap:11px;padding:13px 14px;border-bottom:1px solid var(--line);cursor:pointer;background:var(--card)}
 .svc-row:active{background:var(--bg2)}
+/* 服务目录：顶部筛选 + 统一商品卡 */
+.svc-filter{position:sticky;top:0;z-index:6;background:var(--bg);padding:8px 0 8px;margin:-4px -2px 6px}
+.filt-row{display:flex;align-items:center;gap:7px;overflow-x:auto;padding:0 2px;scrollbar-width:none}
+.filt-row::-webkit-scrollbar{display:none}
+.filt-lab{font-size:11px;color:var(--text4);font-weight:600;flex-shrink:0;margin-right:1px}
+.fchip{flex-shrink:0;padding:6px 14px;border:1px solid var(--line);border-radius:16px;background:var(--card);color:var(--text2);font-size:12.5px;cursor:pointer;white-space:nowrap;transition:all .12s}
+.fchip.on{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+.prod{display:flex;align-items:flex-start;gap:11px;background:var(--card);border:1px solid var(--line);border-radius:11px;padding:13px;margin-bottom:9px;cursor:pointer;box-shadow:var(--shadow);position:relative;transition:transform .15s,box-shadow .15s}
+.prod:active{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.09)}
+.prod.prod-rec{border-color:var(--accent)}
+.prod-ico{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
+.prod-main{flex:1;min-width:0}
+.prod-name{font-weight:700;font-size:14.5px}
+.prod-desc{font-size:11.5px;color:var(--text3);margin-top:3px;line-height:1.5}
+.prod-price{text-align:right;flex-shrink:0}
+.prod-price .price{font-size:16px}
+.prod-coupon{font-size:11px;color:var(--green-d);font-weight:700;margin-top:4px;background:var(--green-bg);padding:1px 7px;border-radius:8px;display:inline-block}
+.prod-badge{position:absolute;top:0;right:13px;transform:translateY(-50%);background:var(--accent);color:#fff;font-size:9.5px;font-weight:700;padding:2px 9px;border-radius:9px}
 .incl{display:flex;align-items:flex-start;gap:8px;padding:7px 0;font-size:13px}
 .incl i{color:var(--accent);font-size:16px;flex-shrink:0;margin-top:1px}
 .qico{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:23px;margin:0 auto 7px;background:var(--accent-bg);color:var(--accent)}
@@ -641,46 +659,130 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
     <!-- ════════ 服务目录（电商报价）════════ -->
     <div class="screen" id="s-services" data-title="服务" data-tab="services">
       <div class="body-pad">
-        <div class="sec-t"><i class="ti ti-building-plus" style="font-size:13px;margin-right:4px"></i>注册服务</div>
-        <div class="pkg-card" onclick="openSvc('pkg-basic')">
-          <div style="display:flex;align-items:flex-start;gap:11px">
-            <div class="svc-dot" style="background:var(--bg2);color:var(--text2);width:38px;height:38px;border-radius:9px;font-size:18px"><i class="ti ti-package"></i></div>
-            <div style="flex:1"><div style="font-weight:700;font-size:14.5px">基础注册服务</div><div style="font-size:11.5px;color:var(--text3);margin-top:2px">注册 + 法定秘书 + 注册地址 + 商业登记证</div></div>
-            <div style="text-align:right"><div class="price price-lg">HKD 3,800</div></div>
+        <!-- 顶部筛选：地区 + 服务类型 -->
+        <div class="svc-filter">
+          <div class="filt-row">
+            <span class="filt-lab">地区</span>
+            <div class="fchip on" onclick="svcRegion('hk',this)">香港</div>
+            <div class="fchip" onclick="svcRegion('sg',this)">新加坡</div>
+            <div class="fchip" onclick="svcRegion('dxb',this)">迪拜</div>
+            <div class="fchip" onclick="svcRegion('bvi',this)">BVI</div>
           </div>
-        </div>
-        <div class="pkg-card rec" onclick="openSvc('pkg-std')">
-          <div class="pkg-badge">推荐</div>
-          <div style="display:flex;align-items:flex-start;gap:11px">
-            <div class="svc-dot" style="background:var(--accent-bg);color:var(--accent-d);width:38px;height:38px;border-radius:9px;font-size:18px"><i class="ti ti-package"></i></div>
-            <div style="flex:1"><div style="font-weight:700;font-size:14.5px">标准注册服务</div><div style="font-size:11.5px;color:var(--text3);margin-top:2px">基础服务 + 首年年审 + 公司文件册 + 印章</div></div>
-            <div style="text-align:right"><div class="price price-lg">HKD 5,800</div><div class="price-old">6,800</div></div>
-          </div>
-        </div>
-        <div class="pkg-card" onclick="openSvc('pkg-pro')">
-          <div style="display:flex;align-items:flex-start;gap:11px">
-            <div class="svc-dot" style="background:var(--blue-bg);color:var(--blue);width:38px;height:38px;border-radius:9px;font-size:18px"><i class="ti ti-package"></i></div>
-            <div style="flex:1"><div style="font-weight:700;font-size:14.5px">高级注册服务</div><div style="font-size:11.5px;color:var(--text3);margin-top:2px">标准服务 + 银行开户协助 + SCR + 公证认证</div></div>
-            <div style="text-align:right"><div class="price price-lg">HKD 8,800</div></div>
+          <div class="filt-row" style="margin-top:7px">
+            <span class="filt-lab">类型</span>
+            <div class="fchip on" onclick="svcType('all',this)">全部</div>
+            <div class="fchip" onclick="svcType('reg',this)">注册</div>
+            <div class="fchip" onclick="svcType('annual',this)">年审</div>
+            <div class="fchip" onclick="svcType('change',this)">变更</div>
+            <div class="fchip" onclick="svcType('book',this)">记账</div>
+            <div class="fchip" onclick="svcType('vas',this)">增值</div>
           </div>
         </div>
 
-        <div class="sec-t" style="margin-top:6px"><i class="ti ti-tools" style="font-size:13px;margin-right:4px"></i>其他服务</div>
-        <div class="card" style="padding:0">
-          <div class="svc-row" onclick="openSvc('annual')"><div class="svc-dot" style="background:var(--blue-bg);color:var(--blue)"><i class="ti ti-calendar-check"></i></div><div style="flex:1;font-size:13.5px;font-weight:500">年审服务</div><div class="price">HKD 2,800</div><i class="ti ti-chevron-right" style="color:var(--text4);font-size:16px"></i></div>
-          <div class="svc-row" onclick="openSvc('director')"><div class="svc-dot" style="background:var(--yellow-bg);color:var(--orange)"><i class="ti ti-user-edit"></i></div><div style="flex:1;font-size:13.5px;font-weight:500">董事变更</div><div class="price">HKD 1,500</div><i class="ti ti-chevron-right" style="color:var(--text4);font-size:16px"></i></div>
-          <div class="svc-row" onclick="openSvc('secretary')"><div class="svc-dot" style="background:var(--blue-bg);color:var(--blue)"><i class="ti ti-user-cog"></i></div><div style="flex:1;font-size:13.5px;font-weight:500">秘书变更 / 转入</div><div class="price">HKD 1,200</div><i class="ti ti-chevron-right" style="color:var(--text4);font-size:16px"></i></div>
-          <div class="svc-row" onclick="openSvc('address')"><div class="svc-dot" style="background:var(--yellow-bg);color:#B45309"><i class="ti ti-map-pin"></i></div><div style="flex:1;font-size:13.5px;font-weight:500">注册地址变更</div><div class="price">HKD 800</div><i class="ti ti-chevron-right" style="color:var(--text4);font-size:16px"></i></div>
-          <div class="svc-row" onclick="openSvc('transfer')"><div class="svc-dot" style="background:var(--purple-bg);color:#7A5C9E"><i class="ti ti-arrows-exchange"></i></div><div style="flex:1;font-size:13.5px;font-weight:500">股份转让</div><div class="price">HKD 2,000<span style="font-size:11px">起</span></div><i class="ti ti-chevron-right" style="color:var(--text4);font-size:16px"></i></div>
-          <div class="svc-row" onclick="openSvc('rename')"><div class="svc-dot" style="background:var(--green-bg);color:var(--green-d)"><i class="ti ti-forms"></i></div><div style="flex:1;font-size:13.5px;font-weight:500">公司名称变更</div><div class="price">HKD 2,500</div><i class="ti ti-chevron-right" style="color:var(--text4);font-size:16px"></i></div>
-          <div class="svc-row" onclick="openSvc('allot')"><div class="svc-dot" style="background:var(--blue-bg);color:#3B6EA5"><i class="ti ti-chart-pie"></i></div><div style="flex:1;font-size:13.5px;font-weight:500">股份配发</div><div class="price">HKD 1,800</div><i class="ti ti-chevron-right" style="color:var(--text4);font-size:16px"></i></div>
-          <div class="svc-row" style="border-bottom:none" onclick="openSvc('deregister')"><div class="svc-dot" style="background:var(--bg2);color:var(--text3)"><i class="ti ti-building-off"></i></div><div style="flex:1;font-size:13.5px;font-weight:500">公司注销</div><div class="price">HKD 2,000</div><i class="ti ti-chevron-right" style="color:var(--text4);font-size:16px"></i></div>
+        <!-- 注册服务 -->
+        <div class="svc-grp" data-type="reg">
+          <div class="sec-t"><i class="ti ti-building-plus" style="font-size:13px;margin-right:4px"></i>注册服务</div>
+          <div class="prod" data-type="reg" data-region="hk" onclick="openSvc('pkg-basic')">
+            <div class="prod-ico" style="background:var(--bg2);color:var(--text2)"><i class="ti ti-package"></i></div>
+            <div class="prod-main"><div class="prod-name">基础注册服务</div><div class="prod-desc">注册 + 法定秘书 + 注册地址 + 商业登记证</div></div>
+            <div class="prod-price"><div class="price">HKD 3,800</div><div class="prod-coupon">券后 3,600</div></div>
+          </div>
+          <div class="prod prod-rec" data-type="reg" data-region="hk sg" onclick="openSvc('pkg-std')">
+            <div class="prod-badge">推荐</div>
+            <div class="prod-ico" style="background:var(--accent-bg);color:var(--accent-d)"><i class="ti ti-package"></i></div>
+            <div class="prod-main"><div class="prod-name">标准注册服务</div><div class="prod-desc">基础服务 + 首年年审 + 公司文件册 + 印章</div></div>
+            <div class="prod-price"><div class="price">HKD 5,800</div><div class="price-old" style="margin-left:0;display:block">6,800</div></div>
+          </div>
+          <div class="prod" data-type="reg" data-region="hk sg dxb bvi" onclick="openSvc('pkg-pro')">
+            <div class="prod-ico" style="background:var(--blue-bg);color:var(--blue)"><i class="ti ti-package"></i></div>
+            <div class="prod-main"><div class="prod-name">高级注册服务</div><div class="prod-desc">标准服务 + 银行开户协助 + SCR + 公证认证</div></div>
+            <div class="prod-price"><div class="price">HKD 8,800</div><div class="prod-coupon">券后 8,600</div></div>
+          </div>
         </div>
 
-        <div class="sec-t" style="margin-top:6px"><i class="ti ti-sparkles" style="font-size:13px;margin-right:4px"></i>增值服务</div>
-        <div class="card" style="padding:0">
-          <div class="svc-row" onclick="openSvc('office')"><div class="svc-dot" style="background:var(--accent-bg);color:var(--accent-d)"><i class="ti ti-building-skyscraper"></i></div><div style="flex:1"><div style="font-size:13.5px;font-weight:500">办公租赁 / 注册地址</div><div style="font-size:10.5px;color:var(--text3)">甲级商厦地址 · 可作公司注册地址</div></div><div class="price" style="font-size:12.5px">面议</div><i class="ti ti-chevron-right" style="color:var(--text4);font-size:16px"></i></div>
-          <div class="svc-row" style="border-bottom:none" onclick="openSvc('immigration')"><div class="svc-dot" style="background:var(--yellow-bg);color:var(--orange)"><i class="ti ti-plane-departure"></i></div><div style="flex:1"><div style="font-size:13.5px;font-weight:500">香港移民 / 身份规划</div><div style="font-size:10.5px;color:var(--text3)">优才 / 专才 / 高才通 · 一对一规划</div></div><div class="price" style="font-size:12.5px">面议</div><i class="ti ti-chevron-right" style="color:var(--text4);font-size:16px"></i></div>
+        <!-- 年审服务 -->
+        <div class="svc-grp" data-type="annual">
+          <div class="sec-t" style="margin-top:2px"><i class="ti ti-calendar-check" style="font-size:13px;margin-right:4px"></i>年审服务</div>
+          <div class="prod" data-type="annual" data-region="hk sg" onclick="openSvc('annual')">
+            <div class="prod-ico" style="background:var(--blue-bg);color:var(--blue)"><i class="ti ti-calendar-check"></i></div>
+            <div class="prod-main"><div class="prod-name">年审服务</div><div class="prod-desc">NAR1 周年申报 + BR 续期 + 名册更新</div></div>
+            <div class="prod-price"><div class="price">HKD 2,800</div></div>
+          </div>
+        </div>
+
+        <!-- 变更服务 -->
+        <div class="svc-grp" data-type="change">
+          <div class="sec-t" style="margin-top:2px"><i class="ti ti-tools" style="font-size:13px;margin-right:4px"></i>变更服务</div>
+          <div class="prod" data-type="change" data-region="hk" onclick="openSvc('director')">
+            <div class="prod-ico" style="background:var(--yellow-bg);color:var(--orange)"><i class="ti ti-user-edit"></i></div>
+            <div class="prod-main"><div class="prod-name">董事变更</div><div class="prod-desc">ND2A 董事任免 + 名册更新 + SCR</div></div>
+            <div class="prod-price"><div class="price">HKD 1,500</div></div>
+          </div>
+          <div class="prod" data-type="change" data-region="hk" onclick="openSvc('secretary')">
+            <div class="prod-ico" style="background:var(--blue-bg);color:var(--blue)"><i class="ti ti-user-cog"></i></div>
+            <div class="prod-main"><div class="prod-name">秘书变更 / 转入</div><div class="prod-desc">ND2B 秘书任免 + 历史文件交接</div></div>
+            <div class="prod-price"><div class="price">HKD 1,200</div></div>
+          </div>
+          <div class="prod" data-type="change" data-region="hk" onclick="openSvc('address')">
+            <div class="prod-ico" style="background:var(--yellow-bg);color:#B45309"><i class="ti ti-map-pin"></i></div>
+            <div class="prod-main"><div class="prod-name">注册地址变更</div><div class="prod-desc">NR1 地址变更 + 可选虚拟注册地址</div></div>
+            <div class="prod-price"><div class="price">HKD 800</div></div>
+          </div>
+          <div class="prod" data-type="change" data-region="hk" onclick="openSvc('transfer')">
+            <div class="prod-ico" style="background:var(--purple-bg);color:#7A5C9E"><i class="ti ti-arrows-exchange"></i></div>
+            <div class="prod-main"><div class="prod-name">股份转让</div><div class="prod-desc">含印花税代缴 + 股东名册更新</div></div>
+            <div class="prod-price"><div class="price">HKD 2,000<span style="font-size:11px">起</span></div></div>
+          </div>
+          <div class="prod" data-type="change" data-region="hk" onclick="openSvc('rename')">
+            <div class="prod-ico" style="background:var(--green-bg);color:var(--green-d)"><i class="ti ti-forms"></i></div>
+            <div class="prod-main"><div class="prod-name">公司名称变更</div><div class="prod-desc">重核名 + NNC2 + 更新 CI/BR + 新印章</div></div>
+            <div class="prod-price"><div class="price">HKD 2,500</div></div>
+          </div>
+          <div class="prod" data-type="change" data-region="hk" onclick="openSvc('allot')">
+            <div class="prod-ico" style="background:var(--blue-bg);color:#3B6EA5"><i class="ti ti-chart-pie"></i></div>
+            <div class="prod-main"><div class="prod-name">股份配发</div><div class="prod-desc">AR2 配发申报 + 新股票证书</div></div>
+            <div class="prod-price"><div class="price">HKD 1,800</div></div>
+          </div>
+          <div class="prod" data-type="change" data-region="hk" onclick="openSvc('deregister')">
+            <div class="prod-ico" style="background:var(--bg2);color:var(--text3)"><i class="ti ti-building-off"></i></div>
+            <div class="prod-main"><div class="prod-name">公司注销</div><div class="prod-desc">DR1 + 税务不反对 + 政府审批</div></div>
+            <div class="prod-price"><div class="price">HKD 2,000</div></div>
+          </div>
+        </div>
+
+        <!-- 记账报税 -->
+        <div class="svc-grp" data-type="book">
+          <div class="sec-t" style="margin-top:2px"><i class="ti ti-calculator" style="font-size:13px;margin-right:4px"></i>记账报税</div>
+          <div class="prod" data-type="book" data-region="hk sg" onclick="openSvc('bookkeep')">
+            <div class="prod-ico" style="background:var(--green-bg);color:var(--green-d)"><i class="ti ti-calculator"></i></div>
+            <div class="prod-main"><div class="prod-name">记账报税</div><div class="prod-desc">月度记账 + 年度审计 + 利得税申报</div></div>
+            <div class="prod-price"><div class="price" style="font-size:13px">面议</div></div>
+          </div>
+        </div>
+
+        <!-- 增值服务 -->
+        <div class="svc-grp" data-type="vas">
+          <div class="sec-t" style="margin-top:2px"><i class="ti ti-sparkles" style="font-size:13px;margin-right:4px"></i>增值服务</div>
+          <div class="prod" data-type="vas" data-region="hk" onclick="openSvc('bank')">
+            <div class="prod-ico" style="background:var(--purple-bg);color:#7A5C9E"><i class="ti ti-building-bank"></i></div>
+            <div class="prod-main"><div class="prod-name">银行开户协助</div><div class="prod-desc">开户预约 + 材料预审 + 面签陪同</div></div>
+            <div class="prod-price"><div class="price" style="font-size:13px">面议</div></div>
+          </div>
+          <div class="prod" data-type="vas" data-region="hk" onclick="openSvc('office')">
+            <div class="prod-ico" style="background:var(--accent-bg);color:var(--accent-d)"><i class="ti ti-building-skyscraper"></i></div>
+            <div class="prod-main"><div class="prod-name">办公租赁 / 注册地址</div><div class="prod-desc">甲级商厦地址 · 可作公司注册地址</div></div>
+            <div class="prod-price"><div class="price" style="font-size:13px">面议</div></div>
+          </div>
+          <div class="prod" data-type="vas" data-region="hk" onclick="openSvc('immigration')">
+            <div class="prod-ico" style="background:var(--yellow-bg);color:var(--orange)"><i class="ti ti-plane-departure"></i></div>
+            <div class="prod-main"><div class="prod-name">香港移民 / 身份规划</div><div class="prod-desc">优才 / 专才 / 高才通 · 一对一规划</div></div>
+            <div class="prod-price"><div class="price" style="font-size:13px">面议</div></div>
+          </div>
+        </div>
+
+        <div id="svc-empty" style="display:none;text-align:center;padding:48px 20px;color:var(--text4)">
+          <i class="ti ti-package-off" style="font-size:34px"></i>
+          <div style="margin-top:10px;font-size:13px">该地区暂无此类服务，试试切换筛选条件</div>
         </div>
 
       </div>
@@ -1729,6 +1831,7 @@ function go(id, isBack){
   if(id==='s-orders' && typeof renderOrders==='function') renderOrders();
   if(id==='s-mycompany' && typeof renderCompanies==='function') renderCompanies();
   if(id==='s-bill' && typeof renderBill==='function') renderBill();
+  if(id==='s-services' && typeof syncSvcRegion==='function') syncSvcRegion();
 }
 function goBack(){
   var cur = document.querySelector('.screen.on');
@@ -1803,6 +1906,33 @@ function pickRegion(r){
   var map={'香港':'rg-hk','新加坡':'rg-sg','迪拜':'rg-dxb','BVI':'rg-bvi'};
   for(var k in map){ var el=document.getElementById(map[k]); if(el) el.classList.toggle('on', k===r); }
   if(r!=='香港') toast(r+' 公司注册即将开放 · 当前以香港为例');
+}
+/* 服务目录：地区 + 服务类型 双筛选 */
+var SVC_REGION='hk', SVC_TYPE='all';
+function svcRegion(key,el){ SVC_REGION=key; _chipOn(el); applySvcFilter(); }
+function svcType(key,el){ SVC_TYPE=key; _chipOn(el); applySvcFilter(); }
+function _chipOn(el){ var p=el.parentNode; p.querySelectorAll('.fchip').forEach(function(c){ c.classList.remove('on'); }); el.classList.add('on'); }
+function applySvcFilter(){
+  var total=0;
+  document.querySelectorAll('#s-services .svc-grp').forEach(function(g){
+    var vis=0;
+    g.querySelectorAll('.prod').forEach(function(p){
+      var okR=(p.getAttribute('data-region')||'').split(' ').indexOf(SVC_REGION)>=0;
+      var okT=(SVC_TYPE==='all')||(p.getAttribute('data-type')===SVC_TYPE);
+      var show=okR&&okT; p.style.display=show?'':'none'; if(show){ vis++; total++; }
+    });
+    g.style.display=vis?'':'none';
+  });
+  var e=document.getElementById('svc-empty'); if(e) e.style.display=total?'none':'';
+}
+// 进入服务目录时，地区筛选默认跟随首屏所选地区
+function syncSvcRegion(){
+  var map={'香港':'hk','新加坡':'sg','迪拜':'dxb','BVI':'bvi'};
+  var key=map[REGION]||'hk'; SVC_REGION=key;
+  document.querySelectorAll('#s-services .filt-row:first-child .fchip').forEach(function(c){
+    c.classList.toggle('on', (c.getAttribute('onclick')||'').indexOf("'"+key+"'")>=0);
+  });
+  applySvcFilter();
 }
 function loginGo(){
   var v=document.getElementById('sp-input').value;
@@ -2210,6 +2340,16 @@ var SVC_DATA = {
     incl:['资格评估与方案规划','优才计划（QMAS）','输入内地人才（专才）','高端人才通行证（高才通）','续签 / 永居路径规划','配合公司注册落地'],
     process:['资格评估','方案规划','材料准备','递交跟进'],
     meta:'一对一顾问规划，按方案报价。<br>可与「公司注册 + 记账报税」打包，满足创业/受雇身份要求。<br>预约顾问做免费评估。'},
+  'bookkeep':{name:'记账报税',icon:'ti-calculator',price:0,old:0,consult:true,
+    tags:'月度 / 年度 · 按规模报价',
+    incl:['日常记账与凭证整理','年度审计安排（对接执业会计师）','利得税报税表 PTR 编制','管理报表 / 财务报表','税务咨询与筹划'],
+    process:['需求评估','资料对接','记账出表','审计报税'],
+    meta:'按交易笔数 / 营业规模报价，支持跨境电商平台账单批量导入。<br>可与「公司注册」打包，享一站式合规。<br>预约顾问做免费评估。'},
+  'bank':{name:'银行开户协助',icon:'ti-building-bank',price:0,old:0,consult:true,
+    tags:'香港银行 / 虚拟银行 · 预约陪同',
+    incl:['开户方案与银行匹配','开户材料预审与整理','开户预约与面签陪同','业务背景问卷（KYC）辅导','开户后网银 / 收款配置指引'],
+    process:['需求评估','材料预审','预约面签','开户跟进'],
+    meta:'协助预约香港传统银行 / 虚拟银行开户，提升过件率（不承诺 100% 成功）。<br>可与「公司注册 + 记账报税」打包办理。<br>预约顾问做免费评估。'},
 };
 SVC_DATA['reg'] = SVC_DATA['pkg-std'];
 
