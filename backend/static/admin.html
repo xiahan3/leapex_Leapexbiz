@@ -213,10 +213,10 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
         <div class="card"><table>
           <thead><tr><th>客户</th><th>来源渠道</th><th>KYC 状态</th><th>公司数</th><th>订单</th><th>标签</th><th>注册时间</th><th></th></tr></thead>
           <tbody>
-            <tr><td><b>陈大文</b><div style="color:var(--text3);font-size:11px">andy@abc.hk · +852 9123</div></td><td><span class="pill p-gold">AGT001 星投资本</span></td><td><span class="pill p-green">已通过</span></td><td>2</td><td>3</td><td><span class="pill p-amber">高价值</span></td><td>2026-05-12</td><td><button class="btn btn-xs btn-p" onclick="openCustomer(this)">详情</button></td></tr>
-            <tr><td><b>李美琪</b><div style="color:var(--text3);font-size:11px">mary@xy.hk</div></td><td><span class="pill p-gray">自然流量</span></td><td><span class="pill p-blue">审核中</span></td><td>1</td><td>1</td><td>—</td><td>2026-06-08</td><td><button class="btn btn-xs btn-p" onclick="openCustomer(this)">详情</button></td></tr>
-            <tr><td><b>王志强</b><div style="color:var(--text3);font-size:11px">wang@fortune.hk</div></td><td><span class="pill p-gold">AGT002</span></td><td><span class="pill p-amber">EDD 中</span></td><td>1</td><td>2</td><td><span class="pill p-purple">PEP</span></td><td>2026-06-01</td><td><button class="btn btn-xs btn-p" onclick="openCustomer(this)">详情</button></td></tr>
-            <tr><td><b>张倩</b><div style="color:var(--text3);font-size:11px">zhang@peak.hk</div></td><td><span class="pill p-gray">自然流量</span></td><td><span class="pill p-red">已拒绝</span><span style="font-size:10px;color:var(--text3)"> · 留档 7y</span></td><td>0</td><td>1</td><td>—</td><td>2026-05-28</td><td><button class="btn btn-xs btn-p" onclick="openCustomer(this)">详情</button></td></tr>
+            <tr><td><b>陈大文</b><div style="color:var(--text3);font-size:11px">andy@abc.hk · +852 9123</div></td><td><span class="pill p-gold">AGT001 星投资本</span></td><td><span class="pill p-green">已通过</span></td><td>2</td><td>3</td><td><span class="pill p-amber">高价值</span></td><td>2026-05-12</td><td><button class="btn btn-xs" onclick="openCustomer(this)">详情</button> <button class="btn btn-xs btn-p" onclick="openCustEdit(this)">编辑</button></td></tr>
+            <tr><td><b>李美琪</b><div style="color:var(--text3);font-size:11px">mary@xy.hk</div></td><td><span class="pill p-gray">自然流量</span></td><td><span class="pill p-blue">审核中</span></td><td>1</td><td>1</td><td>—</td><td>2026-06-08</td><td><button class="btn btn-xs" onclick="openCustomer(this)">详情</button> <button class="btn btn-xs btn-p" onclick="openCustEdit(this)">编辑</button></td></tr>
+            <tr><td><b>王志强</b><div style="color:var(--text3);font-size:11px">wang@fortune.hk</div></td><td><span class="pill p-gold">AGT002</span></td><td><span class="pill p-amber">EDD 中</span></td><td>1</td><td>2</td><td><span class="pill p-purple">PEP</span></td><td>2026-06-01</td><td><button class="btn btn-xs" onclick="openCustomer(this)">详情</button> <button class="btn btn-xs btn-p" onclick="openCustEdit(this)">编辑</button></td></tr>
+            <tr><td><b>张倩</b><div style="color:var(--text3);font-size:11px">zhang@peak.hk</div></td><td><span class="pill p-gray">自然流量</span></td><td><span class="pill p-red">已拒绝</span><span style="font-size:10px;color:var(--text3)"> · 留档 7y</span></td><td>0</td><td>1</td><td>—</td><td>2026-05-28</td><td><button class="btn btn-xs" onclick="openCustomer(this)">详情</button> <button class="btn btn-xs btn-p" onclick="openCustEdit(this)">编辑</button></td></tr>
           </tbody>
         </table></div>
       </div>
@@ -231,10 +231,10 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
         <div class="card"><table>
           <thead><tr><th>公司（中 / 英）</th><th>实益拥有人</th><th>CI / BR</th><th>注册日期</th><th>下次年审</th><th>SCR</th><th>状态</th><th></th></tr></thead>
           <tbody>
-            <tr><td><b>星辰科技有限公司</b><div style="color:var(--text3);font-size:11px">Star Tech Limited</div></td><td>陈大文</td><td><span style="color:var(--text3)">注册中</span></td><td>—</td><td>—</td><td><span class="pill p-gray">待建</span></td><td><span class="pill p-blue">注册中</span></td><td><button class="btn btn-xs btn-p" onclick="openCompany(this)">详情</button></td></tr>
-            <tr><td><b>恒丰贸易有限公司</b><div style="color:var(--text3);font-size:11px">Hang Fung Trading Limited</div></td><td>陈大文</td><td>2891234<div style="color:var(--text3);font-size:11px">BR 91234567</div></td><td>2024-09-15</td><td><span class="pill p-amber">2026-09-15 · 85天</span></td><td><span class="pill p-green">已建</span></td><td><span class="pill p-green">正常</span></td><td><button class="btn btn-xs btn-p" onclick="openCompany(this)">详情</button></td></tr>
-            <tr><td><b>光辉投资有限公司</b><div style="color:var(--text3);font-size:11px">Glory Invest Limited</div></td><td>王志强</td><td>2765432</td><td>2023-07-02</td><td><span class="pill p-red">2026-07-02 · 21天</span></td><td><span class="pill p-green">已建</span></td><td><span class="pill p-green">正常</span></td><td><button class="btn btn-xs btn-p" onclick="openCompany(this)">详情</button></td></tr>
-            <tr><td><b>九龙国际有限公司</b><div style="color:var(--text3);font-size:11px">Kowloon Intl Limited</div></td><td>李美琪</td><td>2654321</td><td>2022-06-04</td><td><span class="pill p-red">已逾期 7 天</span></td><td><span class="pill p-amber">待更新</span></td><td><span class="pill p-amber">年审待办</span></td><td><button class="btn btn-xs btn-p" onclick="openCompany(this)">详情</button> <button class="btn btn-xs btn-red">催办</button></td></tr>
+            <tr><td><b>星辰科技有限公司</b><div style="color:var(--text3);font-size:11px">Star Tech Limited</div></td><td>陈大文</td><td><span style="color:var(--text3)">注册中</span></td><td>—</td><td>—</td><td><span class="pill p-gray">待建</span></td><td><span class="pill p-blue">注册中</span></td><td><button class="btn btn-xs" onclick="openCompany(this)">详情</button> <button class="btn btn-xs btn-p" onclick="openCompEdit(this)">编辑</button></td></tr>
+            <tr><td><b>恒丰贸易有限公司</b><div style="color:var(--text3);font-size:11px">Hang Fung Trading Limited</div></td><td>陈大文</td><td>2891234<div style="color:var(--text3);font-size:11px">BR 91234567</div></td><td>2024-09-15</td><td><span class="pill p-amber">2026-09-15 · 85天</span></td><td><span class="pill p-green">已建</span></td><td><span class="pill p-green">正常</span></td><td><button class="btn btn-xs" onclick="openCompany(this)">详情</button> <button class="btn btn-xs btn-p" onclick="openCompEdit(this)">编辑</button></td></tr>
+            <tr><td><b>光辉投资有限公司</b><div style="color:var(--text3);font-size:11px">Glory Invest Limited</div></td><td>王志强</td><td>2765432</td><td>2023-07-02</td><td><span class="pill p-red">2026-07-02 · 21天</span></td><td><span class="pill p-green">已建</span></td><td><span class="pill p-green">正常</span></td><td><button class="btn btn-xs" onclick="openCompany(this)">详情</button> <button class="btn btn-xs btn-p" onclick="openCompEdit(this)">编辑</button></td></tr>
+            <tr><td><b>九龙国际有限公司</b><div style="color:var(--text3);font-size:11px">Kowloon Intl Limited</div></td><td>李美琪</td><td>2654321</td><td>2022-06-04</td><td><span class="pill p-red">已逾期 7 天</span></td><td><span class="pill p-amber">待更新</span></td><td><span class="pill p-amber">年审待办</span></td><td><button class="btn btn-xs" onclick="openCompany(this)">详情</button> <button class="btn btn-xs btn-p" onclick="openCompEdit(this)">编辑</button> <button class="btn btn-xs btn-red">催办</button></td></tr>
           </tbody>
         </table></div>
         <div class="card cp" style="background:var(--blue-bg);border-color:var(--blue)"><div style="font-size:12px;color:var(--blue)"><i class="ti ti-info-circle"></i> 客户公司 = 法人主体（CI 公司注册证书 / BR 商业登记证 / SCR 重要控制人登记册）。一个客户可有多家公司；公司状态驱动小程序「我的公司」与「为你推荐」服务。</div></div>
@@ -248,10 +248,10 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
         <div class="card"><table>
           <thead><tr><th>客户</th><th>证件</th><th>PEP</th><th>制裁筛查</th><th>提交时间</th><th>SLA</th><th>状态</th><th></th></tr></thead>
           <tbody id="kyc-tb">
-            <tr><td><b>李美琪</b></td><td>香港身份证</td><td><span class="pill p-gray">否</span></td><td><span class="pill p-green">未命中</span></td><td>06-08 09:32</td><td><span class="pill p-green">14h</span></td><td><span class="pill p-blue">待审核</span></td><td><button class="btn btn-xs btn-p" onclick="openKyc('李美琪','submitted','李美琪')">审核</button></td></tr>
-            <tr><td><b>刘建国</b></td><td>护照</td><td><span class="pill p-purple">是 · 含家属</span></td><td><span class="pill p-green">未命中</span></td><td>06-07 16:20</td><td><span class="pill p-amber">超时 5h</span></td><td><span class="pill p-amber">EDD 待补</span></td><td><button class="btn btn-xs btn-p" onclick="openKyc('刘建国','edd','刘建国')">审核</button></td></tr>
-            <tr><td><b>Ahmed K.</b></td><td>护照</td><td><span class="pill p-gray">否</span></td><td><span class="pill p-red">命中 · 冻结</span></td><td>06-08 11:05</td><td><span class="pill p-red">合规复核</span></td><td><span class="pill p-red">已冻结</span></td><td><button class="btn btn-xs btn-red" onclick="openKyc('Ahmed K.','frozen','Ahmed K.')">复核</button></td></tr>
-            <tr><td><b>周敏</b></td><td>香港身份证</td><td><span class="pill p-gray">否</span></td><td><span class="pill p-green">未命中</span></td><td>06-08 13:40</td><td><span class="pill p-green">2h</span></td><td><span class="pill p-blue">待审核</span></td><td><button class="btn btn-xs btn-p" onclick="openKyc('周敏','submitted','周敏')">审核</button></td></tr>
+            <tr><td><b>李美琪</b></td><td>香港身份证</td><td><span class="pill p-gray">否</span></td><td><span class="pill p-green">未命中</span></td><td>06-08 09:32</td><td><span class="pill p-green">14h</span></td><td><span class="pill p-blue">待审核</span></td><td><button class="btn btn-xs btn-p" onclick="openKyc('李美琪','submitted','李美琪')">审核</button> <button class="btn btn-xs" onclick="openKycEdit('李美琪')">编辑</button></td></tr>
+            <tr><td><b>刘建国</b></td><td>护照</td><td><span class="pill p-purple">是 · 含家属</span></td><td><span class="pill p-green">未命中</span></td><td>06-07 16:20</td><td><span class="pill p-amber">超时 5h</span></td><td><span class="pill p-amber">EDD 待补</span></td><td><button class="btn btn-xs btn-p" onclick="openKyc('刘建国','edd','刘建国')">审核</button> <button class="btn btn-xs" onclick="openKycEdit('刘建国')">编辑</button></td></tr>
+            <tr><td><b>Ahmed K.</b></td><td>护照</td><td><span class="pill p-gray">否</span></td><td><span class="pill p-red">命中 · 冻结</span></td><td>06-08 11:05</td><td><span class="pill p-red">合规复核</span></td><td><span class="pill p-red">已冻结</span></td><td><button class="btn btn-xs btn-red" onclick="openKyc('Ahmed K.','frozen','Ahmed K.')">复核</button> <button class="btn btn-xs" onclick="openKycEdit('Ahmed K.')">编辑</button></td></tr>
+            <tr><td><b>周敏</b></td><td>香港身份证</td><td><span class="pill p-gray">否</span></td><td><span class="pill p-green">未命中</span></td><td>06-08 13:40</td><td><span class="pill p-green">2h</span></td><td><span class="pill p-blue">待审核</span></td><td><button class="btn btn-xs btn-p" onclick="openKyc('周敏','submitted','周敏')">审核</button> <button class="btn btn-xs" onclick="openKycEdit('周敏')">编辑</button></td></tr>
           </tbody>
         </table></div>
       </div>
@@ -476,18 +476,18 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
         <div class="card">
           <div class="ch"><span class="ct">服务列表（单项服务）</span><span class="pill p-gold">前端服务市场数据源</span></div>
           <table>
-            <thead><tr><th>商品</th><th>类型</th><th>标准价 HKD / ¥</th><th>时效</th><th>适用人群</th><th>前置流程</th><th>状态</th><th></th></tr></thead>
+            <thead><tr><th>商品（名称 / 副标题）</th><th>类型</th><th>标准价 HKD / ¥</th><th>时效</th><th>适用人群</th><th>适用区域</th><th>状态</th><th></th></tr></thead>
             <tbody>
-              <tr><td><b>基础公司注册</b></td><td><span class="pill p-gold">注册</span></td><td>3,800 / 3,420</td><td>3–5 工作日</td><td>单股东 / 预算优先</td><td>核名 + 资料 + KYC</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('基础公司注册')">编辑</button> <button class="btn btn-xs" onclick="openNodes(this)"><i class="ti ti-list-check"></i>流程节点</button> <button class="btn btn-xs btn-red">下架</button></td></tr>
-              <tr><td><b>标准公司注册</b> <span class="pill p-gold">推荐</span></td><td><span class="pill p-gold">注册</span></td><td>5,800 / 5,220</td><td>3–5 工作日</td><td>要年审 + 印章一步到位</td><td>核名 + 资料 + KYC</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('标准公司注册')">编辑</button> <button class="btn btn-xs" onclick="openNodes(this)"><i class="ti ti-list-check"></i>流程节点</button> <button class="btn btn-xs btn-red">下架</button></td></tr>
-              <tr><td><b>高级公司注册</b></td><td><span class="pill p-gold">注册</span></td><td>8,800 / 7,920</td><td>5–10 工作日</td><td>需开户 / 公证全配套</td><td>核名 + 资料 + KYC</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('高级公司注册')">编辑</button> <button class="btn btn-xs" onclick="openNodes(this)"><i class="ti ti-list-check"></i>流程节点</button> <button class="btn btn-xs btn-red">下架</button></td></tr>
-              <tr><td>公司年审 NAR1</td><td><span class="pill p-blue">年审</span></td><td>2,800 / 2,520</td><td>5–7 工作日</td><td>到期公司</td><td>资料</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('公司年审 NAR1')">编辑</button></td></tr>
-              <tr><td>董事 / 秘书变更</td><td><span class="pill p-blue">变更</span></td><td>1,500 / 1,350</td><td>3–5 工作日</td><td>运营中公司</td><td>资料 + KYC</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('董事 / 秘书变更')">编辑</button></td></tr>
-              <tr><td>股份转让</td><td><span class="pill p-blue">变更</span></td><td>2,000 / 1,800</td><td>5 工作日</td><td>股权变动</td><td>资料 + 印花税</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('股份转让')">编辑</button></td></tr>
-              <tr><td>记账报税（月度）</td><td><span class="pill p-green">记账</span></td><td>顾问报价</td><td>按月</td><td>有经营公司</td><td>资料</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('记账报税（月度）')">编辑</button></td></tr>
-              <tr><td>银行开户协助</td><td><span class="pill p-purple">增值</span></td><td>顾问报价</td><td>视银行</td><td>新注册公司</td><td>KYC</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('银行开户协助')">编辑</button></td></tr>
-              <tr><td>香港移民 / 身份规划</td><td><span class="pill p-purple">增值</span></td><td>顾问报价</td><td>—</td><td>出海创业者</td><td>咨询留资</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('香港移民 / 身份规划')">编辑</button></td></tr>
-              <tr><td>办公租赁（生态合作）</td><td><span class="pill p-purple">增值</span></td><td>顾问报价</td><td>—</td><td>需实体办公</td><td>留资工单</td><td><span class="pill p-gray">下架</span></td><td><button class="btn btn-xs" onclick="openProduct('办公租赁')">上架</button></td></tr>
+              <tr><td><b>基础公司注册</b><div style="color:var(--text3);font-size:11px">含 CI + BR + 首年秘书 + 注册地址</div></td><td><span class="pill p-gold">注册</span></td><td>3,800 / 3,420</td><td>3–5 工作日</td><td>单股东 / 预算优先</td><td>香港</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('基础公司注册')">编辑</button> <button class="btn btn-xs" onclick="openNodes(this)"><i class="ti ti-list-check"></i>流程节点</button> <button class="btn btn-xs btn-red">下架</button></td></tr>
+              <tr><td><b>标准公司注册</b> <span class="pill p-gold">推荐</span><div style="color:var(--text3);font-size:11px">含首年年审 + 印章 · 最多人选</div></td><td><span class="pill p-gold">注册</span></td><td>5,800 / 5,220</td><td>3–5 工作日</td><td>要年审 + 印章一步到位</td><td>香港 · 新加坡</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('标准公司注册')">编辑</button> <button class="btn btn-xs" onclick="openNodes(this)"><i class="ti ti-list-check"></i>流程节点</button> <button class="btn btn-xs btn-red">下架</button></td></tr>
+              <tr><td><b>高级公司注册</b><div style="color:var(--text3);font-size:11px">含开户协助 + 公证 + SCR 全配套</div></td><td><span class="pill p-gold">注册</span></td><td>8,800 / 7,920</td><td>5–10 工作日</td><td>需开户 / 公证全配套</td><td>香港 · 新加坡 · 迪拜 · BVI</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('高级公司注册')">编辑</button> <button class="btn btn-xs" onclick="openNodes(this)"><i class="ti ti-list-check"></i>流程节点</button> <button class="btn btn-xs btn-red">下架</button></td></tr>
+              <tr><td>公司年审 NAR1<div style="color:var(--text3);font-size:11px">周年申报 + BR 续期</div></td><td><span class="pill p-blue">年审</span></td><td>2,800 / 2,520</td><td>5–7 工作日</td><td>到期公司</td><td>香港</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('公司年审 NAR1')">编辑</button></td></tr>
+              <tr><td>董事 / 秘书变更<div style="color:var(--text3);font-size:11px">董事 / 秘书 / 授权代表变更</div></td><td><span class="pill p-blue">变更</span></td><td>1,500 / 1,350</td><td>3–5 工作日</td><td>运营中公司</td><td>香港</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('董事 / 秘书变更')">编辑</button></td></tr>
+              <tr><td>股份转让<div style="color:var(--text3);font-size:11px">含印花税代缴（从价 0.2%）</div></td><td><span class="pill p-blue">变更</span></td><td>2,000 / 1,800</td><td>5 工作日</td><td>股权变动</td><td>香港</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('股份转让')">编辑</button></td></tr>
+              <tr><td>记账报税（月度）<div style="color:var(--text3);font-size:11px">月度记账 + 利得税申报</div></td><td><span class="pill p-green">记账</span></td><td>顾问报价</td><td>按月</td><td>有经营公司</td><td>香港</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('记账报税（月度）')">编辑</button></td></tr>
+              <tr><td>银行开户协助<div style="color:var(--text3);font-size:11px">香港 / 离岸银行账户</div></td><td><span class="pill p-purple">增值</span></td><td>顾问报价</td><td>视银行</td><td>新注册公司</td><td>香港 · 新加坡</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('银行开户协助')">编辑</button></td></tr>
+              <tr><td>香港移民 / 身份规划<div style="color:var(--text3);font-size:11px">优才 / 专才 / 投资移民</div></td><td><span class="pill p-purple">增值</span></td><td>顾问报价</td><td>—</td><td>出海创业者</td><td>香港</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('香港移民 / 身份规划')">编辑</button></td></tr>
+              <tr><td>办公租赁（生态合作）<div style="color:var(--text3);font-size:11px">实体办公 + 注册地址</div></td><td><span class="pill p-purple">增值</span></td><td>顾问报价</td><td>—</td><td>需实体办公</td><td>香港</td><td><span class="pill p-gray">下架</span></td><td><button class="btn btn-xs" onclick="openProduct('办公租赁')">上架</button></td></tr>
             </tbody>
           </table>
         </div>
@@ -758,19 +758,19 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
     <div class="mb">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 16px">
         <div style="grid-column:1 / -1"><label class="flbl">商品名称 *</label><input class="inp" style="width:100%" id="prod-name" placeholder="如 标准公司注册"></div>
+        <div style="grid-column:1 / -1"><label class="flbl">副标题</label><input class="inp" style="width:100%" id="prod-sub" placeholder="如 含首年秘书 + 注册地址 · 最多人选"></div>
         <div><label class="flbl">服务类型 *</label><select class="inp" style="width:100%"><option>注册</option><option>年审</option><option>变更</option><option>记账报税</option><option>增值</option></select></div>
         <div><label class="flbl">上 / 下架</label><select class="inp" style="width:100%"><option>上架</option><option>下架</option></select></div>
         <div><label class="flbl">标准价 · 港币 (HKD)</label><input class="inp" style="width:100%" placeholder="5800"></div>
         <div><label class="flbl">标准价 · 人民币 (¥)</label><input class="inp" style="width:100%" placeholder="5220"></div>
         <div><label class="flbl">办理时效</label><input class="inp" style="width:100%" placeholder="3–5 工作日"></div>
         <div><label class="flbl">适用人群（画像推荐）</label><input class="inp" style="width:100%" placeholder="要一步到位"></div>
-        <div style="grid-column:1 / -1"><label class="flbl">前置流程（办理前需完成）</label>
+        <div style="grid-column:1 / -1"><label class="flbl">适用区域</label>
           <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:4px;font-size:12.5px">
-            <label style="display:flex;align-items:center;gap:5px"><input type="checkbox" checked> 公司核名</label>
-            <label style="display:flex;align-items:center;gap:5px"><input type="checkbox" checked> 提交资料</label>
-            <label style="display:flex;align-items:center;gap:5px"><input type="checkbox" checked> KYC 认证</label>
-            <label style="display:flex;align-items:center;gap:5px"><input type="checkbox"> 印花税</label>
-            <label style="display:flex;align-items:center;gap:5px"><input type="checkbox"> 选择公司</label>
+            <label style="display:flex;align-items:center;gap:5px"><input type="checkbox" checked> 香港</label>
+            <label style="display:flex;align-items:center;gap:5px"><input type="checkbox"> 新加坡</label>
+            <label style="display:flex;align-items:center;gap:5px"><input type="checkbox"> 迪拜</label>
+            <label style="display:flex;align-items:center;gap:5px"><input type="checkbox"> BVI</label>
           </div>
         </div>
         <div style="grid-column:1 / -1"><label class="flbl">主要交付物</label><input class="inp" style="width:100%" placeholder="CI + BR + 章程 + 名册 …"></div>
@@ -1020,6 +1020,64 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
   </div>
 </div>
 
+<!-- 客户编辑 Modal -->
+<div class="mask" id="m-custedit" onclick="if(event.target===this)closeM('m-custedit')">
+  <div class="modal" style="max-width:560px">
+    <div class="mh"><div><b style="font-size:14px" id="custedit-title">编辑客户 · 陈大文</b><div style="font-size:11px;color:var(--text3)">个人档案（KYC 复用源）</div></div><button class="x" onclick="closeM('m-custedit')">×</button></div>
+    <div class="mb"><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 16px">
+      <div><label class="flbl">姓名（中文）</label><input class="inp" style="width:100%" value="陈大文"></div>
+      <div><label class="flbl">姓名（英文）</label><input class="inp" style="width:100%" value="Andy Chan"></div>
+      <div><label class="flbl">手机</label><input class="inp" style="width:100%" value="+852 9123 4567"></div>
+      <div><label class="flbl">邮箱</label><input class="inp" style="width:100%" value="andy@abc.hk"></div>
+      <div><label class="flbl">证件类型</label><select class="inp" style="width:100%"><option>香港身份证</option><option selected>护照</option><option>其他证件</option></select></div>
+      <div><label class="flbl">证件号码</label><input class="inp" style="width:100%" value="E1234567(9)"></div>
+      <div><label class="flbl">服务地区</label><select class="inp" style="width:100%"><option selected>香港</option><option>新加坡</option><option>迪拜</option><option>BVI</option></select></div>
+      <div><label class="flbl">渠道归属</label><input class="inp" style="width:100%" value="AGT001 星投资本"></div>
+      <div style="grid-column:1/-1"><label class="flbl">标签</label><input class="inp" style="width:100%" value="高价值"></div>
+      <div style="grid-column:1/-1"><label class="flbl">内部备注</label><textarea class="inp" style="width:100%;min-height:48px">出海跨境电商客户，复购意向强</textarea></div>
+    </div></div>
+    <div class="mf"><button class="btn" onclick="closeM('m-custedit')">取消</button><button class="btn btn-p" onclick="closeM('m-custedit');toast('客户信息已保存')">保存</button></div>
+  </div>
+</div>
+
+<!-- 公司编辑 Modal -->
+<div class="mask" id="m-compedit" onclick="if(event.target===this)closeM('m-compedit')">
+  <div class="modal" style="max-width:560px">
+    <div class="mh"><div><b style="font-size:14px" id="compedit-title">编辑公司 · 恒丰贸易有限公司</b><div style="font-size:11px;color:var(--text3)">法人主体档案</div></div><button class="x" onclick="closeM('m-compedit')">×</button></div>
+    <div class="mb"><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 16px">
+      <div><label class="flbl">公司中文名</label><input class="inp" style="width:100%" value="恒丰贸易有限公司"></div>
+      <div><label class="flbl">公司英文名</label><input class="inp" style="width:100%" value="Hang Fung Trading Limited"></div>
+      <div><label class="flbl">公司编号 CI</label><input class="inp" style="width:100%" value="2891234"></div>
+      <div><label class="flbl">商业登记号 BR</label><input class="inp" style="width:100%" value="91234567"></div>
+      <div><label class="flbl">成立日期</label><input class="inp" style="width:100%" value="2024-09-15"></div>
+      <div><label class="flbl">业务性质 HSIC</label><input class="inp" style="width:100%" value="46xx 批发贸易"></div>
+      <div style="grid-column:1/-1"><label class="flbl">注册办事处地址</label><input class="inp" style="width:100%" value="香港（法定秘书地址）"></div>
+      <div><label class="flbl">下次年审 NAR1</label><input class="inp" style="width:100%" value="2026-09-15"></div>
+      <div><label class="flbl">公司状态</label><select class="inp" style="width:100%"><option>注册中</option><option selected>正常</option><option>年审待办</option><option>年审逾期</option><option>变更中</option><option>注销中</option></select></div>
+    </div></div>
+    <div class="mf"><button class="btn" onclick="closeM('m-compedit')">取消</button><button class="btn btn-p" onclick="closeM('m-compedit');toast('公司档案已保存')">保存</button></div>
+  </div>
+</div>
+
+<!-- KYC 编辑 Modal -->
+<div class="mask" id="m-kycedit" onclick="if(event.target===this)closeM('m-kycedit')">
+  <div class="modal" style="max-width:520px">
+    <div class="mh"><div><b style="font-size:14px" id="kycedit-title">编辑 KYC · 李美琪</b><div style="font-size:11px;color:var(--text3)">尽调资料（AMLO 留存 7 年）</div></div><button class="x" onclick="closeM('m-kycedit')">×</button></div>
+    <div class="mb"><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 16px">
+      <div><label class="flbl">证件类型</label><select class="inp" style="width:100%"><option selected>香港身份证</option><option>护照</option><option>其他证件</option></select></div>
+      <div><label class="flbl">证件号码</label><input class="inp" style="width:100%" value="A123456(7)"></div>
+      <div><label class="flbl">手机</label><input class="inp" style="width:100%" value="+852 9123 4567"></div>
+      <div><label class="flbl">本人验证</label><select class="inp" style="width:100%"><option selected>手机验证码</option><option>人脸识别</option></select></div>
+      <div><label class="flbl">业务性质</label><input class="inp" style="width:100%" value="咨询服务"></div>
+      <div><label class="flbl">资金来源</label><input class="inp" style="width:100%" value="营业收入"></div>
+      <div><label class="flbl">审核状态</label><select class="inp" style="width:100%"><option selected>待审核</option><option>审核中</option><option>已通过</option><option>待补正</option><option>EDD</option><option>已拒绝</option></select></div>
+      <div><label class="flbl">EDD 标记</label><select class="inp" style="width:100%"><option selected>否</option><option>是</option></select></div>
+      <div style="grid-column:1/-1"><label class="flbl">备注 / 拒绝原因</label><textarea class="inp" style="width:100%;min-height:48px" placeholder="EDD 原因 / 审核备注 / 拒绝原因"></textarea></div>
+    </div></div>
+    <div class="mf"><button class="btn" onclick="closeM('m-kycedit')">取消</button><button class="btn btn-p" onclick="closeM('m-kycedit');toast('KYC 资料已保存')">保存</button></div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -1065,6 +1123,9 @@ function addNode(){
 function _rowName(el){ if(el&&el.closest){ var tr=el.closest('tr'); if(tr){ var b=tr.querySelector('b'); if(b) return b.textContent.trim(); } } return ''; }
 function openCustomer(el){ var t=document.getElementById('cust-title'); if(t) t.textContent='客户 · '+(_rowName(el)||'客户'); document.getElementById('m-customer').classList.add('on'); }
 function openCompany(el){ var t=document.getElementById('comp-title'); if(t) t.textContent=_rowName(el)||'公司详情'; document.getElementById('m-company').classList.add('on'); }
+function openCustEdit(el){ var t=document.getElementById('custedit-title'); if(t) t.textContent='编辑客户 · '+(_rowName(el)||''); document.getElementById('m-custedit').classList.add('on'); }
+function openCompEdit(el){ var t=document.getElementById('compedit-title'); if(t) t.textContent='编辑公司 · '+(_rowName(el)||''); document.getElementById('m-compedit').classList.add('on'); }
+function openKycEdit(name){ var t=document.getElementById('kycedit-title'); if(t) t.textContent='编辑 KYC · '+(name||''); document.getElementById('m-kycedit').classList.add('on'); }
 /* 渠道商配置弹窗 */
 function openChannel(name,code,rmk){
   var t=document.getElementById('ch-title'); if(t) t.textContent='渠道商配置 · '+(name||'');
@@ -1098,7 +1159,7 @@ function renderKyc(){jget('/kyc').then(rows=>{var tb=document.getElementById('ky
     var _st=r.sanction_hit?'frozen':(stMap[r.status]||'submitted');
     var _lb=(_st==='frozen')?'复核':((_st==='approved'||_st==='rejected')?'查看':'审核');
     var _cls=(_st==='frozen')?'btn-red':((_st==='approved'||_st==='rejected')?'':'btn-p');
-    var act='<button class="btn btn-xs '+_cls+'" onclick="openKyc(\''+r.id+'\',\''+_st+'\',\''+r.customer_name+'\')">'+_lb+'</button>';
+    var act='<button class="btn btn-xs '+_cls+'" onclick="openKyc(\''+r.id+'\',\''+_st+'\',\''+r.customer_name+'\')">'+_lb+'</button> <button class="btn btn-xs" onclick="openKycEdit(\''+r.customer_name+'\')">编辑</button>';
     var doc={hkid:'香港身份证',passport:'护照',other:'其他证件',cn_id:'其他证件'}[r.id_doc_type]||'其他证件';
     return '<tr><td><b>'+r.customer_name+'</b></td><td>'+doc+'</td><td>'+pep+'</td><td>'+san+'</td><td>'+(r.submitted_at||'')+'</td><td><span class="pill '+(r.status==='edd_required'||r.sanction_hit?'p-amber':'p-green')+'">'+r.sla_hours+'h</span></td><td><span class="pill '+st[1]+'">'+st[0]+'</span></td><td>'+act+'</td></tr>';
   }).join('');
