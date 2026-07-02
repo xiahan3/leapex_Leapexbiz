@@ -212,6 +212,22 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
 .svc-line:last-child{border-bottom:none}
 .svc-dot{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;background:var(--bg2);color:var(--text2);flex-shrink:0}
 .bill-chip{font-size:10px;padding:2px 8px;border-radius:10px;font-weight:600;white-space:nowrap}
+/* ── 订单详情：按节点进度（顾问补充材料 + 备注）── */
+.onode{background:var(--card);border:1px solid var(--line);border-radius:11px;box-shadow:var(--shadow);margin-bottom:10px;overflow:hidden}
+.onode-hd{display:flex;align-items:center;gap:9px;padding:12px 13px}
+.onode-dot{width:9px;height:9px;border-radius:50%;background:var(--text4);flex-shrink:0}
+.onode-dot.done{background:var(--green-d)}
+.onode-dot.act{background:var(--accent);box-shadow:0 0 0 3px var(--accent-bg)}
+.onode-dot.wait{background:var(--text4)}
+.onode-nm{flex:1;font-size:13.5px;font-weight:700;display:flex;align-items:center;gap:7px}
+.onode-party{font-size:10.5px;color:var(--text4);font-weight:500;background:var(--bg2);padding:1px 7px;border-radius:8px}
+.onode-bd{border-top:1px solid var(--line);padding:11px 13px;background:var(--bg)}
+.od-sub{font-size:10.5px;color:var(--text4);font-weight:600;margin:2px 0 6px}
+.od-sub:not(:first-child){margin-top:11px}
+.od-mine{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text2);padding:3px 0}
+.od-file{display:flex;align-items:center;gap:7px;font-size:12px;border:1px solid var(--line);border-radius:8px;padding:7px 10px;margin-bottom:6px;cursor:pointer}
+.od-remark{display:flex;gap:7px;font-size:12px;color:var(--text2);line-height:1.6;background:var(--accent-bg);border-radius:9px;padding:9px 11px}
+.od-remark i{margin-top:1px}
 
 /* ── 电商：服务报价卡 / 服务行 / 详情 ── */
 .pkg-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:10px;cursor:pointer;box-shadow:var(--shadow);position:relative;transition:transform .15s,box-shadow .15s}
@@ -609,49 +625,19 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
       </div>
     </div>
 
-    <!-- ════════ 订单详情 ════════ -->
+    <!-- ════════ 订单详情（按节点 · 与顾问后台实时同步）════════ -->
     <div class="screen" id="s-orderdetail" data-title="订单详情" data-back="s-orders">
       <div class="body-pad">
-        <div class="card card-pad">
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <div style="font-weight:700;font-size:15.5px">星辰科技有限公司</div>
-            <span class="tag t-orange">注册进行中</span>
-          </div>
-          <div style="font-size:12px;color:var(--text3);margin-top:3px">ORD-2026-0188 · 新公司注册服务 · 渠道 LEX888</div>
-          <div class="prog" style="margin-top:11px">
-            <div class="prog-d done"></div><div class="prog-l done"></div>
-            <div class="prog-d done"></div><div class="prog-l done"></div>
-            <div class="prog-d act"></div><div class="prog-l"></div>
-            <div class="prog-d"></div><div class="prog-l"></div><div class="prog-d"></div>
-          </div>
-          <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text4);margin-top:5px">
-            <span>核名</span><span>资料</span><span style="color:var(--accent);font-weight:700">付款</span><span>KYC</span><span>交付</span>
-          </div>
-        </div>
+        <div class="card card-pad" id="od-head"></div>
 
-        <div class="sec-t">本订单服务（服务 ↔ 账单 一一对应）</div>
-        <div class="order-card">
-          <div class="svc-line">
-            <div class="svc-dot" style="background:var(--green-bg);color:var(--green-d)"><i class="ti ti-building-plus"></i></div>
-            <div style="flex:1"><div style="font-size:13px;font-weight:600">新公司注册</div><div style="font-size:10.5px;color:var(--text3)">由 Leapexbiz 直接交付</div></div>
-            <div style="text-align:right"><div style="font-size:12.5px;font-weight:700">HKD 2,800</div><span class="bill-chip t-blue" onclick="go('s-bill')" style="cursor:pointer">查看账单 ›</span></div>
-          </div>
-          <div class="svc-line">
-            <div class="svc-dot" style="background:var(--blue-bg);color:var(--blue)"><i class="ti ti-shield-check"></i></div>
-            <div style="flex:1"><div style="font-size:13px;font-weight:600">法定秘书（首年）</div><div style="font-size:10.5px;color:var(--text3)">内嵌服务</div></div>
-            <div style="text-align:right"><div style="font-size:12.5px;font-weight:700">HKD 0</div><span class="bill-chip t-green">已含</span></div>
-          </div>
-          <div class="svc-line">
-            <div class="svc-dot" style="background:var(--yellow-bg);color:var(--orange)"><i class="ti ti-stamp"></i></div>
-            <div style="flex:1"><div style="font-size:13px;font-weight:600">公司印章套装</div><div style="font-size:10.5px;color:var(--text3)">由供应商「金印堂」交付</div></div>
-            <div style="text-align:right"><div style="font-size:12.5px;font-weight:700">HKD 480</div><span class="bill-chip t-gray">待生成</span></div>
-          </div>
-        </div>
+        <div class="sec-t"><i class="ti ti-route" style="font-size:13px;margin-right:4px"></i>办理进度（按节点 · 与顾问后台实时同步）</div>
+        <div id="od-nodes"></div>
 
-        <button class="btn ghost" onclick="go('s-services')"><i class="ti ti-plus" style="font-size:14px"></i> 在此订单新增服务</button>
+        <div class="sec-t" style="margin-top:6px"><i class="ti ti-list-details" style="font-size:13px;margin-right:4px"></i>本订单服务 / 账单</div>
+        <div class="order-card" id="od-services"></div>
 
-        <div class="card card-pad" style="background:var(--bg2);margin-top:12px">
-          <div class="note"><i class="ti ti-info-circle"></i> 「公司印章套装」由 Leapexbiz 供应商交付，交付物与结算在后台管理；客户端仅展示服务进度与账单。</div>
+        <div class="card card-pad" style="background:var(--bg2);margin-top:6px">
+          <div class="note"><i class="ti ti-info-circle"></i> 每个节点的<b>顾问补充材料与备注</b>由服务人员在后台维护，实时同步至此；标注「待您处理」的节点请按提示补交资料或确认。</div>
         </div>
       </div>
     </div>
@@ -2501,7 +2487,7 @@ function renderOrders(){
     }).join('');
     var canAdd = o.status==='服务中' || o.status==='待支付';
     return '<div class="order-card">'
-      + '<div class="order-head" onclick="go(\'s-orderdetail\')">'
+      + '<div class="order-head" onclick="openOrderDetail(\''+o.no+'\')">'
       +   '<div style="display:flex;justify-content:space-between;align-items:center">'
       +     '<div style="font-weight:700;font-size:14.5px">'+o.company+'</div>'
       +     '<span class="tag '+(ORD_STATUS[o.status]||'t-gray')+'">'+o.status+'</span></div>'
@@ -2513,6 +2499,80 @@ function renderOrders(){
       +   (canAdd ? '<button class="btn ghost" style="width:auto;padding:6px 12px;font-size:12px" onclick="event.stopPropagation();go(\'s-services\')"><i class="ti ti-plus" style="font-size:12px"></i>新增服务</button>' : '<span style="font-size:11px;color:var(--green-d)"><i class="ti ti-circle-check"></i> 已交付</span>')
       + '</div></div>';
   }).join('');
+}
+
+/* ── 订单详情：按节点进度（与后台服务节点同步：顾问补充材料 + 逐节点备注）── */
+var OD_TAG = { done:'t-green', act:'t-orange', wait:'t-gray', todo:'t-blue' };
+var ORDER_NODES = {
+  'ORD-2026-0188':[
+    { name:'支付', party:'我', status:'已完成', st:'done', mine:['首付款 HKD 5,800 · HSBC 06-08'], remark:'首付款已到账，感谢！' },
+    { name:'KYC 认证', party:'我 / 合规', status:'已通过', st:'done', mine:['身份证 / 护照.pdf','地址证明（近3月）.jpg'], remark:'董事 + 实益拥有人已核实通过。' },
+    { name:'提交公司资料', party:'我', status:'已完成', st:'done', mine:['公司中英名','业务性质（HSIC）','注册股本 HKD 10,000'], remark:'资料齐全。' },
+    { name:'成员 / 董事 / 秘书', party:'我 / 平台', status:'已完成', st:'done', mine:['董事：陈大文','股东：陈大文 70% · 李美琪 30%','法定秘书：Leapexbiz'], remark:'' },
+    { name:'组织章程', party:'我 / 平台', status:'待您确认', st:'todo', todo:'确认章程草稿', mine:['章程样本 A · 繁体中文'], files:['公司章程（样本A·繁体）.pdf'], remark:'章程草稿已生成，请查看并确认；确认后进入人工预审。' },
+    { name:'人工预审', party:'平台', status:'未开始', st:'wait', remark:'' },
+    { name:'业务办理（线下交 NNC1）', party:'平台', status:'未开始', st:'wait', remark:'交表后约 1 周领取 CI / BR 正本（顾问跑两趟：交表 + 取正本）。' },
+    { name:'完结（CI / BR + 交付物）', party:'平台', status:'未开始', st:'wait', remark:'' }
+  ],
+  'ORD-2026-0142':[
+    { name:'信息核对', party:'我', status:'已完成', st:'done', mine:['公司 CI / BR','财政年度结算日'], remark:'' },
+    { name:'KYC 年度复核', party:'我 / 合规', status:'已完成', st:'done', remark:'年度复核通过。' },
+    { name:'年审申报 NAR1', party:'平台', status:'已完成', st:'done', files:['NAR1 周年申报表.pdf','更新后商业登记证 BR.pdf'], remark:'已提交注册处并更新 BR。' },
+    { name:'董事变更 ND2A', party:'平台', status:'已完成', st:'done', files:['ND2A 董事变更通知书.pdf','更新后董事名册.pdf'], remark:'新董事已完成 KYC，SCR 已同步更新。' },
+    { name:'交付', party:'平台', status:'已完成', st:'done', files:['交付物清单.pdf'], remark:'全部交付物已寄出（顺丰 SF1234567890）。' }
+  ],
+  'ORD-2026-0090':[
+    { name:'提交申请', party:'我', status:'已完成', st:'done', mine:['新注册地址'], remark:'' },
+    { name:'订单取消', party:'平台', status:'已取消', st:'wait', remark:'客户申请取消，账单已作废，未产生费用。' }
+  ]
+};
+function renderOrderNodes(nodes){
+  if(!nodes || !nodes.length) return '<div class="card card-pad" style="color:var(--text3);font-size:12.5px">暂无进度记录</div>';
+  return nodes.map(function(n){
+    var mine = (n.mine && n.mine.length)
+      ? '<div class="od-sub">我提交的内容 / 资料</div>' + n.mine.map(function(m){ return '<div class="od-mine"><i class="ti ti-file-check" style="color:var(--green-d)"></i>'+m+'</div>'; }).join('')
+      : '';
+    var files = (n.files && n.files.length)
+      ? '<div class="od-sub">顾问补充的材料（可下载）</div>' + n.files.map(function(f){ return '<div class="od-file" onclick="toast(\'开始下载：'+f+'\')"><i class="ti ti-file-text" style="color:var(--blue)"></i><span style="flex:1">'+f+'</span><i class="ti ti-download" style="color:var(--accent)"></i></div>'; }).join('')
+      : '';
+    var remark = n.remark
+      ? '<div class="od-sub">顾问备注</div><div class="od-remark"><i class="ti ti-message-dots" style="color:var(--accent-d)"></i><span>'+n.remark+'</span></div>'
+      : '';
+    var todo = n.todo
+      ? '<button class="btn" style="margin-top:10px;padding:9px" onclick="toast(\''+n.todo+' · 调用文件选择 / 确认\')"><i class="ti ti-upload" style="font-size:14px"></i> '+n.todo+'</button>'
+      : '';
+    var body = (mine || files || remark || todo) ? '<div class="onode-bd">'+mine+files+remark+todo+'</div>' : '';
+    return '<div class="onode"><div class="onode-hd"><span class="onode-dot '+n.st+'"></span>'
+      + '<div class="onode-nm">'+n.name+'<span class="onode-party">'+n.party+'</span></div>'
+      + '<span class="tag '+(OD_TAG[n.st]||'t-gray')+'">'+n.status+'</span></div>'+body+'</div>';
+  }).join('');
+}
+function openOrderDetail(no){
+  var o = null; for(var i=0;i<ORDERS.length;i++){ if(ORDERS[i].no===no){ o=ORDERS[i]; break; } }
+  if(!o){ o=ORDERS[0]; no=o.no; }
+  var nodes = ORDER_NODES[no] || [];
+  var done = nodes.filter(function(n){ return n.st==='done'; }).length;
+  var total = nodes.length || 1;
+  var pct = Math.round(done/total*100);
+  document.getElementById('od-head').innerHTML =
+      '<div style="display:flex;justify-content:space-between;align-items:center">'
+    +   '<div style="font-weight:700;font-size:15.5px">'+o.company+'</div>'
+    +   '<span class="tag '+(ORD_STATUS[o.status]||"t-gray")+'">'+o.status+'</span></div>'
+    + '<div style="font-size:12px;color:var(--text3);margin-top:3px">'+o.no+' · '+o.pkg+' · 渠道 '+o.channel+'</div>'
+    + '<div style="margin-top:12px;height:7px;border-radius:5px;background:var(--bg2);overflow:hidden"><div style="height:100%;width:'+pct+'%;background:var(--accent);border-radius:5px"></div></div>'
+    + '<div style="display:flex;justify-content:space-between;font-size:10.5px;color:var(--text4);margin-top:5px"><span>已完成 '+done+' / '+total+' 个节点</span><span>'+pct+'%</span></div>';
+  document.getElementById('od-nodes').innerHTML = renderOrderNodes(nodes);
+  var svc = document.getElementById('od-services');
+  svc.innerHTML = o.services.map(function(s){
+    var amt = s.amt>0 ? 'HKD '+fmtMoney(s.amt) : 'HKD 0';
+    var cv = COLOR_VAR[s.color]||COLOR_VAR.accent;
+    return '<div class="svc-line"><div class="svc-dot" style="background:'+cv[0]+';color:'+cv[1]+'"><i class="ti '+s.icon+'"></i></div>'
+      + '<div style="flex:1"><div style="font-size:13px;font-weight:600">'+s.name+'</div><div style="font-size:10.5px;color:var(--text3)">'+(s.bill?'账单 '+s.bill:'内嵌服务')+'</div></div>'
+      + '<div style="text-align:right"><div style="font-size:12.5px;font-weight:700">'+amt+'</div>'
+      + (s.bill?'<span class="bill-chip '+(BS_CHIP[s.bs]||"t-gray")+'" onclick="go(\'s-bill\')" style="cursor:pointer">'+s.bs+' ›</span>':'<span class="bill-chip '+(BS_CHIP[s.bs]||"t-gray")+'">'+s.bs+'</span>')
+      + '</div></div>';
+  }).join('');
+  go('s-orderdetail');
 }
 
 /* ── Boot：新用户先看整页渠道入口；已注册直接进入 ── */

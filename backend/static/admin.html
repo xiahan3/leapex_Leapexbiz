@@ -110,6 +110,24 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
 .kv{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;font-size:12.5px}
 .kv .k{color:var(--text3)}
 .docthumb{width:100%;height:90px;border:1px solid var(--line2);border-radius:7px;background:repeating-linear-gradient(45deg,#F0EFEC,#F0EFEC 8px,#F7F6F3 8px,#F7F6F3 16px);display:flex;align-items:center;justify-content:center;color:var(--text3);font-size:11px}
+/* 按节点面板（KYC / 注册 / 核名 通用） */
+.node-card{border:1px solid var(--line2);border-radius:9px;margin-bottom:11px;overflow:hidden;background:var(--card)}
+.node-hd{display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--bg2);border-bottom:1px solid var(--line)}
+.node-idx{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--gold);color:#3a2f14;font-size:11px;font-weight:800;flex-shrink:0}
+.node-nm{font-size:13px;font-weight:700;flex:1;display:flex;align-items:center;gap:8px}
+.node-meta{display:flex;align-items:center;gap:8px}
+.node-body{padding:11px 12px}
+.node-sec-t{font-size:11px;color:var(--text3);font-weight:600;margin:2px 0 7px}
+.node-sec-t:not(:first-child){margin-top:13px}
+.node-fields{display:grid;grid-template-columns:1fr 1fr;gap:9px 14px}
+.node-fields .fw{grid-column:1/-1}
+.node-docs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.doc-item .doc-acts{margin-top:6px;display:flex;gap:6px}
+.node-remark{width:100%;min-height:42px}
+.node-supp{display:flex;flex-direction:column;gap:6px}
+.supp-row{display:flex;align-items:center;gap:8px;font-size:12px;border:1px solid var(--line);border-radius:6px;padding:6px 9px}
+.supp-row .sn{flex:1}
+.node-empty{color:var(--text3);font-size:11.5px;padding:4px 0}
 
 /* Login */
 .login{position:fixed;inset:0;z-index:200;background:linear-gradient(135deg,#1C1B19,#2b2620);display:flex;align-items:center;justify-content:center}
@@ -259,11 +277,12 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
       <!-- ════ 注册公司（服务执行）════ -->
       <div class="page" id="p-register">
         <div class="card cp" style="background:var(--blue-bg);border-color:var(--blue)"><div style="font-size:12px;color:var(--blue)"><i class="ti ti-building-plus"></i> <b>公司注册服务执行台</b>：按小程序注册流程节点（公司资料 → 成员/董事/秘书 → 组织章程 → 人工预审 → 业务办理·线下交 NNC1 约 1 周 → 完结 CI/BR）<b>维护进度、下载客户上传资料、上传服务人员文件</b>；进度回推小程序客户端「办理进度」。</div></div>
-        <div class="filters"><span class="chip on">全部</span><span class="chip">待人工预审</span><span class="chip">办理中</span><span class="chip">已完结</span><input class="inp" placeholder="订单号 / 公司名" style="margin-left:auto;width:200px"></div>
+        <div class="filters"><span class="chip on">全部</span><span class="chip">待支付</span><span class="chip">资料待完善</span><span class="chip">章程待确认</span><span class="chip">待人工预审</span><span class="chip">办理中·交表</span><span class="chip">已完结</span><span class="chip">已退回</span><input class="inp" placeholder="订单号 / 公司名" style="margin-left:auto;width:180px"></div>
+        <div class="card cp" style="background:var(--bg2)"><div style="font-size:11px;color:var(--text3)"><b>状态枚举</b>：<span class="pill p-gray">待支付</span> <span class="pill p-amber">资料待完善</span> <span class="pill p-amber">章程待确认</span> <span class="pill p-amber">待人工预审</span> <span class="pill p-blue">办理中·线下交 NNC1</span> <span class="pill p-green">已完结（CI/BR）</span> <span class="pill p-red">已退回</span> · 状态由服务节点进度自动汇总</div></div>
         <div class="card"><table>
           <thead><tr><th>订单号</th><th>拟注册公司</th><th>客户</th><th>当前节点</th><th>进度</th><th>状态</th><th></th></tr></thead>
           <tbody>
-            <tr><td>ORD-2026-0188</td><td><b>星辰科技有限公司</b><div style="color:var(--text3);font-size:11px">Star Tech Limited</div></td><td>陈大文</td><td>组织章程</td><td>4 / 7</td><td><span class="pill p-blue">办理中</span></td><td><button class="btn btn-xs btn-p" onclick="openSvc('ORD-2026-0188','星辰科技有限公司')">维护</button></td></tr>
+            <tr><td>ORD-2026-0188</td><td><b>星辰科技有限公司</b><div style="color:var(--text3);font-size:11px">Star Tech Limited</div></td><td>陈大文</td><td>组织章程</td><td>4 / 7</td><td><span class="pill p-amber">章程待确认</span></td><td><button class="btn btn-xs btn-p" onclick="openSvc('ORD-2026-0188','星辰科技有限公司')">维护</button></td></tr>
             <tr><td>ORD-2026-0190</td><td><b>耀东实业有限公司</b><div style="color:var(--text3);font-size:11px">Yiu Tung Ind. Limited</div></td><td>李美琪</td><td>人工预审</td><td>5 / 7</td><td><span class="pill p-amber">待人工预审</span></td><td><button class="btn btn-xs btn-p" onclick="openSvc('ORD-2026-0190','耀东实业有限公司')">维护</button></td></tr>
             <tr><td>ORD-2026-0176</td><td><b>宏图国际有限公司</b><div style="color:var(--text3);font-size:11px">Grand Intl Limited</div></td><td>王志强</td><td>完结</td><td>7 / 7</td><td><span class="pill p-green">已完结</span></td><td><button class="btn btn-xs" onclick="openSvc('ORD-2026-0176','宏图国际有限公司')">查看</button></td></tr>
           </tbody>
@@ -272,13 +291,13 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
 
       <!-- ════ 核名查册 ════ -->
       <div class="page" id="p-namecheck">
-        <div class="filters"><span class="chip on">待查册 3</span><span class="chip">已完成</span><span class="chip">名称锁定中</span></div>
+        <div class="filters"><span class="chip on">全部</span><span class="chip">待提交</span><span class="chip">待查册 3</span><span class="chip">查册中</span><span class="chip">通过·锁定中</span><span class="chip">近似待确认</span><span class="chip">敏感词待合规</span><span class="chip">需牌照 Blue</span><span class="chip">已拒绝</span><input class="inp" placeholder="名称 / 客户" style="margin-left:auto;width:180px"></div>
         <div class="card"><table>
-          <thead><tr><th>拟用名称</th><th>客户</th><th>智能预检</th><th>iCRIS 查册</th><th>风险评级</th><th>重查次数</th><th></th></tr></thead>
+          <thead><tr><th>拟用名称</th><th>客户</th><th>智能预检</th><th>iCRIS 查册</th><th>风险评级</th><th>状态</th><th>重查次数</th><th></th></tr></thead>
           <tbody>
-            <tr><td><b>Star Tech Limited</b><div style="color:var(--text3);font-size:11px">星辰科技有限公司</div></td><td>陈大文</td><td><span class="pill p-green">通过</span></td><td><span class="pill p-amber">待查册</span></td><td>—</td><td>0 / 3</td><td><button class="btn btn-xs btn-p">查册 + 评级</button></td></tr>
-            <tr><td><b>Global Vision Limited</b></td><td>李美琪</td><td><span class="pill p-amber">近似名 1</span></td><td><span class="pill p-amber">待查册</span></td><td>—</td><td>1 / 3</td><td><button class="btn btn-xs btn-p">查册 + 评级</button></td></tr>
-            <tr><td><b>Royal Trust Limited</b></td><td>王志强</td><td><span class="pill p-red">敏感词「Trust」</span></td><td><span class="pill p-gray">阻断</span></td><td><span class="pill p-blue">Blue 需牌照</span></td><td>2 / 3</td><td><button class="btn btn-xs">合规审批</button></td></tr>
+            <tr><td><b>Star Tech Limited</b><div style="color:var(--text3);font-size:11px">星辰科技有限公司</div></td><td>陈大文</td><td><span class="pill p-green">通过</span></td><td><span class="pill p-blue">查册中</span></td><td>—</td><td><span class="pill p-blue">查册中</span></td><td>0 / 3</td><td><button class="btn btn-xs btn-p" onclick="openNameCheck('Star Tech Limited','陈大文')">维护进度</button></td></tr>
+            <tr><td><b>Global Vision Limited</b></td><td>李美琪</td><td><span class="pill p-amber">近似名 1</span></td><td><span class="pill p-amber">待查册</span></td><td><span class="pill p-amber">🟡 轻微近似</span></td><td><span class="pill p-amber">近似待确认</span></td><td>1 / 3</td><td><button class="btn btn-xs btn-p" onclick="openNameCheck('Global Vision Limited','李美琪')">维护进度</button></td></tr>
+            <tr><td><b>Royal Trust Limited</b></td><td>王志强</td><td><span class="pill p-red">敏感词「Trust」</span></td><td><span class="pill p-gray">阻断</span></td><td><span class="pill p-blue">🔵 需牌照</span></td><td><span class="pill p-blue">需牌照 Blue</span></td><td>2 / 3</td><td><button class="btn btn-xs" onclick="openNameCheck('Royal Trust Limited','王志强')">维护进度</button></td></tr>
           </tbody>
         </table></div>
         <div class="card cp" style="background:var(--gold-bg);border-color:var(--gold)"><div style="font-size:12px;color:var(--gold)"><i class="ti ti-info-circle"></i> 五级风险：🟢Green 可用 · 🟡Yellow 轻微近似(客户确认) · 🟠Orange 近似冲突(不混淆声明) · 🔴Red 商标/敏感词(合规审批) · 🔵Blue 需牌照。通过后名称锁定 30 天。</div></div>
@@ -696,20 +715,8 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
     <div class="mh"><div><b style="font-size:14px" id="kyc-mtitle">KYC / EDD 审核 · 李美琪</b><div style="font-size:11px;color:var(--text3)">来源：小程序 KYC 提交 · AMLO 尽职调查</div></div><button class="x" onclick="closeM('m-kyc')">×</button></div>
     <div class="mb">
       <div id="kyc-banner" style="border-radius:7px;margin-bottom:14px;font-size:11.5px;padding:10px 12px"></div>
-      <div style="font-size:11px;color:var(--text3);font-weight:600;margin-bottom:8px">小程序提交内容（可编辑修改）</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;margin-bottom:14px">
-        <div style="grid-column:1/-1"><label class="flbl">认证对象 / 身分</label><input class="inp" style="width:100%" value="李美琪 · 董事 + 实益拥有人（股东）"></div>
-        <div><label class="flbl">证件类型</label><select class="inp" style="width:100%"><option selected>香港身份证</option><option>护照</option><option>其他证件</option></select></div>
-        <div><label class="flbl">证件号码（OCR 置信度 96%）</label><input class="inp" style="width:100%" value="A123456(7)"></div>
-        <div><label class="flbl">本人验证</label><select class="inp" style="width:100%"><option selected>手机验证码</option><option>人脸识别</option></select></div>
-        <div><label class="flbl">手机</label><input class="inp" style="width:100%" value="+852 9123 4567"></div>
-        <div><label class="flbl">业务性质</label><input class="inp" style="width:100%" value="咨询服务"></div>
-        <div><label class="flbl">资金来源</label><input class="inp" style="width:100%" value="营业收入"></div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-        <div><div style="font-size:11px;color:var(--text3);margin-bottom:5px">身份证件</div><div class="docthumb">身份证 / 护照扫描件</div><div style="margin-top:6px;display:flex;gap:6px"><button class="btn btn-xs"><i class="ti ti-download"></i>下载</button><button class="btn btn-xs" onclick="toast('调用文件选择 · 重新上传证件')"><i class="ti ti-upload"></i>重新上传</button></div></div>
-        <div><div style="font-size:11px;color:var(--text3);margin-bottom:5px">地址证明（近 3 月）</div><div class="docthumb">地址证明</div><div style="margin-top:6px;display:flex;gap:6px"><button class="btn btn-xs"><i class="ti ti-download"></i>下载</button><button class="btn btn-xs" onclick="toast('调用文件选择 · 重新上传地址证明')"><i class="ti ti-upload"></i>重新上传</button></div></div>
-      </div>
+      <div style="font-size:11px;color:var(--text3);font-weight:600;margin-bottom:8px">小程序 KYC 提交内容（按节点 · 可修改内容 / 替换资料 / 逐节点补充材料与备注）</div>
+      <div id="kyc-nodes"></div>
       <div id="kyc-reject-box" style="display:none;margin-top:14px;border-top:1px solid var(--line);padding-top:12px">
         <label class="flbl" style="color:var(--red)">拒绝原因（必填 · 将通知客户并留档 7 年）</label>
         <textarea class="inp" style="width:100%;min-height:54px" placeholder="如：地址证明超期 / 资金来源描述不足 / 证件照片模糊，请客户重传…"></textarea>
@@ -988,39 +995,23 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
     <div class="mh"><div><b style="font-size:14px" id="svc-title">注册公司 · 星辰科技有限公司</b><div style="font-size:11px;color:var(--text3)" id="svc-sub">ORD-2026-0188 · 服务执行</div></div><button class="x" onclick="closeM('m-svc')">×</button></div>
     <div class="mb">
       <div class="cp" style="background:var(--blue-bg);border-radius:7px;margin-bottom:14px;font-size:11.5px;color:var(--blue)"><i class="ti ti-info-circle"></i> 维护各<b>流程节点进度</b>并写备注；节点进度<b>驱动订单状态</b>与小程序客户端「办理进度」。可<b>下载客户上传的资料</b>、<b>上传服务人员文件</b>（客户端可见）。</div>
-      <div style="font-size:11px;color:var(--text3);font-weight:600;margin-bottom:8px">办理进度节点（可编辑）</div>
-      <div class="card" style="margin-bottom:14px"><table>
-        <thead><tr><th>节点</th><th>责任方</th><th>状态</th><th>备注</th></tr></thead>
-        <tbody>
-          <tr><td>支付</td><td>客户</td><td><span class="pill p-green">已完成</span></td><td>首付款已到账</td></tr>
-          <tr><td>提交公司资料</td><td>客户</td><td><select class="inp" style="padding:3px 7px"><option selected>已完成</option><option>进行中</option><option>待客户资料</option></select></td><td><input class="inp" style="width:100%;padding:4px 8px" value="资料齐全"></td></tr>
-          <tr><td>成员 / 董事 / 秘书</td><td>客户 / 平台</td><td><select class="inp" style="padding:3px 7px"><option selected>已完成</option><option>进行中</option></select></td><td><input class="inp" style="width:100%;padding:4px 8px" value="董事 + 股东已核"></td></tr>
-          <tr><td>组织章程</td><td>客户 / 平台</td><td><select class="inp" style="padding:3px 7px"><option selected>进行中</option><option>已完成</option><option>待客户资料</option></select></td><td><input class="inp" style="width:100%;padding:4px 8px" value="样本A · 繁体，待客户确认"></td></tr>
-          <tr><td>人工预审</td><td>平台</td><td><select class="inp" style="padding:3px 7px"><option selected>未开始</option><option>进行中</option><option>已完成</option></select></td><td><input class="inp" style="width:100%;padding:4px 8px" placeholder="预审备注"></td></tr>
-          <tr><td>业务办理（线下交 NNC1）</td><td>平台</td><td><select class="inp" style="padding:3px 7px"><option selected>未开始</option><option>进行中</option><option>已完成</option></select></td><td><input class="inp" style="width:100%;padding:4px 8px" placeholder="交表后约 1 周取正本"></td></tr>
-          <tr><td>完结（CI / BR）</td><td>平台</td><td><span class="pill p-gray">未开始</span></td><td>—</td></tr>
-        </tbody>
-      </table></div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
-        <div>
-          <div style="font-size:11px;color:var(--text3);font-weight:600;margin-bottom:8px">客户上传的资料（可下载）</div>
-          <div class="card"><table><tbody>
-            <tr><td>身份证 / 护照.pdf</td><td><button class="btn btn-xs"><i class="ti ti-download"></i>下载</button></td></tr>
-            <tr><td>地址证明（近3月）.jpg</td><td><button class="btn btn-xs"><i class="ti ti-download"></i>下载</button></td></tr>
-            <tr><td>业务说明.docx</td><td><span class="pill p-amber">待补</span></td></tr>
-          </tbody></table></div>
-        </div>
-        <div>
-          <div style="font-size:11px;color:var(--text3);font-weight:600;margin-bottom:8px">服务人员上传文件（客户端可见）</div>
-          <div class="card"><table><tbody>
-            <tr><td>NNC1 预览.pdf</td><td><button class="btn btn-xs">上传</button></td></tr>
-            <tr><td>公司章程（样本A）.pdf</td><td><span class="pill p-green">已上传</span></td></tr>
-            <tr><td><input class="inp" style="width:100%;padding:4px 8px" placeholder="新增文件名"></td><td><button class="btn btn-xs btn-p">上传</button></td></tr>
-          </tbody></table></div>
-        </div>
-      </div>
+      <div style="font-size:11px;color:var(--text3);font-weight:600;margin-bottom:8px">办理进度（按节点 · 可修改客户内容 / 替换资料 / 逐节点补充材料与备注）</div>
+      <div id="svc-nodes"></div>
     </div>
     <div class="mf"><button class="btn" onclick="closeM('m-svc')">取消</button><button class="btn" onclick="toast('已添加备注')">添加备注</button><button class="btn btn-p" onclick="closeM('m-svc');toast('进度已保存 · 订单状态与小程序进度已更新')">保存进度</button></div>
+  </div>
+</div>
+
+<!-- 核名查册 · 维护进度 Modal（按节点 · 客户内容 + 资料 + 服务人员备注/补充）-->
+<div class="mask" id="m-namecheck" onclick="if(event.target===this)closeM('m-namecheck')">
+  <div class="modal" style="max-width:820px">
+    <div class="mh"><div><b style="font-size:14px" id="nc-title">核名查册 · Star Tech Limited</b><div style="font-size:11px;color:var(--text3)" id="nc-sub">陈大文 · 人工查册 + 五级风险评级</div></div><button class="x" onclick="closeM('m-namecheck')">×</button></div>
+    <div class="mb">
+      <div class="cp" style="background:var(--gold-bg);border-radius:7px;margin-bottom:14px;font-size:11.5px;color:var(--gold)"><i class="ti ti-info-circle"></i> 按节点维护查册进度：核对客户提交的中英名 / 业务性质，写<b>逐节点备注</b>、<b>补充上传</b>查册报告等材料；进度回推小程序核名结果。查名<b>不保证 100%</b>，注册处以繁体注册为准。</div>
+      <div style="font-size:11px;color:var(--text3);font-weight:600;margin-bottom:8px">核名进度（按节点 · 可修改客户内容 / 逐节点补充材料与备注）</div>
+      <div id="nc-nodes"></div>
+    </div>
+    <div class="mf"><button class="btn" onclick="closeM('m-namecheck')">取消</button><button class="btn" onclick="toast('已添加备注')">添加备注</button><button class="btn btn-p" onclick="closeM('m-namecheck');toast('核名进度已保存 · 小程序核名结果已更新')">保存进度</button></div>
   </div>
 </div>
 
@@ -1108,7 +1099,7 @@ function rtLink(){ var u=prompt('链接地址','https://'); if(u) document.execC
 function openOrder(id){ var t=document.getElementById('ord-title'); if(t) t.textContent='订单 · '+id; document.getElementById('m-order').classList.add('on'); }
 function cancelOrder(){ closeM('m-order'); toast('订单已取消'); }
 /* 服务执行台（维护进度 / 下载客户资料 / 上传文件）*/
-function openSvc(id,name){ var t=document.getElementById('svc-title'); if(t) t.textContent='注册公司 · '+(name||''); var s=document.getElementById('svc-sub'); if(s) s.textContent=(id||'')+' · 服务执行'; document.getElementById('m-svc').classList.add('on'); }
+function openSvc(id,name){ var t=document.getElementById('svc-title'); if(t) t.textContent='注册公司 · '+(name||''); var s=document.getElementById('svc-sub'); if(s) s.textContent=(id||'')+' · 服务执行'; var c=document.getElementById('svc-nodes'); if(c) c.innerHTML=nodePanel(REG_NODES,NODE_ST_REG); document.getElementById('m-svc').classList.add('on'); }
 /* 服务流程节点编辑器 */
 function openNodes(el){
   var name='标准公司注册';
@@ -1136,6 +1127,86 @@ function openChannel(name,code,rmk){
   var s=document.getElementById('ch-sub'); if(s) s.textContent=(code||'')+' · 投流获客 · 收佣金返点';
   var c=document.getElementById('ch-code'); if(c) c.value=rmk||code||'';
   document.getElementById('m-channel').classList.add('on');
+}
+/* ═══ 按节点面板渲染（KYC / 注册 / 核名 通用）═══ */
+var NODE_ST_REG=['未开始','待客户资料','进行中','待客户确认','已完成','已退回'];
+var NODE_ST_KYC=['待客户资料','进行中','已完成','已退回'];
+var NODE_ST_NC=['待提交','待查册','查册中','待客户确认','通过·可用','名称锁定','敏感词·待合规','需牌照·Blue','已拒绝'];
+function _esc(s){return (s==null?'':(''+s)).replace(/"/g,'&quot;');}
+function _stSel(opts,cur){return '<select class="inp node-st" style="padding:3px 7px">'+opts.map(function(o){return '<option'+(o===cur?' selected':'')+'>'+o+'</option>';}).join('')+'</select>';}
+function _fieldHtml(f){
+  var w=f.wide?' class="fw"':'';
+  if(f.type==='select'){return '<div'+w+'><label class="flbl">'+f.label+'</label><select class="inp" style="width:100%">'+f.options.map(function(o){return '<option'+(o===f.value?' selected':'')+'>'+o+'</option>';}).join('')+'</select></div>';}
+  if(f.type==='ta'){return '<div class="fw"><label class="flbl">'+f.label+'</label><textarea class="inp" style="width:100%;min-height:40px">'+_esc(f.value)+'</textarea></div>';}
+  return '<div'+w+'><label class="flbl">'+f.label+'</label><input class="inp" style="width:100%" value="'+_esc(f.value)+'"></div>';
+}
+function _docHtml(d){
+  var a=d.pending?'<div class="doc-acts"><span class="pill p-amber">待客户补</span></div>':'<div class="doc-acts"><button class="btn btn-xs"><i class="ti ti-download"></i>下载</button><button class="btn btn-xs" onclick="toast(\'调用文件选择 · 替换该资料\')"><i class="ti ti-refresh"></i>替换</button></div>';
+  return '<div class="doc-item"><div class="docthumb" style="height:66px">'+d.name+'</div>'+a+'</div>';
+}
+function _suppHtml(list){
+  var rows=(list||[]).map(function(s){return '<div class="supp-row"><i class="ti ti-file-text" style="color:var(--blue)"></i><span class="sn">'+s+'</span><button class="btn btn-xs"><i class="ti ti-download"></i>下载</button></div>';}).join('');
+  rows+='<div class="supp-row" style="border-style:dashed"><input class="inp" style="flex:1;padding:4px 8px" placeholder="补充材料文件名（如 律师意见.pdf / 查册报告.pdf）"><button class="btn btn-xs btn-p" onclick="toast(\'调用文件选择 · 补充上传材料\')"><i class="ti ti-upload"></i>补充上传</button></div>';
+  return rows;
+}
+function nodePanel(nodes,stOpts){
+  return (nodes||[]).map(function(n,i){
+    var st=n.locked?'<span class="pill p-green">'+(n.status||'已完成')+'</span>':_stSel(n.statusOpts||stOpts||NODE_ST_REG,n.status);
+    var fields=(n.fields&&n.fields.length)?'<div class="node-sec-t">客户填写的内容（可修改）</div><div class="node-fields">'+n.fields.map(_fieldHtml).join('')+'</div>':'';
+    var docs=(n.docs&&n.docs.length)?'<div class="node-sec-t">客户上传的资料（下载 / 替换）</div><div class="node-docs">'+n.docs.map(_docHtml).join('')+'</div>':'';
+    return '<div class="node-card"><div class="node-hd"><div class="node-nm"><span class="node-idx">'+(i+1)+'</span>'+n.name+'</div><div class="node-meta"><span class="pill p-gray">责任方 · '+n.party+'</span>'+st+'</div></div>'
+      +'<div class="node-body">'+fields+docs
+      +'<div class="node-sec-t">服务人员补充材料（所有节点均可 · 客户端可见）</div><div class="node-supp">'+_suppHtml(n.supp)+'</div>'
+      +'<div class="node-sec-t">服务人员备注（客户端可见）</div><textarea class="inp node-remark" placeholder="填写本节点备注…">'+_esc(n.remark)+'</textarea>'
+      +'</div></div>';
+  }).join('');
+}
+/* 各服务节点数据集（原型示例 · 真实系统由 SERVICE_NODE / ORDER_NODE 驱动）*/
+var KYC_NODES=[
+  {name:'身份认证',party:'客户',status:'已完成',statusOpts:NODE_ST_KYC,
+    fields:[{label:'认证对象 / 身分',value:'李美琪 · 董事 + 实益拥有人（股东）',wide:true},
+      {label:'证件类型',type:'select',options:['香港身份证','护照','其他证件'],value:'香港身份证'},
+      {label:'证件号码（OCR 96%）',value:'A123456(7)'},
+      {label:'本人验证',type:'select',options:['手机验证码','人脸识别'],value:'手机验证码'},
+      {label:'手机',value:'+852 9123 4567'}],
+    docs:[{name:'身份证 / 护照扫描件.pdf'}],supp:['人脸识别活体记录.png'],remark:'证件清晰，OCR 与人工核对一致。'},
+  {name:'地址证明',party:'客户',status:'已完成',statusOpts:NODE_ST_KYC,
+    docs:[{name:'地址证明（近3月）.jpg'}],supp:[],remark:''},
+  {name:'业务性质 / 资金来源',party:'客户 / 合规',status:'进行中',statusOpts:NODE_ST_KYC,
+    fields:[{label:'业务性质（HSIC）',value:'咨询服务'},{label:'资金来源',value:'营业收入'}],
+    docs:[{name:'资金来源说明.pdf',pending:true}],supp:[],remark:'资金来源说明较简略，评估是否需 EDD 补充。'}
+];
+var REG_NODES=[
+  {name:'支付',party:'客户',locked:true,status:'已完成',remark:'首付款已到账（HSBC · 06-08）。'},
+  {name:'提交公司资料',party:'客户',status:'已完成',
+    fields:[{label:'公司中文名',value:'星辰科技有限公司'},{label:'公司英文名',value:'Star Tech Limited'},{label:'业务性质（HSIC）',value:'62xx 计算机编程'},{label:'注册股本',value:'HKD 10,000 / 10,000 股'}],
+    docs:[{name:'业务说明.docx',pending:true}],supp:[],remark:'资料齐全。'},
+  {name:'成员 / 董事 / 秘书',party:'客户 / 平台',status:'已完成',
+    fields:[{label:'董事',value:'陈大文'},{label:'股东 / 持股',value:'陈大文 70% · 李美琪 30%'},{label:'法定秘书',value:'Leapexbiz（持牌 TCSP）'}],
+    docs:[{name:'股东身份证明.pdf'}],supp:[],remark:''},
+  {name:'组织章程',party:'客户 / 平台',status:'进行中',
+    fields:[{label:'章程样本',type:'select',options:['样本 A（推荐）','样本 B'],value:'样本 A（推荐）'},{label:'章程语言',type:'select',options:['英文','繁体中文'],value:'繁体中文'}],
+    supp:['公司章程（样本A·繁体）.pdf'],remark:'已生成章程草稿，待客户确认。'},
+  {name:'人工预审',party:'平台',status:'未开始',supp:[],remark:''},
+  {name:'业务办理（线下交 NNC1）',party:'平台',status:'未开始',supp:[],remark:'交表后约 1 周取 CI/BR 正本。'},
+  {name:'完结（CI / BR + 交付物）',party:'平台',status:'未开始',supp:[],remark:''}
+];
+var NC_NODES=[
+  {name:'提交核名申请',party:'客户',status:'待客户确认',statusOpts:NODE_ST_NC,
+    fields:[{label:'拟用名称（繁体中文）',value:'星辰科技有限公司'},{label:'拟用名称（英文）',value:'Star Tech Limited'},{label:'业务性质',value:'计算机编程 / 咨询'},{label:'查册语言',type:'select',options:['英文','繁体中文'],value:'英文'}],
+    supp:[],remark:'客户提交中英双名；名称互不需对应。'},
+  {name:'智能预检',party:'平台',status:'通过·可用',statusOpts:NODE_ST_NC,supp:['智能预检报告.pdf'],remark:'英文名通过；中文名近似度低。'},
+  {name:'iCRIS 人工查册',party:'平台',status:'查册中',statusOpts:NODE_ST_NC,supp:[],remark:'注册处查册中，结果不保证 100%。'},
+  {name:'风险评级',party:'平台 / 合规',status:'待查册',statusOpts:NODE_ST_NC,
+    fields:[{label:'风险评级',type:'select',options:['🟢Green 可用','🟡Yellow 轻微近似','🟠Orange 近似冲突','🔴Red 敏感词/商标','🔵Blue 需牌照'],value:'🟢Green 可用'}],
+    supp:[],remark:''},
+  {name:'结果通知 / 名称锁定',party:'平台',status:'待提交',statusOpts:NODE_ST_NC,supp:[],remark:'通过后名称锁定 30 天。'}
+];
+function openNameCheck(name,cust){
+  var t=document.getElementById('nc-title'); if(t) t.textContent='核名查册 · '+(name||'');
+  var s=document.getElementById('nc-sub'); if(s) s.textContent=(cust||'')+' · 人工查册 + 五级风险评级';
+  var c=document.getElementById('nc-nodes'); if(c) c.innerHTML=nodePanel(NC_NODES,NODE_ST_NC);
+  document.getElementById('m-namecheck').classList.add('on');
 }
 function toast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._);t._=setTimeout(()=>t.classList.remove('show'),1800)}
 
@@ -1212,6 +1283,7 @@ function openKyc(id,status,name){
     rejected:DL+'<button class="btn btn-p" onclick="closeM(\'m-kyc\')">关闭</button>'
   };
   document.getElementById('kyc-actions').innerHTML=acts[st]||full;
+  var kn=document.getElementById('kyc-nodes'); if(kn) kn.innerHTML=nodePanel(KYC_NODES,NODE_ST_KYC);
   document.getElementById('m-kyc').classList.add('on');
 }
 function openBill(id){_bid=id;document.getElementById('m-bill').classList.add('on')}
