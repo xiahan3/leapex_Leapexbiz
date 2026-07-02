@@ -228,6 +228,20 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
 .od-file{display:flex;align-items:center;gap:7px;font-size:12px;border:1px solid var(--line);border-radius:8px;padding:7px 10px;margin-bottom:6px;cursor:pointer}
 .od-remark{display:flex;gap:7px;font-size:12px;color:var(--text2);line-height:1.6;background:var(--accent-bg);border-radius:9px;padding:9px 11px}
 .od-remark i{margin-top:1px}
+/* 订单列表：公司维度分组 + 单订单行 */
+.ord-company{background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);margin-bottom:12px;overflow:hidden}
+.ord-company-hd{display:flex;align-items:center;gap:8px;padding:11px 14px;background:var(--bg2);border-bottom:1px solid var(--line)}
+.ord-item{display:flex;align-items:center;gap:11px;padding:12px 14px;border-bottom:1px solid var(--line);cursor:pointer}
+.ord-item:last-child{border-bottom:none}
+.ord-item:active{background:var(--bg2)}
+/* 订单详情：豆腐块（阶段 / 进度）*/
+.tofu-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 6px}
+.tofu{background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:13px 14px}
+.tofu-l{font-size:11px;color:var(--text4);font-weight:600}
+.tofu-v{font-size:16px;font-weight:800;margin-top:6px;color:var(--accent-d);line-height:1.25}
+.tofu-s{font-size:10.5px;color:var(--text3);margin-top:4px}
+.tofu-bar{height:6px;border-radius:4px;background:var(--bg2);overflow:hidden;margin-top:8px}
+.tofu-bar>div{height:100%;background:var(--accent);border-radius:4px}
 
 /* ── 电商：服务报价卡 / 服务行 / 详情 ── */
 .pkg-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:10px;cursor:pointer;box-shadow:var(--shadow);position:relative;transition:transform .15s,box-shadow .15s}
@@ -610,9 +624,6 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
 
     <div class="screen" id="s-orders" data-title="订单" data-tab="orders">
       <div class="body-pad">
-        <div style="display:flex;gap:8px;margin-bottom:10px">
-          <button class="btn" style="padding:11px" onclick="go('s-services')"><i class="ti ti-plus" style="font-size:14px"></i> 新建订单</button>
-        </div>
         <!-- 状态筛选 -->
         <div style="display:flex;gap:6px;margin-bottom:12px;overflow-x:auto" id="ord-filter">
           <span class="mc on" data-f="all" onclick="setOrdFilter(this,'all')">全部</span>
@@ -625,19 +636,20 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
       </div>
     </div>
 
-    <!-- ════════ 订单详情（按节点 · 与顾问后台实时同步）════════ -->
+    <!-- ════════ 订单详情（豆腐块阶段/进度 + 按节点顾问备注/补充材料）════════ -->
     <div class="screen" id="s-orderdetail" data-title="订单详情" data-back="s-orders">
       <div class="body-pad">
         <div class="card card-pad" id="od-head"></div>
+        <div class="tofu-grid" id="od-tofu"></div>
 
         <div class="sec-t"><i class="ti ti-route" style="font-size:13px;margin-right:4px"></i>办理进度（按节点 · 与顾问后台实时同步）</div>
         <div id="od-nodes"></div>
 
-        <div class="sec-t" style="margin-top:6px"><i class="ti ti-list-details" style="font-size:13px;margin-right:4px"></i>本订单服务 / 账单</div>
-        <div class="order-card" id="od-services"></div>
+        <div class="sec-t" style="margin-top:6px"><i class="ti ti-receipt" style="font-size:13px;margin-right:4px"></i>订单账单</div>
+        <div class="order-card" id="od-bill"></div>
 
         <div class="card card-pad" style="background:var(--bg2);margin-top:6px">
-          <div class="note"><i class="ti ti-info-circle"></i> 每个节点的<b>顾问补充材料与备注</b>由服务人员在后台维护，实时同步至此；标注「待您处理」的节点请按提示补交资料或确认。</div>
+          <div class="note"><i class="ti ti-info-circle"></i> 办理进度、<b>顾问备注与补充材料</b>由服务人员在后台实时维护并同步至此，全程无需您在中间环节确认或修改；如有需补交资料，顾问会另行通知。</div>
         </div>
       </div>
     </div>
@@ -2117,18 +2129,17 @@ function goPay(){
   var cp=s.channelPrice||chPrice(s.price);
   if(!CURRENT_ORDER){
     var no='ORD-2026-0'+(ORD_SEQ++);
-    CURRENT_ORDER={no:no, company:CURRENT_COMPANY||('（待注册）'+s.name), pkg:s.name, channel:CHANNEL, status:'待支付', total:cp,
-      services:[{name:s.name, icon:s.icon, color:'accent', bill:no.replace('ORD','LEA')+'-1', amt:cp, bs:'待支付'}]};
+    CURRENT_ORDER={no:no, company:CURRENT_COMPANY||('（待注册）'+s.name), service:s.name, icon:s.icon, color:'accent', channel:CHANNEL, status:'待支付', stage:'待支付', amt:cp, bill:no.replace('ORD','LEA')+'-1', bs:'待支付'};
     ORDERS.unshift(CURRENT_ORDER);
   }
   BILL_HKD='HK$ '+fmtMoney(cp)+'.00';
   BILL_CNY='¥ '+fmtMoney(Math.round(cp*0.9))+'.00';
-  var bn=document.getElementById('bill-no'); if(bn) bn.textContent='账单号 '+CURRENT_ORDER.services[0].bill;
+  var bn=document.getElementById('bill-no'); if(bn) bn.textContent='账单号 '+CURRENT_ORDER.bill;
   setCur('cny');
   go('s-bill');
 }
 function payDone(){
-  if(CURRENT_ORDER) CURRENT_ORDER.services[0].bs='待确认';
+  if(CURRENT_ORDER){ CURRENT_ORDER.bs='待确认'; CURRENT_ORDER.status='服务中'; CURRENT_ORDER.stage='待人工预审'; }
   setPersona('user'); // 付款成功 → 转老客
   if(FLOW_TYPE==='register'){ go('s-paydone'); return; }   // 注册流程 → 专属「支付完成」引导页
   showResult({title:'支付成功', desc:'已收到你的款项。请继续提交本次办理所需的信息。', steps:flowSteps(), cur:2, btn:'提交办理信息', next:goInfo});
@@ -2153,7 +2164,7 @@ function infoDone(){
 }
 function goKyc(){ kycStep(1); go('s-kyc'); }
 function cancelOrder(){
-  if(CURRENT_ORDER){ CURRENT_ORDER.status='已取消'; if(CURRENT_ORDER.services&&CURRENT_ORDER.services[0]) CURRENT_ORDER.services[0].bs='已作废'; }
+  if(CURRENT_ORDER){ CURRENT_ORDER.status='已取消'; CURRENT_ORDER.stage='已取消'; CURRENT_ORDER.bs='已作废'; }
   toast('订单已取消');
   setTimeout(function(){ goHome(); }, 700);
 }
@@ -2426,19 +2437,18 @@ function submitOrder(){
   if(!document.getElementById('so-agree').classList.contains('on')){ toast('请先勾选同意服务条款'); return; }
   var no = 'ORD-2026-0'+(ORD_SEQ++);
   CURRENT_ORDER = {
-    no:no, company:'（待注册）'+CURRENT_SVC.name, pkg:CURRENT_SVC.name, channel:CHANNEL,
-    status:'待支付', total:CURRENT_SVC.channelPrice,
-    services:[{name:CURRENT_SVC.name, icon:CURRENT_SVC.icon, color:'accent', bill:no.replace('ORD','LEA')+'-1', amt:CURRENT_SVC.channelPrice, bs:'待支付'}]
+    no:no, company:'（待注册）'+CURRENT_SVC.name, service:CURRENT_SVC.name, icon:CURRENT_SVC.icon, color:'accent', channel:CHANNEL,
+    status:'待支付', stage:'待支付', amt:CURRENT_SVC.channelPrice, bill:no.replace('ORD','LEA')+'-1', bs:'待支付'
   };
   ORDERS.unshift(CURRENT_ORDER);
   // 填充支付页
-  document.getElementById('bill-no').textContent = '账单号 '+CURRENT_ORDER.services[0].bill;
-  document.getElementById('bill-amt').textContent = 'HKD '+fmtMoney(CURRENT_ORDER.total)+'.00';
+  document.getElementById('bill-no').textContent = '账单号 '+CURRENT_ORDER.bill;
+  document.getElementById('bill-amt').textContent = 'HKD '+fmtMoney(CURRENT_ORDER.amt)+'.00';
   document.getElementById('bill-status').textContent = '待支付';
   document.getElementById('bill-status').className = 'tag t-orange';
   document.getElementById('bill-svc').textContent = CURRENT_SVC.name;
-  document.getElementById('bill-svc-amt').textContent = fmtMoney(CURRENT_ORDER.total)+'.00';
-  document.getElementById('bill-total').textContent = 'HKD '+fmtMoney(CURRENT_ORDER.total)+'.00';
+  document.getElementById('bill-svc-amt').textContent = fmtMoney(CURRENT_ORDER.amt)+'.00';
+  document.getElementById('bill-total').textContent = 'HKD '+fmtMoney(CURRENT_ORDER.amt)+'.00';
   toast('订单 '+no+' 已生成');
   setTimeout(function(){ go('s-bill'); }, 600);
 }
@@ -2451,20 +2461,13 @@ var COLOR_VAR = {
   teal:['var(--blue-bg)','var(--blue)'], blue:['var(--blue-bg)','var(--blue)'],
   orange:['var(--yellow-bg)','var(--orange)'], purple:['var(--purple-bg)','var(--purple)']
 };
+// 订单 = 单个服务；按公司维度分组展示，一个公司可同时有多个服务订单
 var ORDERS = [
-  { no:'ORD-2026-0188', company:'星辰科技有限公司', pkg:'标准注册服务', channel:'LEX888', status:'服务中', total:5800,
-    services:[
-      {name:'新公司注册', icon:'ti-building-plus', color:'green', bill:'LEA-2026-0188-1', amt:5800, bs:'已到账'},
-      {name:'首年法定秘书', icon:'ti-shield-check', color:'teal', amt:0, bs:'已含'},
-      {name:'公司印章套装', icon:'ti-stamp', color:'orange', bill:'LEA-2026-0188-3', amt:0, bs:'办理中'},
-    ]},
-  { no:'ORD-2026-0142', company:'恒丰贸易有限公司', pkg:'年审 + 董事变更', channel:'LEX888', status:'已完成', total:2300,
-    services:[
-      {name:'2025 公司年审', icon:'ti-calendar-check', color:'blue', bill:'LEA-2026-0142-1', amt:1500, bs:'已交付'},
-      {name:'董事变更', icon:'ti-user-edit', color:'orange', bill:'LEA-2026-0142-2', amt:800, bs:'已交付'},
-    ]},
-  { no:'ORD-2026-0090', company:'光辉投资有限公司', pkg:'注册地址变更', channel:'自然流量', status:'已取消', total:800,
-    services:[ {name:'注册地址变更', icon:'ti-map-pin', color:'orange', bill:'LEA-2026-0090-1', amt:800, bs:'已作废'} ]},
+  { no:'ORD-2026-0188', company:'星辰科技有限公司', service:'标准公司注册', icon:'ti-building-plus', color:'green', channel:'LEX888', status:'服务中', stage:'组织章程', amt:5800, bill:'LEA-2026-0188-1', bs:'已到账' },
+  { no:'ORD-2026-0191', company:'星辰科技有限公司', service:'公司印章套装', icon:'ti-stamp', color:'orange', channel:'LEX888', status:'待支付', stage:'待支付', amt:480, bill:'LEA-2026-0191-1', bs:'待支付' },
+  { no:'ORD-2026-0142', company:'恒丰贸易有限公司', service:'2025 公司年审', icon:'ti-calendar-check', color:'blue', channel:'LEX888', status:'已完成', stage:'已交付', amt:1500, bill:'LEA-2026-0142-1', bs:'已交付' },
+  { no:'ORD-2026-0143', company:'恒丰贸易有限公司', service:'董事变更', icon:'ti-user-edit', color:'orange', channel:'LEX888', status:'已完成', stage:'已交付', amt:800, bill:'LEA-2026-0143-1', bs:'已交付' },
+  { no:'ORD-2026-0090', company:'光辉投资有限公司', service:'注册地址变更', icon:'ti-map-pin', color:'orange', channel:'自然流量', status:'已取消', stage:'已取消', amt:800, bill:'LEA-2026-0090-1', bs:'已作废' },
 ];
 var ordFilter = 'all';
 function setOrdFilter(el, f){
@@ -2475,29 +2478,24 @@ function renderOrders(){
   var box = document.getElementById('orders-list'); if(!box) return;
   var list = ordFilter==='all' ? ORDERS : ORDERS.filter(function(o){ return o.status===ordFilter; });
   if(!list.length){ box.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text3)"><i class="ti ti-clipboard-off" style="font-size:32px"></i><div style="margin-top:8px;font-size:13px">暂无订单</div></div>'; return; }
-  box.innerHTML = list.map(function(o){
-    var svcRows = o.services.map(function(s){
-      var amt = s.amt>0 ? 'HKD '+fmtMoney(s.amt) : 'HKD 0';
-      return '<div class="svc-line">'
-        + '<div class="svc-dot" style="background:'+((COLOR_VAR[s.color]||COLOR_VAR.accent)[0])+';color:'+((COLOR_VAR[s.color]||COLOR_VAR.accent)[1])+'"><i class="ti '+s.icon+'"></i></div>'
-        + '<div style="flex:1"><div style="font-size:13px;font-weight:600">'+s.name+'</div>'
-        + '<div style="font-size:10.5px;color:var(--text3)">'+(s.bill?'账单 '+s.bill:'内嵌服务')+'</div></div>'
-        + '<div style="text-align:right"><div style="font-size:12.5px;font-weight:700">'+amt+'</div>'
-        + '<span class="bill-chip '+(BS_CHIP[s.bs]||'t-gray')+'">'+s.bs+'</span></div></div>';
+  // 按公司维度分组（保持出现顺序）
+  var groups = [], idx = {};
+  list.forEach(function(o){ if(!(o.company in idx)){ idx[o.company]=groups.length; groups.push({company:o.company, orders:[]}); } groups[idx[o.company]].orders.push(o); });
+  box.innerHTML = groups.map(function(g){
+    var rows = g.orders.map(function(o){
+      var cv = COLOR_VAR[o.color]||COLOR_VAR.accent;
+      var amt = o.amt>0 ? 'HKD '+fmtMoney(o.amt) : '—';
+      return '<div class="ord-item" onclick="openOrderDetail(\''+o.no+'\')">'
+        + '<div class="svc-dot" style="background:'+cv[0]+';color:'+cv[1]+'"><i class="ti '+o.icon+'"></i></div>'
+        + '<div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:600">'+o.service+'</div>'
+        + '<div style="font-size:10.5px;color:var(--text3)">'+o.no+' · 当前：'+o.stage+'</div></div>'
+        + '<div style="text-align:right;flex-shrink:0"><div style="font-size:12.5px;font-weight:700">'+amt+'</div>'
+        + '<span class="tag '+(ORD_STATUS[o.status]||'t-gray')+'" style="font-size:10px;padding:1px 8px">'+o.status+'</span></div>'
+        + '<i class="ti ti-chevron-right" style="color:var(--text4);font-size:16px;flex-shrink:0;margin-left:2px"></i></div>';
     }).join('');
-    var canAdd = o.status==='服务中' || o.status==='待支付';
-    return '<div class="order-card">'
-      + '<div class="order-head" onclick="openOrderDetail(\''+o.no+'\')">'
-      +   '<div style="display:flex;justify-content:space-between;align-items:center">'
-      +     '<div style="font-weight:700;font-size:14.5px">'+o.company+'</div>'
-      +     '<span class="tag '+(ORD_STATUS[o.status]||'t-gray')+'">'+o.status+'</span></div>'
-      +   '<div style="font-size:11.5px;color:var(--text3);margin-top:3px">'+o.no+' · '+o.pkg+' · 含 '+o.services.length+' 项服务 · 渠道 '+o.channel+'</div>'
-      + '</div>'
-      + svcRows
-      + '<div style="padding:10px 14px;background:var(--bg2);display:flex;justify-content:space-between;align-items:center">'
-      +   '<span style="font-size:11px;color:var(--text3)">订单合计 HKD '+fmtMoney(o.total)+'</span>'
-      +   (canAdd ? '<button class="btn ghost" style="width:auto;padding:6px 12px;font-size:12px" onclick="event.stopPropagation();go(\'s-services\')"><i class="ti ti-plus" style="font-size:12px"></i>新增服务</button>' : '<span style="font-size:11px;color:var(--green-d)"><i class="ti ti-circle-check"></i> 已交付</span>')
-      + '</div></div>';
+    return '<div class="ord-company">'
+      + '<div class="ord-company-hd"><i class="ti ti-building" style="color:var(--accent-d);font-size:16px"></i><span style="flex:1;font-weight:700;font-size:14px">'+g.company+'</span><span style="font-size:11px;color:var(--text3)">'+g.orders.length+' 个订单</span></div>'
+      + rows + '</div>';
   }).join('');
 }
 
@@ -2509,17 +2507,28 @@ var ORDER_NODES = {
     { name:'KYC 认证', party:'我 / 合规', status:'已通过', st:'done', mine:['身份证 / 护照.pdf','地址证明（近3月）.jpg'], remark:'董事 + 实益拥有人已核实通过。' },
     { name:'提交公司资料', party:'我', status:'已完成', st:'done', mine:['公司中英名','业务性质（HSIC）','注册股本 HKD 10,000'], remark:'资料齐全。' },
     { name:'成员 / 董事 / 秘书', party:'我 / 平台', status:'已完成', st:'done', mine:['董事：陈大文','股东：陈大文 70% · 李美琪 30%','法定秘书：Leapexbiz'], remark:'' },
-    { name:'组织章程', party:'我 / 平台', status:'待您确认', st:'todo', todo:'确认章程草稿', mine:['章程样本 A · 繁体中文'], files:['公司章程（样本A·繁体）.pdf'], remark:'章程草稿已生成，请查看并确认；确认后进入人工预审。' },
+    { name:'组织章程', party:'我 / 平台', status:'进行中', st:'act', mine:['章程样本 A · 繁体中文'], files:['公司章程（样本A·繁体）.pdf'], remark:'章程草稿已生成，顾问将据此推进人工预审，无需您在此环节确认或修改。' },
     { name:'人工预审', party:'平台', status:'未开始', st:'wait', remark:'' },
     { name:'业务办理（线下交 NNC1）', party:'平台', status:'未开始', st:'wait', remark:'交表后约 1 周领取 CI / BR 正本（顾问跑两趟：交表 + 取正本）。' },
     { name:'完结（CI / BR + 交付物）', party:'平台', status:'未开始', st:'wait', remark:'' }
+  ],
+  'ORD-2026-0191':[
+    { name:'下单', party:'我', status:'已完成', st:'done', mine:['公司圆章 + 签字章'], remark:'' },
+    { name:'支付', party:'我', status:'待支付', st:'act', remark:'请完成支付，付款后由供应商开始制作。' },
+    { name:'制作', party:'供应商', status:'未开始', st:'wait', remark:'由供应商「金印堂」制作。' },
+    { name:'质检 / 寄送', party:'平台 / 供应商', status:'未开始', st:'wait', remark:'' }
   ],
   'ORD-2026-0142':[
     { name:'信息核对', party:'我', status:'已完成', st:'done', mine:['公司 CI / BR','财政年度结算日'], remark:'' },
     { name:'KYC 年度复核', party:'我 / 合规', status:'已完成', st:'done', remark:'年度复核通过。' },
     { name:'年审申报 NAR1', party:'平台', status:'已完成', st:'done', files:['NAR1 周年申报表.pdf','更新后商业登记证 BR.pdf'], remark:'已提交注册处并更新 BR。' },
-    { name:'董事变更 ND2A', party:'平台', status:'已完成', st:'done', files:['ND2A 董事变更通知书.pdf','更新后董事名册.pdf'], remark:'新董事已完成 KYC，SCR 已同步更新。' },
-    { name:'交付', party:'平台', status:'已完成', st:'done', files:['交付物清单.pdf'], remark:'全部交付物已寄出（顺丰 SF1234567890）。' }
+    { name:'交付', party:'平台', status:'已完成', st:'done', files:['交付物清单.pdf'], remark:'交付物已寄出（顺丰 SF1234567890）。' }
+  ],
+  'ORD-2026-0143':[
+    { name:'信息填写', party:'我', status:'已完成', st:'done', mine:['离任董事：王志强','新任董事：陈大文'], remark:'' },
+    { name:'新董事 KYC', party:'我 / 合规', status:'已完成', st:'done', remark:'新任董事尽职调查通过。' },
+    { name:'申报 ND2A', party:'平台', status:'已完成', st:'done', files:['ND2A 董事变更通知书.pdf','更新后董事名册.pdf'], remark:'已申报注册处，SCR 已同步更新。' },
+    { name:'交付', party:'平台', status:'已完成', st:'done', files:['交付物清单.pdf'], remark:'全部交付物已寄出。' }
   ],
   'ORD-2026-0090':[
     { name:'提交申请', party:'我', status:'已完成', st:'done', mine:['新注册地址'], remark:'' },
@@ -2538,10 +2547,7 @@ function renderOrderNodes(nodes){
     var remark = n.remark
       ? '<div class="od-sub">顾问备注</div><div class="od-remark"><i class="ti ti-message-dots" style="color:var(--accent-d)"></i><span>'+n.remark+'</span></div>'
       : '';
-    var todo = n.todo
-      ? '<button class="btn" style="margin-top:10px;padding:9px" onclick="toast(\''+n.todo+' · 调用文件选择 / 确认\')"><i class="ti ti-upload" style="font-size:14px"></i> '+n.todo+'</button>'
-      : '';
-    var body = (mine || files || remark || todo) ? '<div class="onode-bd">'+mine+files+remark+todo+'</div>' : '';
+    var body = (mine || files || remark) ? '<div class="onode-bd">'+mine+files+remark+'</div>' : '';
     return '<div class="onode"><div class="onode-hd"><span class="onode-dot '+n.st+'"></span>'
       + '<div class="onode-nm">'+n.name+'<span class="onode-party">'+n.party+'</span></div>'
       + '<span class="tag '+(OD_TAG[n.st]||'t-gray')+'">'+n.status+'</span></div>'+body+'</div>';
@@ -2551,27 +2557,32 @@ function openOrderDetail(no){
   var o = null; for(var i=0;i<ORDERS.length;i++){ if(ORDERS[i].no===no){ o=ORDERS[i]; break; } }
   if(!o){ o=ORDERS[0]; no=o.no; }
   var nodes = ORDER_NODES[no] || [];
-  var done = nodes.filter(function(n){ return n.st==='done'; }).length;
   var total = nodes.length || 1;
+  var done = 0, firstUndone = -1;
+  for(var j=0;j<nodes.length;j++){ if(nodes[j].st==='done'){ done++; } else if(firstUndone<0){ firstUndone=j; } }
   var pct = Math.round(done/total*100);
+  var curName = o.status==='已取消' ? '已取消'
+    : (firstUndone<0 ? (nodes.length ? nodes[nodes.length-1].name : '—') : nodes[firstUndone].name);
+  var curStep = firstUndone<0 ? total : firstUndone+1;
+  // 头部
   document.getElementById('od-head').innerHTML =
       '<div style="display:flex;justify-content:space-between;align-items:center">'
     +   '<div style="font-weight:700;font-size:15.5px">'+o.company+'</div>'
     +   '<span class="tag '+(ORD_STATUS[o.status]||"t-gray")+'">'+o.status+'</span></div>'
-    + '<div style="font-size:12px;color:var(--text3);margin-top:3px">'+o.no+' · '+o.pkg+' · 渠道 '+o.channel+'</div>'
-    + '<div style="margin-top:12px;height:7px;border-radius:5px;background:var(--bg2);overflow:hidden"><div style="height:100%;width:'+pct+'%;background:var(--accent);border-radius:5px"></div></div>'
-    + '<div style="display:flex;justify-content:space-between;font-size:10.5px;color:var(--text4);margin-top:5px"><span>已完成 '+done+' / '+total+' 个节点</span><span>'+pct+'%</span></div>';
+    + '<div style="font-size:12px;color:var(--text3);margin-top:3px">'+o.service+' · '+o.no+' · 渠道 '+o.channel+'</div>';
+  // 豆腐块：所在阶段 + 办理进度
+  document.getElementById('od-tofu').innerHTML =
+      '<div class="tofu"><div class="tofu-l">当前阶段</div><div class="tofu-v">'+curName+'</div><div class="tofu-s">第 '+curStep+' / '+total+' 步</div></div>'
+    + '<div class="tofu"><div class="tofu-l">办理进度</div><div class="tofu-v">'+pct+'%</div><div class="tofu-bar"><div style="width:'+pct+'%"></div></div><div class="tofu-s">已完成 '+done+' / '+total+' 个节点</div></div>';
+  // 节点进度（顾问备注 + 补充材料）
   document.getElementById('od-nodes').innerHTML = renderOrderNodes(nodes);
-  var svc = document.getElementById('od-services');
-  svc.innerHTML = o.services.map(function(s){
-    var amt = s.amt>0 ? 'HKD '+fmtMoney(s.amt) : 'HKD 0';
-    var cv = COLOR_VAR[s.color]||COLOR_VAR.accent;
-    return '<div class="svc-line"><div class="svc-dot" style="background:'+cv[0]+';color:'+cv[1]+'"><i class="ti '+s.icon+'"></i></div>'
-      + '<div style="flex:1"><div style="font-size:13px;font-weight:600">'+s.name+'</div><div style="font-size:10.5px;color:var(--text3)">'+(s.bill?'账单 '+s.bill:'内嵌服务')+'</div></div>'
-      + '<div style="text-align:right"><div style="font-size:12.5px;font-weight:700">'+amt+'</div>'
-      + (s.bill?'<span class="bill-chip '+(BS_CHIP[s.bs]||"t-gray")+'" onclick="go(\'s-bill\')" style="cursor:pointer">'+s.bs+' ›</span>':'<span class="bill-chip '+(BS_CHIP[s.bs]||"t-gray")+'">'+s.bs+'</span>')
-      + '</div></div>';
-  }).join('');
+  // 账单
+  var amt = o.amt>0 ? 'HKD '+fmtMoney(o.amt) : '—';
+  document.getElementById('od-bill').innerHTML =
+      '<div class="svc-line" onclick="go(\'s-bill\')" style="cursor:pointer">'
+    + '<div class="svc-dot" style="background:var(--green-bg);color:var(--green-d)"><i class="ti ti-receipt"></i></div>'
+    + '<div style="flex:1"><div style="font-size:13px;font-weight:600">'+o.service+'</div><div style="font-size:10.5px;color:var(--text3)">账单 '+(o.bill||'—')+'</div></div>'
+    + '<div style="text-align:right"><div style="font-size:12.5px;font-weight:700">'+amt+'</div><span class="bill-chip '+(BS_CHIP[o.bs]||"t-gray")+'">'+o.bs+' ›</span></div></div>';
   go('s-orderdetail');
 }
 
