@@ -696,20 +696,24 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
     <div class="mh"><div><b style="font-size:14px" id="kyc-mtitle">KYC / EDD 审核 · 李美琪</b><div style="font-size:11px;color:var(--text3)">来源：小程序 KYC 提交 · AMLO 尽职调查</div></div><button class="x" onclick="closeM('m-kyc')">×</button></div>
     <div class="mb">
       <div id="kyc-banner" style="border-radius:7px;margin-bottom:14px;font-size:11.5px;padding:10px 12px"></div>
-      <div style="font-size:11px;color:var(--text3);font-weight:600;margin-bottom:8px">小程序提交内容（对齐客户端 KYC 向导）</div>
-      <div class="kv" style="margin-bottom:14px">
-        <span class="k">认证对象 / 身分</span><span>李美琪 · 董事 + 实益拥有人（股东）</span>
-        <span class="k">合规说明（AMLO）</span><span><span class="pill p-green">已阅读并同意</span></span>
-        <span class="k">证件类型 / OCR</span><span>香港身份证 A123456(7) · 陳美琪 CHAN MEI KEI <span class="pill p-green">置信度 96%</span></span>
-        <span class="k">本人验证</span><span>手机 +852 9123 4567 / 人脸活体 <span class="pill p-green">已通过</span></span>
-        <span class="k">地址证明</span><span>HSBC 对账单（近 3 月）<span class="pill p-green">已上传</span></span>
-        <span class="k">业务性质 / 资金来源</span><span>咨询服务 / 营业收入</span>
-        <span class="k">PEP 筛查（后台）</span><span id="kyc-pep"><span class="pill p-gray">无命中</span></span>
-        <span class="k">制裁筛查（UN/EU/HKMA · 后台）</span><span id="kyc-san"><span class="pill p-green">未命中</span></span>
+      <div style="font-size:11px;color:var(--text3);font-weight:600;margin-bottom:8px">小程序提交内容（可编辑修改）</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;margin-bottom:14px">
+        <div style="grid-column:1/-1"><label class="flbl">认证对象 / 身分</label><input class="inp" style="width:100%" value="李美琪 · 董事 + 实益拥有人（股东）"></div>
+        <div><label class="flbl">证件类型</label><select class="inp" style="width:100%"><option selected>香港身份证</option><option>护照</option><option>其他证件</option></select></div>
+        <div><label class="flbl">证件号码（OCR 置信度 96%）</label><input class="inp" style="width:100%" value="A123456(7)"></div>
+        <div><label class="flbl">本人验证</label><select class="inp" style="width:100%"><option selected>手机验证码</option><option>人脸识别</option></select></div>
+        <div><label class="flbl">手机</label><input class="inp" style="width:100%" value="+852 9123 4567"></div>
+        <div><label class="flbl">业务性质</label><input class="inp" style="width:100%" value="咨询服务"></div>
+        <div><label class="flbl">资金来源</label><input class="inp" style="width:100%" value="营业收入"></div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-        <div><div style="font-size:11px;color:var(--text3);margin-bottom:5px">身份证件（可下载）</div><div class="docthumb">身份证 / 护照扫描件</div></div>
-        <div><div style="font-size:11px;color:var(--text3);margin-bottom:5px">地址证明（可下载）</div><div class="docthumb">地址证明</div></div>
+        <div><div style="font-size:11px;color:var(--text3);margin-bottom:5px">身份证件</div><div class="docthumb">身份证 / 护照扫描件</div><div style="margin-top:6px;display:flex;gap:6px"><button class="btn btn-xs"><i class="ti ti-download"></i>下载</button><button class="btn btn-xs" onclick="toast('调用文件选择 · 重新上传证件')"><i class="ti ti-upload"></i>重新上传</button></div></div>
+        <div><div style="font-size:11px;color:var(--text3);margin-bottom:5px">地址证明（近 3 月）</div><div class="docthumb">地址证明</div><div style="margin-top:6px;display:flex;gap:6px"><button class="btn btn-xs"><i class="ti ti-download"></i>下载</button><button class="btn btn-xs" onclick="toast('调用文件选择 · 重新上传地址证明')"><i class="ti ti-upload"></i>重新上传</button></div></div>
+      </div>
+      <div id="kyc-reject-box" style="display:none;margin-top:14px;border-top:1px solid var(--line);padding-top:12px">
+        <label class="flbl" style="color:var(--red)">拒绝原因（必填 · 将通知客户并留档 7 年）</label>
+        <textarea class="inp" style="width:100%;min-height:54px" placeholder="如：地址证明超期 / 资金来源描述不足 / 证件照片模糊，请客户重传…"></textarea>
+        <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:8px"><button class="btn" onclick="kycRejectCancel()">取消</button><button class="btn btn-red" onclick="kycAct('reject')">确认拒绝</button></div>
       </div>
     </div>
     <div class="mf" id="kyc-actions"></div>
@@ -1186,7 +1190,7 @@ function openKyc(id,status,name){
   document.getElementById('kyc-mtitle').textContent=(titles[st]||'KYC 审核')+' · '+name;
   var banners={
     submitted:['p-blue','待审核 · SLA 倒计时：核对小程序提交的身份 / 地址 / 业务资料后处理。'],
-    reviewing:['p-blue','审核中：核对资料后可通过 / 要求补充 / 拒绝 / 标记 EDD。'],
+    reviewing:['p-blue','审核中：可编辑修改内容 / 重新上传证件，然后通过 / 拒绝 / 标记 EDD。'],
     edd:['p-amber','EDD 增强尽调：命中 PEP / 高风险，需补资金来源证明 + 业务关系合理性，合规二次审核。'],
     frozen:['p-red','⚠ 制裁名单命中，订单已自动冻结。合规复核后解冻或上报 STR；对客户 no tipping-off。'],
     approved:['p-green','已通过：尽调完成，资料 AMLO 留存 7 年。仅查看。'],
@@ -1195,22 +1199,25 @@ function openKyc(id,status,name){
   var b=banners[st]||banners.submitted, banner=document.getElementById('kyc-banner');
   banner.className='pill '+b[0]; banner.style.display='block'; banner.style.padding='10px 12px';
   banner.innerHTML='<i class="ti ti-info-circle"></i> '+b[1];
-  document.getElementById('kyc-pep').innerHTML = (st==='edd')?'<span class="pill p-purple">命中 · 含家属</span>':'<span class="pill p-gray">无命中</span>';
-  document.getElementById('kyc-san').innerHTML = (st==='frozen')?'<span class="pill p-red">命中 · 冻结</span>':'<span class="pill p-green">未命中</span>';
-  var DL='<button class="btn"><i class="ti ti-download"></i>打包下载资料</button>';
-  var full=DL+'<button class="btn" onclick="kycAct(\'request-more\')">要求补充</button><button class="btn btn-red" onclick="kycAct(\'reject\')">拒绝</button><button class="btn" onclick="kycAct(\'edd\')">标记 EDD</button><button class="btn btn-p" onclick="kycAct(\'approve\')">通过</button>';
+  var rb=document.getElementById('kyc-reject-box'); if(rb) rb.style.display='none';
+  var DL='<button class="btn"><i class="ti ti-download"></i>打包下载</button>';
+  var SAVE='<button class="btn" onclick="toast(\'KYC 资料修改已保存\')">保存修改</button>';
+  var REJ='<button class="btn btn-red" onclick="kycReject()">拒绝</button>';
+  var full=DL+SAVE+REJ+'<button class="btn" onclick="kycAct(\'edd\')">标记 EDD</button><button class="btn btn-p" onclick="kycAct(\'approve\')">通过</button>';
   var acts={
     submitted:full, reviewing:full,
-    edd:DL+'<button class="btn" onclick="kycAct(\'request-more\')">要求补充材料</button><button class="btn btn-red" onclick="kycAct(\'reject\')">拒绝</button><button class="btn btn-p" onclick="kycAct(\'approve\')">EDD 通过</button>',
+    edd:DL+SAVE+REJ+'<button class="btn btn-p" onclick="kycAct(\'approve\')">EDD 通过</button>',
     frozen:DL+'<button class="btn btn-red" onclick="kycAct(\'str\')">上报 STR</button><button class="btn btn-p" onclick="kycAct(\'unfreeze\')">解冻放行</button>',
-    approved:DL+'<button class="btn btn-p" onclick="closeM(\'m-kyc\')">关闭</button>',
+    approved:DL+SAVE+'<button class="btn btn-p" onclick="closeM(\'m-kyc\')">关闭</button>',
     rejected:DL+'<button class="btn btn-p" onclick="closeM(\'m-kyc\')">关闭</button>'
   };
   document.getElementById('kyc-actions').innerHTML=acts[st]||full;
   document.getElementById('m-kyc').classList.add('on');
 }
 function openBill(id){_bid=id;document.getElementById('m-bill').classList.add('on')}
-function kycAct(action){var m={'request-more':'已要求补充材料，退回小程序','reject':'已拒绝，留档 7 年','edd':'已标记 EDD 增强尽调','approve':'已通过','unfreeze':'已解冻放行','str':'已上报可疑交易 STR'};if(_kid){jpost('/kyc/'+_kid+'/'+action).then(function(){renderKyc();loadDash();}).catch(function(){});}closeM('m-kyc');toast(m[action]||'已处理')}
+function kycReject(){var rb=document.getElementById('kyc-reject-box');if(rb){rb.style.display='block';rb.scrollIntoView({block:'nearest'});}}
+function kycRejectCancel(){var rb=document.getElementById('kyc-reject-box');if(rb)rb.style.display='none';}
+function kycAct(action){var m={'reject':'已拒绝，留档 7 年','edd':'已标记 EDD 增强尽调','approve':'已通过','unfreeze':'已解冻放行','str':'已上报可疑交易 STR'};if(_kid){jpost('/kyc/'+_kid+'/'+action).then(function(){renderKyc();loadDash();}).catch(function(){});}closeM('m-kyc');toast(m[action]||'已处理')}
 function billConfirm(){if(!_bid)return;jpost('/bills/'+_bid+'/confirm').then(()=>{closeM('m-bill');toast('已确认到账 · 订单进入服务中');renderBills();loadDash()})}
 function billReject(){if(!_bid)return;jpost('/bills/'+_bid+'/reject').then(()=>{closeM('m-bill');toast('已驳回，通知客户重传');renderBills();loadDash()})}
 function settleComm(id){jpost('/commissions/'+id+'/settle').then(()=>{toast('佣金已标记结算');renderComm();loadDash()})}
