@@ -294,14 +294,21 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
       <!-- ════ 核名&商标 ════ -->
       <div class="page" id="p-namecheck">
         <div class="card cp" style="background:var(--accent-bg);border-color:var(--accent-d)"><div style="font-size:12px;color:var(--accent-d)"><i class="ti ti-search"></i> <b>核名&商标</b>：客户提交<b>核名（繁体）、核名（英文）、商标（繁体）</b>三项；<b>无智能预检</b>，由服务人员在香港公司注册处与知识产权署<b>人工查册</b>后，逐项给出核查结果与顾问建议，结果回推小程序「核名 &amp; 商标查询结果」。查名<b>不保证 100%</b>，最终以注册处核准为准。</div></div>
-        <div class="filters"><span class="chip on">全部</span><span class="chip">待核查 3</span><span class="chip">核查中</span><span class="chip">已出结果</span><span class="chip">待客户确认</span><span class="chip">名称锁定中</span><input class="inp" placeholder="名称 / 客户" style="margin-left:auto;width:180px"></div>
+        <div class="filters">
+          <span class="chip on">全部</span><span class="chip">待核查 3</span><span class="chip">核查中</span><span class="chip">已出结果</span><span class="chip">待客户确认</span><span class="chip">名称锁定中</span>
+          <select class="inp" style="margin-left:auto;width:130px"><option>全部服务人员</option><option>陈顾问</option><option>林顾问</option><option>王顾问</option><option>未分配</option></select>
+          <select class="inp" style="width:120px"><option>提交时间</option><option>近 7 天</option><option>近 30 天</option><option>自定义…</option></select>
+          <input class="inp" placeholder="名称 / 客户" style="width:160px">
+        </div>
         <div class="card"><table>
-          <thead><tr><th>客户</th><th>客户提交（核名繁体 / 核名英文 / 商标繁体）</th><th>人工核查结果（3 项）</th><th>状态</th><th></th></tr></thead>
+          <thead><tr><th>客户</th><th>客户提交（核名繁体 / 核名英文 / 商标繁体）</th><th>人工核查结果（3 项）</th><th>服务人员</th><th>维护时间</th><th>状态</th><th></th></tr></thead>
           <tbody>
             <tr>
               <td>陈大文</td>
               <td><div style="line-height:1.7"><b>星辰科技有限公司</b><div style="color:var(--text3);font-size:11px">Star Tech Limited · 商标：星辰 / Star Tech</div></div></td>
               <td><div style="display:flex;flex-direction:column;gap:3px"><span class="pill p-green">核名繁体 · 🟢 可用</span><span class="pill p-green">核名英文 · 🟢 可用</span><span class="pill p-green">商标 · 🟢 可注册</span></div></td>
+              <td>陈顾问</td>
+              <td style="white-space:nowrap;color:var(--text2)">2026-06-03<div style="color:var(--text3);font-size:11px">14:20</div></td>
               <td><span class="pill p-green">已出结果</span></td>
               <td><button class="btn btn-xs btn-p" onclick="openNameCheck('Star Tech Limited')">维护结果</button></td>
             </tr>
@@ -309,6 +316,8 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
               <td>李美琪</td>
               <td><div style="line-height:1.7"><b>環球視野有限公司</b><div style="color:var(--text3);font-size:11px">Global Vision Limited · 商标：環球視野</div></div></td>
               <td><div style="display:flex;flex-direction:column;gap:3px"><span class="pill p-amber">核名繁体 · 🟡 有近似</span><span class="pill p-amber">核名英文 · 🟡 有近似</span><span class="pill p-amber">商标 · 🟠 有近似</span></div></td>
+              <td>林顾问</td>
+              <td style="white-space:nowrap;color:var(--text2)">2026-06-21<div style="color:var(--text3);font-size:11px">10:05</div></td>
               <td><span class="pill p-amber">待客户确认</span></td>
               <td><button class="btn btn-xs btn-p" onclick="openNameCheck('Global Vision Limited')">维护结果</button></td>
             </tr>
@@ -316,6 +325,8 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
               <td>王志强</td>
               <td><div style="line-height:1.7"><b>皇家信託有限公司</b><div style="color:var(--text3);font-size:11px">Royal Trust Limited · 商标：皇家</div></div></td>
               <td><div style="display:flex;flex-direction:column;gap:3px"><span class="pill p-gray">核名繁体 · 待核查</span><span class="pill p-gray">核名英文 · 待核查</span><span class="pill p-gray">商标 · 待核查</span></div></td>
+              <td><span class="pill p-gray">未分配</span></td>
+              <td style="white-space:nowrap;color:var(--text3)">—</td>
               <td><span class="pill p-blue">待核查</span></td>
               <td><button class="btn btn-xs btn-p" onclick="openNameCheck('Royal Trust Limited')">维护结果</button></td>
             </tr>
@@ -339,15 +350,16 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
 
       <!-- ════ 账单 / 回单确认 ════ -->
       <div class="page" id="p-bills">
-        <div class="filters"><span class="chip on">待确认 4</span><span class="chip">待支付</span><span class="chip">已到账</span><span class="chip">已驳回</span><span class="chip">已作废</span>
-          <button class="btn" style="margin-left:auto"><i class="ti ti-plus"></i>手动生成账单</button><button class="btn"><i class="ti ti-download"></i>导出对账</button></div>
+        <div class="card cp" style="background:var(--accent-bg);border-color:var(--accent-d)"><div style="font-size:12px;color:var(--accent-d)"><i class="ti ti-receipt"></i> <b>回单核验</b>：服务人员核对客户付款信息与上传的付款截图，在网银确认到账后<b>上传银行入账截图</b>并点<b>「确认付款」</b>；如未查到入账则选<b>「未收到付款」</b>通知客户。本模块<b>仅用于核验与确认付款</b>，<b>不支持退款、作废 / 重开</b>等其他操作。</div></div>
+        <div class="filters"><span class="chip on">待核验 2</span><span class="chip">待支付</span><span class="chip">已确认付款</span><span class="chip">未收到付款</span>
+          <input class="inp" placeholder="账单号 / 客户" style="margin-left:auto;width:200px"></div>
         <div class="card"><table>
-          <thead><tr><th>账单号</th><th>订单 / 服务</th><th>金额</th><th>印花税</th><th>回单</th><th>状态</th><th></th></tr></thead>
+          <thead><tr><th>账单号</th><th>订单 / 服务</th><th>金额</th><th>印花税</th><th>客户回单</th><th>状态</th><th></th></tr></thead>
           <tbody id="bill-tb">
-            <tr><td>LEA-2026-0188-1</td><td>陈大文 · 标准注册（首付）</td><td>HKD 2,750</td><td>—</td><td><span class="pill p-blue">已上传</span></td><td><span class="pill p-blue">待确认</span></td><td><button class="btn btn-xs btn-p" onclick="openBill()">核对回单</button></td></tr>
-            <tr><td>LEA-2026-0210-1</td><td>科达 · 股份转让</td><td>HKD 2,000</td><td style="color:var(--amber)">HKD 1,200 (0.2%)</td><td><span class="pill p-blue">已上传</span></td><td><span class="pill p-blue">待确认</span></td><td><button class="btn btn-xs btn-p" onclick="openBill()">核对回单</button></td></tr>
-            <tr><td>LEA-2026-0205-1</td><td>李美琪 · 年审</td><td>HKD 2,800</td><td>—</td><td><span class="pill p-gray">未上传</span></td><td><span class="pill p-amber">待支付</span></td><td><button class="btn btn-xs">作废 / 重开</button></td></tr>
-            <tr><td>LEA-2026-0142-2</td><td>恒丰 · 董事变更</td><td>HKD 800</td><td>—</td><td>—</td><td><span class="pill p-green">已到账</span></td><td><button class="btn btn-xs btn-red">退款</button></td></tr>
+            <tr><td>LEA-2026-0188-1</td><td>陈大文 · 标准注册（首付）</td><td>HKD 2,750</td><td>—</td><td><span class="pill p-blue">已上传</span></td><td><span class="pill p-blue">待核验</span></td><td><button class="btn btn-xs btn-p" onclick="openBill()">核验回单</button></td></tr>
+            <tr><td>LEA-2026-0210-1</td><td>科达 · 股份转让</td><td>HKD 2,000</td><td style="color:var(--amber)">HKD 1,200 (0.2%)</td><td><span class="pill p-blue">已上传</span></td><td><span class="pill p-blue">待核验</span></td><td><button class="btn btn-xs btn-p" onclick="openBill()">核验回单</button></td></tr>
+            <tr><td>LEA-2026-0205-1</td><td>李美琪 · 年审</td><td>HKD 2,800</td><td>—</td><td><span class="pill p-gray">未上传</span></td><td><span class="pill p-amber">待支付</span></td><td><button class="btn btn-xs btn-p" onclick="openBill()">核验回单</button></td></tr>
+            <tr><td>LEA-2026-0142-2</td><td>恒丰 · 董事变更</td><td>HKD 800</td><td>—</td><td><span class="pill p-blue">已上传</span></td><td><span class="pill p-green">已确认付款</span></td><td><span style="font-size:11px;color:var(--green-d)"><i class="ti ti-circle-check"></i> 已确认</span></td></tr>
           </tbody>
         </table></div>
       </div>
@@ -843,23 +855,35 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
   </div>
 </div>
 
-<!-- 回单确认 Modal -->
+<!-- 回单核验 Modal（服务人员：核验信息 + 上传银行截图 → 确认付款 / 未收到付款）-->
 <div class="mask" id="m-bill" onclick="if(event.target===this)closeM('m-bill')">
-  <div class="modal" style="max-width:560px">
-    <div class="mh"><div><b style="font-size:14px">回单核对 · LEA-2026-0188-1</b><div style="font-size:11px;color:var(--text3)">陈大文 · 标准注册套餐（首付款）</div></div><button class="x" onclick="closeM('m-bill')">×</button></div>
+  <div class="modal" style="max-width:600px">
+    <div class="mh"><div><b style="font-size:14px">回单核验 · LEA-2026-0188-1</b><div style="font-size:11px;color:var(--text3)">陈大文 · 标准注册套餐（首付款）</div></div><button class="x" onclick="closeM('m-bill')">×</button></div>
     <div class="mb">
-      <div class="kv" style="margin-bottom:14px">
+      <div style="font-size:11px;color:var(--text3);font-weight:600;margin-bottom:8px">核验信息</div>
+      <div class="kv" style="margin-bottom:16px">
         <span class="k">应收金额</span><span><b>HKD 2,750.00</b>（AGT001 渠道价）</span>
         <span class="k">客户填报实付</span><span>HKD 2,750.00</span>
         <span class="k">付款银行 / 日期</span><span>HSBC · 2026-06-08</span>
-        <span class="k">附言</span><span style="color:var(--red)">LEA-2026-0188-1</span>
+        <span class="k">附言（核对用）</span><span style="color:var(--red)">LEA-2026-0188-1</span>
       </div>
-      <div><div style="font-size:11px;color:var(--text3);margin-bottom:5px">汇款回单截图</div><div class="docthumb" style="height:140px">银行汇款回单</div></div>
-      <div class="cp" style="background:var(--amber-bg);border-radius:7px;margin-top:12px;font-size:11.5px;color:var(--amber)"><i class="ti ti-alert-circle"></i> 请核对银行实际入账后再确认。确认后订单进入「服务中」并自动生成渠道应付佣金。</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div>
+          <div style="font-size:11px;color:var(--text3);margin-bottom:5px">客户上传的付款截图</div>
+          <div class="docthumb" style="height:130px">客户付款截图</div>
+          <div style="margin-top:6px"><button class="btn btn-xs"><i class="ti ti-download"></i>下载</button></div>
+        </div>
+        <div>
+          <div style="font-size:11px;color:var(--text3);margin-bottom:5px">服务人员上传银行入账截图</div>
+          <div class="docthumb" style="height:130px;cursor:pointer" onclick="toast('调用文件选择 · 上传银行入账截图')"><i class="ti ti-upload"></i> 点击上传</div>
+          <div style="margin-top:6px;font-size:11px;color:var(--text3)">在网银截图入账记录后上传留档</div>
+        </div>
+      </div>
+      <div class="cp" style="background:var(--amber-bg);border-radius:7px;margin-top:14px;font-size:11.5px;color:var(--amber)"><i class="ti ti-alert-circle"></i> 请在网银核对<b>实际入账</b>后再确认。<b>确认付款</b>后订单进入「服务中」；如未查到入账，选<b>未收到付款</b>通知客户。本模块不支持退款 / 作废 / 重开。</div>
     </div>
     <div class="mf">
-      <button class="btn btn-red" onclick="billReject()">驳回</button>
-      <button class="btn btn-p" onclick="billConfirm()">确认到账</button>
+      <button class="btn btn-red" onclick="billReject()"><i class="ti ti-x"></i>未收到付款</button>
+      <button class="btn btn-p" onclick="billConfirm()"><i class="ti ti-check"></i>确认付款</button>
     </div>
   </div>
 </div>
@@ -1337,7 +1361,7 @@ function go(el){
   var p=el.dataset.p;
   document.querySelectorAll('.page').forEach(pg=>pg.classList.remove('on'));
   document.getElementById('p-'+p).classList.add('on');
-  var meta={dash:['数据驾驶舱','实时运营总览'],supplierwt:['供应商工作台','供应商自助：分配订单 / 更新进度 / 结算对账（不在线结算）'],partner:['渠道商工作台','渠道商自助：归属订单 / 佣金对账（不在线结算）'],customers:['客户信息管理','客户档案与画像'],companies:['客户公司管理','法人主体 / CI·BR / SCR / 年审'],kyc:['KYC / EDD 审核','AMLO 尽职调查 · 后台跑 PEP/制裁'],register:['注册公司','公司注册服务执行 · 维护进度 / 资料'],namecheck:['核名&商标','人工核名（繁体/英文）+ 商标查询 · 无智能预检'],orders:['订单列表','进度只读联动服务 · 资料可下载'],bills:['账单 / 回单确认','财务核对到账'],products:['商品','商品目录 · 基础信息 + 流程节点 + 节点资料'],coupons:['卡券','卡券模板 + 发放 + 核销统计（承接小程序优惠券）'],messages:['消息','消息模板 + 年审 6 轮提醒 + 群发 + 发送记录'],supplier:['供应商管理','超管新增 · 支持服务 + 结算规则'],assign:['订单分配','派单给供应商履约'],suppliersettle:['订单结算','已完成订单 → 供应商结算（线下）'],channel:['渠道商管理','超管新增 · 推荐码 + 佣金（弹窗配置）'],commission:['佣金结算','已完成订单 → 渠道返点（线下）'],rbac:['员工和角色','RBAC 7 角色 + 自定义'],menuperm:['菜单权限','角色 × 菜单可见性配置'],compliance:['合规与审计','制裁 / SCR / 哈希链'],config:['系统参数','时效 / 额度 / 税率']};
+  var meta={dash:['数据驾驶舱','实时运营总览'],supplierwt:['供应商工作台','供应商自助：分配订单 / 更新进度 / 结算对账（不在线结算）'],partner:['渠道商工作台','渠道商自助：归属订单 / 佣金对账（不在线结算）'],customers:['客户信息管理','客户档案与画像'],companies:['客户公司管理','法人主体 / CI·BR / SCR / 年审'],kyc:['KYC / EDD 审核','AMLO 尽职调查 · 后台跑 PEP/制裁'],register:['注册公司','公司注册服务执行 · 维护进度 / 资料'],namecheck:['核名&商标','人工核名（繁体/英文）+ 商标查询 · 无智能预检'],orders:['订单列表','进度只读联动服务 · 资料可下载'],bills:['账单 / 回单确认','服务人员核验回单 · 确认付款 / 未收到付款（不含退款·重开）'],products:['商品','商品目录 · 基础信息 + 流程节点 + 节点资料'],coupons:['卡券','卡券模板 + 发放 + 核销统计（承接小程序优惠券）'],messages:['消息','消息模板 + 年审 6 轮提醒 + 群发 + 发送记录'],supplier:['供应商管理','超管新增 · 支持服务 + 结算规则'],assign:['订单分配','派单给供应商履约'],suppliersettle:['订单结算','已完成订单 → 供应商结算（线下）'],channel:['渠道商管理','超管新增 · 推荐码 + 佣金（弹窗配置）'],commission:['佣金结算','已完成订单 → 渠道返点（线下）'],rbac:['员工和角色','RBAC 7 角色 + 自定义'],menuperm:['菜单权限','角色 × 菜单可见性配置'],compliance:['合规与审计','制裁 / SCR / 哈希链'],config:['系统参数','时效 / 额度 / 税率']};
   var m=meta[p]||['',''];document.getElementById('pt').textContent=m[0];document.getElementById('ps').textContent=m[1];
   document.querySelector('.content').scrollTop=0;
 }
@@ -1512,8 +1536,8 @@ function renderBills(){jget('/bills').then(rows=>{var tb=document.getElementById
   tb.innerHTML=rows.map(r=>{
     var proof=r.proof_uploaded?'<span class="pill p-blue">已上传</span>':'<span class="pill p-gray">未上传</span>';
     var sd=r.stamp_duty>0?'<span style="color:var(--amber)">HKD '+r.stamp_duty.toLocaleString()+' (0.2%)</span>':'—';
-    var act=r.status==='待确认'?'<button class="btn btn-xs btn-p" onclick="openBill(\''+r.id+'\')">核对回单</button>'
-      :(r.status==='已到账'?'<button class="btn btn-xs btn-red">退款</button>':'<button class="btn btn-xs">作废 / 重开</button>');
+    var act=(r.status==='待确认'||r.status==='待支付')?'<button class="btn btn-xs btn-p" onclick="openBill(\''+r.id+'\')">核验回单</button>'
+      :(r.status==='已到账'?'<span style="font-size:11px;color:var(--green)"><i class="ti ti-circle-check"></i> 已确认</span>':'<span style="font-size:11px;color:var(--red)">未收到付款</span>');
     return '<tr><td>'+r.id+'</td><td>'+r.customer_name+' · '+r.service_item+'</td><td>HKD '+r.amount.toLocaleString()+'</td><td>'+sd+'</td><td>'+proof+'</td><td><span class="pill '+(BILL_PILL[r.status]||'p-gray')+'">'+r.status+'</span></td><td>'+act+'</td></tr>';
   }).join('');
 })}
@@ -1559,8 +1583,8 @@ function openBill(id){_bid=id;document.getElementById('m-bill').classList.add('o
 function kycReject(){var rb=document.getElementById('kyc-reject-box');if(rb){rb.style.display='block';rb.scrollIntoView({block:'nearest'});}}
 function kycRejectCancel(){var rb=document.getElementById('kyc-reject-box');if(rb)rb.style.display='none';}
 function kycAct(action){var m={'reject':'已拒绝，留档 7 年','edd':'已标记 EDD 增强尽调','approve':'已通过','unfreeze':'已解冻放行','str':'已上报可疑交易 STR'};if(_kid){jpost('/kyc/'+_kid+'/'+action).then(function(){renderKyc();loadDash();}).catch(function(){});}closeM('m-kyc');toast(m[action]||'已处理')}
-function billConfirm(){if(!_bid)return;jpost('/bills/'+_bid+'/confirm').then(()=>{closeM('m-bill');toast('已确认到账 · 订单进入服务中');renderBills();loadDash()})}
-function billReject(){if(!_bid)return;jpost('/bills/'+_bid+'/reject').then(()=>{closeM('m-bill');toast('已驳回，通知客户重传');renderBills();loadDash()})}
+function billConfirm(){closeM('m-bill');toast('已确认付款 · 订单进入服务中');if(_bid)jpost('/bills/'+_bid+'/confirm').then(()=>{renderBills();loadDash()}).catch(()=>{})}
+function billReject(){closeM('m-bill');toast('已标记未收到付款 · 通知客户');if(_bid)jpost('/bills/'+_bid+'/reject').then(()=>{renderBills();loadDash()}).catch(()=>{})}
 function settleComm(id){jpost('/commissions/'+id+'/settle').then(()=>{toast('佣金已标记结算');renderComm();loadDash()})}
 
 (function boot(){loadDash();renderKyc();renderBills();renderComm();})();
