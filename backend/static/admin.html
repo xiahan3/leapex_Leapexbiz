@@ -10,7 +10,7 @@
 :root{
   --bg:#F4F4F2; --card:#FFFFFF; --sb:#1C1B19; --sb2:#262420;
   --text:#1A1A1A; --text2:#6B6B6B; --text3:#9B9B9B; --line:#E7E6E2; --line2:#DEDDD8;
-  --gold:#B8860B; --gold-bg:#FBF3E0; --accent:#1A1A1A;
+  --gold:#B8860B; --gold-bg:#FBF3E0; --accent:#1A1A1A; --accent-d:#C15F3C; --accent-bg:#F7ECE6;
   --green:#2E8B57; --green-bg:#E7F2EC; --blue:#3B6EA5; --blue-bg:#EAF1F8;
   --amber:#B45309; --amber-bg:#FBF3E6; --red:#D93A3A; --red-bg:#FBEAEA;
   --purple:#7A5C9E; --purple-bg:#F0EBF4;
@@ -62,7 +62,7 @@ tbody tr:hover{background:#FAFAF8}
 .pill{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:600;padding:2px 9px;border-radius:11px;white-space:nowrap}
 .p-green{background:var(--green-bg);color:var(--green)}.p-blue{background:var(--blue-bg);color:var(--blue)}
 .p-amber{background:var(--amber-bg);color:var(--amber)}.p-red{background:var(--red-bg);color:var(--red)}
-.p-gray{background:#EEEDEA;color:var(--text2)}.p-gold{background:var(--gold-bg);color:var(--gold)}.p-purple{background:var(--purple-bg);color:var(--purple)}
+.p-gray{background:#EEEDEA;color:var(--text2)}.p-gold{background:var(--gold-bg);color:var(--gold)}.p-purple{background:var(--purple-bg);color:var(--purple)}.p-accent{background:var(--accent-bg);color:var(--accent-d)}
 .btn{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:500;padding:7px 13px;border-radius:7px;border:1px solid var(--line2);background:var(--card);color:var(--text);cursor:pointer;font-family:inherit}
 .btn:hover{background:#FAFAF8}
 .btn-p{background:#1A1A1A;color:#fff;border-color:#1A1A1A}.btn-p:hover{opacity:.88}
@@ -161,6 +161,7 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
 
       <div class="ng">04 · 商品管理</div>
       <div class="ni" data-p="products" onclick="go(this)"><i class="ti ti-package"></i>商品</div>
+      <div class="ni" data-p="coupons" onclick="go(this)"><i class="ti ti-ticket"></i>卡券</div>
 
       <div class="ng">05 · 服务管理</div>
       <div class="ni" data-p="register" onclick="go(this)"><i class="ti ti-building-plus"></i>注册公司<span class="nb">3</span></div>
@@ -181,6 +182,7 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
       <div class="ni" data-p="rbac" onclick="go(this)"><i class="ti ti-users-group"></i>员工和角色</div>
       <div class="ni" data-p="menuperm" onclick="go(this)"><i class="ti ti-menu-2"></i>菜单权限</div>
       <div class="ni" data-p="compliance" onclick="go(this)"><i class="ti ti-shield-check"></i>合规与审计</div>
+      <div class="ni" data-p="messages" onclick="go(this)"><i class="ti ti-message-2"></i>消息<span class="nb">2</span></div>
       <div class="ni" data-p="config" onclick="go(this)"><i class="ti ti-settings"></i>系统参数</div>
     </nav>
   </aside>
@@ -485,6 +487,63 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
         </div>
       </div>
 
+      <!-- ════ 消息管理（08 · 承接小程序消息中心）════ -->
+      <div class="page" id="p-messages">
+        <div class="card cp" style="background:var(--accent-bg);border-color:var(--accent-d)"><div style="font-size:12px;color:var(--accent-d)"><i class="ti ti-message-2"></i> <b>消息管理</b>：维护<b>消息模板</b>（合规通知·不可退订 / 流程通知 / 年审提醒 / 营销）+ <b>年审 6 轮递进提醒</b> + <b>群发公告</b> + <b>发送记录</b>；多渠道下发（站内 / 微信服务通知 / 邮件）。业务事件自动触发，运营亦可手动群发。</div></div>
+        <div class="grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:14px">
+          <div class="kpi"><div class="l">今日已发送</div><div class="v">156</div><div class="d">条</div></div>
+          <div class="kpi"><div class="l">已读率</div><div class="v">78%</div><div class="d" style="color:var(--green)">站内 + 微信</div></div>
+          <div class="kpi"><div class="l">待发（定时）</div><div class="v">2</div><div class="d" style="color:var(--amber)">含 1 条公告</div></div>
+          <div class="kpi"><div class="l">发送失败</div><div class="v">3</div><div class="d" style="color:var(--red)">可重发</div></div>
+        </div>
+        <div class="filters">
+          <span class="chip on">全部</span><span class="chip">合规通知</span><span class="chip">流程通知</span><span class="chip">年审提醒</span><span class="chip">营销</span>
+          <button class="btn btn-p" style="margin-left:auto" onclick="openBroadcast()"><i class="ti ti-send"></i>新建群发 / 公告</button>
+        </div>
+        <div class="card">
+          <div class="ch"><span class="ct">消息模板</span><span class="pill p-accent">小程序消息中心数据源</span></div>
+          <table>
+            <thead><tr><th>分类</th><th>触发事件</th><th>标题模板</th><th>渠道</th><th>强制</th><th>状态</th><th></th></tr></thead>
+            <tbody>
+              <tr><td><span class="pill p-green">合规通知</span></td><td>KYC 审核结果</td><td>KYC 审核{结果}</td><td>站内 · 微信 · 邮件</td><td><span class="pill p-red">强制</span></td><td><span class="pill p-green">启用</span></td><td><button class="btn btn-xs" onclick="openMsgTpl('KYC 审核结果','合规通知')">编辑</button></td></tr>
+              <tr><td><span class="pill p-green">合规通知</span></td><td>核名结果</td><td>核名结果 · {公司名}</td><td>站内 · 微信</td><td><span class="pill p-red">强制</span></td><td><span class="pill p-green">启用</span></td><td><button class="btn btn-xs" onclick="openMsgTpl('核名结果','合规通知')">编辑</button></td></tr>
+              <tr><td><span class="pill p-blue">流程通知</span></td><td>账单生成</td><td>账单已生成 · {金额}</td><td>站内 · 微信</td><td><span class="pill p-gray">否</span></td><td><span class="pill p-green">启用</span></td><td><button class="btn btn-xs" onclick="openMsgTpl('账单生成','流程通知')">编辑</button></td></tr>
+              <tr><td><span class="pill p-blue">流程通知</span></td><td>待补资料</td><td>订单 {订单号} 需补充资料</td><td>站内 · 微信</td><td><span class="pill p-gray">否</span></td><td><span class="pill p-green">启用</span></td><td><button class="btn btn-xs" onclick="openMsgTpl('待补资料','流程通知')">编辑</button></td></tr>
+              <tr><td><span class="pill p-blue">流程通知</span></td><td>交付完成</td><td>{公司名} 交付物已寄出</td><td>站内 · 邮件</td><td><span class="pill p-gray">否</span></td><td><span class="pill p-green">启用</span></td><td><button class="btn btn-xs" onclick="openMsgTpl('交付完成','流程通知')">编辑</button></td></tr>
+              <tr><td><span class="pill p-amber">年审提醒</span></td><td>年审到期</td><td>{公司名} 年审到期前 {天数} 天</td><td>站内 · 微信 · 邮件</td><td><span class="pill p-gray">否</span></td><td><span class="pill p-green">启用</span></td><td><button class="btn btn-xs" onclick="openMsgTpl('年审到期','年审提醒')">编辑</button></td></tr>
+              <tr><td><span class="pill p-accent">营销</span></td><td>卡券发放</td><td>您有一张新券待领取</td><td>站内</td><td><span class="pill p-gray">否 · 可退订</span></td><td><span class="pill p-green">启用</span></td><td><button class="btn btn-xs" onclick="openMsgTpl('卡券发放','营销')">编辑</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <div class="ch"><span class="ct">年审提醒规则（6 轮递进）</span><span class="pill p-amber">对齐成立周年 + 42 天</span></div>
+          <table>
+            <thead><tr><th>轮次</th><th>触发（到期前）</th><th>模板</th><th>渠道</th><th>开关</th></tr></thead>
+            <tbody>
+              <tr><td>第 1 轮</td><td>60 天</td><td>年审到期</td><td>站内 · 微信</td><td><span class="pill p-green">启用</span></td></tr>
+              <tr><td>第 2 轮</td><td>42 天（法定周年 + 42）</td><td>年审到期</td><td>站内 · 微信 · 邮件</td><td><span class="pill p-green">启用</span></td></tr>
+              <tr><td>第 3 轮</td><td>30 天</td><td>年审到期</td><td>站内 · 微信</td><td><span class="pill p-green">启用</span></td></tr>
+              <tr><td>第 4 轮</td><td>14 天</td><td>年审到期</td><td>站内 · 微信</td><td><span class="pill p-green">启用</span></td></tr>
+              <tr><td>第 5 轮</td><td>7 天</td><td>年审到期</td><td>站内 · 微信 · 邮件</td><td><span class="pill p-green">启用</span></td></tr>
+              <tr><td>第 6 轮</td><td>1 天</td><td>年审到期</td><td>站内 · 微信 · 邮件</td><td><span class="pill p-green">启用</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <div class="ch"><span class="ct">发送记录</span><span class="pill p-gray">按接收人 / 分类 / 渠道 / 状态 检索</span></div>
+          <table>
+            <thead><tr><th>接收人</th><th>分类</th><th>标题</th><th>渠道</th><th>状态</th><th>时间</th></tr></thead>
+            <tbody>
+              <tr><td>陈大文</td><td><span class="pill p-green">合规</span></td><td>KYC 审核已通过</td><td>站内 · 微信</td><td><span class="pill p-green">已读</span></td><td>今天 09:32</td></tr>
+              <tr><td>陈大文</td><td><span class="pill p-green">合规</span></td><td>核名结果 · Star Tech Limited 可注册</td><td>站内</td><td><span class="pill p-green">已读</span></td><td>今天 10:15</td></tr>
+              <tr><td>陈大文</td><td><span class="pill p-blue">流程</span></td><td>首付款账单已生成 · HKD 2,800</td><td>站内 · 微信</td><td><span class="pill p-blue">已发送</span></td><td>今天 10:20</td></tr>
+              <tr><td>恒丰贸易（陈大文）</td><td><span class="pill p-amber">年审</span></td><td>年审到期前 60 天 · 第 1 轮</td><td>站内 · 邮件</td><td><span class="pill p-green">已读</span></td><td>昨天</td></tr>
+              <tr><td>王志强</td><td><span class="pill p-blue">流程</span></td><td>订单 ORD-2026-0190 需补充资料</td><td>微信</td><td><span class="pill p-red">失败 · 可重发</span></td><td>2 天前</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
       <!-- ════ 商品管理 · 服务与套餐 ════ -->
       <div class="page" id="p-products">
         <div class="filters">
@@ -511,6 +570,44 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
           </table>
         </div>
         <div class="card cp" style="background:var(--bg2)"><div style="font-size:12px;color:var(--text2)"><i class="ti ti-info-circle"></i> 价格统一为<b>标准价</b>（双币展示）；渠道差异在「渠道商管理 · 结算规则」配佣金，不改售价。点「新增商品 / 编辑」维护字段与富文本详情。</div></div>
+      </div>
+
+      <!-- ════ 卡券管理（04 · 承接小程序优惠券）════ -->
+      <div class="page" id="p-coupons">
+        <div class="card cp" style="background:var(--accent-bg);border-color:var(--accent)"><div style="font-size:12px;color:var(--accent-d)"><i class="ti ti-ticket"></i> <b>卡券管理</b>：维护<b>卡券模板</b>（免费服务券 / 立减券 / 折扣券）+ <b>发放</b>（定向 / 群发 / 渠道自动）+ <b>发放记录与核销统计</b>；发放即进入客户「我的·优惠券」，核销发生在<b>账单确认抵扣</b>。券<b>不可提现、不可叠加</b>。</div></div>
+        <div class="grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:14px">
+          <div class="kpi"><div class="l">累计发放</div><div class="v">208</div><div class="d">张</div></div>
+          <div class="kpi"><div class="l">已核销</div><div class="v">75</div><div class="d" style="color:var(--green)">核销率 36%</div></div>
+          <div class="kpi"><div class="l">待使用</div><div class="v">121</div><div class="d" style="color:var(--amber)">含 12 张近效期</div></div>
+          <div class="kpi"><div class="l">带动 GMV</div><div class="v">HKD 42.6K</div><div class="d">券驱动成交</div></div>
+        </div>
+        <div class="filters">
+          <span class="chip on">全部</span><span class="chip">免费服务券</span><span class="chip">立减券</span><span class="chip">折扣券</span><span class="chip">已下架</span>
+          <button class="btn btn-p" style="margin-left:auto" onclick="openCoupon()"><i class="ti ti-plus"></i>新增卡券</button>
+        </div>
+        <div class="card">
+          <div class="ch"><span class="ct">卡券模板</span><span class="pill p-accent">小程序券面 + 账单抵扣规则数据源</span></div>
+          <table>
+            <thead><tr><th>券名</th><th>类型</th><th>面值 / 门槛</th><th>适用范围</th><th>有效期</th><th>发放 / 核销</th><th>状态</th><th></th></tr></thead>
+            <tbody>
+              <tr><td><b>免费核名券</b><div style="color:var(--text3);font-size:11px">兑换 1 次人工核名（查名 + 商标）</div></td><td><span class="pill p-green">免费服务券</span></td><td>免核名费<div style="color:var(--text3);font-size:11px">无门槛</div></td><td>核名查册</td><td>至 2026-12-31</td><td>120 / 45</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openCoupon('免费核名券')">编辑</button> <button class="btn btn-xs btn-p" onclick="openCouponIssue('免费核名券')"><i class="ti ti-send"></i>发放</button></td></tr>
+              <tr><td><b>新客注册立减券</b><div style="color:var(--text3);font-size:11px">下单立减，账单自动抵扣</div></td><td><span class="pill p-gold">立减券</span></td><td>− HK$200<div style="color:var(--text3);font-size:11px">满 HK$3,800</div></td><td>标准 / 高级注册</td><td>至 2026-09-30</td><td>88 / 30</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openCoupon('新客注册立减券')">编辑</button> <button class="btn btn-xs btn-p" onclick="openCouponIssue('新客注册立减券')"><i class="ti ti-send"></i>发放</button></td></tr>
+              <tr><td><b>老客续费折扣券</b><div style="color:var(--text3);font-size:11px">年审 / 记账续费专享</div></td><td><span class="pill p-blue">折扣券</span></td><td>9 折<div style="color:var(--text3);font-size:11px">无门槛</div></td><td>年审 · 记账报税</td><td>领取后 30 天</td><td>0 / 0</td><td><span class="pill p-gray">下架</span></td><td><button class="btn btn-xs" onclick="openCoupon('老客续费折扣券')">编辑</button> <button class="btn btn-xs" onclick="toast('上架后可发放')">上架</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <div class="ch"><span class="ct">发放记录（券实例）</span><span class="pill p-gray">客户「我的·优惠券」明细</span></div>
+          <table>
+            <thead><tr><th>客户</th><th>卡券</th><th>状态</th><th>领取时间</th><th>使用订单</th><th>使用时间</th></tr></thead>
+            <tbody>
+              <tr><td>陈大文</td><td>免费核名券</td><td><span class="pill p-gray">已用</span></td><td>2026-06-01</td><td>ORD-2026-0188</td><td>2026-06-03</td></tr>
+              <tr><td>陈大文</td><td>新客注册立减券</td><td><span class="pill p-gray">已用</span></td><td>2026-06-05</td><td>ORD-2026-0188</td><td>2026-06-08</td></tr>
+              <tr><td>李美琪</td><td>免费核名券</td><td><span class="pill p-green">可用</span></td><td>2026-06-20</td><td>—</td><td>—</td></tr>
+              <tr><td>王志强</td><td>新客注册立减券</td><td><span class="pill p-amber">过期</span></td><td>2026-03-01</td><td>—</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <!-- ════ 订单分配（给供应商履约）════ -->
@@ -1073,6 +1170,89 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
   </div>
 </div>
 
+<!-- 卡券模板 · 新增 / 编辑 Modal -->
+<div class="mask" id="m-coupon" onclick="if(event.target===this)closeM('m-coupon')">
+  <div class="modal" style="max-width:600px">
+    <div class="mh"><div><b style="font-size:14px" id="coupon-title">新增卡券</b><div style="font-size:11px;color:var(--text3)">券模板 · 驱动小程序券面与账单抵扣规则</div></div><button class="x" onclick="closeM('m-coupon')">×</button></div>
+    <div class="mb"><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 16px">
+      <div style="grid-column:1/-1"><label class="flbl">券名 *</label><input class="inp" style="width:100%" id="coupon-name" placeholder="如 新客注册立减券"></div>
+      <div><label class="flbl">类型 *</label><select class="inp" style="width:100%" id="coupon-type"><option>免费服务券</option><option>立减券</option><option>折扣券</option></select></div>
+      <div><label class="flbl">面值（立减额 / 折扣率）</label><input class="inp" style="width:100%" placeholder="如 200 或 9折"></div>
+      <div><label class="flbl">币种</label><select class="inp" style="width:100%"><option>HKD 港币</option><option>CNY 人民币</option><option>—（免费服务券）</option></select></div>
+      <div><label class="flbl">关联免费服务（免费服务券）</label><select class="inp" style="width:100%"><option>核名查册</option><option>—</option></select></div>
+      <div style="grid-column:1/-1"><label class="flbl">适用范围</label><input class="inp" style="width:100%" placeholder="如 标准 / 高级注册；或 年审·记账"></div>
+      <div><label class="flbl">满减门槛（HKD，0=无）</label><input class="inp" style="width:100%" placeholder="3800"></div>
+      <div><label class="flbl">有效期规则</label><select class="inp" style="width:100%"><option>固定截止日</option><option>领取后 N 天</option></select></div>
+      <div><label class="flbl">截止日 / N 天</label><input class="inp" style="width:100%" placeholder="2026-09-30 或 30"></div>
+      <div><label class="flbl">发放上限 / 每人限领</label><input class="inp" style="width:100%" placeholder="200 / 1"></div>
+      <div><label class="flbl">可叠加</label><select class="inp" style="width:100%" disabled><option>否（不可叠加 · 不可提现）</option></select></div>
+      <div><label class="flbl">状态</label><select class="inp" style="width:100%"><option>上架</option><option>下架</option></select></div>
+    </div></div>
+    <div class="mf"><button class="btn" onclick="closeM('m-coupon')">取消</button><button class="btn btn-p" onclick="closeM('m-coupon');toast('卡券已保存')">保存卡券</button></div>
+  </div>
+</div>
+
+<!-- 卡券发放 Modal -->
+<div class="mask" id="m-couponissue" onclick="if(event.target===this)closeM('m-couponissue')">
+  <div class="modal" style="max-width:520px">
+    <div class="mh"><div><b style="font-size:14px" id="issue-title">发放卡券</b><div style="font-size:11px;color:var(--text3)">发放即进入客户「我的·优惠券」</div></div><button class="x" onclick="closeM('m-couponissue')">×</button></div>
+    <div class="mb"><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 16px">
+      <div style="grid-column:1/-1"><label class="flbl">发放对象</label><select class="inp" style="width:100%"><option>指定客户</option><option>客户群（新注册未下单）</option><option>客户群（高价值）</option><option>按服务地区</option><option>按渠道</option><option>全部客户</option></select></div>
+      <div style="grid-column:1/-1"><label class="flbl">指定客户 / 条件</label><input class="inp" style="width:100%" placeholder="搜索客户姓名 / 手机，或留空按群发放"></div>
+      <div><label class="flbl">每人发放张数</label><input class="inp" style="width:100%" value="1"></div>
+      <div><label class="flbl">预计发放</label><input class="inp" style="width:100%" value="128 人" disabled></div>
+      <div style="grid-column:1/-1"><label class="flbl">附带消息通知</label><select class="inp" style="width:100%"><option>是 · 发送「卡券发放」消息</option><option>否 · 静默发放</option></select></div>
+    </div></div>
+    <div class="mf"><button class="btn" onclick="closeM('m-couponissue')">取消</button><button class="btn btn-p" onclick="closeM('m-couponissue');toast('卡券已发放 · 已同步至客户端')"><i class="ti ti-send"></i>确认发放</button></div>
+  </div>
+</div>
+
+<!-- 消息模板 · 编辑 Modal -->
+<div class="mask" id="m-msgtpl" onclick="if(event.target===this)closeM('m-msgtpl')">
+  <div class="modal" style="max-width:600px">
+    <div class="mh"><div><b style="font-size:14px" id="msgtpl-title">编辑消息模板</b><div style="font-size:11px;color:var(--text3)">变量占位：{公司名} {金额} {到期日} {订单号} {结果} {天数}</div></div><button class="x" onclick="closeM('m-msgtpl')">×</button></div>
+    <div class="mb"><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 16px">
+      <div><label class="flbl">分类</label><select class="inp" style="width:100%" id="msgtpl-cat"><option>合规通知</option><option>流程通知</option><option>年审提醒</option><option>营销</option></select></div>
+      <div><label class="flbl">触发事件</label><input class="inp" style="width:100%" id="msgtpl-evt" value="KYC 审核结果"></div>
+      <div style="grid-column:1/-1"><label class="flbl">标题模板</label><input class="inp" style="width:100%" value="KYC 审核{结果}"></div>
+      <div style="grid-column:1/-1"><label class="flbl">内容模板</label><textarea class="inp" style="width:100%;min-height:66px">您的尽职调查已{结果}，{公司名} 可继续核名与注册流程。</textarea></div>
+      <div style="grid-column:1/-1"><label class="flbl">下发渠道</label>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:4px;font-size:12.5px">
+          <label style="display:flex;align-items:center;gap:5px"><input type="checkbox" checked> 站内消息</label>
+          <label style="display:flex;align-items:center;gap:5px"><input type="checkbox" checked> 微信服务通知</label>
+          <label style="display:flex;align-items:center;gap:5px"><input type="checkbox"> 邮件</label>
+        </div>
+      </div>
+      <div><label class="flbl">强制下发（不可退订）</label><select class="inp" style="width:100%" id="msgtpl-force"><option>是（合规通知）</option><option>否（可退订）</option></select></div>
+      <div><label class="flbl">状态</label><select class="inp" style="width:100%"><option>启用</option><option>停用</option></select></div>
+    </div></div>
+    <div class="mf"><button class="btn" onclick="closeM('m-msgtpl')">取消</button><button class="btn btn-p" onclick="closeM('m-msgtpl');toast('消息模板已保存')">保存模板</button></div>
+  </div>
+</div>
+
+<!-- 群发 / 公告 Modal -->
+<div class="mask" id="m-broadcast" onclick="if(event.target===this)closeM('m-broadcast')">
+  <div class="modal" style="max-width:560px">
+    <div class="mh"><div><b style="font-size:14px">新建群发 / 公告</b><div style="font-size:11px;color:var(--text3)">手动向目标人群下发消息 · 合规类不受退订影响</div></div><button class="x" onclick="closeM('m-broadcast')">×</button></div>
+    <div class="mb"><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 16px">
+      <div style="grid-column:1/-1"><label class="flbl">标题 *</label><input class="inp" style="width:100%" placeholder="如 中秋节假期办公时间通知"></div>
+      <div><label class="flbl">分类</label><select class="inp" style="width:100%"><option>营销</option><option>流程通知</option><option>合规通知</option></select></div>
+      <div><label class="flbl">目标人群</label><select class="inp" style="width:100%"><option>全部客户</option><option>按服务地区（香港）</option><option>公司状态 = 年审待办</option><option>按渠道</option><option>指定客户</option></select></div>
+      <div style="grid-column:1/-1"><label class="flbl">内容</label><textarea class="inp" style="width:100%;min-height:70px" placeholder="支持 {公司名} 等变量占位…"></textarea></div>
+      <div style="grid-column:1/-1"><label class="flbl">下发渠道</label>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:4px;font-size:12.5px">
+          <label style="display:flex;align-items:center;gap:5px"><input type="checkbox" checked> 站内消息</label>
+          <label style="display:flex;align-items:center;gap:5px"><input type="checkbox"> 微信服务通知</label>
+          <label style="display:flex;align-items:center;gap:5px"><input type="checkbox"> 邮件</label>
+        </div>
+      </div>
+      <div><label class="flbl">发送方式</label><select class="inp" style="width:100%"><option>立即发送</option><option>定时发送</option></select></div>
+      <div><label class="flbl">预计触达</label><input class="inp" style="width:100%" value="342 人" disabled></div>
+    </div></div>
+    <div class="mf"><button class="btn" onclick="closeM('m-broadcast')">取消</button><button class="btn btn-p" onclick="closeM('m-broadcast');toast('消息已发送 · 已写入发送记录')"><i class="ti ti-send"></i>发送</button></div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -1082,7 +1262,7 @@ function go(el){
   var p=el.dataset.p;
   document.querySelectorAll('.page').forEach(pg=>pg.classList.remove('on'));
   document.getElementById('p-'+p).classList.add('on');
-  var meta={dash:['数据驾驶舱','实时运营总览'],supplierwt:['供应商工作台','供应商自助：分配订单 / 更新进度 / 结算对账（不在线结算）'],partner:['渠道商工作台','渠道商自助：归属订单 / 佣金对账（不在线结算）'],customers:['客户信息管理','客户档案与画像'],companies:['客户公司管理','法人主体 / CI·BR / SCR / 年审'],kyc:['KYC / EDD 审核','AMLO 尽职调查 · 后台跑 PEP/制裁'],register:['注册公司','公司注册服务执行 · 维护进度 / 资料'],namecheck:['核名查册','iCRIS + 五级风险'],orders:['订单列表','进度只读联动服务 · 资料可下载'],bills:['账单 / 回单确认','财务核对到账'],products:['商品','商品目录 · 基础信息 + 流程节点 + 节点资料'],supplier:['供应商管理','超管新增 · 支持服务 + 结算规则'],assign:['订单分配','派单给供应商履约'],suppliersettle:['订单结算','已完成订单 → 供应商结算（线下）'],channel:['渠道商管理','超管新增 · 推荐码 + 佣金（弹窗配置）'],commission:['佣金结算','已完成订单 → 渠道返点（线下）'],rbac:['员工和角色','RBAC 7 角色 + 自定义'],menuperm:['菜单权限','角色 × 菜单可见性配置'],compliance:['合规与审计','制裁 / SCR / 哈希链'],config:['系统参数','时效 / 额度 / 税率']};
+  var meta={dash:['数据驾驶舱','实时运营总览'],supplierwt:['供应商工作台','供应商自助：分配订单 / 更新进度 / 结算对账（不在线结算）'],partner:['渠道商工作台','渠道商自助：归属订单 / 佣金对账（不在线结算）'],customers:['客户信息管理','客户档案与画像'],companies:['客户公司管理','法人主体 / CI·BR / SCR / 年审'],kyc:['KYC / EDD 审核','AMLO 尽职调查 · 后台跑 PEP/制裁'],register:['注册公司','公司注册服务执行 · 维护进度 / 资料'],namecheck:['核名查册','iCRIS + 五级风险'],orders:['订单列表','进度只读联动服务 · 资料可下载'],bills:['账单 / 回单确认','财务核对到账'],products:['商品','商品目录 · 基础信息 + 流程节点 + 节点资料'],coupons:['卡券','卡券模板 + 发放 + 核销统计（承接小程序优惠券）'],messages:['消息','消息模板 + 年审 6 轮提醒 + 群发 + 发送记录'],supplier:['供应商管理','超管新增 · 支持服务 + 结算规则'],assign:['订单分配','派单给供应商履约'],suppliersettle:['订单结算','已完成订单 → 供应商结算（线下）'],channel:['渠道商管理','超管新增 · 推荐码 + 佣金（弹窗配置）'],commission:['佣金结算','已完成订单 → 渠道返点（线下）'],rbac:['员工和角色','RBAC 7 角色 + 自定义'],menuperm:['菜单权限','角色 × 菜单可见性配置'],compliance:['合规与审计','制裁 / SCR / 哈希链'],config:['系统参数','时效 / 额度 / 税率']};
   var m=meta[p]||['',''];document.getElementById('pt').textContent=m[0];document.getElementById('ps').textContent=m[1];
   document.querySelector('.content').scrollTop=0;
 }
@@ -1121,6 +1301,12 @@ function openCompany(el){ var t=document.getElementById('comp-title'); if(t) t.t
 function openCustEdit(el){ var t=document.getElementById('custedit-title'); if(t) t.textContent='编辑客户 · '+(_rowName(el)||''); document.getElementById('m-custedit').classList.add('on'); }
 function openCompEdit(el){ var t=document.getElementById('compedit-title'); if(t) t.textContent='编辑公司 · '+(_rowName(el)||''); document.getElementById('m-compedit').classList.add('on'); }
 function openKycEdit(name){ var t=document.getElementById('kycedit-title'); if(t) t.textContent='编辑 KYC · '+(name||''); document.getElementById('m-kycedit').classList.add('on'); }
+/* 卡券管理 */
+function openCoupon(name){ var t=document.getElementById('coupon-title'); if(t) t.textContent=name?('编辑卡券 · '+name):'新增卡券'; var n=document.getElementById('coupon-name'); if(n) n.value=name||''; document.getElementById('m-coupon').classList.add('on'); }
+function openCouponIssue(name){ var t=document.getElementById('issue-title'); if(t) t.textContent='发放卡券 · '+(name||''); document.getElementById('m-couponissue').classList.add('on'); }
+/* 消息管理 */
+function openMsgTpl(evt,cat){ var t=document.getElementById('msgtpl-title'); if(t) t.textContent='编辑消息模板 · '+(evt||''); var e=document.getElementById('msgtpl-evt'); if(e) e.value=evt||''; var f=document.getElementById('msgtpl-force'); if(f) f.value=(cat==='合规通知')?'是（合规通知）':'否（可退订）'; document.getElementById('m-msgtpl').classList.add('on'); }
+function openBroadcast(){ document.getElementById('m-broadcast').classList.add('on'); }
 /* 渠道商配置弹窗 */
 function openChannel(name,code,rmk){
   var t=document.getElementById('ch-title'); if(t) t.textContent='渠道商配置 · '+(name||'');
