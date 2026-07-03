@@ -165,7 +165,7 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
 
       <div class="ng">05 · 服务管理</div>
       <div class="ni" data-p="register" onclick="go(this)"><i class="ti ti-building-plus"></i>注册公司<span class="nb">3</span></div>
-      <div class="ni" data-p="namecheck" onclick="go(this)"><i class="ti ti-search"></i>核名查册<span class="nb">3</span></div>
+      <div class="ni" data-p="namecheck" onclick="go(this)"><i class="ti ti-search"></i>核名&商标<span class="nb">3</span></div>
 
       <div class="ng">06 · 供应商管理</div>
       <div class="ni" data-p="supplier" onclick="go(this)"><i class="ti ti-building-warehouse"></i>供应商管理</div>
@@ -203,7 +203,7 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
         <div class="grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:16px">
           <div class="kpi"><div class="l">今日新增订单</div><div class="v">12</div><div class="d" style="color:var(--green)">较昨日 +3</div></div>
           <div class="kpi"><div class="l">待处理 KYC</div><div class="v" id="k-kyc">5</div><div class="d" style="color:var(--amber)">含超时</div></div>
-          <div class="kpi"><div class="l">待核名查册</div><div class="v" id="k-nc">3</div><div class="d">智能预检通过</div></div>
+          <div class="kpi"><div class="l">待核名&商标</div><div class="v" id="k-nc">3</div><div class="d">待人工核查</div></div>
           <div class="kpi"><div class="l">待确认回单</div><div class="v" id="k-bill">4</div><div class="d" style="color:var(--amber)">需财务核对</div></div>
           <div class="kpi"><div class="l">本月营收（已到账）</div><div class="v" id="k-rev">HKD 286K</div><div class="d" style="color:var(--green)">↑ 18% MoM</div></div>
           <div class="kpi"><div class="l">渠道转化率</div><div class="v">42.7%</div><div class="d">渠道 / 自然流量</div></div>
@@ -291,18 +291,37 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
         </table></div>
       </div>
 
-      <!-- ════ 核名查册 ════ -->
+      <!-- ════ 核名&商标 ════ -->
       <div class="page" id="p-namecheck">
-        <div class="filters"><span class="chip on">全部</span><span class="chip">待提交</span><span class="chip">待查册 3</span><span class="chip">查册中</span><span class="chip">通过·锁定中</span><span class="chip">近似待确认</span><span class="chip">敏感词待合规</span><span class="chip">需牌照 Blue</span><span class="chip">已拒绝</span><input class="inp" placeholder="名称 / 客户" style="margin-left:auto;width:180px"></div>
+        <div class="card cp" style="background:var(--accent-bg);border-color:var(--accent-d)"><div style="font-size:12px;color:var(--accent-d)"><i class="ti ti-search"></i> <b>核名&商标</b>：客户提交<b>核名（繁体）、核名（英文）、商标（繁体）</b>三项；<b>无智能预检</b>，由服务人员在香港公司注册处与知识产权署<b>人工查册</b>后，逐项给出核查结果与顾问建议，结果回推小程序「核名 &amp; 商标查询结果」。查名<b>不保证 100%</b>，最终以注册处核准为准。</div></div>
+        <div class="filters"><span class="chip on">全部</span><span class="chip">待核查 3</span><span class="chip">核查中</span><span class="chip">已出结果</span><span class="chip">待客户确认</span><span class="chip">名称锁定中</span><input class="inp" placeholder="名称 / 客户" style="margin-left:auto;width:180px"></div>
         <div class="card"><table>
-          <thead><tr><th>拟用名称</th><th>客户</th><th>智能预检</th><th>iCRIS 查册</th><th>风险评级</th><th>状态</th><th>重查次数</th><th></th></tr></thead>
+          <thead><tr><th>客户</th><th>客户提交（核名繁体 / 核名英文 / 商标繁体）</th><th>人工核查结果（3 项）</th><th>状态</th><th></th></tr></thead>
           <tbody>
-            <tr><td><b>Star Tech Limited</b><div style="color:var(--text3);font-size:11px">星辰科技有限公司</div></td><td>陈大文</td><td><span class="pill p-green">通过</span></td><td><span class="pill p-blue">查册中</span></td><td>—</td><td><span class="pill p-blue">查册中</span></td><td>0 / 3</td><td><button class="btn btn-xs btn-p" onclick="openNameCheck('Star Tech Limited','陈大文')">维护进度</button></td></tr>
-            <tr><td><b>Global Vision Limited</b></td><td>李美琪</td><td><span class="pill p-amber">近似名 1</span></td><td><span class="pill p-amber">待查册</span></td><td><span class="pill p-amber">🟡 轻微近似</span></td><td><span class="pill p-amber">近似待确认</span></td><td>1 / 3</td><td><button class="btn btn-xs btn-p" onclick="openNameCheck('Global Vision Limited','李美琪')">维护进度</button></td></tr>
-            <tr><td><b>Royal Trust Limited</b></td><td>王志强</td><td><span class="pill p-red">敏感词「Trust」</span></td><td><span class="pill p-gray">阻断</span></td><td><span class="pill p-blue">🔵 需牌照</span></td><td><span class="pill p-blue">需牌照 Blue</span></td><td>2 / 3</td><td><button class="btn btn-xs" onclick="openNameCheck('Royal Trust Limited','王志强')">维护进度</button></td></tr>
+            <tr>
+              <td>陈大文</td>
+              <td><div style="line-height:1.7"><b>星辰科技有限公司</b><div style="color:var(--text3);font-size:11px">Star Tech Limited · 商标：星辰 / Star Tech</div></div></td>
+              <td><div style="display:flex;flex-direction:column;gap:3px"><span class="pill p-green">核名繁体 · 🟢 可用</span><span class="pill p-green">核名英文 · 🟢 可用</span><span class="pill p-green">商标 · 🟢 可注册</span></div></td>
+              <td><span class="pill p-green">已出结果</span></td>
+              <td><button class="btn btn-xs btn-p" onclick="openNameCheck('Star Tech Limited')">维护结果</button></td>
+            </tr>
+            <tr>
+              <td>李美琪</td>
+              <td><div style="line-height:1.7"><b>環球視野有限公司</b><div style="color:var(--text3);font-size:11px">Global Vision Limited · 商标：環球視野</div></div></td>
+              <td><div style="display:flex;flex-direction:column;gap:3px"><span class="pill p-amber">核名繁体 · 🟡 有近似</span><span class="pill p-amber">核名英文 · 🟡 有近似</span><span class="pill p-amber">商标 · 🟠 有近似</span></div></td>
+              <td><span class="pill p-amber">待客户确认</span></td>
+              <td><button class="btn btn-xs btn-p" onclick="openNameCheck('Global Vision Limited')">维护结果</button></td>
+            </tr>
+            <tr>
+              <td>王志强</td>
+              <td><div style="line-height:1.7"><b>皇家信託有限公司</b><div style="color:var(--text3);font-size:11px">Royal Trust Limited · 商标：皇家</div></div></td>
+              <td><div style="display:flex;flex-direction:column;gap:3px"><span class="pill p-gray">核名繁体 · 待核查</span><span class="pill p-gray">核名英文 · 待核查</span><span class="pill p-gray">商标 · 待核查</span></div></td>
+              <td><span class="pill p-blue">待核查</span></td>
+              <td><button class="btn btn-xs btn-p" onclick="openNameCheck('Royal Trust Limited')">维护结果</button></td>
+            </tr>
           </tbody>
         </table></div>
-        <div class="card cp" style="background:var(--gold-bg);border-color:var(--gold)"><div style="font-size:12px;color:var(--gold)"><i class="ti ti-info-circle"></i> 五级风险：🟢Green 可用 · 🟡Yellow 轻微近似(客户确认) · 🟠Orange 近似冲突(不混淆声明) · 🔴Red 商标/敏感词(合规审批) · 🔵Blue 需牌照。通过后名称锁定 30 天。</div></div>
+        <div class="card cp" style="background:var(--gold-bg);border-color:var(--gold)"><div style="font-size:12px;color:var(--gold)"><i class="ti ti-info-circle"></i> 核名结论：🟢 可用 · 🟡 有近似（客户确认）· 🟠 近似冲突（不混淆声明）· 🔴 敏感词 / 商标冲突（合规审批）· 🔵 需牌照。商标结论：🟢 可注册 · 🟠 有近似 · 🔴 已注册冲突。通过后名称锁定 30 天。</div></div>
       </div>
 
       <!-- ════ 订单管理 ════ -->
@@ -456,7 +475,7 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
               <tr><td>数据驾驶舱</td><td><input type="checkbox" checked disabled></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
               <tr><td>客户信息 / 公司管理</td><td><input type="checkbox" checked disabled></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
               <tr><td>KYC / EDD 审核</td><td><input type="checkbox" checked disabled></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
-              <tr><td>核名查册</td><td><input type="checkbox" checked disabled></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
+              <tr><td>核名&商标</td><td><input type="checkbox" checked disabled></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
               <tr><td>订单列表（进度维护）</td><td><input type="checkbox" checked disabled></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
               <tr><td>账单 / 回单确认</td><td><input type="checkbox" checked disabled></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox"></td><td><input type="checkbox" checked></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
               <tr><td>服务管理（流程节点）</td><td><input type="checkbox" checked disabled></td><td><input type="checkbox" checked></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
@@ -590,7 +609,7 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
           <table>
             <thead><tr><th>券名</th><th>类型</th><th>面值 / 门槛</th><th>适用范围</th><th>有效期</th><th>发放 / 核销</th><th>状态</th><th></th></tr></thead>
             <tbody>
-              <tr><td><b>免费核名券</b><div style="color:var(--text3);font-size:11px">兑换 1 次人工核名（查名 + 商标）</div></td><td><span class="pill p-green">免费服务券</span></td><td>免核名费<div style="color:var(--text3);font-size:11px">无门槛</div></td><td>核名查册</td><td>至 2026-12-31</td><td>120 / 45</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openCoupon('免费核名券')">编辑</button> <button class="btn btn-xs btn-p" onclick="openCouponIssue('免费核名券')"><i class="ti ti-send"></i>发放</button></td></tr>
+              <tr><td><b>免费核名券</b><div style="color:var(--text3);font-size:11px">兑换 1 次人工核名（查名 + 商标）</div></td><td><span class="pill p-green">免费服务券</span></td><td>免核名费<div style="color:var(--text3);font-size:11px">无门槛</div></td><td>核名&商标</td><td>至 2026-12-31</td><td>120 / 45</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openCoupon('免费核名券')">编辑</button> <button class="btn btn-xs btn-p" onclick="openCouponIssue('免费核名券')"><i class="ti ti-send"></i>发放</button></td></tr>
               <tr><td><b>新客注册立减券</b><div style="color:var(--text3);font-size:11px">下单立减，账单自动抵扣</div></td><td><span class="pill p-gold">立减券</span></td><td>− HK$200<div style="color:var(--text3);font-size:11px">满 HK$3,800</div></td><td>标准 / 高级注册</td><td>至 2026-09-30</td><td>88 / 30</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openCoupon('新客注册立减券')">编辑</button> <button class="btn btn-xs btn-p" onclick="openCouponIssue('新客注册立减券')"><i class="ti ti-send"></i>发放</button></td></tr>
               <tr><td><b>老客续费折扣券</b><div style="color:var(--text3);font-size:11px">年审 / 记账续费专享</div></td><td><span class="pill p-blue">折扣券</span></td><td>9 折<div style="color:var(--text3);font-size:11px">无门槛</div></td><td>年审 · 记账报税</td><td>领取后 30 天</td><td>0 / 0</td><td><span class="pill p-gray">下架</span></td><td><button class="btn btn-xs" onclick="openCoupon('老客续费折扣券')">编辑</button> <button class="btn btn-xs" onclick="toast('上架后可发放')">上架</button></td></tr>
             </tbody>
@@ -1099,16 +1118,72 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
   </div>
 </div>
 
-<!-- 核名查册 · 维护进度 Modal（按节点 · 客户内容 + 资料 + 服务人员备注/补充）-->
+<!-- 核名&商标 · 维护结果 Modal（客户提交 3 项 → 人工给 3 个核查结果 + 顾问建议）-->
 <div class="mask" id="m-namecheck" onclick="if(event.target===this)closeM('m-namecheck')">
-  <div class="modal" style="max-width:820px">
-    <div class="mh"><div><b style="font-size:14px" id="nc-title">核名查册 · Star Tech Limited</b><div style="font-size:11px;color:var(--text3)" id="nc-sub">陈大文 · 人工查册 + 五级风险评级</div></div><button class="x" onclick="closeM('m-namecheck')">×</button></div>
+  <div class="modal" style="max-width:840px">
+    <div class="mh"><div><b style="font-size:14px" id="nc-title">核名&商标 · Star Tech Limited</b><div style="font-size:11px;color:var(--text3)" id="nc-sub">陈大文 · 人工核名（繁体 / 英文）+ 商标查询</div></div><button class="x" onclick="closeM('m-namecheck')">×</button></div>
     <div class="mb">
-      <div class="cp" style="background:var(--gold-bg);border-radius:7px;margin-bottom:14px;font-size:11.5px;color:var(--gold)"><i class="ti ti-info-circle"></i> 按节点维护查册进度：核对客户提交的中英名 / 业务性质，写<b>逐节点备注</b>、<b>补充上传</b>查册报告等材料；进度回推小程序核名结果。查名<b>不保证 100%</b>，注册处以繁体注册为准。</div>
-      <div style="font-size:11px;color:var(--text3);font-weight:600;margin-bottom:8px">核名进度（按节点 · 可修改客户内容 / 逐节点补充材料与备注）</div>
-      <div id="nc-nodes"></div>
+      <div class="cp" style="background:var(--gold-bg);border-radius:7px;margin-bottom:14px;font-size:11.5px;color:var(--gold)"><i class="ti ti-info-circle"></i> 服务人员在<b>公司注册处 iCRIS + 知识产权署商标库</b>人工查册，逐项录入<b>核名（繁体）/ 核名（英文）/ 商标（繁体）</b>三个结果 + 命中清单 + 顾问建议；<b>发布后回推小程序</b>「核名 &amp; 商标查询结果」。查名<b>不保证 100%</b>，注册处以繁体注册为准。</div>
+
+      <!-- 客户提交内容 -->
+      <div style="font-size:11px;color:var(--text3);font-weight:600;margin-bottom:8px">客户提交内容</div>
+      <div class="kv" style="margin-bottom:16px">
+        <span class="k">查册方式</span><span id="nc-s-mode">以全名查册</span>
+        <span class="k">核名（繁体中文）</span><span id="nc-s-zh"><b>星辰科技有限公司</b></span>
+        <span class="k">核名（英文）</span><span id="nc-s-en"><b>Star Tech Limited</b></span>
+        <span class="k">商标（繁体 / 关键字）</span><span id="nc-s-tm"><b>星辰 / Star Tech</b></span>
+      </div>
+
+      <!-- 结果 1：核名（繁体） -->
+      <div class="node-card">
+        <div class="node-hd"><div class="node-nm"><span class="node-idx">1</span>核名（繁体中文）结果</div>
+          <div class="node-meta"><select class="inp" style="padding:3px 7px"><option>🟢 可用</option><option>🟡 有近似</option><option>🟠 近似冲突</option><option>🔴 敏感词 / 商标冲突</option><option>🔵 需牌照</option></select></div></div>
+        <div class="node-body">
+          <div class="node-sec-t">命中的在册公司（公司注册处 iCRIS）</div>
+          <table><thead><tr><th>公司名称</th><th>商业登记号</th><th>名称现况</th><th>公司状态</th><th style="width:40px"></th></tr></thead>
+            <tbody id="nc-zh-hits">
+              <tr><td><input class="inp" style="width:100%;padding:4px 8px" value="星辰科技（香港）有限公司"></td><td><input class="inp" style="width:100%;padding:4px 8px" value="72884301"></td><td><input class="inp" style="width:100%;padding:4px 8px" value="现用"></td><td><select class="inp" style="padding:3px 7px"><option>仍注册</option><option>已告解散</option></select></td><td><button class="btn btn-xs btn-red" onclick="this.closest('tr').remove()">×</button></td></tr>
+            </tbody></table>
+          <div class="cp"><button class="btn btn-xs" onclick="addNcHit('nc-zh-hits','company')"><i class="ti ti-plus"></i>添加命中公司</button></div>
+          <div class="node-sec-t">顾问备注</div><textarea class="inp node-remark" placeholder="繁体名核查备注…">与「星辰科技（香港）有限公司」名称近似但业务不同，可用；建议加区分字。</textarea>
+        </div>
+      </div>
+
+      <!-- 结果 2：核名（英文） -->
+      <div class="node-card">
+        <div class="node-hd"><div class="node-nm"><span class="node-idx">2</span>核名（英文）结果</div>
+          <div class="node-meta"><select class="inp" style="padding:3px 7px"><option>🟢 可用</option><option>🟡 有近似</option><option>🟠 近似冲突</option><option>🔴 敏感词 / 商标冲突</option><option>🔵 需牌照</option></select></div></div>
+        <div class="node-body">
+          <div class="node-sec-t">命中的在册公司（公司注册处 iCRIS）</div>
+          <table><thead><tr><th>公司名称</th><th>商业登记号</th><th>名称现况</th><th>公司状态</th><th style="width:40px"></th></tr></thead>
+            <tbody id="nc-en-hits">
+              <tr><td><input class="inp" style="width:100%;padding:4px 8px" value="STAR TECH MEDIA COMPANY LIMITED"></td><td><input class="inp" style="width:100%;padding:4px 8px" value="62445343"></td><td><input class="inp" style="width:100%;padding:4px 8px" value="现用"></td><td><select class="inp" style="padding:3px 7px"><option selected>已告解散</option><option>仍注册</option></select></td><td><button class="btn btn-xs btn-red" onclick="this.closest('tr').remove()">×</button></td></tr>
+            </tbody></table>
+          <div class="cp"><button class="btn btn-xs" onclick="addNcHit('nc-en-hits','company')"><i class="ti ti-plus"></i>添加命中公司</button></div>
+          <div class="node-sec-t">顾问备注</div><textarea class="inp node-remark" placeholder="英文名核查备注…">同名公司已告解散，可用。</textarea>
+        </div>
+      </div>
+
+      <!-- 结果 3：商标（繁体） -->
+      <div class="node-card">
+        <div class="node-hd"><div class="node-nm"><span class="node-idx">3</span>商标（繁体 / 关键字）查询结果</div>
+          <div class="node-meta"><select class="inp" style="padding:3px 7px"><option>🟢 可注册</option><option>🟠 有近似</option><option>🔴 已注册冲突</option></select></div></div>
+        <div class="node-body">
+          <div class="node-sec-t">命中的近似 / 相同商标（知识产权署）</div>
+          <table><thead><tr><th>商标名</th><th>商标编号</th><th>类别 Class</th><th>拥有人</th><th>状态</th><th style="width:40px"></th></tr></thead>
+            <tbody id="nc-tm-hits">
+              <tr><td><input class="inp" style="width:100%;padding:4px 8px" value="StarTech"></td><td><input class="inp" style="width:100%;padding:4px 8px" value="307147585"></td><td><input class="inp" style="width:100%;padding:4px 8px" value="9 / 35 / 42"></td><td><input class="inp" style="width:100%;padding:4px 8px" value="Star Tech Technology Ltd"></td><td><select class="inp" style="padding:3px 7px"><option>已注册</option><option>申请中</option><option>已失效</option></select></td><td><button class="btn btn-xs btn-red" onclick="this.closest('tr').remove()">×</button></td></tr>
+            </tbody></table>
+          <div class="cp"><button class="btn btn-xs" onclick="addNcHit('nc-tm-hits','tm')"><i class="ti ti-plus"></i>添加命中商标</button></div>
+          <div class="node-sec-t">顾问备注</div><textarea class="inp node-remark" placeholder="商标核查备注…">「StarTech」已在类别 9/35/42 注册；如经营相同业务建议避开或换标。</textarea>
+        </div>
+      </div>
+
+      <!-- 顾问总建议 -->
+      <div style="font-size:11px;color:var(--text3);font-weight:600;margin:14px 0 6px">顾问建议（回推小程序结果页）</div>
+      <textarea class="inp" style="width:100%;min-height:52px">繁体 / 英文名均可注册；商标「StarTech」已注册（类别 9/35/42），如同业建议避开冲突类别。最终以香港公司注册处核准为准。</textarea>
     </div>
-    <div class="mf"><button class="btn" onclick="closeM('m-namecheck')">取消</button><button class="btn" onclick="toast('已添加备注')">添加备注</button><button class="btn btn-p" onclick="closeM('m-namecheck');toast('核名进度已保存 · 小程序核名结果已更新')">保存进度</button></div>
+    <div class="mf"><button class="btn" onclick="closeM('m-namecheck')">取消</button><button class="btn" onclick="toast('结果草稿已保存')">保存草稿</button><button class="btn btn-p" onclick="closeM('m-namecheck');toast('结果已发布 · 已回推小程序并通知客户')"><i class="ti ti-send"></i>发布结果并通知客户</button></div>
   </div>
 </div>
 
@@ -1179,7 +1254,7 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
       <div><label class="flbl">类型 *</label><select class="inp" style="width:100%" id="coupon-type"><option>免费服务券</option><option>立减券</option><option>折扣券</option></select></div>
       <div><label class="flbl">面值（立减额 / 折扣率）</label><input class="inp" style="width:100%" placeholder="如 200 或 9折"></div>
       <div><label class="flbl">币种</label><select class="inp" style="width:100%"><option>HKD 港币</option><option>CNY 人民币</option><option>—（免费服务券）</option></select></div>
-      <div><label class="flbl">关联免费服务（免费服务券）</label><select class="inp" style="width:100%"><option>核名查册</option><option>—</option></select></div>
+      <div><label class="flbl">关联免费服务（免费服务券）</label><select class="inp" style="width:100%"><option>核名&商标</option><option>—</option></select></div>
       <div style="grid-column:1/-1"><label class="flbl">适用范围</label><input class="inp" style="width:100%" placeholder="如 标准 / 高级注册；或 年审·记账"></div>
       <div><label class="flbl">满减门槛（HKD，0=无）</label><input class="inp" style="width:100%" placeholder="3800"></div>
       <div><label class="flbl">有效期规则</label><select class="inp" style="width:100%"><option>固定截止日</option><option>领取后 N 天</option></select></div>
@@ -1262,7 +1337,7 @@ function go(el){
   var p=el.dataset.p;
   document.querySelectorAll('.page').forEach(pg=>pg.classList.remove('on'));
   document.getElementById('p-'+p).classList.add('on');
-  var meta={dash:['数据驾驶舱','实时运营总览'],supplierwt:['供应商工作台','供应商自助：分配订单 / 更新进度 / 结算对账（不在线结算）'],partner:['渠道商工作台','渠道商自助：归属订单 / 佣金对账（不在线结算）'],customers:['客户信息管理','客户档案与画像'],companies:['客户公司管理','法人主体 / CI·BR / SCR / 年审'],kyc:['KYC / EDD 审核','AMLO 尽职调查 · 后台跑 PEP/制裁'],register:['注册公司','公司注册服务执行 · 维护进度 / 资料'],namecheck:['核名查册','iCRIS + 五级风险'],orders:['订单列表','进度只读联动服务 · 资料可下载'],bills:['账单 / 回单确认','财务核对到账'],products:['商品','商品目录 · 基础信息 + 流程节点 + 节点资料'],coupons:['卡券','卡券模板 + 发放 + 核销统计（承接小程序优惠券）'],messages:['消息','消息模板 + 年审 6 轮提醒 + 群发 + 发送记录'],supplier:['供应商管理','超管新增 · 支持服务 + 结算规则'],assign:['订单分配','派单给供应商履约'],suppliersettle:['订单结算','已完成订单 → 供应商结算（线下）'],channel:['渠道商管理','超管新增 · 推荐码 + 佣金（弹窗配置）'],commission:['佣金结算','已完成订单 → 渠道返点（线下）'],rbac:['员工和角色','RBAC 7 角色 + 自定义'],menuperm:['菜单权限','角色 × 菜单可见性配置'],compliance:['合规与审计','制裁 / SCR / 哈希链'],config:['系统参数','时效 / 额度 / 税率']};
+  var meta={dash:['数据驾驶舱','实时运营总览'],supplierwt:['供应商工作台','供应商自助：分配订单 / 更新进度 / 结算对账（不在线结算）'],partner:['渠道商工作台','渠道商自助：归属订单 / 佣金对账（不在线结算）'],customers:['客户信息管理','客户档案与画像'],companies:['客户公司管理','法人主体 / CI·BR / SCR / 年审'],kyc:['KYC / EDD 审核','AMLO 尽职调查 · 后台跑 PEP/制裁'],register:['注册公司','公司注册服务执行 · 维护进度 / 资料'],namecheck:['核名&商标','人工核名（繁体/英文）+ 商标查询 · 无智能预检'],orders:['订单列表','进度只读联动服务 · 资料可下载'],bills:['账单 / 回单确认','财务核对到账'],products:['商品','商品目录 · 基础信息 + 流程节点 + 节点资料'],coupons:['卡券','卡券模板 + 发放 + 核销统计（承接小程序优惠券）'],messages:['消息','消息模板 + 年审 6 轮提醒 + 群发 + 发送记录'],supplier:['供应商管理','超管新增 · 支持服务 + 结算规则'],assign:['订单分配','派单给供应商履约'],suppliersettle:['订单结算','已完成订单 → 供应商结算（线下）'],channel:['渠道商管理','超管新增 · 推荐码 + 佣金（弹窗配置）'],commission:['佣金结算','已完成订单 → 渠道返点（线下）'],rbac:['员工和角色','RBAC 7 角色 + 自定义'],menuperm:['菜单权限','角色 × 菜单可见性配置'],compliance:['合规与审计','制裁 / SCR / 哈希链'],config:['系统参数','时效 / 额度 / 税率']};
   var m=meta[p]||['',''];document.getElementById('pt').textContent=m[0];document.getElementById('ps').textContent=m[1];
   document.querySelector('.content').scrollTop=0;
 }
@@ -1377,22 +1452,30 @@ var REG_NODES=[
   {name:'业务办理（线下交 NNC1）',party:'平台',status:'未开始',supp:[],remark:'交表后约 1 周取 CI/BR 正本。'},
   {name:'完结（CI / BR + 交付物）',party:'平台',status:'未开始',supp:[],remark:''}
 ];
-var NC_NODES=[
-  {name:'提交核名申请',party:'客户',status:'待客户确认',statusOpts:NODE_ST_NC,
-    fields:[{label:'拟用名称（繁体中文）',value:'星辰科技有限公司'},{label:'拟用名称（英文）',value:'Star Tech Limited'},{label:'业务性质',value:'计算机编程 / 咨询'},{label:'查册语言',type:'select',options:['英文','繁体中文'],value:'英文'}],
-    supp:[],remark:'客户提交中英双名；名称互不需对应。'},
-  {name:'智能预检',party:'平台',status:'通过·可用',statusOpts:NODE_ST_NC,supp:['智能预检报告.pdf'],remark:'英文名通过；中文名近似度低。'},
-  {name:'iCRIS 人工查册',party:'平台',status:'查册中',statusOpts:NODE_ST_NC,supp:[],remark:'注册处查册中，结果不保证 100%。'},
-  {name:'风险评级',party:'平台 / 合规',status:'待查册',statusOpts:NODE_ST_NC,
-    fields:[{label:'风险评级',type:'select',options:['🟢Green 可用','🟡Yellow 轻微近似','🟠Orange 近似冲突','🔴Red 敏感词/商标','🔵Blue 需牌照'],value:'🟢Green 可用'}],
-    supp:[],remark:''},
-  {name:'结果通知 / 名称锁定',party:'平台',status:'待提交',statusOpts:NODE_ST_NC,supp:[],remark:'通过后名称锁定 30 天。'}
-];
-function openNameCheck(name,cust){
-  var t=document.getElementById('nc-title'); if(t) t.textContent='核名查册 · '+(name||'');
-  var s=document.getElementById('nc-sub'); if(s) s.textContent=(cust||'')+' · 人工查册 + 五级风险评级';
-  var c=document.getElementById('nc-nodes'); if(c) c.innerHTML=nodePanel(NC_NODES,NODE_ST_NC);
+/* 核名&商标：客户提交 3 项（核名繁体 / 核名英文 / 商标繁体），人工给 3 个核查结果 */
+var NC_CASES={
+  'Star Tech Limited':{cust:'陈大文',mode:'以全名查册',zh:'星辰科技有限公司',en:'Star Tech Limited',tm:'星辰 / Star Tech'},
+  'Global Vision Limited':{cust:'李美琪',mode:'以全名查册',zh:'環球視野有限公司',en:'Global Vision Limited',tm:'環球視野'},
+  'Royal Trust Limited':{cust:'王志强',mode:'以名称起首查册',zh:'皇家信託有限公司',en:'Royal Trust Limited',tm:'皇家'}
+};
+function _setNc(id,v){var e=document.getElementById(id);if(e)e.innerHTML=v;}
+function openNameCheck(name){
+  var d=NC_CASES[name]||{cust:'',mode:'以全名查册',zh:name||'',en:name||'',tm:''};
+  var t=document.getElementById('nc-title'); if(t) t.textContent='核名&商标 · '+(name||'');
+  var s=document.getElementById('nc-sub'); if(s) s.textContent=(d.cust||'')+' · 人工核名（繁体 / 英文）+ 商标查询';
+  _setNc('nc-s-mode',d.mode); _setNc('nc-s-zh','<b>'+d.zh+'</b>'); _setNc('nc-s-en','<b>'+d.en+'</b>'); _setNc('nc-s-tm','<b>'+d.tm+'</b>');
   document.getElementById('m-namecheck').classList.add('on');
+}
+/* 人工查册命中清单：添加一行（company=公司命中 / tm=商标命中）*/
+function addNcHit(tbId,kind){
+  var tb=document.getElementById(tbId); if(!tb) return;
+  var tr=document.createElement('tr');
+  if(kind==='tm'){
+    tr.innerHTML='<td><input class="inp" style="width:100%;padding:4px 8px" placeholder="商标名"></td><td><input class="inp" style="width:100%;padding:4px 8px" placeholder="商标编号"></td><td><input class="inp" style="width:100%;padding:4px 8px" placeholder="类别 Class"></td><td><input class="inp" style="width:100%;padding:4px 8px" placeholder="拥有人"></td><td><select class="inp" style="padding:3px 7px"><option>已注册</option><option>申请中</option><option>已失效</option></select></td><td><button class="btn btn-xs btn-red" onclick="this.closest(\'tr\').remove()">×</button></td>';
+  } else {
+    tr.innerHTML='<td><input class="inp" style="width:100%;padding:4px 8px" placeholder="公司名称"></td><td><input class="inp" style="width:100%;padding:4px 8px" placeholder="商业登记号"></td><td><input class="inp" style="width:100%;padding:4px 8px" placeholder="名称现况"></td><td><select class="inp" style="padding:3px 7px"><option>仍注册</option><option>已告解散</option></select></td><td><button class="btn btn-xs btn-red" onclick="this.closest(\'tr\').remove()">×</button></td>';
+  }
+  tb.appendChild(tr);
 }
 function toast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._);t._=setTimeout(()=>t.classList.remove('show'),1800)}
 
