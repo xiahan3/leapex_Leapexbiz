@@ -392,9 +392,9 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
 
         <!-- 推荐服务 -->
         <div class="sec-t" style="display:flex;justify-content:space-between"><span>推荐服务</span><span style="color:var(--accent);font-weight:500;cursor:pointer" onclick="go('s-services')">全部服务 ›</span></div>
-        <div class="pkg-card" onclick="openSvc('pkg-basic')"><div style="display:flex;align-items:center;gap:10px"><div class="svc-dot" style="background:var(--bg2);color:var(--text2);width:36px;height:36px"><i class="ti ti-package"></i></div><div style="flex:1"><div style="font-weight:700">基础注册服务</div><div class="note">适合：单股东 / 预算优先</div></div><div class="price price-lg">HKD 3,800</div></div></div>
-        <div class="pkg-card rec" onclick="openSvc('pkg-std')"><div class="pkg-badge">推荐</div><div style="display:flex;align-items:center;gap:10px"><div class="svc-dot" style="background:var(--accent-bg);color:var(--accent-d);width:36px;height:36px"><i class="ti ti-package"></i></div><div style="flex:1"><div style="font-weight:700">标准注册服务</div><div class="note">适合：要年审+印章一步到位（最多人选）</div></div><div style="text-align:right"><div class="price price-lg">HKD 5,800</div><div class="price-old">6,800</div></div></div></div>
-        <div class="pkg-card" onclick="openSvc('pkg-pro')"><div style="display:flex;align-items:center;gap:10px"><div class="svc-dot" style="background:var(--blue-bg);color:var(--blue);width:36px;height:36px"><i class="ti ti-package"></i></div><div style="flex:1"><div style="font-weight:700">高级注册服务</div><div class="note">适合：需开户+公证+SCR 全配套</div></div><div class="price price-lg">HKD 8,800</div></div></div>
+        <div class="pkg-card rec" onclick="openSvc('reg')"><div class="pkg-badge">主推</div><div style="display:flex;align-items:center;gap:10px"><div class="svc-dot" style="background:var(--accent-bg);color:var(--accent-d);width:36px;height:36px"><i class="ti ti-building-plus"></i></div><div style="flex:1"><div style="font-weight:700">新设香港本地有限公司</div><div class="note">适合：首次在港设立 · 全套证照 + 印章 + 绿盒</div></div><div class="price price-lg">HKD 5,533</div></div></div>
+        <div class="pkg-card" onclick="openSvc('annual')"><div style="display:flex;align-items:center;gap:10px"><div class="svc-dot" style="background:var(--blue-bg);color:var(--blue);width:36px;height:36px"><i class="ti ti-shield-check"></i></div><div style="flex:1"><div style="font-weight:700">法定公司秘书（周年申报）</div><div class="note">适合：已有公司 · 年度合规 + NAR1</div></div><div class="price price-lg">HKD 2,200</div></div></div>
+        <div class="pkg-card" onclick="openSvc('bookkeep')"><div style="display:flex;align-items:center;gap:10px"><div class="svc-dot" style="background:var(--green-bg);color:var(--green-d);width:36px;height:36px"><i class="ti ti-calculator"></i></div><div style="flex:1"><div style="font-weight:700">年度记账</div><div class="note">适合：有经营 · 财务报表 + 审计 + 利得税</div></div><div class="price price-lg" style="font-size:15px">面议</div></div></div>
       </div>
     </div>
 
@@ -670,111 +670,111 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
             <span class="filt-lab">类型</span>
             <div class="fchip on" onclick="svcType('all',this)">全部</div>
             <div class="fchip" onclick="svcType('reg',this)">注册</div>
-            <div class="fchip" onclick="svcType('annual',this)">年审</div>
+            <div class="fchip" onclick="svcType('sec',this)">秘书年审</div>
             <div class="fchip" onclick="svcType('change',this)">变更</div>
-            <div class="fchip" onclick="svcType('book',this)">记账</div>
-            <div class="fchip" onclick="svcType('vas',this)">增值</div>
+            <div class="fchip" onclick="svcType('book',this)">记账报税</div>
+            <div class="fchip" onclick="svcType('tm',this)">商标</div>
           </div>
         </div>
 
-        <!-- 注册服务 -->
+        <!-- 注册 -->
         <div class="svc-grp" data-type="reg">
-          <div class="sec-t"><i class="ti ti-building-plus" style="font-size:13px;margin-right:4px"></i>注册服务</div>
-          <div class="prod" data-type="reg" data-region="hk" onclick="openSvc('pkg-basic')">
-            <div class="prod-ico" style="background:var(--bg2);color:var(--text2)"><i class="ti ti-package"></i></div>
-            <div class="prod-main"><div class="prod-name">基础注册服务</div><div class="prod-desc">注册 + 法定秘书 + 注册地址 + 商业登记证</div></div>
-            <div class="prod-price"><div class="price">HKD 3,800</div><div class="prod-coupon">券后 3,600</div></div>
-          </div>
-          <div class="prod prod-rec" data-type="reg" data-region="hk sg" onclick="openSvc('pkg-std')">
-            <div class="prod-badge">推荐</div>
-            <div class="prod-ico" style="background:var(--accent-bg);color:var(--accent-d)"><i class="ti ti-package"></i></div>
-            <div class="prod-main"><div class="prod-name">标准注册服务</div><div class="prod-desc">基础服务 + 首年年审 + 公司文件册 + 印章</div></div>
-            <div class="prod-price"><div class="price">HKD 5,800</div><div class="price-old" style="margin-left:0;display:block">6,800</div></div>
-          </div>
-          <div class="prod" data-type="reg" data-region="hk sg dxb bvi" onclick="openSvc('pkg-pro')">
-            <div class="prod-ico" style="background:var(--blue-bg);color:var(--blue)"><i class="ti ti-package"></i></div>
-            <div class="prod-main"><div class="prod-name">高级注册服务</div><div class="prod-desc">标准服务 + 银行开户协助 + SCR + 公证认证</div></div>
-            <div class="prod-price"><div class="price">HKD 8,800</div><div class="prod-coupon">券后 8,600</div></div>
+          <div class="sec-t"><i class="ti ti-building-plus" style="font-size:13px;margin-right:4px"></i>公司注册</div>
+          <div class="prod prod-rec" data-type="reg" data-region="hk" onclick="openSvc('reg')">
+            <div class="prod-badge">主推</div>
+            <div class="prod-ico" style="background:var(--accent-bg);color:var(--accent-d)"><i class="ti ti-building-plus"></i></div>
+            <div class="prod-main"><div class="prod-name">新设香港本地有限公司</div><div class="prod-desc">CI + BR + 章程 10 份 + 股票本 + 印章 + 绿盒 · 约 10 工作日</div></div>
+            <div class="prod-price"><div class="price">HKD 5,533</div><div class="prod-coupon">券后 5,333</div></div>
           </div>
         </div>
 
-        <!-- 年审服务 -->
-        <div class="svc-grp" data-type="annual">
-          <div class="sec-t" style="margin-top:2px"><i class="ti ti-calendar-check" style="font-size:13px;margin-right:4px"></i>年审服务</div>
-          <div class="prod" data-type="annual" data-region="hk sg" onclick="openSvc('annual')">
-            <div class="prod-ico" style="background:var(--blue-bg);color:var(--blue)"><i class="ti ti-calendar-check"></i></div>
-            <div class="prod-main"><div class="prod-name">年审服务</div><div class="prod-desc">NAR1 周年申报 + BR 续期 + 名册更新</div></div>
-            <div class="prod-price"><div class="price">HKD 2,800</div></div>
+        <!-- 秘书 & 年审 -->
+        <div class="svc-grp" data-type="sec">
+          <div class="sec-t" style="margin-top:2px"><i class="ti ti-shield-check" style="font-size:13px;margin-right:4px"></i>秘书 &amp; 注册地址（年费）</div>
+          <div class="prod" data-type="sec" data-region="hk" onclick="openSvc('annual')">
+            <div class="prod-ico" style="background:var(--blue-bg);color:var(--blue)"><i class="ti ti-shield-check"></i></div>
+            <div class="prod-main"><div class="prod-name">法定公司秘书（周年申报）</div><div class="prod-desc">担任法定秘书 + 维护法定登记册 + NAR1</div></div>
+            <div class="prod-price"><div class="price">HKD 2,200</div></div>
           </div>
-        </div>
-
-        <!-- 变更服务 -->
-        <div class="svc-grp" data-type="change">
-          <div class="sec-t" style="margin-top:2px"><i class="ti ti-tools" style="font-size:13px;margin-right:4px"></i>变更服务</div>
-          <div class="prod" data-type="change" data-region="hk" onclick="openSvc('director')">
-            <div class="prod-ico" style="background:var(--yellow-bg);color:var(--orange)"><i class="ti ti-user-edit"></i></div>
-            <div class="prod-main"><div class="prod-name">董事变更</div><div class="prod-desc">ND2A 董事任免 + 名册更新 + SCR</div></div>
-            <div class="prod-price"><div class="price">HKD 1,500</div></div>
-          </div>
-          <div class="prod" data-type="change" data-region="hk" onclick="openSvc('secretary')">
-            <div class="prod-ico" style="background:var(--blue-bg);color:var(--blue)"><i class="ti ti-user-cog"></i></div>
-            <div class="prod-main"><div class="prod-name">秘书变更 / 转入</div><div class="prod-desc">ND2B 秘书任免 + 历史文件交接</div></div>
-            <div class="prod-price"><div class="price">HKD 1,200</div></div>
-          </div>
-          <div class="prod" data-type="change" data-region="hk" onclick="openSvc('address')">
+          <div class="prod" data-type="sec" data-region="hk" onclick="openSvc('regaddr')">
             <div class="prod-ico" style="background:var(--yellow-bg);color:#B45309"><i class="ti ti-map-pin"></i></div>
-            <div class="prod-main"><div class="prod-name">注册地址变更</div><div class="prod-desc">NR1 地址变更 + 可选虚拟注册地址</div></div>
-            <div class="prod-price"><div class="price">HKD 800</div></div>
-          </div>
-          <div class="prod" data-type="change" data-region="hk" onclick="openSvc('transfer')">
-            <div class="prod-ico" style="background:var(--purple-bg);color:#7A5C9E"><i class="ti ti-arrows-exchange"></i></div>
-            <div class="prod-main"><div class="prod-name">股份转让</div><div class="prod-desc">含印花税代缴 + 股东名册更新</div></div>
-            <div class="prod-price"><div class="price">HKD 2,000<span style="font-size:11px">起</span></div></div>
-          </div>
-          <div class="prod" data-type="change" data-region="hk" onclick="openSvc('rename')">
-            <div class="prod-ico" style="background:var(--green-bg);color:var(--green-d)"><i class="ti ti-forms"></i></div>
-            <div class="prod-main"><div class="prod-name">公司名称变更</div><div class="prod-desc">重核名 + NNC2 + 更新 CI/BR + 新印章</div></div>
-            <div class="prod-price"><div class="price">HKD 2,500</div></div>
-          </div>
-          <div class="prod" data-type="change" data-region="hk" onclick="openSvc('allot')">
-            <div class="prod-ico" style="background:var(--blue-bg);color:#3B6EA5"><i class="ti ti-chart-pie"></i></div>
-            <div class="prod-main"><div class="prod-name">股份配发</div><div class="prod-desc">AR2 配发申报 + 新股票证书</div></div>
-            <div class="prod-price"><div class="price">HKD 1,800</div></div>
-          </div>
-          <div class="prod" data-type="change" data-region="hk" onclick="openSvc('deregister')">
-            <div class="prod-ico" style="background:var(--bg2);color:var(--text3)"><i class="ti ti-building-off"></i></div>
-            <div class="prod-main"><div class="prod-name">公司注销</div><div class="prod-desc">DR1 + 税务不反对 + 政府审批</div></div>
-            <div class="prod-price"><div class="price">HKD 2,000</div></div>
+            <div class="prod-main"><div class="prod-name">注册通讯地址</div><div class="prod-desc">香港商业注册地址 + 政府信件接收转发</div></div>
+            <div class="prod-price"><div class="price">HKD 2,200</div></div>
           </div>
         </div>
 
         <!-- 记账报税 -->
         <div class="svc-grp" data-type="book">
           <div class="sec-t" style="margin-top:2px"><i class="ti ti-calculator" style="font-size:13px;margin-right:4px"></i>记账报税</div>
-          <div class="prod" data-type="book" data-region="hk sg" onclick="openSvc('bookkeep')">
+          <div class="prod" data-type="book" data-region="hk" onclick="openSvc('bookkeep')">
             <div class="prod-ico" style="background:var(--green-bg);color:var(--green-d)"><i class="ti ti-calculator"></i></div>
-            <div class="prod-main"><div class="prod-name">记账报税</div><div class="prod-desc">月度记账 + 年度审计 + 利得税申报</div></div>
+            <div class="prod-main"><div class="prod-name">年度记账</div><div class="prod-desc">财务报表 + 审计报告 + 利得税申报</div></div>
+            <div class="prod-price"><div class="price" style="font-size:13px">面议</div></div>
+          </div>
+          <div class="prod" data-type="book" data-region="hk" onclick="openSvc('salarytax')">
+            <div class="prod-ico" style="background:var(--green-bg);color:var(--green-d)"><i class="ti ti-report-money"></i></div>
+            <div class="prod-main"><div class="prod-name">公司薪俸税 IR56A&B</div><div class="prod-desc">雇主申报员工薪金 · 按人头 · 帮填帮交</div></div>
+            <div class="prod-price"><div class="price">HKD 556<span style="font-size:11px">/人</span></div></div>
+          </div>
+          <div class="prod" data-type="book" data-region="hk" onclick="openSvc('persontax')">
+            <div class="prod-ico" style="background:var(--green-bg);color:var(--green-d)"><i class="ti ti-coin"></i></div>
+            <div class="prod-main"><div class="prod-name">个别人士报税</div><div class="prod-desc">个税申报 · 帮填帮交（不含豁免场景）</div></div>
+            <div class="prod-price"><div class="price">HKD 2,222</div></div>
+          </div>
+        </div>
+
+        <!-- 工商变更 -->
+        <div class="svc-grp" data-type="change">
+          <div class="sec-t" style="margin-top:2px"><i class="ti ti-tools" style="font-size:13px;margin-right:4px"></i>工商变更</div>
+          <div class="prod" data-type="change" data-region="hk" onclick="openSvc('director')">
+            <div class="prod-ico" style="background:var(--yellow-bg);color:var(--orange)"><i class="ti ti-user-edit"></i></div>
+            <div class="prod-main"><div class="prod-name">董事变更</div><div class="prod-desc">委任 / 停任 · ND2A + ND4</div></div>
+            <div class="prod-price"><div class="price">HKD 333</div></div>
+          </div>
+          <div class="prod" data-type="change" data-region="hk" onclick="openSvc('secretary')">
+            <div class="prod-ico" style="background:var(--blue-bg);color:var(--blue)"><i class="ti ti-user-cog"></i></div>
+            <div class="prod-main"><div class="prod-name">变更秘书公司</div><div class="prod-desc">转入 Leapexbiz 秘书 + 变更通知书</div></div>
+            <div class="prod-price"><div class="price">HKD 333</div></div>
+          </div>
+          <div class="prod" data-type="change" data-region="hk" onclick="openSvc('address')">
+            <div class="prod-ico" style="background:var(--yellow-bg);color:#B45309"><i class="ti ti-map-2"></i></div>
+            <div class="prod-main"><div class="prod-name">变更注册地址</div><div class="prod-desc">变更地址通知书 + 最新 BR</div></div>
+            <div class="prod-price"><div class="price">HKD 333</div></div>
+          </div>
+          <div class="prod" data-type="change" data-region="hk" onclick="openSvc('rename')">
+            <div class="prod-ico" style="background:var(--green-bg);color:var(--green-d)"><i class="ti ti-forms"></i></div>
+            <div class="prod-main"><div class="prod-name">公司更名</div><div class="prod-desc">NNC2 + 新 BR + 更新印章 ×2</div></div>
+            <div class="prod-price"><div class="price">HKD 1,667</div></div>
+          </div>
+          <div class="prod" data-type="change" data-region="hk" onclick="openSvc('transfer')">
+            <div class="prod-ico" style="background:var(--purple-bg);color:#7A5C9E"><i class="ti ti-arrows-exchange"></i></div>
+            <div class="prod-main"><div class="prod-name">股份转让（股东变更）</div><div class="prod-desc">转股文件 + 含印花税代缴（作价 2%）</div></div>
+            <div class="prod-price"><div class="price" style="font-size:13px">面议</div></div>
+          </div>
+          <div class="prod" data-type="change" data-region="hk" onclick="openSvc('deregister')">
+            <div class="prod-ico" style="background:var(--bg2);color:var(--text3)"><i class="ti ti-building-off"></i></div>
+            <div class="prod-main"><div class="prod-name">公司注销（撤销注册）</div><div class="prod-desc">NDR1 + IR1263 + 政府审批 · 8 个月起</div></div>
             <div class="prod-price"><div class="price" style="font-size:13px">面议</div></div>
           </div>
         </div>
 
-        <!-- 增值服务 -->
-        <div class="svc-grp" data-type="vas">
-          <div class="sec-t" style="margin-top:2px"><i class="ti ti-sparkles" style="font-size:13px;margin-right:4px"></i>增值服务</div>
-          <div class="prod" data-type="vas" data-region="hk" onclick="openSvc('bank')">
-            <div class="prod-ico" style="background:var(--purple-bg);color:#7A5C9E"><i class="ti ti-building-bank"></i></div>
-            <div class="prod-main"><div class="prod-name">银行开户协助</div><div class="prod-desc">开户预约 + 材料预审 + 面签陪同</div></div>
+        <!-- 商标 -->
+        <div class="svc-grp" data-type="tm">
+          <div class="sec-t" style="margin-top:2px"><i class="ti ti-trademark" style="font-size:13px;margin-right:4px"></i>商标</div>
+          <div class="prod" data-type="tm" data-region="hk" onclick="openSvc('tmsearch')">
+            <div class="prod-ico" style="background:var(--accent-bg);color:var(--accent-d)"><i class="ti ti-trademark"></i></div>
+            <div class="prod-main"><div class="prod-name">商标初步意见 & 政府检索</div><div class="prod-desc">政府检索 + 初步意见回信 · 每类别</div></div>
+            <div class="prod-price"><div class="price">HKD 3,311</div><div class="prod-coupon">券后 3,111</div></div>
+          </div>
+          <div class="prod" data-type="tm" data-region="hk" onclick="openSvc('tmreg')">
+            <div class="prod-ico" style="background:var(--blue-bg);color:var(--blue)"><i class="ti ti-award"></i></div>
+            <div class="prod-main"><div class="prod-name">商标注册申请</div><div class="prod-desc">注册申请表 + 商标证书 · 6 个月起</div></div>
             <div class="prod-price"><div class="price" style="font-size:13px">面议</div></div>
           </div>
-          <div class="prod" data-type="vas" data-region="hk" onclick="openSvc('office')">
-            <div class="prod-ico" style="background:var(--accent-bg);color:var(--accent-d)"><i class="ti ti-building-skyscraper"></i></div>
-            <div class="prod-main"><div class="prod-name">办公租赁 / 注册地址</div><div class="prod-desc">甲级商厦地址 · 可作公司注册地址</div></div>
-            <div class="prod-price"><div class="price" style="font-size:13px">面议</div></div>
-          </div>
-          <div class="prod" data-type="vas" data-region="hk" onclick="openSvc('immigration')">
-            <div class="prod-ico" style="background:var(--yellow-bg);color:var(--orange)"><i class="ti ti-plane-departure"></i></div>
-            <div class="prod-main"><div class="prod-name">香港移民 / 身份规划</div><div class="prod-desc">优才 / 专才 / 高才通 · 一对一规划</div></div>
-            <div class="prod-price"><div class="price" style="font-size:13px">面议</div></div>
+          <div class="prod" data-type="tm" data-region="hk" onclick="openSvc('tmrenew')">
+            <div class="prod-ico" style="background:var(--green-bg);color:var(--green-d)"><i class="ti ti-refresh"></i></div>
+            <div class="prod-main"><div class="prod-name">商标注册续期</div><div class="prod-desc">续期申请 + 回执</div></div>
+            <div class="prod-price"><div class="price">HKD 2,200</div></div>
           </div>
         </div>
 
@@ -795,7 +795,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
             <div style="flex:1"><div id="sd-name" style="font-size:17px;font-weight:700">标准注册服务</div><div id="sd-tags" style="font-size:11px;opacity:.9;margin-top:3px"></div></div>
           </div>
           <div style="margin-top:14px;display:flex;align-items:baseline;gap:8px">
-            <span style="font-size:13px;opacity:.85">渠道价</span>
+            <span style="font-size:13px;opacity:.85">价格</span>
             <span id="sd-price" style="font-size:26px;font-weight:800">HKD 5,800</span>
             <span id="sd-priceold" style="font-size:13px;opacity:.7;text-decoration:line-through"></span>
           </div>
@@ -828,7 +828,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
         </div>
       </div>
       <div class="buybar">
-        <div><div style="font-size:10px;color:var(--text3)" id="sd-barlabel">渠道价</div><div class="price" style="font-size:18px" id="sd-barprice">HKD 5,800</div></div>
+        <div><div style="font-size:10px;color:var(--text3)" id="sd-barlabel">价格</div><div class="price" style="font-size:18px" id="sd-barprice">HKD 5,800</div></div>
         <button class="btn ghost" style="flex:0 0 88px" onclick="openWecom('服务详情')"><i class="ti ti-message-circle" style="font-size:14px"></i>问顾问</button>
         <button class="btn" id="sd-cta" onclick="buyNow()">立即办理</button>
       </div>
@@ -976,7 +976,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
         </div>
         <button class="btn ghost" onclick="toast('可在此录入已有公司资料')"><i class="ti ti-plus"></i> 新增已有公司</button>
         <div class="card card-pad" style="background:var(--accent-bg);margin-top:12px">
-          <div class="note" style="color:var(--accent-d)">还没有香港公司？<b onclick="openSvc('pkg-std')" style="text-decoration:underline;cursor:pointer">先办理注册服务 ›</b>（无公司将为你推荐注册）</div>
+          <div class="note" style="color:var(--accent-d)">还没有香港公司？<b onclick="openSvc('reg')" style="text-decoration:underline;cursor:pointer">先办理注册服务 ›</b>（无公司将为你推荐注册）</div>
         </div>
       </div>
     </div>
@@ -1623,7 +1623,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
         </div>
         <div style="display:flex;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:12px;cursor:pointer" onclick="openSvc('reg')">
           <div style="width:96px;background:linear-gradient(135deg,#1A1A1A,#4A4A4A);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0"><div style="font-size:21px;font-weight:800">HK$200</div><div style="font-size:11px;margin-top:2px">立减</div></div>
-          <div style="flex:1;padding:13px 14px"><div style="font-weight:700;font-size:15px">新客注册立减券</div><div class="note" style="margin-top:3px">标准 / 高级注册服务满 HK$3,800 可用</div><div style="display:flex;justify-content:space-between;align-items:center;margin-top:9px"><span style="font-size:11px;color:var(--text3)">有效期至 2026-09-30</span><span style="font-size:12px;color:var(--accent-d);font-weight:600">去使用 ›</span></div></div>
+          <div style="flex:1;padding:13px 14px"><div style="font-weight:700;font-size:15px">新客注册立减券</div><div class="note" style="margin-top:3px">公司注册 / 商标等服务满 HK$2,000 可用</div><div style="display:flex;justify-content:space-between;align-items:center;margin-top:9px"><span style="font-size:11px;color:var(--text3)">有效期至 2026-09-30</span><span style="font-size:12px;color:var(--accent-d);font-weight:600">去使用 ›</span></div></div>
         </div>
         <div class="sec-t">已使用 / 已过期</div>
         <div style="display:flex;background:var(--bg2);border:1px solid var(--line);border-radius:14px;overflow:hidden;opacity:.55">
@@ -1675,7 +1675,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
       </div>
       <div style="overflow-y:auto;padding:12px 18px calc(16px + env(safe-area-inset-bottom))">
         <div class="radio-card on" id="cp-opt-none" onclick="applyCoupon('none')"><div class="radio-dot"></div><div style="flex:1"><div style="font-weight:600;font-size:14px">不使用优惠券</div><div class="note">按原价支付</div></div></div>
-        <div class="radio-card" id="cp-opt-reg" onclick="applyCoupon('reg')"><div class="radio-dot"></div><div style="flex:1"><div style="display:flex;justify-content:space-between"><div style="font-weight:600;font-size:14px">新客注册立减券</div><span class="tag t-green">− HK$200</span></div><div class="note">标准 / 高级注册满 HK$3,800 可用 · 至 2026-09-30</div></div></div>
+        <div class="radio-card" id="cp-opt-reg" onclick="applyCoupon('reg')"><div class="radio-dot"></div><div style="flex:1"><div style="display:flex;justify-content:space-between"><div style="font-weight:600;font-size:14px">新客注册立减券</div><span class="tag t-green">− HK$200</span></div><div class="note">公司注册 / 商标等满 HK$2,000 可用 · 至 2026-09-30</div></div></div>
       </div>
     </div>
   </div>
@@ -2120,11 +2120,11 @@ function ncAccept(){
   toast('已记录核名申请，继续办理');
   // 人工核名中，点「好的」直接进入下一步
   if(BUYING && FLOW_TYPE==='register'){ goPay(); }                          // 购买流程 → 直接去支付
-  else { setTimeout(function(){ openSvc('pkg-std'); }, 700); }               // 独立免费核名 → 去办理注册服务
+  else { setTimeout(function(){ openSvc('reg'); }, 700); }               // 独立免费核名 → 去办理注册服务
 }
 function pickCompany(name){ CURRENT_COMPANY=name; toast('已选择：'+name); goPay(); }
 function goPay(){
-  var s=CURRENT_SVC||SVC_DATA['pkg-std'];
+  var s=CURRENT_SVC||SVC_DATA['reg'];
   var cp=s.channelPrice||chPrice(s.price);
   if(!CURRENT_ORDER){
     var no='ORD-2026-0'+(ORD_SEQ++);
@@ -2290,83 +2290,80 @@ function fmtMoney(n){ return Number(n).toLocaleString('en-HK'); }
 var CHANNEL = 'LEX888';
 
 // 服务目录数据
+/* 商品与报价对齐《利柏思服务清单与报价 202607》：HKD = 人民币 ÷ 0.9（取整）；面议项 consult:true */
 var SVC_DATA = {
-  'pkg-basic':{name:'基础注册服务',icon:'ti-package',price:3800,old:0,form:'register',tags:'含 4 项服务',
-    incl:['公司注册（CI + BR）','首年法定秘书','注册地址','商业登记证'],
-    process:['支付','KYC 认证','提交注册信息'],meta:'办理时效：3-5 个工作日<br>所需材料：董事/股东身份证或护照、地址证明<br>交付物：注册证书 CI、商业登记证 BR、章程、名册等'},
-  'pkg-std':{name:'标准注册服务',icon:'ti-package',price:5800,old:6800,form:'register',tags:'推荐 · 含 7 项服务',
-    incl:['基础服务全部内容','首年公司年审','公司文件册 Company Kit','公司圆章 + 签字章'],
-    process:['支付','KYC 认证','提交注册信息'],meta:'办理时效：3-5 个工作日<br>所需材料：身份证/护照、地址证明<br>交付物：19 项（含印章、文件册）'},
-  'pkg-pro':{name:'高级注册服务',icon:'ti-package',price:8800,old:0,form:'register',tags:'含 10 项服务',
-    incl:['标准服务全部内容','银行开户协助','SCR 重要控制人登记册建立','公证认证'],
-    process:['支付','KYC 认证','提交注册信息'],meta:'办理时效：5-10 个工作日<br>含银行开户预约与公证认证<br>交付物：19 项 + 开户文件包 + 公证件'},
-  'reg':null, // alias → pkg-std
-  'annual':{name:'年审服务',icon:'ti-calendar-check',price:2800,old:0,form:'annual',tags:'NAR1 周年申报 · 7 项交付物',
-    incl:['周年申报表 NAR1 编制与提交','更新商业登记证 BR','董事/股东名册更新','公司秘书确认函','KYC 年度复核'],
-    process:['信息核对','KYC复核','申报','交付'],meta:'办理时效：5-7 个工作日<br>所需材料：公司 CI/BR、财政年度结算日<br>提示：逾期年审政府将罚款，请及时办理'},
-  'director':{name:'董事变更',icon:'ti-user-edit',price:1500,old:0,form:'director',tags:'ND2A · 5 项交付物',
-    incl:['董事变更通知书 ND2A','新任董事任命书','离任董事辞职书','董事名册更新','董事会决议书'],
-    process:['信息填写','新董事KYC','申报','交付'],meta:'办理时效：3-5 个工作日<br>新任董事需完成 KYC 尽调<br>同步更新 SCR'},
-  'secretary':{name:'秘书变更 / 转入',icon:'ti-user-cog',price:1200,old:0,form:'secretary',tags:'ND2B · 5 项交付物',
-    incl:['秘书变更通知书 ND2B','新任秘书任命书（Leapexbiz）','离任秘书辞职书','秘书名册更新','董事会决议书'],
-    process:['信息填写','交接','申报','交付'],meta:'办理时效：3-5 个工作日<br>Leapexbiz 接任法定秘书<br>转入含历史文件交接核对'},
-  'address':{name:'注册地址变更',icon:'ti-map-pin',price:800,old:0,form:'address',tags:'NR1 · 4 项交付物',
-    incl:['注册地址变更通知书 NR1','新地址证明','董事会决议书','更新地址通知书'],
-    process:['信息填写','申报','交付'],meta:'办理时效：2-3 个工作日<br>可选用 Leapexbiz 虚拟注册地址'},
-  'transfer':{name:'股份转让',icon:'ti-arrows-exchange',price:2000,old:0,form:'transfer',tags:'含印花税 · 6 项交付物',
-    incl:['股份转让文书','印花税申报表','转让后股东名册','董事会批准决议','印花税缴付证明','更新股票证书'],
-    process:['信息填写','印花税','申报','交付'],meta:'办理时效：5-7 个工作日<br>受让方需完成 KYC<br>系统预估应缴印花税（0.2% 对价或资产净值孰高）'},
-  'rename':{name:'公司名称变更',icon:'ti-forms',price:2500,old:0,form:'rename',tags:'需重核名 · 9 项交付物',
-    incl:['核名结果通知书','名称变更决定书 NNC2','更新 CI','更新 BR','更新章程','董事会决议','新圆章','新签字章','致银行通知书'],
-    process:['核名','申报','重制印章','交付'],meta:'办理时效：7-10 个工作日<br>需重新走核名流程（通过后继续）<br>含新印章重制'},
-  'allot':{name:'股份配发',icon:'ti-chart-pie',price:1800,old:0,form:'allot',tags:'AR2 · 6 项交付物',
-    incl:['股份配发申报表 AR2','配发后股东名册','配发后董事名册','董事会配发决议','新股票证书','股份配发通知书'],
-    process:['信息填写','申报','交付'],meta:'办理时效：3-5 个工作日<br>配发予新股东需完成 KYC<br>同步更新 SCR'},
-  'deregister':{name:'公司注销',icon:'ti-building-off',price:2000,old:0,form:'deregister',tags:'DR1 · 6 项交付物',
-    incl:['注销申请书 DR1','税务局不反对注销证明','公司注册处注销证明','董事会注销决议','股东同意注销决议','注销完成通知书'],
-    process:['税务结清','决议','提交DR1','政府审批'],meta:'办理时效：3-6 个月（政府审批）<br>需先结清税务并取得不反对通知书'},
-  // 增值服务（顾问类，走预约咨询 → 企微承接，不直接下单）
-  'office':{name:'办公租赁 / 注册地址',icon:'ti-building-skyscraper',price:0,old:0,consult:true,
-    tags:'甲级商厦 · 可作注册地址',
-    incl:['核心商业区甲级商厦地址','可作公司注册地址','可出具水电煤 / 地址证明','灵活工位 / 整层可选','签约与入驻协助'],
-    process:['提交需求','看房选址','确认签约','配置注册地址'],
-    meta:'香港核心商业区甲级写字楼，可作公司注册地址并出具地址证明。<br>支持灵活工位至整层办公，按面积 / 楼层报价。<br>预约顾问安排看房与报价。'},
-  'immigration':{name:'香港移民 / 身份规划',icon:'ti-plane-departure',price:0,old:0,consult:true,
-    tags:'优才 / 专才 / 高才通',
-    incl:['资格评估与方案规划','优才计划（QMAS）','输入内地人才（专才）','高端人才通行证（高才通）','续签 / 永居路径规划','配合公司注册落地'],
-    process:['资格评估','方案规划','材料准备','递交跟进'],
-    meta:'一对一顾问规划，按方案报价。<br>可与「公司注册 + 记账报税」打包，满足创业/受雇身份要求。<br>预约顾问做免费评估。'},
-  'bookkeep':{name:'记账报税',icon:'ti-calculator',price:0,old:0,consult:true,
-    tags:'月度 / 年度 · 按规模报价',
-    incl:['日常记账与凭证整理','年度审计安排（对接执业会计师）','利得税报税表 PTR 编制','管理报表 / 财务报表','税务咨询与筹划'],
-    process:['需求评估','资料对接','记账出表','审计报税'],
-    meta:'按交易笔数 / 营业规模报价，支持跨境电商平台账单批量导入。<br>可与「公司注册」打包，享一站式合规。<br>预约顾问做免费评估。'},
-  'bank':{name:'银行开户协助',icon:'ti-building-bank',price:0,old:0,consult:true,
-    tags:'香港银行 / 虚拟银行 · 预约陪同',
-    incl:['开户方案与银行匹配','开户材料预审与整理','开户预约与面签陪同','业务背景问卷（KYC）辅导','开户后网银 / 收款配置指引'],
-    process:['需求评估','材料预审','预约面签','开户跟进'],
-    meta:'协助预约香港传统银行 / 虚拟银行开户，提升过件率（不承诺 100% 成功）。<br>可与「公司注册 + 记账报税」打包办理。<br>预约顾问做免费评估。'},
+  // ── 注册 ──
+  'reg':{name:'新设香港本地有限公司',icon:'ti-building-plus',price:5533,cny:4980,old:0,form:'register',tags:'约 10 个工作日 · 全套证照 + 绿盒',
+    incl:['注册证书 CI ×1','商业登记证 BR ×1','公司章程 ×10','法团成立表格 NNC1 ×1','股票本','会议记录本','钢印章','条形章','小圆章','绿盒'],
+    process:['支付','KYC 认证','提交注册信息'],meta:'办理时效：约 10 个工作日<br>所需材料：董事/股东身份证或护照、地址证明<br>交付物：CI + BR + 章程 10 份 + NNC1 + 股票本 + 会议记录本 + 钢印/条形/小圆章 + 绿盒'},
+  // ── 秘书 & 地址（年费） ──
+  'annual':{name:'法定公司秘书（周年申报）',icon:'ti-shield-check',price:2200,cny:1980,old:0,form:'annual',tags:'年费 · 维护法定登记册 + NAR1',
+    incl:['担任法定公司秘书','维护法定登记册','周年申报表 NAR1 编制与提交'],
+    process:['信息核对','申报','交付'],meta:'年度法定秘书服务，含周年申报 NAR1。<br>提示：地址须与秘书服务一并提供，不单独提供地址。<br>逾期年审政府将罚款，请及时办理。'},
+  'regaddr':{name:'注册通讯地址',icon:'ti-map-pin',price:2200,cny:1980,old:0,form:'address',tags:'年费 · 香港商业注册地址',
+    incl:['提供香港商业注册地址','接收政府信件','基础信件通知','信件转发'],
+    process:['信息核对','配置地址','交付'],meta:'提供香港商业注册地址并接收 / 转发政府信件。<br>提示：地址须与秘书服务一并提供。'},
+  // ── 记账报税 ──
+  'bookkeep':{name:'年度记账',icon:'ti-calculator',price:0,old:0,consult:true,tags:'财务报表 + 审计 + 利得税',
+    incl:['财务报表编制','审计报告（对接执业会计师）','利得税申报'],
+    process:['需求评估','资料对接','记账出表','审计报税'],meta:'年度记账 + 审计 + 利得税申报。<br>按交易笔数 / 营业规模报价。<br>预约顾问评估。'},
+  'salarytax':{name:'公司薪俸税 IR56A&B',icon:'ti-report-money',price:556,cny:500,old:0,form:'salarytax',tags:'约 3 个工作日 · 按人头 / 员工',
+    incl:['雇主申报员工薪金','IR56A / IR56B 表格填报','帮填帮交','税表回执'],
+    process:['信息填写','填报','提交','交付回执'],meta:'办理时效：约 3 个工作日<br>按人头计：一名员工一张 HKD 556（¥500）<br>含帮填帮交'},
+  'persontax':{name:'个别人士报税',icon:'ti-coin',price:2222,cny:2000,old:0,form:'persontax',tags:'约 3 个工作日 · 个税申报',
+    incl:['个人入息 / 薪俸税申报','帮填帮交','税表回执'],
+    process:['信息填写','填报','提交','交付回执'],meta:'办理时效：约 3 个工作日<br>含帮填帮交（不含豁免场景）'},
+  // ── 工商变更 ──
+  'director':{name:'董事变更',icon:'ti-user-edit',price:333,cny:300,old:0,form:'director',tags:'约 5 个工作日 · ND2A / ND4',
+    incl:['委任 / 停任董事','ND2A 变更董事通知书','ND4 董事辞职通知书'],
+    process:['信息填写','新董事KYC','申报','交付'],meta:'办理时效：约 5 个工作日<br>新任董事需完成 KYC 尽调'},
+  'secretary':{name:'变更秘书公司',icon:'ti-user-cog',price:333,cny:300,old:0,form:'secretary',tags:'约 5 个工作日 · 转入秘书',
+    incl:['最新商业登记证 BR','变更秘书通知书','Leapexbiz 接任法定秘书'],
+    process:['信息填写','交接','申报','交付'],meta:'办理时效：约 5 个工作日<br>含历史文件交接核对'},
+  'address':{name:'变更注册地址',icon:'ti-map-2',price:333,cny:300,old:0,form:'address',tags:'约 5 个工作日 · 变更地址',
+    incl:['最新商业登记证 BR','变更地址通知书'],
+    process:['信息填写','申报','交付'],meta:'办理时效：约 5 个工作日<br>可选用 Leapexbiz 虚拟注册地址'},
+  'rename':{name:'公司更名',icon:'ti-forms',price:1667,cny:1500,old:0,form:'rename',tags:'7-10 工作日 · NNC2 + 新印章',
+    incl:['新商业登记证 BR','更名文件 NNC2','更新印章 ×2'],
+    process:['核名','申报','重制印章','交付'],meta:'办理时效：7-10 个工作日；新 BR 约 +2 周<br>需重新走核名流程（通过后继续）<br>官费 HKD 295'},
+  'transfer':{name:'股份转让（股东变更）',icon:'ti-arrows-exchange',price:0,old:0,consult:true,tags:'约 5 工作日 · 含印花税 2%',
+    incl:['转股文件 / 套','印花税代缴（作价 2%）','转让后股东名册'],
+    process:['信息填写','印花税','申报','交付'],meta:'办理时效：约 5 个工作日<br>含缴纳印花税（作价 2%）<br>需 6 个月内审计报告或 3 个月内财务报表<br>价格面议（视作价）'},
+  'deregister':{name:'公司注销（撤销注册）',icon:'ti-building-off',price:0,old:0,consult:true,tags:'8 个月起 · NDR1 + IR1263',
+    incl:['特别决议书','撤销注册 NDR1','IR1263 注销表格'],
+    process:['税务结清','决议','提交NDR1','政府审批'],meta:'办理时效：8 个月起（政府审批）<br>需额外清算审计报告、无外债<br>官费 HKD 270 + 420<br>价格面议'},
+  // ── 商标 ──
+  'tmsearch':{name:'商标初步意见 & 政府检索',icon:'ti-trademark',price:3311,cny:2980,old:0,form:'tmsearch',tags:'约 3 工作日 · 每类别',
+    incl:['要求给予初步意见','政府检索','政府初步意见回信'],
+    process:['提交关键字','政府检索','出具意见'],meta:'办理时效：约 3 个工作日<br>一个类别 HKD 3,311（¥2,980）<br>同一商标申请多个类别需分别申请'},
+  'tmreg':{name:'商标注册申请',icon:'ti-award',price:0,old:0,consult:true,tags:'6 个月起 · 商标证书',
+    incl:['注册申请表','商标证书'],
+    process:['提交申请','政府审查','公告','发证'],meta:'办理时效：6 个月起<br>建议先做「初步意见 & 检索」<br>价格面议'},
+  'tmrenew':{name:'商标注册续期',icon:'ti-refresh',price:2200,cny:1980,old:0,form:'tmrenew',tags:'约 5 工作日 · 续期',
+    incl:['商标续期申请','续期回执'],
+    process:['信息核对','提交续期','交付'],meta:'办理时效：约 5 个工作日<br>续期费 HKD 2,200（¥1,980）'},
 };
-SVC_DATA['reg'] = SVC_DATA['pkg-std'];
 
 // 各服务必要信息表单
 var SVC_FORM = {
   register:[['期望公司英文名','如 Star Tech Limited'],['期望公司中文名','如 星辰科技有限公司'],['联系人姓名',''],['联系邮箱','name@email.com']],
   annual:[['公司名称',''],['公司注册编号 CI',''],['商业登记证号 BR',''],['财政年度结算日','如 03-31']],
+  address:[['公司名称',''],['注册 / 通讯地址 · 或选用 Leapexbiz 地址','']],
+  salarytax:[['公司名称',''],['员工人数','按人头计费'],['申报年度','如 2024/25']],
+  persontax:[['姓名',''],['香港身份证 / 税务档案号',''],['申报年度','如 2024/25']],
   director:[['公司名称',''],['离任董事姓名',''],['新任董事姓名',''],['新任董事证件号','将触发 KYC']],
-  secretary:[['公司名称',''],['是否由 Leapexbiz 接任','是 / 否']],
-  address:[['公司名称',''],['新注册地址 / 选用 Leapexbiz 地址','']],
-  transfer:[['公司名称',''],['转让方姓名',''],['受让方姓名',''],['转让股数',''],['转让对价 (HKD)','用于预估印花税']],
+  secretary:[['公司名称',''],['现秘书公司',''],['是否由 Leapexbiz 接任','是 / 否']],
   rename:[['公司名称（现）',''],['拟用新名称','将触发核名流程']],
-  allot:[['公司名称',''],['配发对象',''],['配发股数','']],
+  transfer:[['公司名称',''],['转让方姓名',''],['受让方姓名',''],['转让股数',''],['转让对价 (HKD)','用于预估印花税']],
   deregister:[['公司名称',''],['注销原因',''],['税务是否已结清','是 / 否']],
+  tmsearch:[['商标名称 / 关键字',''],['拟注册类别 Class','如 9 / 35 / 42'],['联系人',''],['联系邮箱','name@email.com']],
+  tmrenew:[['商标名称',''],['商标注册编号',''],['续期年度','']],
 };
 var KYC_NOTE = {
   register:'流程顺序：公司核名 → 支付 → 提交注册信息 → KYC 认证（最后）。',
   director:'新任董事需完成 KYC 尽职调查（含 PEP / 制裁名单筛查）。',
   transfer:'受让方需完成 KYC；系统将预估应缴印花税。',
   rename:'名称变更需重新走核名流程，通过后方可继续。',
-  allot:'配发予新股东需完成 KYC 尽职调查。',
   annual:'年审将触发 KYC 年度复核，如身份信息有变需重新上传。',
   secretary:'秘书转入将进行历史合规文件交接核对。',
   address:'地址变更如选用 Leapexbiz 地址，将自动配置注册地址。',
@@ -2374,7 +2371,7 @@ var KYC_NOTE = {
 };
 
 var CURRENT_SVC = null, CURRENT_ORDER = null;
-function chPrice(p){ return Math.round(p*0.85/100)*100; } // 渠道 85 折，取整百（演示）
+function chPrice(p){ return p; } // 报价表价格为最终价，不再演示折扣
 
 function openSvc(key){
   var s = SVC_DATA[key]; if(!s) return;
@@ -2398,7 +2395,7 @@ function openSvc(key){
     document.getElementById('sd-price').textContent = 'HKD '+fmtMoney(cp);
     document.getElementById('sd-priceold').textContent = op>cp ? 'HKD '+fmtMoney(op) : '';
     document.getElementById('sd-barprice').textContent = 'HKD '+fmtMoney(cp);
-    document.getElementById('sd-barlabel').textContent = '渠道价';
+    document.getElementById('sd-barlabel').textContent = '价格';
     cta.textContent = '立即办理';
     cta.setAttribute('onclick', 'buyNow()');
   }
