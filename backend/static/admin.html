@@ -165,7 +165,10 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
 
       <div class="ng">05 · 服务管理</div>
       <div class="ni" data-p="register" onclick="go(this)"><i class="ti ti-building-plus"></i>注册公司<span class="nb">3</span></div>
-      <div class="ni" data-p="change" onclick="go(this)"><i class="ti ti-replace"></i>变更办理<span class="nb">4</span></div>
+      <div class="ni" data-p="chg-address" onclick="go(this)"><i class="ti ti-map-2"></i>地址变更<span class="nb">2</span></div>
+      <div class="ni" data-p="chg-director" onclick="go(this)"><i class="ti ti-user-edit"></i>董事变更<span class="nb">2</span></div>
+      <div class="ni" data-p="chg-secretary" onclick="go(this)"><i class="ti ti-user-cog"></i>变更秘书<span class="nb">1</span></div>
+      <div class="ni" data-p="chg-rename" onclick="go(this)"><i class="ti ti-forms"></i>公司更名<span class="nb">1</span></div>
       <div class="ni" data-p="namecheck" onclick="go(this)"><i class="ti ti-search"></i>核名&商标<span class="nb">3</span></div>
 
       <div class="ng">06 · 供应商管理</div>
@@ -292,20 +295,54 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
         </table></div>
       </div>
 
-      <!-- ════ 变更办理（地址/董事/秘书/更名 · 关键信息→线下备表→快递签字）════ -->
-      <div class="page" id="p-change">
-        <div class="card cp" style="background:var(--accent-bg);border-color:var(--accent-d)"><div style="font-size:12px;color:var(--accent-d)"><i class="ti ti-replace"></i> <b>变更办理执行台</b>：对应政府表格 <b>NR1（地址变更）/ ND2A（董事变更 · 变更秘书公司）/ NNC2（公司更名）</b>。<b>客户仅提交关键信息</b>，服务人员<b>线下准备表格 → 快递给客户签字确认 → 签妥回寄 → 递交公司注册处</b>（不向客户端提供表格 PDF 预览）。公司更名需<b>先付费再人工查名</b>；变更秘书公司由 Leapexbiz 填写秘书部分。</div></div>
-        <div class="filters"><span class="chip on">全部 4</span><span class="chip">地址变更 NR1</span><span class="chip">董事变更 ND2A</span><span class="chip">变更秘书 ND2A</span><span class="chip">公司更名 NNC2</span><input class="inp" placeholder="订单号 / 公司名" style="margin-left:auto;width:180px"></div>
+      <!-- ════ 地址变更（NR1）════ -->
+      <div class="page" id="p-chg-address">
+        <div class="card cp" style="background:var(--accent-bg);border-color:var(--accent-d)"><div style="font-size:12px;color:var(--accent-d)"><i class="ti ti-map-2"></i> <b>地址变更（NR1）</b>：对应政府表格 <b>NR1 注册办事处地址变更通知书</b>。客户仅提交关键信息（新注册地址 + 生效日期，或选用 Leapexbiz 地址），服务人员<b>线下备表 → 快递签字确认 → 递交公司注册处</b>（不向客户端提供表格 PDF 预览）。</div></div>
+        <div class="filters"><span class="chip on">全部 2</span><span class="chip">提交关键信息</span><span class="chip">平台备表</span><span class="chip">待客户签回</span><span class="chip">递交注册处</span><span class="chip">已完结</span><input class="inp" placeholder="订单号 / 公司名" style="margin-left:auto;width:180px"></div>
         <div class="card"><table>
-          <thead><tr><th>订单号</th><th>公司</th><th>变更类型 / 表格</th><th>客户</th><th>当前节点</th><th>进度</th><th>状态</th><th></th></tr></thead>
+          <thead><tr><th>订单号</th><th>公司</th><th>客户</th><th>当前节点</th><th>进度</th><th>状态</th><th></th></tr></thead>
           <tbody>
-            <tr><td>ORD-2026-0231</td><td><b>恒丰贸易有限公司</b></td><td>地址变更 <span class="pill p-gold">NR1</span></td><td>陈大文</td><td>快递签字确认</td><td>4 / 6</td><td><span class="pill p-blue">待客户签回</span></td><td><button class="btn btn-xs btn-p" onclick="openChange('ORD-2026-0231','address','恒丰贸易有限公司')">维护</button></td></tr>
-            <tr><td>ORD-2026-0232</td><td><b>星辰科技有限公司</b></td><td>董事变更 <span class="pill p-gold">ND2A</span></td><td>李美琪</td><td>新董事 KYC</td><td>3 / 7</td><td><span class="pill p-amber">待新董事 KYC</span></td><td><button class="btn btn-xs btn-p" onclick="openChange('ORD-2026-0232','director','星辰科技有限公司')">维护</button></td></tr>
-            <tr><td>ORD-2026-0233</td><td><b>光辉投资有限公司</b></td><td>变更秘书公司 <span class="pill p-gold">ND2A</span></td><td>王志强</td><td>平台备表 ND2A</td><td>2 / 6</td><td><span class="pill p-blue">平台备表中</span></td><td><button class="btn btn-xs btn-p" onclick="openChange('ORD-2026-0233','secretary','光辉投资有限公司')">维护</button></td></tr>
-            <tr><td>ORD-2026-0234</td><td><b>一本万利有限公司</b></td><td>公司更名 <span class="pill p-gold">NNC2</span></td><td>陈大文</td><td>人工查名</td><td>2 / 7</td><td><span class="pill p-amber">查名中</span></td><td><button class="btn btn-xs btn-p" onclick="openChange('ORD-2026-0234','rename','一本万利有限公司')">维护</button></td></tr>
+            <tr><td>ORD-2026-0231</td><td><b>恒丰贸易有限公司</b></td><td>陈大文</td><td>快递签字确认</td><td>4 / 6</td><td><span class="pill p-blue">待客户签回</span></td><td><button class="btn btn-xs btn-p" onclick="openChange('ORD-2026-0231','address','恒丰贸易有限公司')">维护</button></td></tr>
+            <tr><td>ORD-2026-0240</td><td><b>宏图国际有限公司</b></td><td>王志强</td><td>完结</td><td>6 / 6</td><td><span class="pill p-green">已完结</span></td><td><button class="btn btn-xs" onclick="openChange('ORD-2026-0240','address','宏图国际有限公司')">查看</button></td></tr>
           </tbody>
         </table></div>
-        <div class="card cp" style="background:var(--gold-bg);border-color:var(--gold)"><div style="font-size:12px;color:var(--gold)"><i class="ti ti-info-circle"></i> 节点通用流程：支付 → 提交关键信息 →〔更名：人工查名 / 董事：新董事 KYC〕→ 平台备表（NR1/ND2A/NNC2）→ 快递签字确认（物流单号）→ 递交注册处 → 完结（更新登记册 / 名册 / 新 BR）。</div></div>
+      </div>
+
+      <!-- ════ 董事变更（ND2A）════ -->
+      <div class="page" id="p-chg-director">
+        <div class="card cp" style="background:var(--accent-bg);border-color:var(--accent-d)"><div style="font-size:12px;color:var(--accent-d)"><i class="ti ti-user-edit"></i> <b>董事变更（ND2A）</b>：对应政府表格 <b>ND2A 董事委任 / 停任通知书</b>。客户仅提交关键信息（变更类型、董事中英名、证件、原因 / 日期）；<b>委任新董事需完成 KYC</b>，服务人员<b>线下备表 → 快递签字确认 → 递交注册处</b>。</div></div>
+        <div class="filters"><span class="chip on">全部 2</span><span class="chip">提交关键信息</span><span class="chip">新董事 KYC</span><span class="chip">平台备表</span><span class="chip">待客户签回</span><span class="chip">已完结</span><input class="inp" placeholder="订单号 / 公司名" style="margin-left:auto;width:180px"></div>
+        <div class="card"><table>
+          <thead><tr><th>订单号</th><th>公司</th><th>客户</th><th>当前节点</th><th>进度</th><th>状态</th><th></th></tr></thead>
+          <tbody>
+            <tr><td>ORD-2026-0232</td><td><b>星辰科技有限公司</b></td><td>李美琪</td><td>新董事 KYC</td><td>3 / 7</td><td><span class="pill p-amber">待新董事 KYC</span></td><td><button class="btn btn-xs btn-p" onclick="openChange('ORD-2026-0232','director','星辰科技有限公司')">维护</button></td></tr>
+            <tr><td>ORD-2026-0241</td><td><b>恒丰贸易有限公司</b></td><td>陈大文</td><td>递交注册处</td><td>6 / 7</td><td><span class="pill p-blue">递交中</span></td><td><button class="btn btn-xs btn-p" onclick="openChange('ORD-2026-0241','director','恒丰贸易有限公司')">维护</button></td></tr>
+          </tbody>
+        </table></div>
+      </div>
+
+      <!-- ════ 变更秘书（ND2A · Leapexbiz 接任）════ -->
+      <div class="page" id="p-chg-secretary">
+        <div class="card cp" style="background:var(--accent-bg);border-color:var(--accent-d)"><div style="font-size:12px;color:var(--accent-d)"><i class="ti ti-user-cog"></i> <b>变更秘书（ND2A）</b>：对应政府表格 <b>ND2A 秘书变更通知书</b>。<b>秘书公司即 Leapexbiz，秘书部分由我方填写</b>，客户仅需确认接任并由董事签字；服务人员<b>线下备表 → 快递签字确认 → 递交注册处</b>，含历史文件交接核对。</div></div>
+        <div class="filters"><span class="chip on">全部 1</span><span class="chip">确认接任信息</span><span class="chip">平台备表</span><span class="chip">待客户签回</span><span class="chip">已完结</span><input class="inp" placeholder="订单号 / 公司名" style="margin-left:auto;width:180px"></div>
+        <div class="card"><table>
+          <thead><tr><th>订单号</th><th>公司</th><th>客户</th><th>当前节点</th><th>进度</th><th>状态</th><th></th></tr></thead>
+          <tbody>
+            <tr><td>ORD-2026-0233</td><td><b>光辉投资有限公司</b></td><td>王志强</td><td>平台备表 ND2A</td><td>2 / 6</td><td><span class="pill p-blue">平台备表中</span></td><td><button class="btn btn-xs btn-p" onclick="openChange('ORD-2026-0233','secretary','光辉投资有限公司')">维护</button></td></tr>
+          </tbody>
+        </table></div>
+      </div>
+
+      <!-- ════ 公司更名（NNC2 · 先付费后查名）════ -->
+      <div class="page" id="p-chg-rename">
+        <div class="card cp" style="background:var(--accent-bg);border-color:var(--accent-d)"><div style="font-size:12px;color:var(--accent-d)"><i class="ti ti-forms"></i> <b>公司更名（NNC2）</b>：对应政府表格 <b>NNC2 更改公司名称</b> + 股东特别决议。客户提交现名 + 拟用新中英名；<b>先付费再由顾问人工查名</b>（含商标风险提示，可联动「核名&商标」）；服务人员<b>线下备 NNC2 + 决议 → 快递签字确认 → 递交注册处</b>，含新印章重制 ×2。</div></div>
+        <div class="filters"><span class="chip on">全部 1</span><span class="chip">提交拟用名称</span><span class="chip">人工查名</span><span class="chip">平台备表</span><span class="chip">待客户签回</span><span class="chip">已完结</span><input class="inp" placeholder="订单号 / 公司名" style="margin-left:auto;width:180px"></div>
+        <div class="card"><table>
+          <thead><tr><th>订单号</th><th>公司</th><th>客户</th><th>当前节点</th><th>进度</th><th>状态</th><th></th></tr></thead>
+          <tbody>
+            <tr><td>ORD-2026-0234</td><td><b>一本万利有限公司</b><div style="color:var(--text3);font-size:11px">Thousandfold Profits Limited</div></td><td>陈大文</td><td>人工查名</td><td>2 / 7</td><td><span class="pill p-amber">查名中</span></td><td><button class="btn btn-xs btn-p" onclick="openChange('ORD-2026-0234','rename','一本万利有限公司')">维护</button></td></tr>
+          </tbody>
+        </table></div>
       </div>
 
       <!-- ════ 核名&商标 ════ -->
@@ -1396,7 +1433,7 @@ function go(el){
   var p=el.dataset.p;
   document.querySelectorAll('.page').forEach(pg=>pg.classList.remove('on'));
   document.getElementById('p-'+p).classList.add('on');
-  var meta={dash:['数据驾驶舱','实时运营总览'],supplierwt:['供应商工作台','供应商自助：分配订单 / 更新进度 / 结算对账（不在线结算）'],partner:['渠道商工作台','渠道商自助：归属订单 / 佣金对账（不在线结算）'],customers:['客户信息管理','客户档案与画像'],companies:['客户公司管理','法人主体 / CI·BR / SCR / 年审'],kyc:['KYC / EDD 审核','AMLO 尽职调查 · 后台跑 PEP/制裁'],register:['注册公司','公司注册服务执行 · 维护进度 / 资料'],change:['变更办理','地址/董事/秘书/更名 · 关键信息 → 线下备表(NR1/ND2A/NNC2) → 快递签字'],namecheck:['核名&商标','人工核名（繁体/英文）+ 商标查询 · 无智能预检'],orders:['订单列表','进度只读联动服务 · 资料可下载'],bills:['账单 / 回单确认','服务人员核验回单 · 确认付款 / 未收到付款（不含退款·重开）'],products:['商品','商品目录 · 基础信息 + 流程节点 + 节点资料'],coupons:['卡券','卡券模板 + 发放 + 核销统计（承接小程序优惠券）'],messages:['消息','消息模板 + 年审 6 轮提醒 + 群发 + 发送记录'],supplier:['供应商管理','超管新增 · 支持服务 + 结算规则'],assign:['订单分配','派单给供应商履约'],suppliersettle:['订单结算','已完成订单 → 供应商结算（线下）'],channel:['渠道商管理','超管新增 · 推荐码 + 佣金（弹窗配置）'],commission:['佣金结算','已完成订单 → 渠道返点（线下）'],rbac:['员工和角色','RBAC 7 角色 + 自定义'],menuperm:['菜单权限','角色 × 菜单可见性配置'],compliance:['合规与审计','制裁 / SCR / 哈希链'],config:['系统参数','时效 / 额度 / 税率']};
+  var meta={dash:['数据驾驶舱','实时运营总览'],supplierwt:['供应商工作台','供应商自助：分配订单 / 更新进度 / 结算对账（不在线结算）'],partner:['渠道商工作台','渠道商自助：归属订单 / 佣金对账（不在线结算）'],customers:['客户信息管理','客户档案与画像'],companies:['客户公司管理','法人主体 / CI·BR / SCR / 年审'],kyc:['KYC / EDD 审核','AMLO 尽职调查 · 后台跑 PEP/制裁'],register:['注册公司','公司注册服务执行 · 维护进度 / 资料'],'chg-address':['地址变更','NR1 · 关键信息 → 线下备表 → 快递签字 → 递交'],'chg-director':['董事变更','ND2A · 关键信息 + 新董事 KYC → 线下备表 → 快递签字'],'chg-secretary':['变更秘书','ND2A · 秘书部分 Leapexbiz 填 → 快递签字 → 递交'],'chg-rename':['公司更名','NNC2 · 先付费后查名 → 备 NNC2 + 决议 → 快递签字'],namecheck:['核名&商标','人工核名（繁体/英文）+ 商标查询 · 无智能预检'],orders:['订单列表','进度只读联动服务 · 资料可下载'],bills:['账单 / 回单确认','服务人员核验回单 · 确认付款 / 未收到付款（不含退款·重开）'],products:['商品','商品目录 · 基础信息 + 流程节点 + 节点资料'],coupons:['卡券','卡券模板 + 发放 + 核销统计（承接小程序优惠券）'],messages:['消息','消息模板 + 年审 6 轮提醒 + 群发 + 发送记录'],supplier:['供应商管理','超管新增 · 支持服务 + 结算规则'],assign:['订单分配','派单给供应商履约'],suppliersettle:['订单结算','已完成订单 → 供应商结算（线下）'],channel:['渠道商管理','超管新增 · 推荐码 + 佣金（弹窗配置）'],commission:['佣金结算','已完成订单 → 渠道返点（线下）'],rbac:['员工和角色','RBAC 7 角色 + 自定义'],menuperm:['菜单权限','角色 × 菜单可见性配置'],compliance:['合规与审计','制裁 / SCR / 哈希链'],config:['系统参数','时效 / 额度 / 税率']};
   var m=meta[p]||['',''];document.getElementById('pt').textContent=m[0];document.getElementById('ps').textContent=m[1];
   document.querySelector('.content').scrollTop=0;
 }
