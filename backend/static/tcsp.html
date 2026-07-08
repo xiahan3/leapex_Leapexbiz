@@ -378,7 +378,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
         <div class="sec-t" style="display:flex;justify-content:space-between"><span>推荐服务</span><span style="color:var(--accent);font-weight:500;cursor:pointer" onclick="go('s-services')">全部服务 ›</span></div>
         <div class="pkg-card rec" onclick="openSvc('reg')"><div class="pkg-badge">主推</div><div style="display:flex;align-items:center;gap:10px"><div class="svc-dot" style="background:var(--accent-bg);color:var(--accent-d);width:36px;height:36px"><i class="ti ti-building-plus"></i></div><div style="flex:1"><div style="font-weight:700">新设香港本地有限公司</div><div class="note">适合：首次在港设立 · 全套证照 + 印章 + 绿盒</div></div><div class="price price-lg">HKD 5,533</div></div></div>
         <div class="pkg-card" onclick="openSvc('annual')"><div style="display:flex;align-items:center;gap:10px"><div class="svc-dot" style="background:var(--blue-bg);color:var(--blue);width:36px;height:36px"><i class="ti ti-shield-check"></i></div><div style="flex:1"><div style="font-weight:700">法定公司秘书（周年申报）</div><div class="note">适合：已有公司 · 年度合规 + NAR1</div></div><div class="price price-lg">HKD 2,200</div></div></div>
-        <div class="pkg-card" onclick="openSvc('bookkeep')"><div style="display:flex;align-items:center;gap:10px"><div class="svc-dot" style="background:var(--green-bg);color:var(--green-d);width:36px;height:36px"><i class="ti ti-calculator"></i></div><div style="flex:1"><div style="font-weight:700">年度记账</div><div class="note">适合：有经营 · 财务报表 + 审计 + 利得税</div></div><div class="price price-lg" style="font-size:15px">面议</div></div></div>
+        <div class="pkg-card" onclick="openSvc('bookkeep')"><div style="display:flex;align-items:center;gap:10px"><div class="svc-dot" style="background:var(--green-bg);color:var(--green-d);width:36px;height:36px"><i class="ti ti-calculator"></i></div><div style="flex:1"><div style="font-weight:700">年度审计 · 记账报税</div><div class="note">适合：有经营 · 财报 + 审计 + 利得税 PTR</div></div><div class="price price-lg" style="font-size:15px">面议</div></div></div>
       </div>
     </div>
 
@@ -692,7 +692,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
           <div class="sec-t" style="margin-top:2px"><i class="ti ti-calculator" style="font-size:13px;margin-right:4px"></i>记账报税</div>
           <div class="prod" data-type="book" data-region="hk" onclick="openSvc('bookkeep')">
             <div class="prod-ico" style="background:var(--green-bg);color:var(--green-d)"><i class="ti ti-calculator"></i></div>
-            <div class="prod-main"><div class="prod-name">年度记账</div><div class="prod-desc">财务报表 + 审计报告 + 利得税申报</div></div>
+            <div class="prod-main"><div class="prod-name">年度审计 · 记账报税</div><div class="prod-desc">财务报表 + 执业会计师审计 + 利得税 PTR</div></div>
             <div class="prod-price"><div class="price" style="font-size:13px">面议</div></div>
           </div>
           <div class="prod" data-type="book" data-region="hk" onclick="openSvc('salarytax')">
@@ -732,7 +732,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
           </div>
           <div class="prod" data-type="change" data-region="hk" onclick="openSvc('transfer')">
             <div class="prod-ico" style="background:var(--purple-bg);color:#7A5C9E"><i class="ti ti-arrows-exchange"></i></div>
-            <div class="prod-main"><div class="prod-name">股份转让（股东变更）</div><div class="prod-desc">转股文件 + 含印花税代缴（作价 2%）</div></div>
+            <div class="prod-main"><div class="prod-name">股份转让（股东变更）</div><div class="prod-desc">转股文书 + 含印花税代缴（从价 0.2%）</div></div>
             <div class="prod-price"><div class="price" style="font-size:13px">面议</div></div>
           </div>
           <div class="prod" data-type="change" data-region="hk" onclick="openSvc('deregister')">
@@ -2278,20 +2278,25 @@ var SVC_DATA = {
   // ── 秘书 & 地址（年费） ──
   'annual':{name:'法定公司秘书（周年申报）',icon:'ti-shield-check',price:2200,cny:1980,old:0,form:'annual',tags:'年费 · 维护法定登记册 + NAR1',
     incl:['担任法定公司秘书','维护法定登记册','周年申报表 NAR1 编制与提交'],
-    process:['信息核对','申报','交付'],meta:'年度法定秘书服务，含周年申报 NAR1。<br>提示：地址须与秘书服务一并提供，不单独提供地址。<br>逾期年审政府将罚款，请及时办理。'},
+    process:['支付 / 续费','信息核对','编制 NAR1','递交注册处','完结'],
+    meta:'年度法定秘书服务，含<b>周年申报 NAR1（公司注册处）</b>——须于<b>成立周年日起 42 天内</b>递交，逾期政府罚款递增。<br>注意：这是<b>公司注册处</b>的年度合规，与<b>税务局</b>的年度审计 / 利得税报税（见「记账报税」）不同。<br>提示：地址须与秘书服务一并提供，不单独提供地址。'},
   'regaddr':{name:'注册通讯地址',icon:'ti-map-pin',price:2200,cny:1980,old:0,form:'address',tags:'年费 · 香港商业注册地址',
     incl:['提供香港商业注册地址','接收政府信件','基础信件通知','信件转发'],
-    process:['信息核对','配置地址','交付'],meta:'提供香港商业注册地址并接收 / 转发政府信件。<br>提示：地址须与秘书服务一并提供。'},
+    process:['支付','确认公司资料','配置地址 + 信件代收','完结'],
+    meta:'提供香港商业注册地址并接收 / 转发政府信件（电邮扫描或实体转寄）。<br>提示：地址须与秘书服务一并提供；如需变更现有注册地址请办「变更注册地址（NR1）」。'},
   // ── 记账报税 ──
-  'bookkeep':{name:'年度记账',icon:'ti-calculator',price:0,old:0,consult:true,tags:'财务报表 + 审计 + 利得税',
-    incl:['财务报表编制','审计报告（对接执业会计师）','利得税申报'],
-    process:['需求评估','资料对接','记账出表','审计报税'],meta:'年度记账 + 审计 + 利得税申报。<br>按交易笔数 / 营业规模报价。<br>预约顾问评估。'},
+  'bookkeep':{name:'年度审计 · 记账报税',icon:'ti-calculator',price:0,old:0,consult:true,tags:'财务报表 + 审计 + 利得税 PTR',
+    incl:['日常记账与凭证整理','财务报表编制','独立审计（执业会计师 CPA）','利得税报税表 PTR 编制与提交'],
+    process:['报价确认','资料收集','记账 + 财报','独立审计','利得税 PTR','提交 IRD'],
+    meta:'年度<b>记账 + 审计 + 利得税报税表 PTR（税务局 IRD）</b>。<br>由执业会计师出具审计报告；跨境电商可导入平台账单批量入账。<br>按交易笔数 / 营业规模<b>面议</b>；与公司注册处的周年申报 NAR1 不同。<br>预约顾问评估。'},
   'salarytax':{name:'公司薪俸税 IR56A&B',icon:'ti-report-money',price:556,cny:500,old:0,form:'salarytax',tags:'约 3 个工作日 · 按人头 / 员工',
-    incl:['雇主申报员工薪金','IR56A / IR56B 表格填报','帮填帮交','税表回执'],
-    process:['信息填写','填报','提交','交付回执'],meta:'办理时效：约 3 个工作日<br>按人头计：一名员工一张 HKD 556（¥500）<br>含帮填帮交'},
-  'persontax':{name:'个别人士报税',icon:'ti-coin',price:2222,cny:2000,old:0,form:'persontax',tags:'约 3 个工作日 · 个税申报',
-    incl:['个人入息 / 薪俸税申报','帮填帮交','税表回执'],
-    process:['信息填写','填报','提交','交付回执'],meta:'办理时效：约 3 个工作日<br>含帮填帮交（不含豁免场景）'},
+    incl:['雇主申报员工薪金','IR56B（逐员工）+ IR56A（汇总表）','帮填帮交','税表回执'],
+    process:['支付','提交员工薪金','编制 IR56B / A','雇主签署提交 IRD','完结'],
+    meta:'办理时效：约 3 个工作日<br>雇主报税表：逐员工一张 <b>IR56B</b> + 汇总 <b>IR56A</b>，按人头计 HKD 556（¥500）/ 人。<br>雇主签署后于 IRD 发出后 1 个月内提交，含帮填帮交。'},
+  'persontax':{name:'个别人士报税',icon:'ti-coin',price:2222,cny:2000,old:0,form:'persontax',tags:'约 3 个工作日 · BIR60',
+    incl:['个人入息 / 薪俸税申报 BIR60','帮填帮交','税表回执'],
+    process:['支付','提交收入资料','编制 BIR60','客户签署提交 IRD','完结'],
+    meta:'办理时效：约 3 个工作日<br>个人报税表 <b>BIR60</b>（薪俸 / 租金 / 免税额）；如选个人入息课税另评估。<br>含帮填帮交（不含豁免场景）。'},
   // ── 工商变更 ──
   'director':{name:'董事变更',icon:'ti-user-edit',price:333,cny:300,old:0,form:'director',tags:'约 5 个工作日 · ND2A / ND4',
     incl:['委任 / 停任董事','ND2A 变更董事通知书','ND4 董事辞职通知书'],
@@ -2309,22 +2314,26 @@ var SVC_DATA = {
     incl:['拟用新名称查册结果','股东特别决议书','更名文件 NNC2','新商业登记证 BR','更新印章 ×2'],
     process:['支付','提交拟用新名称','人工查名','平台备表 NNC2 + 决议','快递签字确认','递交注册处','完结'],
     meta:'办理时效：7-10 个工作日；新 BR 约 +2 周<br><b>先付费，再由顾问对拟用新名称人工查册</b>（是否可用，含商标风险提示）；<b>NNC2 与股东特别决议书由我们线下准备并快递给您签字确认</b>，签妥回寄后递交注册处。<br>官费 HKD 295，含新印章重制 ×2。'},
-  'transfer':{name:'股份转让（股东变更）',icon:'ti-arrows-exchange',price:0,old:0,consult:true,tags:'约 5 工作日 · 含印花税 2%',
-    incl:['转股文件 / 套','印花税代缴（作价 2%）','转让后股东名册'],
-    process:['信息填写','印花税','申报','交付'],meta:'办理时效：约 5 个工作日<br>含缴纳印花税（作价 2%）<br>需 6 个月内审计报告或 3 个月内财务报表<br>价格面议（视作价）'},
-  'deregister':{name:'公司注销（撤销注册）',icon:'ti-building-off',price:0,old:0,consult:true,tags:'8 个月起 · NDR1 + IR1263',
-    incl:['特别决议书','撤销注册 NDR1','IR1263 注销表格'],
-    process:['税务结清','决议','提交NDR1','政府审批'],meta:'办理时效：8 个月起（政府审批）<br>需额外清算审计报告、无外债<br>官费 HKD 270 + 420<br>价格面议'},
+  'transfer':{name:'股份转让（股东变更）',icon:'ti-arrows-exchange',price:0,old:0,consult:true,tags:'约 5 工作日 · 含印花税 0.2%',
+    incl:['转股文书 + 买卖单据','印花税代缴（从价 0.2%）','受让方 KYC','转让后股东名册 + 新股票'],
+    process:['支付服务费','提交转让信息','核定作价 + 印花税','受让方 KYC','备文书缴印花','快递签字','完结'],
+    meta:'办理时效：约 5 个工作日<br><b>您提交转让信息 + 估值资料</b>（近 6 月审计报告或近 3 月财务报表）；我们核定作价并<b>代缴从价印花税 0.2%</b>（买卖双方各 0.1% + 每份转让文书定额 HK$5，按对价与资产净值孰高）。<br>受让方须完成 KYC；文书线下快递签字后送 IRD 加盖印花。价格面议（视作价）。'},
+  'deregister':{name:'公司注销（撤销注册）',icon:'ti-building-off',price:0,old:0,consult:true,tags:'约 8 个月 · NDR1 + IR1263',
+    incl:['税务局不反对通知书 IR1263','股东特别决议书','撤销注册申请 NDR1'],
+    process:['支付','提交注销信息','申请 IR1263','备决议 + NDR1','快递签字','递交 + 公告'],
+    meta:'办理时效：约 8 个月（政府审批）<br>撤销注册须<b>全体股东同意、无未偿还债务、停业逾 3 个月</b>；先申请<b>税务局不反对通知书 IR1263</b>（如有欠税须结清，可能需额外清算审计报告）。<br>NDR1 + 决议线下快递签字后递交注册处并宪报公告（异议期约 3 个月）。官费 HKD 270+420，价格面议。'},
   // ── 商标 ──
   'tmsearch':{name:'商标初步意见 & 政府检索',icon:'ti-trademark',price:3311,cny:2980,old:0,form:'tmsearch',tags:'约 3 工作日 · 每类别',
     incl:['要求给予初步意见','政府检索','政府初步意见回信'],
     process:['提交关键字','政府检索','出具意见'],meta:'办理时效：约 3 个工作日<br>一个类别 HKD 3,311（¥2,980）<br>同一商标申请多个类别需分别申请'},
-  'tmreg':{name:'商标注册申请',icon:'ti-award',price:0,old:0,consult:true,tags:'6 个月起 · 商标证书',
-    incl:['注册申请表','商标证书'],
-    process:['提交申请','政府审查','公告','发证'],meta:'办理时效：6 个月起<br>建议先做「初步意见 & 检索」<br>价格面议'},
-  'tmrenew':{name:'商标注册续期',icon:'ti-refresh',price:2200,cny:1980,old:0,form:'tmrenew',tags:'约 5 工作日 · 续期',
+  'tmreg':{name:'商标注册申请',icon:'ti-award',price:0,old:0,consult:true,tags:'约 6 个月 · IPD 商标证书',
+    incl:['注册申请表','商标注册证书'],
+    process:['支付','提交商标信息','初步检索','递交 IPD','审查 + 公告','发证'],
+    meta:'办理时效：约 6 个月<br>递交<b>知识产权署 IPD</b>：每个类别单独申请 → 审查 → <b>宪报公告（异议期 3 个月）</b> → 发证。<br>建议先做「商标初步意见 & 检索」评估冲突风险。价格面议（官费按类别）。'},
+  'tmrenew':{name:'商标注册续期',icon:'ti-refresh',price:2200,cny:1980,old:0,form:'tmrenew',tags:'约 5 工作日 · 每 10 年',
     incl:['商标续期申请','续期回执'],
-    process:['信息核对','提交续期','交付'],meta:'办理时效：约 5 个工作日<br>续期费 HKD 2,200（¥1,980）'},
+    process:['支付','提交商标编号','递交续期 IPD','完结'],
+    meta:'办理时效：约 5 个工作日<br>商标<b>每 10 年续期一次</b>；提交商标注册编号后由我们向知识产权署 IPD 递交续期。续期费 HKD 2,200（¥1,980）。'},
 };
 
 // 各服务必要信息表单
