@@ -160,6 +160,12 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
 .deliv-row:last-child{border-bottom:none}
 .deliv-ic{width:34px;height:34px;border-radius:8px;background:#FDEEE2;color:var(--orange);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
 .note{font-size:11.5px;color:var(--text3);line-height:1.6}
+.legal .lg-h1{font-size:19px;font-weight:800;color:var(--text1);text-align:center}
+.legal .lg-date{font-size:11.5px;color:var(--text3);text-align:center;margin:5px 0 14px}
+.legal .lg-h2{font-size:14.5px;font-weight:700;color:var(--text1);margin:18px 0 7px;padding-top:12px;border-top:1px solid var(--line)}
+.legal .lg-h3{font-size:13px;font-weight:600;color:var(--accent-d);margin:12px 0 5px}
+.legal p{font-size:12.5px;color:var(--text2);line-height:1.9;margin:0 0 8px}
+.legal b{color:var(--text1)}
 .label-line{display:flex;justify-content:space-between;padding:9px 0;font-size:13.5px;border-bottom:1px solid var(--line)}
 .label-line:last-child{border:none}
 .risk-card{border-radius:13px;padding:18px;color:#fff;margin-bottom:14px;text-align:center}
@@ -167,7 +173,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
 .phone{transition:background .25s}
 .card,.btn,.input,.svc,.msg-item,.tabbar,.capsule{transition:background .25s,border-color .25s,color .25s}
 
-/* ── Splash · 整页渠道入口（酷炫背景）── */
+/* ── Splash · 整页口令入口（酷炫背景）── */
 .splash{position:absolute;inset:0;z-index:60;display:none;flex-direction:column;overflow:hidden;background:#0B0B14;color:#fff}
 .splash.on{display:flex}
 .splash-bg{position:absolute;inset:0;background:
@@ -305,11 +311,11 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
     <!-- ════════ 新客版首页（咨询接待台）════════ -->
     <div class="screen on" id="s-home-new" data-title="Leapex 利柏思" data-tab="home">
       <div class="body-pad">
-        <div class="hero" onclick="go('s-channel')" style="cursor:pointer">
+        <div class="hero" onclick="go('s-brand')" style="cursor:pointer">
           <div style="display:flex;align-items:center;gap:5px;font-size:11px;opacity:.85;margin-bottom:7px"><i class="ti ti-shield-check"></i> 香港持牌 TCSP · 牌照号 TC0012XX</div>
           <div class="hero-t">香港公司，线上办妥</div>
           <div class="hero-d">注册 · 年审 · 变更 · 记账报税 全流程托管<br>办理进度全程可见 · 符合 AMLO / 公司条例</div>
-          <div style="margin-top:11px;padding-top:10px;border-top:1px solid rgba(255,255,255,.14);display:flex;align-items:center;gap:6px;font-size:12px;color:#D4A853;font-weight:600"><i class="ti ti-ticket"></i>渠道码：<span id="home-hero-ch">LEX888</span> · 已绑定 ›</div>
+          <div style="margin-top:11px;padding-top:10px;border-top:1px solid rgba(255,255,255,.14);display:flex;align-items:center;gap:6px;font-size:12px;color:#D4A853;font-weight:600"><i class="ti ti-building-skyscraper"></i>了解 Leapex 利柏思 · 品牌与实力 ›</div>
         </div>
 
         <!-- 双通道 CTA -->
@@ -382,6 +388,88 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
       </div>
     </div>
 
+    <!-- ════════ 品牌宣传页（Leapex 利柏思）════════ -->
+    <div class="screen" id="s-brand" data-title="关于 Leapex 利柏思" data-back="s-home-new">
+      <div class="body-pad">
+        <!-- 品牌 Hero -->
+        <div style="background:linear-gradient(135deg,#1A1A1A,#A94E30);border-radius:16px;padding:22px 18px;color:#fff;margin-bottom:14px;position:relative;overflow:hidden">
+          <div style="display:flex;align-items:center;gap:11px">
+            <div style="width:48px;height:48px;border-radius:12px;background:rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center">
+              <svg viewBox="0 0 16 16" width="26" height="26"><rect x="1" y="1" width="6" height="6" rx="1" fill="#fff"/><rect x="9" y="1" width="6" height="6" rx="1" fill="#D9A05B"/><rect x="1" y="9" width="6" height="6" rx="1" fill="#D9A05B"/><rect x="9" y="9" width="6" height="6" rx="1" fill="#fff"/></svg>
+            </div>
+            <div style="flex:1"><div style="font-size:20px;font-weight:800;letter-spacing:.3px;color:#F4D9A6">Leapex 利柏思</div><div style="font-size:10.5px;opacity:.8;margin-top:2px">Licensed TCSP in Hong Kong</div></div>
+          </div>
+          <div style="font-size:15px;font-weight:700;line-height:1.5;margin-top:16px">香港公司秘书，线上一站办妥</div>
+          <div style="font-size:12px;opacity:.85;line-height:1.7;margin-top:7px">持牌信托及公司服务提供商（TCSP）· 核名注册 · 法定秘书 · 年审变更 · 记账报税全流程自营托管，办理进度全程可见。</div>
+        </div>
+
+        <!-- 三项硬指标 -->
+        <div style="display:flex;gap:9px;margin-bottom:16px">
+          <div class="card card-pad" style="flex:1;text-align:center;margin-bottom:0;padding:14px 6px"><div style="font-size:20px;font-weight:800;color:var(--accent-d)">TCSP</div><div class="note" style="margin-top:3px">香港持牌</div></div>
+          <div class="card card-pad" style="flex:1;text-align:center;margin-bottom:0;padding:14px 6px"><div style="font-size:20px;font-weight:800;color:var(--accent-d)">7×24</div><div class="note" style="margin-top:3px">进度可见</div></div>
+          <div class="card card-pad" style="flex:1;text-align:center;margin-bottom:0;padding:14px 6px"><div style="font-size:20px;font-weight:800;color:var(--accent-d)">全自营</div><div class="note" style="margin-top:3px">不转层代理</div></div>
+        </div>
+
+        <!-- 品牌资质 -->
+        <div class="sec-t">品牌与资质</div>
+        <div class="card card-pad" style="margin-bottom:14px">
+          <div class="note" style="line-height:1.9">
+            <b style="color:var(--text1)">Leapex 利柏思</b> 由 <b>利柏思商务服务（上海）有限公司</b> 运营，系 <b>TimeLeap Technology (Hong Kong) Limited</b> 全资子公司。香港主体持有 <b style="color:var(--accent-d)">香港公司服务提供者牌照（TCSP · 牌照号 TC10988）</b>，严格遵守香港《打击洗钱及恐怖分子资金筹集条例》（AMLO）及《个人资料（私隐）条例》（PDPO）开展业务。<br>
+            用户个人信息存储于中国大陆境内服务器；仅在办理香港公司注册、年审、变更等业务所必需时，依法将相关信息传输至香港政府部门与合作方。
+          </div>
+        </div>
+
+        <!-- 能帮你做什么 -->
+        <div class="sec-t">Leapex 利柏思 能帮你做什么</div>
+        <div class="grid2" style="margin-bottom:14px">
+          <div class="card card-pad" style="cursor:pointer;margin-bottom:0" onclick="openSvc('reg')">
+            <div style="display:flex;align-items:center;gap:8px"><div class="svc-dot" style="background:var(--accent-bg);color:var(--accent-d)"><i class="ti ti-building-plus"></i></div><div style="font-weight:600;font-size:13.5px">新公司注册</div></div>
+            <div class="note" style="margin-top:7px">HKD 5,533 · 约 10 工作日 · 全套证照（全托办）</div>
+          </div>
+          <div class="card card-pad" style="cursor:pointer;margin-bottom:0" onclick="openSvc('annual')">
+            <div style="display:flex;align-items:center;gap:8px"><div class="svc-dot" style="background:var(--blue-bg);color:var(--blue)"><i class="ti ti-shield-check"></i></div><div style="font-weight:600;font-size:13.5px">年审服务</div></div>
+            <div class="note" style="margin-top:7px">HKD 4,422 · 年费 · 法定秘书 + 注册地址 + NAR1</div>
+          </div>
+          <div class="card card-pad" style="cursor:pointer;margin-bottom:0" onclick="openSvc('director')">
+            <div style="display:flex;align-items:center;gap:8px"><div class="svc-dot" style="background:var(--yellow-bg);color:var(--orange)"><i class="ti ti-user-edit"></i></div><div style="font-weight:600;font-size:13.5px">工商变更</div></div>
+            <div class="note" style="margin-top:7px">HKD 333 起 · 董事 / 秘书 / 地址 / 更名</div>
+          </div>
+          <div class="card card-pad" style="cursor:pointer;margin-bottom:0" onclick="openSvc('bookkeep')">
+            <div style="display:flex;align-items:center;gap:8px"><div class="svc-dot" style="background:var(--green-bg);color:var(--green-d)"><i class="ti ti-calculator"></i></div><div style="font-weight:600;font-size:13.5px">记账报税</div></div>
+            <div class="note" style="margin-top:7px">财务报表 + 审计 + 利得税 · 面议</div>
+          </div>
+        </div>
+
+        <!-- 为什么选我们 -->
+        <div class="sec-t">为什么选 Leapex 利柏思</div>
+        <div style="background:linear-gradient(135deg,#1C1B19,#2C2722);border-radius:14px;padding:4px 16px;margin-bottom:14px">
+          <div style="display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.07)">
+            <div style="width:36px;height:36px;border-radius:9px;background:rgba(212,168,83,.15);color:#D4A853;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-license" style="font-size:18px"></i></div>
+            <div style="flex:1"><div style="color:#fff;font-weight:600;font-size:13.5px">香港持牌 TCSP</div><div style="color:rgba(255,255,255,.5);font-size:11.5px;margin-top:2px">合规可信 · 资料加密，隐私保护</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.07)">
+            <div style="width:36px;height:36px;border-radius:9px;background:rgba(212,168,83,.15);color:#D4A853;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-map-pin" style="font-size:18px"></i></div>
+            <div style="flex:1"><div style="color:#fff;font-weight:600;font-size:13.5px">一手注册地址</div><div style="color:rgba(255,255,255,.5);font-size:11.5px;margin-top:2px">达利大厦地址 · 可出具地址证明</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.07)">
+            <div style="width:36px;height:36px;border-radius:9px;background:rgba(212,168,83,.15);color:#D4A853;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-route" style="font-size:18px"></i></div>
+            <div style="flex:1"><div style="color:#fff;font-weight:600;font-size:13.5px">全链路自营履约</div><div style="color:rgba(255,255,255,.5);font-size:11.5px;margin-top:2px">不经层层代理，进度与质量可控</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:13px 0">
+            <div style="width:36px;height:36px;border-radius:9px;background:rgba(212,168,83,.15);color:#D4A853;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-eye-check" style="font-size:18px"></i></div>
+            <div style="flex:1"><div style="color:#fff;font-weight:600;font-size:13.5px">进度全程可见</div><div style="color:rgba(255,255,255,.5);font-size:11.5px;margin-top:2px">交付物随时查，不必追问"好了没"</div></div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div style="display:flex;gap:9px;margin-bottom:6px">
+          <button class="btn" style="flex:1.3;padding:12px" onclick="go('s-services')"><i class="ti ti-apps" style="font-size:15px"></i> 查看所有服务</button>
+          <button class="btn ghost" style="flex:1;padding:12px" onclick="openWecom('品牌页')"><i class="ti ti-headset" style="font-size:15px"></i> 免费咨询顾问</button>
+        </div>
+        <div class="note" style="text-align:center;margin-top:14px">© 2026 Leapex 利柏思 · 持牌 TCSP · 符合 AMLO / PDPO</div>
+      </div>
+    </div>
+
     <!-- ════════ 老客版首页（我的公司 / 交付管理台）════════ -->
     <div class="screen" id="s-home" data-title="我的公司" data-tab="home">
       <div class="body-pad">
@@ -450,11 +538,11 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
           <div class="hero-d">持牌 TCSP · KYC 合规尽调 · 核名注册 · 法定秘书<br>年审变更全托管 · 符合 AMLO / 公司条例</div>
         </div>
 
-        <!-- 已绑定渠道 -->
+        <!-- 已绑定口令码 -->
         <div class="card" style="cursor:pointer" onclick="openSplash()">
           <div class="cell" style="border:none">
             <div class="cell-ic" style="background:var(--green-bg);color:var(--green-d)"><i class="ti ti-ticket"></i></div>
-            <div class="cell-main"><div class="cell-t">渠道码 <span id="home-ch" style="color:var(--green-d)">LEX888</span> 已绑定</div><div class="cell-d" id="home-ch-d">星投资本 · 渠道合作伙伴</div></div>
+            <div class="cell-main"><div class="cell-t">口令码 <span id="home-ch" style="color:var(--green-d)">LEX888</span> 已绑定</div><div class="cell-d" id="home-ch-d">星投资本 · 合作伙伴</div></div>
             <span class="cell-arrow"><i class="ti ti-chevron-right"></i></span>
           </div>
         </div>
@@ -478,7 +566,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
             <div style="font-weight:600;font-size:14.5px">星辰科技有限公司</div>
             <span class="tag t-orange">注册进行中</span>
           </div>
-          <div style="font-size:12px;color:var(--text3);margin-top:3px">订单号 ORD-2026-0188 · 渠道码 LEX888</div>
+          <div style="font-size:12px;color:var(--text3);margin-top:3px">订单号 ORD-2026-0188 · 口令码 LEX888</div>
           <div class="prog">
             <div class="prog-d done"></div><div class="prog-l done"></div>
             <div class="prog-d done"></div><div class="prog-l done"></div>
@@ -510,12 +598,12 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
     </div>
 
     <!-- ════════ CHANNEL CODE ════════ -->
-    <div class="screen" id="s-channel" data-title="输入合作伙伴渠道码" data-back="s-home-new">
+    <div class="screen" id="s-channel" data-title="输入合作伙伴口令码" data-back="s-home-new">
       <div class="body-pad">
         <div style="text-align:center;padding:20px 0 8px">
           <div style="width:64px;height:64px;border-radius:16px;background:var(--orange);display:flex;align-items:center;justify-content:center;margin:0 auto 14px"><i class="ti ti-ticket" style="font-size:32px;color:#fff"></i></div>
-          <div style="font-size:17px;font-weight:700">渠道合作码</div>
-          <div class="note" style="margin-top:5px">您的合作伙伴渠道码 · 可查看 / 更新</div>
+          <div style="font-size:17px;font-weight:700">口令码</div>
+          <div class="note" style="margin-top:5px">您的合作伙伴口令码 · 可查看 / 更新</div>
         </div>
         <div class="field">
           <input class="input" id="ch-input" maxlength="6" placeholder="例如 LEX888" style="text-align:center;font-size:22px;letter-spacing:6px;font-weight:700;text-transform:uppercase" oninput="this.value=this.value.toUpperCase();chValidate()">
@@ -861,7 +949,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
         <div class="sec-t">价格明细</div>
         <div class="card card-pad">
           <div class="qty-line"><span style="color:var(--text2)">服务原价</span><span id="so-orig">HKD 6,800</span></div>
-          <div class="qty-line"><span style="color:var(--text2)">渠道优惠（LEX888）</span><span style="color:var(--green-d)" id="so-disc">− HKD 1,000</span></div>
+          <div class="qty-line"><span style="color:var(--text2)">口令码优惠（LEX888）</span><span style="color:var(--green-d)" id="so-disc">− HKD 1,000</span></div>
           <div class="qty-line"><span style="font-weight:700;font-size:15px">应付合计</span><span class="price" style="font-size:18px" id="so-total">HKD 5,800</span></div>
         </div>
         <div class="card card-pad">
@@ -1535,7 +1623,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
       <div class="body-pad">
         <div class="card card-pad" style="display:flex;align-items:center;gap:13px">
           <div style="width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#1A1A1A,#A94E30);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700">陳</div>
-          <div style="flex:1"><div style="font-size:16px;font-weight:700">陳大文 Andy Chan</div><div class="note" style="margin-top:2px">taiman@example.hk · 渠道 LEX888</div></div>
+          <div style="flex:1"><div style="font-size:16px;font-weight:700">陳大文 Andy Chan</div><div class="note" style="margin-top:2px">taiman@example.hk · 口令码 LEX888</div></div>
           <span class="tag t-green">KYC 已认证</span>
         </div>
         <div class="card" style="margin-top:12px">
@@ -1546,13 +1634,14 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
         </div>
         <div class="card">
           <div class="cell" onclick="toast('通知订阅设置')"><div class="cell-ic" style="background:var(--purple-bg);color:#7A5C9E"><i class="ti ti-bell"></i></div><div class="cell-main"><div class="cell-t">通知订阅</div><div class="cell-d">合规通知不可关闭</div></div><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div>
-          <div class="cell" onclick="toast('《个人资料（私隐）条例》PDPO 保障')"><div class="cell-ic" style="background:var(--bg2);color:var(--text3)"><i class="ti ti-lock"></i></div><div class="cell-main"><div class="cell-t">隐私与数据</div><div class="cell-d">可查阅 / 更正个人资料</div></div><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div>
-          <div class="cell" onclick="toast('Leapex 利柏思 · 持牌 TCSP')"><div class="cell-ic" style="background:var(--green-bg);color:var(--green-d)"><i class="ti ti-info-circle"></i></div><div class="cell-main"><div class="cell-t">关于 Leapex 利柏思</div><div class="cell-d">持牌 TCSP · 牌照号 TC0012XX</div></div><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div>
+          <div class="cell" onclick="go('s-agreement')"><div class="cell-ic" style="background:var(--blue-bg);color:var(--blue)"><i class="ti ti-file-description"></i></div><div class="cell-main"><div class="cell-t">用户协议</div><div class="cell-d">服务条款 · 生效 2026-08-01</div></div><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div>
+          <div class="cell" onclick="go('s-privacy')"><div class="cell-ic" style="background:var(--bg2);color:var(--text3)"><i class="ti ti-lock"></i></div><div class="cell-main"><div class="cell-t">隐私政策</div><div class="cell-d">个人信息保护 · PDPO / 个保法</div></div><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div>
+          <div class="cell" onclick="go('s-brand')"><div class="cell-ic" style="background:var(--green-bg);color:var(--green-d)"><i class="ti ti-info-circle"></i></div><div class="cell-main"><div class="cell-t">关于 Leapex 利柏思</div><div class="cell-d">持牌 TCSP · 品牌与实力</div></div><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div>
         </div>
       </div>
     </div>
 
-    <!-- ════════ 初始化 · 完善公司信息（渠道码/跳过后）════════ -->
+    <!-- ════════ 初始化 · 完善公司信息（口令码/跳过后）════════ -->
     <div class="screen" id="s-init" data-title="完善公司信息">
       <div class="body-pad">
         <div style="text-align:right;margin:2px 0 6px"><span onclick="go('s-home-new')" style="color:var(--text3);font-size:13px;cursor:pointer">跳过 ›</span></div>
@@ -1646,7 +1735,159 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
         <button class="btn" onclick="loginDone()">登录 / 注册</button>
         <div class="divider-or">或</div>
         <button class="btn ghost" onclick="loginDone()"><i class="ti ti-brand-wechat" style="color:#09BB07"></i> 微信授权登录</button>
-        <div class="note" style="text-align:center;margin-top:16px;line-height:1.7">登录即代表同意《服务条款》与《隐私政策》<br>未注册手机号将自动创建账户</div>
+        <label style="display:flex;align-items:flex-start;gap:8px;margin-top:16px;font-size:12px;color:var(--text2);line-height:1.6;cursor:pointer">
+          <input type="checkbox" id="login-agree" checked style="width:16px;height:16px;margin-top:1px;flex-shrink:0;accent-color:var(--accent)">
+          <span>我已阅读并同意 <span onclick="event.preventDefault();go('s-agreement')" style="color:var(--accent-d);font-weight:600">《用户协议》</span> 与 <span onclick="event.preventDefault();go('s-privacy')" style="color:var(--accent-d);font-weight:600">《隐私政策》</span>；未注册手机号将自动创建账户。</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- ════════ 用户协议 ════════ -->
+    <div class="screen" id="s-agreement" data-title="用户协议" data-back="s-me">
+      <div class="body-pad">
+        <div class="card card-pad legal">
+          <div class="lg-h1">用户协议</div>
+          <div class="lg-date">生效日期：2026 年 8 月 1 日</div>
+          <p>欢迎使用 利柏思 Leapex 微信小程序（以下简称"本小程序"或"本平台"）。本用户协议（以下简称"本协议"）由您与利柏思 Leapex 运营方（以下简称"我们"或"我方"）就您使用本小程序所提供的各项服务所订立之法律文件。</p>
+          <p>请您在使用本小程序前，仔细阅读并充分理解本协议全部内容，<b>特别是免除或者限制责任的条款、权利许可和信息使用的条款、同意争议解决和法律适用条款</b>。如您对本协议有任何疑问，可向客服咨询。</p>
+          <p>您注册、登录、使用本小程序或接受我们提供的任何服务，即表示您已阅读并同意接受本协议的全部内容。如果您不同意本协议的任何内容，请立即停止使用本小程序及相关服务。</p>
+
+          <div class="lg-h2">第一章 总则</div>
+          <div class="lg-h3">第一条 定义</div>
+          <p>1.1 "利柏思 Leapex"是指由利柏思商务服务（上海）有限公司运营开发的微信小程序及关联服务平台，包括小程序端、网站、APP 及其他衍生平台。<br>1.2 "用户"是指注册、登录并使用本小程序的自然人、法人或其他组织。<br>1.3 "服务"是指我们通过本小程序向您提供的各类企业服务，包括但不限于香港公司注册、公司年审、董事/秘书变更、记账报税、公司名称核名查册、商标查询等。<br>1.4 "交付物"是指我们为您办理各项服务过程中产生的各类文件、证书、证照等，包括但不限于公司注册证书（CI）、商业登记证（BR）、公司章程、董事名册、公司印章等。<br>1.5 "个人信息"是指以电子或者其他方式记录的能够单独或者与其他信息结合识别特定自然人身份或者反映特定自然人活动情况的各种信息，具体详见《隐私政策》。</p>
+          <div class="lg-h3">第二条 协议适用范围</div>
+          <p>2.1 本协议适用于您通过利柏思 Leapex 微信小程序使用我们提供的所有服务。<br>2.2 我们制定的各项规则（包括但不限于服务条款、操作指引、公告等）均为本协议的有效组成部分，与您具有同等法律效力。<br>2.3 我们有权根据业务发展和法律法规的变化适时修订本协议，修订后的协议将在小程序内公示后生效。</p>
+          <div class="lg-h3">第三条 资质声明</div>
+          <p>3.1 利柏思商务服务（上海）有限公司系 TimeLeap Technology (Hong Kong) Limited 全资子公司。TimeLeap Technology (Hong Kong) Limited 拥有香港公司服务提供者牌照（TCSP），牌照编号 TC10988。<br>3.2 我们严格遵守香港《打击洗钱及恐怖分子资金筹集条例》（AMLO）及《个人资料（私隐）条例》（PDPO）的相关规定开展业务。<br>3.3 我们在中华人民共和国大陆境内设有运营主体（注册地为上海市），用户个人信息存储于中国大陆境内服务器。<br>3.4 因办理香港公司注册等业务需要，我们可能会依据法律法规要求及本协议约定，将您的部分个人信息传输至香港特别行政区的相关政府部门（如香港公司注册处、税务局、知识产权署等）或合作方。具体数据传输范围、接收方及法律依据详见《隐私政策》。</p>
+
+          <div class="lg-h2">第二章 账号注册与管理</div>
+          <div class="lg-h3">第四条 账号注册</div>
+          <p>4.1 您可以通过手机号码验证码或微信授权的方式注册本小程序账号。未注册的手机用户在首次登录时将自动创建账号。<br>4.2 您应提供真实、准确、完整的个人信息进行注册，并对您账号下发生的所有活动承担责任。<br>4.3 您承诺妥善保管账号信息及密码，因您个人原因导致账号信息泄露所产生的损失由您自行承担。<br>4.4 如发现他人使用您的账号或存在其他安全漏洞，您应立即通知我们。</p>
+          <div class="lg-h3">第五条 账号管理</div>
+          <p>5.1 您有权查询、更正您的个人资料，但涉及服务办理所需的身份信息、地址证明等 KYC 资料的修改，需重新提交 KYC 验证。<br>5.2 如您注销账号，我们将按照本协议及《隐私政策》的规定处理您的个人信息。<br>5.3 您不得将账号转让、出借、赠与或以其他方式许可给第三方使用。</p>
+
+          <div class="lg-h2">第三章 服务内容与规则</div>
+          <div class="lg-h3">第六条 服务类型</div>
+          <p>6.1 我们提供的核心服务包括但不限于：（一）新公司注册服务；（二）公司年审服务（周年申报 NAR1、商业登记证续期等）；（三）董事/秘书变更服务；（四）记账报税服务；（五）公司名称核名查册（含商标查询）；（六）其他我们另行公告的企业服务。</p>
+          <div class="lg-h3">第七条 服务流程</div>
+          <p>7.1 服务办理流程一般包括：（一）选择服务套餐并提交办理信息；（二）完成支付；（三）进行 KYC 身份认证；（四）我们审核您的资料并进行人工预审；（五）线下递交至相关政府部门审批；（六）政府审批通过后签发相关文件；（七）交付物生成并送达交付物中心。</p>
+          <div class="lg-h3">第八条 KYC 合规</div>
+          <p>8.1 依据香港《打击洗钱及恐怖分子资金筹集条例》（AMLO），作为持牌 TCSP，我们在为您提供服务前须对您的身份进行核实。<br>8.2 KYC 认证一般包括：AML 合规说明确认、身份认证、地址证明提交、业务声明填写、资料提交及人工审核。<br>8.3 如您未完成 KYC 认证或 KYC 审核不通过，我们无法为您递交相关申请，已收取的费用将全额退还。</p>
+          <div class="lg-h3">第九条 服务时效</div>
+          <p>9.1 各项服务的具体办理时效以您下单时页面公示的时效为准。<br>9.2 我们承诺尽力按时交付，但因政府部门审批延迟、您提交资料不完整或不准确等原因导致的延误，我们不承担违约责任。<br>9.3 您可随时在"订单"页面查看办理进度。</p>
+          <div class="lg-h3">第十条 交付物管理</div>
+          <p>10.1 服务完成后，相关交付物将上传至您的"交付物中心"，您可在小程序内查看和下载。<br>10.2 交付物的保管期限一般为服务完成后 7 年，超过保管期限后我们将按照《隐私政策》的规定进行处理。<br>10.3 您应自行妥善保管交付物原件或副本，我们不对因您未及时下载或保管不善造成的丢失承担责任。</p>
+
+          <div class="lg-h2">第四章 订单与支付</div>
+          <div class="lg-h3">第十一条 订单规则</div>
+          <p>11.1 您在小程序内选择服务项目并完成相关信息填写后，即视为提交订单。<br>11.2 订单一经确认，即对您和我们均具有法律约束力。<br>11.3 您有权查看历史订单、订单详情、账单信息及支付状态。</p>
+          <div class="lg-h3">第十二条 价格与支付</div>
+          <p>12.1 服务价格以小程序页面公示的价格为准。我们保留根据市场情况调整价格的权利，但调整不影响已确认订单的履行。<br>12.2 支付方式包括微信支付、银行转账等，具体以页面提示为准。<br>12.3 如涉及银行转账，您需上传汇款回单，我们收到款项并核对后将启动服务。<br>12.4 优惠券可使用规则以页面公示为准，优惠券一经使用不予退换。</p>
+          <div class="lg-h3">第十三条 退款规则</div>
+          <p>13.1 在以下情况下您可申请退款：（一）KYC 审核不通过；（二）我们未能按约定时效完成服务的，按约定退还相应费用；（三）因我们原因导致服务无法继续办理的。<br>13.2 在以下情况下退款将扣除相应费用：（一）因您单方面原因取消订单的，已发生的政府规费、第三方费用不予退还；（二）服务已进入实质性办理阶段的，根据实际工作量按比例扣除费用。<br>13.3 退款将在审核通过后 7–15 个工作日内原路退回。</p>
+
+          <div class="lg-h2">第五章 用户行为规范</div>
+          <div class="lg-h3">第十四条 禁止行为</div>
+          <p>您在使用本小程序时，不得从事以下行为：（一）提供虚假、伪造或不实的身份信息、公司资料或其他办理材料；（二）利用本小程序从事洗钱、恐怖融资、逃税或其他任何违法活动；（三）侵犯他人的知识产权、商业秘密或其他合法权益；（四）对小程序进行反向工程、反编译、破解等操作；（五）利用技术手段恶意攻击小程序服务器或干扰其正常运行；（六）利用优惠券等促销活动进行刷单、套现等不当行为；（七）其他违反法律法规或本协议规定的行为。</p>
+          <div class="lg-h3">第十五条 违规处理</div>
+          <p>15.1 如您违反第十四条之规定，我们有权采取以下一项或多项措施：暂停或终止服务、拒绝受理或终止办理相关申请、冻结或注销您的账号、扣除已收取的全部或部分费用、向有关监管部门报告或配合调查。<br>15.2 因您的违规行为给我们或第三方造成损失的，您应承担全部赔偿责任。</p>
+
+          <div class="lg-h2">第六章 知识产权</div>
+          <div class="lg-h3">第十六条 知识产权归属</div>
+          <p>16.1 本小程序及其所有内容（包括但不限于文字、图片、音视频、图表、界面设计、版面框架、数据元件、代码等）的知识产权均归我们或相关权利人所有。<br>16.2 您在使用过程中产生的订单信息、提交的材料等，我们仅在为您提供服务所必需的范围内使用。</p>
+          <div class="lg-h3">第十七条 使用许可</div>
+          <p>17.1 我们授予您一项有限的、非排他的、不可转让的使用许可，允许您为个人商务目的使用本小程序。<br>17.2 未经我们事先书面同意，您不得以任何形式复制、传播、展示、镜像、上传、下载本小程序的任何内容。</p>
+
+          <div class="lg-h2">第七章 免责声明</div>
+          <div class="lg-h3">第十八条 服务免责</div>
+          <p>18.1 我们提供的服务为中介服务，最终审批结果取决于相关政府部门的决定，我们不保证所有申请均能获批。<br>18.2 因下列原因导致的服务延误或失败，我们不承担责任：政府部门审批延迟或政策变化、您提供资料不准确/不完整/逾期提交、不可抗力事件、第三方支付平台故障。</p>
+          <div class="lg-h3">第十九条 信息准确性</div>
+          <p>19.1 您提交的所有信息和材料的真实性、准确性和完整性由您自行负责。<br>19.2 因您提供虚假信息导致的一切法律后果由您自行承担。</p>
+          <div class="lg-h3">第二十条 间接损害</div>
+          <p>在法律允许的最大范围内，我们不对因使用或无法使用本小程序而导致的任何间接性、后果性、惩罚性或偶然性损害承担责任，包括但不限于利润损失、商业中断、数据丢失等。</p>
+
+          <div class="lg-h2">第八章 保密义务</div>
+          <div class="lg-h3">第二十一条 保密范围</div>
+          <p>21.1 我们对您在办理服务过程中提供的商业秘密、技术资料、财务信息等负有保密义务。<br>21.2 以下信息不属于保密范围：已进入公共领域的信息、依法应披露的信息、您已书面同意披露的信息。</p>
+          <div class="lg-h3">第二十二条 信息披露</div>
+          <p>22.1 为办理相关业务需要，我们可能将您的信息提供给香港公司注册处、税务局等相关政府部门。<br>22.2 根据香港 AMLO 的要求，我们需要收集和处理您的身份及业务相关信息，此等处理系依法进行。<br>22.3 <b>数据出境特别告知</b>：因办理香港公司注册等业务需要，我们可能会将您的个人信息传输至香港特别行政区的相关政府部门及合作方。该等传输系履行服务合同之必需。您提交相关服务申请即视为已阅读并同意上述数据出境安排，详见《隐私政策》"数据出境"专章。</p>
+
+          <div class="lg-h2">第九章 通知与消息</div>
+          <div class="lg-h3">第二十三条 通知方式</div>
+          <p>23.1 我们通过小程序内的消息中心、推送通知、短信等方式向您发送通知。<br>23.2 以下通知为不可关闭的重要通知：KYC 审核结果通知、合规相关通知、年审到期提醒、其他法律法规要求的通知。<br>23.3 您应定期查看小程序内的消息中心，因您未及时查看而导致的不利后果由您自行承担。</p>
+
+          <div class="lg-h2">第十章 协议的变更与终止</div>
+          <div class="lg-h3">第二十四条 协议变更</div>
+          <p>24.1 我们有权根据业务发展、法律法规变化等情况适时修订本协议。<br>24.2 协议修订后，我们将在小程序内公示 7 日。如您继续使用本服务，即视为接受修订后的协议。<br>24.3 如您不同意修订后的协议，请立即停止使用本服务。</p>
+          <div class="lg-h3">第二十五条 协议终止</div>
+          <p>25.1 本协议在以下情况下终止：您主动注销账号、我们因您违反本协议而终止服务、我们停止运营本小程序。<br>25.2 协议终止不影响终止前已产生的权利义务。</p>
+
+          <div class="lg-h2">第十一章 法律适用与争议解决</div>
+          <div class="lg-h3">第二十六条 法律适用</div>
+          <p>26.1 本协议的订立、效力、解释、履行及争议解决均适用中华人民共和国大陆地区法律。<br>26.2 我们向您提供的服务涉及香港特别行政区事项，该等服务的最终审批及监管适用香港相关法律；但因本协议产生的争议，均以中国大陆地区法律为准据法。</p>
+          <div class="lg-h3">第二十七条 争议解决</div>
+          <p>27.1 因本协议引起的或与本协议有关的任何争议，双方应首先通过友好协商解决。<br>27.2 协商不成的，任何一方均有权向上海市青浦区有管辖权的人民法院提起诉讼。</p>
+
+          <div class="lg-h2">第十二章 其他条款</div>
+          <div class="lg-h3">第二十八条 联系方式</div>
+          <p>如您对本协议或服务有任何疑问、意见或建议，请通过以下方式联系我们：客服邮箱 customerservice@leapexbiz.com。</p>
+          <div class="lg-h3">第二十九至三十二条</div>
+          <p>本协议任何条款被认定为无效或不可执行，不影响其他条款效力。本协议构成您与我们之间就本小程序服务达成的完整协议，取代此前所有口头或书面沟通。我们未行使或延迟行使任何权利不构成放弃。本协议自 2026 年 8 月 1 日起生效，请您定期查阅以及时了解最新版本。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════ 隐私政策 ════════ -->
+    <div class="screen" id="s-privacy" data-title="隐私政策" data-back="s-me">
+      <div class="body-pad">
+        <div class="card card-pad legal">
+          <div class="lg-h1">隐私政策</div>
+          <div class="lg-date">生效日期：2026 年 8 月 1 日</div>
+          <p>利柏思商务服务（上海）有限公司（以下简称"我们"或"本平台"）深知个人信息对您的重要性，我们将严格按照《个人信息保护法》《网络安全法》《数据安全法》等法律法规的要求，保护您的个人信息安全和隐私权益。</p>
+          <p>请您在使用我们的服务前仔细阅读并充分理解本隐私政策的全部内容。<b>本政策中涉及的重要条款，我们以加粗形式提示您注意。</b>您注册、登录、使用本小程序或接受我们提供的任何服务，即表示您已阅读并同意本隐私政策的全部内容。如您不同意，请立即停止使用。</p>
+
+          <div class="lg-h2">一、我们如何收集和使用您的个人信息</div>
+          <div class="lg-h3">（一）账号注册与登录</div>
+          <p>注册和登录时我们需要收集：1. <b>手机号码</b>（用于创建账号、接收验证码、身份验证及发送服务通知，属敏感个人信息，将加密保护）；2. 微信开放平台信息（昵称、头像等，用于显示用户资料）；3. 设备信息（设备型号、系统版本、唯一设备标识符等，用于保障服务安全）。</p>
+          <div class="lg-h3">（二）服务办理与履行</div>
+          <p>当您使用企业服务（公司注册、年审、变更、记账报税等）时，我们需要收集：1. 公司基本信息（中英文名称、公司编号、商业登记号、成立日期、注册办事处地址）；2. 股东及董事信息（姓名、身份证件号码、国籍、出生日期、住址）；3. 身份证明文件（香港身份证、护照扫描件）；4. 地址证明文件（近三个月水电费单、银行对账单）；5. 业务证明材料；6. 银行账户信息（涉及退款或支付时）。上述信息系履行服务合同之必需，如拒绝提供，我们将无法为您办理相关服务。</p>
+          <div class="lg-h3">（三）KYC 合规尽调</div>
+          <p>依据香港 AMLO，作为持牌 TCSP，我们须在提供服务前对您进行尽职调查，收集：1. 身份验证信息（身份证件、生物识别信息如有）；2. 背景审查信息（PEP 身份声明、制裁名单筛查）；3. 资金来源说明（必要时）。<b>KYC 信息的收集和处理是香港法律对我们的强制性要求，如您拒绝配合，我们将无法提供服务，已收取费用将全额退还。</b></p>
+          <div class="lg-h3">（四）订单管理与支付</div>
+          <p>下单购买服务时，我们收集：订单编号、服务类型、服务价格、优惠信息；支付记录、时间、金额、方式；如涉及银行转账，您需上传汇款回单截图，我们将收集截图信息以核对到账情况。</p>
+          <div class="lg-h3">（五）客户服务 ·（六）安全保障 ·（七）其他用途</div>
+          <p>与我们联系时可能记录您的联系方式、沟通内容及相关材料。为保障账号安全、防止欺诈滥用，可能收集登录日志、操作记录、设备信息等进行安全风险分析。在法律法规规定的特定情形下（如履行法定义务、公共利益、您自行公开的信息等），我们可能无需另行征得您的同意而收集使用您的个人信息。</p>
+
+          <div class="lg-h2">二、我们如何使用 Cookie 和同类技术</div>
+          <p>为确保正常运行并获得更轻松的访问体验，我们会在您的设备上存储 Cookie，主要用于：记住登录状态、记住偏好设置、分析使用习惯优化产品、防止欺诈和安全风险。您可通过浏览器设置管理或删除 Cookie，但可能影响使用体验。</p>
+
+          <div class="lg-h2">三、我们如何共享、转让、公开披露您的个人信息</div>
+          <p><b>共享</b>：我们不会将您的个人信息共享给任何第三方，但以下除外：1. 为办理服务向香港公司注册处、税务局、知识产权署等政府部门递交申请所需；2. 与合作方（会计师事务所、律师事务所、银行等）为完成服务而共享必要信息，并签署严格保密协议；3. 获得您明确同意后。<br><b>转让</b>：我们不会转让您的个人信息，但获得您明确同意、或在合并收购破产清算时（要求继受方继续受本政策约束）除外。<br><b>公开披露</b>：仅在获得您明确同意后，或基于法律、法律程序、诉讼或政府主管部门强制性要求时。</p>
+
+          <div class="lg-h2">四、我们如何存储您的个人信息</div>
+          <p><b>存储地点</b>：在中国大陆境内收集和产生的个人信息，原则上存储在中国大陆境内服务器；为办理香港业务需要，可能依《个人信息保护法》第 13 条第（一）项将部分信息传输至香港相关政府部门及合作方（详见"十、数据出境"）。<br><b>存储期限</b>：账号信息在注销后删除或匿名化；KYC 资料依香港 AMLO 留存至少 7 年；交易记录依《电子商务法》自交易完成之日起不少于 3 年；交付物文件保留 7 年；其他信息在实现目的所必需期限内保留。<br><b>安全措施</b>：HTTPS 加密传输、敏感信息加密存储、访问控制机制、定期安全审计与风险评估。</p>
+
+          <div class="lg-h2">五、您的权利</div>
+          <p>根据相关法律法规，您对个人信息享有：<b>访问和更正权</b>（可在"我的"页面查看和修改，涉及 KYC 资料需重新验证）、<b>删除权</b>（在违法处理、未经同意、违反约定、已注销账号等情形）、<b>撤回同意权</b>、<b>账号注销权</b>、<b>约束信息系统自动决策权</b>、<b>获取个人信息副本权</b>。</p>
+
+          <div class="lg-h2">六、未成年人保护</div>
+          <p>我们的产品面向成年人。未满 18 周岁的未成年人请在父母或监护人指导下阅读本政策，并在取得同意后使用。如发现未获监护人同意而收集了未成年人信息，我们将尽快删除。</p>
+
+          <div class="lg-h2">七、安全管理</div>
+          <p>我们已采取符合业界标准、合理可行的安全防护措施，防止个人信息遭未经授权访问、披露、使用、修改、损坏或丢失，并确保收集最小化。如发生个人信息安全事件，我们将依法及时以推送、信函、电话、邮件等方式告知您事件情况、影响、处置措施及应对建议。</p>
+
+          <div class="lg-h2">八、政策更新</div>
+          <p>我们可能适时修订本政策，变更后在小程序内公布更新版本。对于重大变更（服务模式、共享转让对象、您的权利行使方式、联系方式及投诉渠道变化，或安全影响评估表明存在高风险等），我们会提供更显著的通知。</p>
+
+          <div class="lg-h2">九、联系我们</div>
+          <p>如您对本政策有任何疑问、意见、建议，或需行使各项权利，请通过电子邮箱 customerservice@leapexbiz.com 与我们联系。我们将在收到之日起 15 个工作日内予以回复。如对回复不满意，您还可向网信、电信、公安及市场监管等部门投诉举报，或向有管辖权的人民法院提起诉讼。</p>
+
+          <div class="lg-h2">十、数据出境</div>
+          <p><b>（一）出境信息种类</b>：根据您选择的服务，可能出境的信息包括公司信息、股东/董事身份信息、身份证件扫描件、地址证明、业务声明、财务/税务信息等；其中身份证件号码、住址、证件扫描件属敏感个人信息，仅在服务所必需范围内处理。<br><b>（二）接收方</b>：香港公司注册处（cr.gov.hk）、香港税务局（ird.gov.hk）、香港知识产权署（ipd.gov.hk）及会计师/律师事务所等合作方；均须遵守香港《个人资料（私隐）条例》（PDPO）。<br><b>（三）法律依据</b>：《个人信息保护法》第 13 条第（一）（四）项（履行合同/法定义务所必需）及您的同意。<br><b>（四）单独同意</b>：依《个人信息保护法》第 23 条，向境外提供个人信息需取得单独同意——首次使用服务、KYC 认证及敏感信息出境时，我们会通过弹窗或独立勾选框取得您的单独同意。<br><b>（五）安全保障</b>：最小必要、加密传输、合同约束、安全评估、PDPO 合规。<br><b>（六）您的权利</b>：知情权、拒绝权、撤回同意权、查阅和复制权、投诉权。</p>
+
+          <div class="lg-h2">十一、定义与解释</div>
+          <p>"个人信息"指以电子或其他方式记录的与已识别或可识别自然人有关的各种信息，不包括匿名化处理后的信息；"敏感个人信息"指一旦泄露或非法使用容易导致人格尊严受侵害或人身、财产安全受危害的信息；"匿名化""去标识化"分别指相应的信息处理过程。</p>
+        </div>
       </div>
     </div>
 
@@ -1675,7 +1916,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
     </div>
   </div>
 
-  <!-- ════════ SPLASH · 整页渠道入口 ════════ -->
+  <!-- ════════ SPLASH · 整页口令入口 ════════ -->
   <div class="splash" id="splash">
     <div class="splash-bg"></div>
     <div class="splash-grid"></div>
@@ -1704,12 +1945,12 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
         </div>
       </div>
       <div style="margin-bottom:12px">
-        <div style="font-size:12.5px;color:rgba(255,255,255,.75);margin-bottom:9px;display:flex;align-items:center;gap:6px"><i class="ti ti-ticket"></i>合作伙伴渠道码（必填）</div>
-        <input class="glass-input" id="sp-input" maxlength="6" placeholder="请输入 6 位渠道码，如 LEX888" oninput="this.value=this.value.toUpperCase();spValidate()">
-        <div id="sp-hint" style="font-size:12px;margin:8px 2px 0;height:16px;color:rgba(255,255,255,.85)"></div>
+        <div style="font-size:14px;font-weight:700;color:#F4D9A6;margin-bottom:10px;display:flex;align-items:center;gap:7px"><i class="ti ti-ticket" style="font-size:17px"></i>输入口令码，领优惠服务</div>
+        <input class="glass-input" id="sp-input" maxlength="6" placeholder="请输入.." style="height:54px;font-size:22px;letter-spacing:5px;text-align:center;font-weight:700" oninput="this.value=this.value.toUpperCase();spValidate()">
+        <div id="sp-hint" style="font-size:12px;margin:9px 2px 0;height:16px;color:rgba(255,255,255,.85)"></div>
       </div>
       <button class="splash-btn" onclick="loginGo()">填码并登录 / 注册</button>
-      <div style="text-align:center;font-size:11px;color:rgba(255,255,255,.55);margin-top:12px">需填写合作伙伴渠道码并完成注册后进入</div>
+      <div style="text-align:center;font-size:11px;color:rgba(255,255,255,.55);margin-top:12px">需填写口令码并完成注册后进入</div>
       <div style="text-align:center;font-size:10.5px;color:rgba(255,255,255,.4);margin-top:14px">© 2026 Leapex 利柏思 · 持牌 TCSP · 符合 AMLO / PDPO</div>
     </div>
   </div>
@@ -1842,28 +2083,28 @@ function chValidate(){
   var v = document.getElementById('ch-input').value;
   var hint = document.getElementById('ch-hint');
   if(v.length===0){ hint.textContent=''; return; }
-  if(v.length<6){ hint.textContent='请输入 6 位渠道码'; hint.style.color='var(--text3)'; return; }
+  if(v.length<6){ hint.textContent='请输入 6 位口令码'; hint.style.color='var(--text3)'; return; }
   // demo: any 6-char accepted except "000000"
-  if(v==='000000'){ hint.innerHTML='✗ 请确认渠道码'; hint.style.color='var(--red)'; }
-  else { hint.innerHTML='✓ 有效渠道码 · 渠道合作伙伴：星投资本'; hint.style.color='var(--green-d)'; }
+  if(v==='000000'){ hint.innerHTML='✗ 请确认口令码'; hint.style.color='var(--red)'; }
+  else { hint.innerHTML='✓ 有效口令码 · 合作伙伴：星投资本'; hint.style.color='var(--green-d)'; }
 }
 function chConfirm(){
   var v = (document.getElementById('ch-input').value||'').trim();
-  if(v && (v.length<6 || v==='000000')){ toast('请确认渠道码（6 位）'); return; }
-  if(v){ document.getElementById('home-ch').textContent = v; document.getElementById('home-ch-d').textContent = '星投资本 · 渠道合作伙伴'; toast('渠道码 '+v+' 已绑定'); }
+  if(v && (v.length<6 || v==='000000')){ toast('请确认口令码（6 位）'); return; }
+  if(v){ document.getElementById('home-ch').textContent = v; document.getElementById('home-ch-d').textContent = '星投资本 · 合作伙伴'; toast('口令码 '+v+' 已绑定'); }
   else { toast('已提交'); }
   setTimeout(function(){ go('s-home-new'); }, 600);
 }
 function chSkip(){ go('s-home-new'); }
 
-/* ── Splash · 整页渠道入口 ── */
+/* ── Splash · 整页口令入口 ── */
 function spValidate(){
   var v = document.getElementById('sp-input').value;
   var hint = document.getElementById('sp-hint');
   if(v.length===0){ hint.textContent=''; return; }
-  if(v.length<6){ hint.textContent='请输入 6 位渠道码'; hint.style.color='rgba(255,255,255,.6)'; return; }
-  if(v==='000000'){ hint.innerHTML='✗ 渠道码无效，请确认'; hint.style.color='#FCA5A5'; }
-  else { hint.innerHTML='✓ 有效渠道码 · 渠道合作伙伴：星投资本'; hint.style.color='#6EE7B7'; }
+  if(v.length<6){ hint.textContent='请输入 6 位口令码'; hint.style.color='rgba(255,255,255,.6)'; return; }
+  if(v==='000000'){ hint.innerHTML='✗ 口令码无效，请确认'; hint.style.color='#FCA5A5'; }
+  else { hint.innerHTML='✓ 有效口令码 · 合作伙伴：星投资本'; hint.style.color='#6EE7B7'; }
 }
 /* ═══ 双版本：新客 / 老客 分流 ═══ */
 var PERSONA = 'new';
@@ -1918,28 +2159,32 @@ function syncSvcRegion(){
 }
 function loginGo(){
   var v=document.getElementById('sp-input').value, hint=document.getElementById('sp-hint');
-  if(!v || v.length<6 || v==='000000'){ if(hint){ hint.innerHTML='✗ 请输入 6 位合作伙伴渠道码（必填）'; hint.style.color='#FCA5A5'; } return; }
-  document.getElementById('home-ch').textContent=v; document.getElementById('home-ch-d').textContent='星投资本 · 渠道合作伙伴';
+  if(!v || v.length<6 || v==='000000'){ if(hint){ hint.innerHTML='✗ 请输入 6 位合作伙伴口令码（必填）'; hint.style.color='#FCA5A5'; } return; }
+  document.getElementById('home-ch').textContent=v; document.getElementById('home-ch-d').textContent='星投资本 · 合作伙伴';
   var hh=document.getElementById('home-hero-ch'); if(hh) hh.textContent=v;
   var lr=document.getElementById('login-region'); if(lr) lr.textContent=REGION;
   _hideSplash();
   try{ histStack.length=0; }catch(e){}
   go('s-login');
 }
-function loginDone(){ _markRegistered(); toast('登录成功'); setTimeout(function(){ go('s-home-new'); }, 500); }
+function loginDone(){
+  var ag=document.getElementById('login-agree');
+  if(ag && !ag.checked){ toast('请先阅读并勾选《用户协议》与《隐私政策》'); return; }
+  _markRegistered(); toast('登录成功'); setTimeout(function(){ go('s-home-new'); }, 500);
+}
 function spEnter(){
   var v = document.getElementById('sp-input').value;
-  if(v.length<6 || v==='000000'){ document.getElementById('sp-hint').innerHTML='✗ 请输入有效的 6 位渠道码'; document.getElementById('sp-hint').style.color='#FCA5A5'; return; }
+  if(v.length<6 || v==='000000'){ document.getElementById('sp-hint').innerHTML='✗ 请输入有效的 6 位口令码'; document.getElementById('sp-hint').style.color='#FCA5A5'; return; }
   document.getElementById('home-ch').textContent = v;
-  document.getElementById('home-ch-d').textContent = '星投资本 · 渠道合作伙伴';
+  document.getElementById('home-ch-d').textContent = '星投资本 · 合作伙伴';
   _markRegistered(); _hideSplash(); go('s-home-new');
-  toast('渠道码 '+v+' 已绑定');
+  toast('口令码 '+v+' 已绑定');
 }
 function spSkip(){
   document.getElementById('home-ch').textContent = '自然流量';
   document.getElementById('home-ch-d').textContent = 'Leapex 利柏思 直营';
   _markRegistered(); _hideSplash(); go('s-home-new');
-  toast('已跳过渠道码');
+  toast('已跳过口令码');
 }
 
 /* ── 我的公司：档案 + 新增 / 删除（订单中禁删）── */
@@ -2578,7 +2823,7 @@ function openOrderDetail(no){
       '<div style="display:flex;justify-content:space-between;align-items:center">'
     +   '<div style="font-weight:700;font-size:15.5px">'+o.company+'</div>'
     +   '<span class="tag '+(ORD_STATUS[o.status]||"t-gray")+'">'+o.status+'</span></div>'
-    + '<div style="font-size:12px;color:var(--text3);margin-top:3px">'+o.service+' · '+o.no+' · 渠道 '+o.channel+'</div>';
+    + '<div style="font-size:12px;color:var(--text3);margin-top:3px">'+o.service+' · '+o.no+' · 口令码 '+o.channel+'</div>';
   // 豆腐块：所在阶段 + 办理进度
   document.getElementById('od-tofu').innerHTML =
       '<div class="tofu"><div class="tofu-l">当前阶段</div><div class="tofu-v">'+curName+'</div><div class="tofu-s">第 '+curStep+' / '+total+' 步</div></div>'
@@ -2595,7 +2840,7 @@ function openOrderDetail(no){
   go('s-orderdetail');
 }
 
-/* ── Boot：新用户先看整页渠道入口；已注册直接进入 ── */
+/* ── Boot：新用户先看整页口令入口；已注册直接进入 ── */
 (function boot(){
   var registered = false;
   try{ registered = localStorage.getItem('tcsp_registered')==='1'; }catch(e){}
