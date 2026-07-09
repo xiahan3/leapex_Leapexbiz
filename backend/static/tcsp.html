@@ -895,15 +895,24 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
           </div>
         </div>
 
-        <div class="sec-t">服务包含</div>
+        <div class="sec-t">服务简要介绍</div>
+        <div class="card card-pad" style="font-size:13px;color:var(--text2);line-height:1.75" id="sd-intro"></div>
+
+        <div class="sec-t">服务交付内容</div>
         <div class="card card-pad" id="sd-incl"></div>
+
+        <div class="sec-t">办理时效</div>
+        <div class="card card-pad" style="display:flex;align-items:center;gap:9px"><i class="ti ti-clock-hour-4" style="color:var(--accent-d);font-size:18px;flex-shrink:0"></i><span id="sd-sla" style="font-size:13.5px;font-weight:600;color:var(--text1)"></span></div>
+
+        <div class="sec-t">所需材料</div>
+        <div class="card card-pad" id="sd-materials"></div>
 
         <div class="sec-t">办理流程</div>
         <div class="card card-pad">
           <div id="sd-process" class="steps" style="padding:6px 4px 2px"></div>
         </div>
 
-        <div class="sec-t">办理时效 / 所需材料</div>
+        <div class="sec-t">详细描述</div>
         <div class="card card-pad" style="font-size:12.5px;line-height:1.9" id="sd-meta"></div>
 
         <div class="sec-t">常见问题</div>
@@ -2537,79 +2546,132 @@ var CHANNEL = 'LEX888';
 
 // 服务目录数据
 /* 商品与报价对齐《利柏思服务清单与报价 202607》：HKD = 人民币 ÷ 0.9（取整）；面议项 consult:true */
+/* 服务字段对齐后台商品：name/icon/intro(简要介绍)/incl(交付内容)/sla(办理时效)/materials(所需材料)/process(办理流程)/meta(详细描述) */
 var SVC_DATA = {
   // ── 核名 & 商标查询 ──
   'nametm':{name:'公司名称查册 + 商标查询',icon:'ti-file-search',price:0,old:0,free:true,tags:'约 1–2 工作日 · 顾问人工核查',
-    incl:['公司名称可用性查册（公司注册处）','商标近似查询（知识产权署 IPD）','中 / 英 / 繁体名称核查','顾问人工核查 + 可用性建议','1–2 个工作日出结果'],
+    intro:'注册香港公司前的名称与商标预查，顾问人工核查可用性，降低被驳回 / 侵权风险。',
+    incl:['公司名称可用性查册（公司注册处）','商标近似查询（知识产权署 IPD）','中 / 英 / 繁体名称核查','顾问人工核查 + 可用性建议报告'],
+    sla:'约 1–2 个工作日出结果',
+    materials:['拟用公司名称（英文 / 繁体中文）','拟查商标名称 / 图样（如需）','联系邮箱'],
     process:['提交名称 / 商标','顾问人工查册','出核查结果','可用即下单注册'],
-    meta:'<b>公司名称查册 + 商标查询</b>：注册香港公司前，先确认名称是否可用、是否与已有商标近似冲突，降低被驳回 / 侵权风险。<br>提交后由顾问在<b>香港公司注册处</b>（名称查册）与<b>知识产权署 IPD</b>（商标近似查询）<b>人工核查</b>，约 <b>1–2 个工作日</b>出结果并给出可用性建议。<br>查册语言<b>只支持英文或繁体中文</b>；名称通过后可直接进入公司注册。<br><b>新客免费赠送 1 次</b>，不占用付费额度。'},
+    meta:'在<b>香港公司注册处</b>核查公司名称可用性，在<b>知识产权署 IPD</b>做商标近似查询，由顾问人工核查并给出可用性建议。<br>查册语言<b>只支持英文或繁体中文</b>；名称通过后可直接进入公司注册。<br><b>新客免费赠送 1 次</b>，不占用付费额度。'},
   // ── 注册 ──
   'reg':{name:'新设香港本地有限公司',icon:'ti-building-plus',price:5533,cny:4980,old:0,form:'register',tags:'约 10 个工作日 · 全套证照 + 绿盒',
+    intro:'香港本地有限公司一站式注册，含全套证照、印章与绿盒，全程托办。',
     incl:['注册证书 CI ×1','商业登记证 BR ×1','公司章程 ×10','法团成立表格 NNC1 ×1','股票本','会议记录本','钢印章','条形章','小圆章','绿盒'],
-    process:['支付','KYC 认证','提交注册信息'],meta:'办理时效：约 10 个工作日<br>所需材料：董事/股东身份证或护照、地址证明<br>交付物：CI + BR + 章程 10 份 + NNC1 + 股票本 + 会议记录本 + 钢印/条形/小圆章 + 绿盒'},
+    sla:'约 10 个工作日',
+    materials:['董事 / 股东身份证或护照','拟用公司名称（中 / 英）','注册股本与持股比例','业务性质说明（KYC 用）','注册地址（可用法定秘书地址）'],
+    process:['支付','KYC 认证','提交注册信息','人工预审','政府审批','交付 CI / BR'],
+    meta:'新设香港本地有限公司，涵盖公司注册处 NNC1 递交、商业登记、章程与法团文件制作。<br>下单后完成支付与 KYC 尽调、提交注册信息，人工预审无误后递交政府审批，通过即签发 CI + BR 并交付全套绿盒资料。'},
   // ── 年审 · 秘书 & 注册地址（年费打包） ──
   'annual':{name:'年审服务',icon:'ti-shield-check',price:4422,cny:3980,old:0,form:'annual',tags:'年费 · 法定秘书 + 注册地址 + NAR1',
+    intro:'法定秘书 + 注册地址 + 周年申报 NAR1 的年度合规打包服务。',
     incl:['担任法定公司秘书','维护法定登记册','周年申报表 NAR1 编制与提交','提供香港商业注册地址','接收 / 转发政府信件'],
+    sla:'年费 · NAR1 须成立周年日起 42 天内递交',
+    materials:['公司名称 / 商业登记号 BR','公司成立周年日','董事 / 股东最新资料（如有变动）'],
     process:['支付 / 续费','信息核对','编制 NAR1','递交注册处','完结'],
-    meta:'年度合规打包：<b>法定公司秘书 + 香港注册地址 + 周年申报 NAR1</b>。<br>NAR1 须于<b>成立周年日起 42 天内</b>递交公司注册处，逾期政府罚款递增；含政府信件接收 / 转发。<br>注意：这是<b>公司注册处</b>的年度合规，与<b>税务局</b>的审计 / 利得税报税（见「审计·含理账」）不同。'},
+    meta:'<b>公司注册处</b>年度合规打包：担任法定公司秘书、维护法定登记册、编制并递交周年申报表 NAR1，并提供香港注册地址与政府信件接收 / 转发。<br>NAR1 逾期政府罚款递增。注意：这是公司注册处的年度合规，<b>与税务局的审计 / 利得税报税（见「审计·含理账」）不同</b>。'},
   // ── 记账报税 ──
   'bookkeep':{name:'审计（含理账）',icon:'ti-calculator',price:0,old:0,consult:true,tags:'理账 + 审计 + 利得税 PTR',
+    intro:'理账 + 财务报表 + 独立审计 + 利得税报税表 PTR，面向税务局 IRD。',
     incl:['日常记账与凭证整理（理账）','财务报表编制','独立审计（执业会计师 CPA）','利得税报税表 PTR 编制与提交'],
+    sla:'按年度办理 · 时效视资料完整度',
+    materials:['全年银行流水 / 对账单','销售与采购单据 / 发票','各项费用凭证','上年度审计报告（如有）'],
     process:['报价确认','资料收集','理账 + 财报','独立审计','利得税 PTR','提交 IRD'],
-    meta:'<b>审计（含理账）</b>：理账 + 财务报表 + 审计报告 + 利得税报税表 PTR（税务局 IRD）。<br>由执业会计师出具审计报告；跨境电商可导入平台账单批量入账。<br>按<b>年度银行流水总额 / 交易笔数</b>报价（<b>面议</b>）；与公司注册处的周年申报 NAR1 不同。'},
+    meta:'<b>审计（含理账）</b>：日常记账与凭证整理 → 财务报表编制 → 执业会计师（CPA）独立审计 → 利得税报税表 PTR 编制与提交（IRD）。<br>跨境电商可导入平台账单批量入账。按<b>年度银行流水总额 / 交易笔数</b>报价（<b>面议</b>）。'},
   'salarytax':{name:'公司薪俸税 IR56A&B',icon:'ti-report-money',price:556,cny:500,old:0,form:'salarytax',tags:'约 3 个工作日 · 按人头 / 员工',
+    intro:'雇主为员工申报薪金的报税服务，按人头计费、帮填帮交。',
     incl:['雇主申报员工薪金','IR56B（逐员工）+ IR56A（汇总表）','帮填帮交','税表回执'],
+    sla:'约 3 个工作日',
+    materials:['公司名称 / 商业登记号 BR','员工名单与薪金明细','申报年度'],
     process:['支付','提交员工薪金','编制 IR56B / A','雇主签署提交 IRD','完结'],
-    meta:'办理时效：约 3 个工作日<br>雇主报税表：逐员工一张 <b>IR56B</b> + 汇总 <b>IR56A</b>，按人头计 HKD 556（¥500）/ 人。<br>雇主签署后于 IRD 发出后 1 个月内提交，含帮填帮交。'},
+    meta:'雇主报税表：逐员工一张 <b>IR56B</b> + 汇总 <b>IR56A</b>，按人头计 HKD 556（¥500）/ 人。<br>雇主签署后于 IRD 发出后 1 个月内提交，含帮填帮交。'},
   'persontax':{name:'个别人士报税',icon:'ti-coin',price:2222,cny:2000,old:0,form:'persontax',tags:'约 3 个工作日 · BIR60',
+    intro:'个人入息 / 薪俸税 BIR60 申报，帮填帮交。',
     incl:['个人入息 / 薪俸税申报 BIR60','帮填帮交','税表回执'],
+    sla:'约 3 个工作日',
+    materials:['姓名 / 香港身份证或税务档案号','年度收入资料（薪俸 / 租金等）','可申报的免税额资料'],
     process:['支付','提交收入资料','编制 BIR60','客户签署提交 IRD','完结'],
-    meta:'办理时效：约 3 个工作日<br>个人报税表 <b>BIR60</b>（薪俸 / 租金 / 免税额）；如选个人入息课税另评估。<br>含帮填帮交（不含豁免场景）。'},
+    meta:'个人报税表 <b>BIR60</b>（薪俸 / 租金 / 免税额）；如选个人入息课税另评估。<br>含帮填帮交（不含豁免场景）。'},
   // ── 工商变更 ──
   'director':{name:'董事变更',icon:'ti-user-edit',price:333,cny:300,old:0,form:'director',tags:'约 5 个工作日 · ND2A / ND4',
+    intro:'委任 / 停任董事，备 ND2A / ND4 并递交公司注册处。',
     incl:['委任 / 停任董事','ND2A 变更董事通知书','ND4 董事辞职通知书'],
+    sla:'约 5 个工作日',
+    materials:['公司名称 / 商业登记号 BR','变更类型（委任 / 停任）','董事姓名 + 证件','委任 / 停任生效日期','新董事 KYC 资料（委任时）'],
     process:['支付','提交关键信息','新董事 KYC','平台备表 ND2A','快递签字确认','递交注册处','完结'],
-    meta:'办理时效：约 5 个工作日<br><b>您只需提供关键信息</b>（董事姓名 + 证件 + 委任/停任及日期）；<b>ND2A 表格由我们线下准备并快递给您签字确认</b>，签妥回寄后由我们递交公司注册处。<br>委任新董事需完成 KYC 尽调。'},
+    meta:'<b>您只需提供关键信息</b>（董事姓名 + 证件 + 委任 / 停任及日期）；<b>ND2A / ND4 表格由我们线下准备并快递给您签字确认</b>，签妥回寄后由我们递交公司注册处。<br>委任新董事需完成 KYC 尽调。'},
   'secretary':{name:'变更秘书公司',icon:'ti-user-cog',price:333,cny:300,old:0,form:'secretary',tags:'约 5 个工作日 · 转入秘书',
+    intro:'将法定公司秘书转由 Leapex 利柏思 接任，备 ND2A 递交。',
     incl:['最新商业登记证 BR','变更秘书通知书','Leapex 利柏思 接任法定秘书'],
+    sla:'约 5 个工作日',
+    materials:['公司名称 / 商业登记号 BR','现任秘书公司（如有）','确认由 Leapex 利柏思 接任','董事签字'],
     process:['支付','确认接任信息','平台备表 ND2A','快递签字确认','递交注册处','完结'],
-    meta:'办理时效：约 5 个工作日<br><b>秘书公司即 Leapex 利柏思，表格由我们填写</b>，您只需确认接任并由董事签字。<br>ND2A（秘书部分）线下准备并快递给您签字，签妥回寄后递交注册处；含历史文件交接核对。'},
+    meta:'<b>秘书公司即 Leapex 利柏思，表格由我们填写</b>，您只需确认接任并由董事签字。<br>ND2A（秘书部分）线下准备并快递给您签字，签妥回寄后递交注册处；含历史文件交接核对。'},
   'address':{name:'变更注册地址',icon:'ti-map-2',price:333,cny:300,old:0,form:'address',tags:'约 5 个工作日 · 变更地址',
+    intro:'变更公司注册办事处地址，备 NR1 递交公司注册处。',
     incl:['最新商业登记证 BR','变更地址通知书 NR1'],
+    sla:'约 5 个工作日',
+    materials:['公司名称 / 商业登记号 BR','新注册地址 或 选用 Leapex 利柏思 地址','生效日期'],
     process:['支付','提交关键信息','平台备表 NR1','快递签字确认','递交注册处','完结'],
-    meta:'办理时效：约 5 个工作日<br><b>您只需提供关键信息</b>（新注册地址 + 生效日期，或选用 Leapex 利柏思 地址）；<b>NR1 表格由我们线下准备并快递给您签字确认</b>，签妥回寄后由我们递交公司注册处。'},
+    meta:'<b>您只需提供关键信息</b>（新注册地址 + 生效日期，或选用 Leapex 利柏思 地址）；<b>NR1 表格由我们线下准备并快递给您签字确认</b>，签妥回寄后由我们递交公司注册处。'},
   'rename':{name:'公司更名',icon:'ti-forms',price:1667,cny:1500,old:0,form:'rename',tags:'7-10 工作日 · NNC2 + 新印章',
+    intro:'公司更名，先人工查名再备 NNC2 + 股东特别决议，含新印章。',
     incl:['拟用新名称查册结果','股东特别决议书','更名文件 NNC2','新商业登记证 BR','更新印章 ×2'],
+    sla:'7–10 个工作日；新 BR 约 +2 周',
+    materials:['现公司中 / 英文名 + 商业登记号 BR','拟用新名称（中 / 英）','股东特别决议签署'],
     process:['支付','提交拟用新名称','人工查名','平台备表 NNC2 + 决议','快递签字确认','递交注册处','完结'],
-    meta:'办理时效：7-10 个工作日；新 BR 约 +2 周<br><b>先付费，再由顾问对拟用新名称人工查册</b>（是否可用，含商标风险提示）；<b>NNC2 与股东特别决议书由我们线下准备并快递给您签字确认</b>，签妥回寄后递交注册处。<br>官费 HKD 295，含新印章重制 ×2。'},
+    meta:'<b>先付费，再由顾问对拟用新名称人工查册</b>（是否可用，含商标风险提示）；<b>NNC2 与股东特别决议书由我们线下准备并快递给您签字确认</b>，签妥回寄后递交注册处。<br>官费 HKD 295，含新印章重制 ×2。'},
   'transfer':{name:'股份转让（股东变更）',icon:'ti-arrows-exchange',price:0,old:0,consult:true,tags:'约 5 工作日 · 含印花税 0.2%',
+    intro:'股东股份转让，核定作价并代缴从价印花税 0.2%。',
     incl:['转股文书 + 买卖单据','印花税代缴（从价 0.2%）','受让方 KYC','转让后股东名册 + 新股票'],
+    sla:'约 5 个工作日',
+    materials:['公司名称 / 商业登记号 BR','转让方 / 受让方信息 + 转让股数','转让对价','近 6 月审计报告或近 3 月财务报表','受让方 KYC 资料'],
     process:['支付服务费','提交转让信息','核定作价 + 印花税','受让方 KYC','备文书缴印花','快递签字','完结'],
-    meta:'办理时效：约 5 个工作日<br><b>您提交转让信息 + 估值资料</b>（近 6 月审计报告或近 3 月财务报表）；我们核定作价并<b>代缴从价印花税 0.2%</b>（买卖双方各 0.1% + 每份转让文书定额 HK$5，按对价与资产净值孰高）。<br>受让方须完成 KYC；文书线下快递签字后送 IRD 加盖印花。价格面议（视作价）。'},
+    meta:'<b>您提交转让信息 + 估值资料</b>（近 6 月审计报告或近 3 月财务报表）；我们核定作价并<b>代缴从价印花税 0.2%</b>（买卖双方各 0.1% + 每份转让文书定额 HK$5，按对价与资产净值孰高）。<br>受让方须完成 KYC；文书线下快递签字后送 IRD 加盖印花。价格面议（视作价）。'},
   'deregister':{name:'公司注销（撤销注册）',icon:'ti-building-off',price:0,old:0,consult:true,tags:'约 8 个月 · NDR1 + IR1263',
+    intro:'撤销注册注销公司，办 IR1263 不反对通知书 + NDR1。',
     incl:['税务局不反对通知书 IR1263','股东特别决议书','撤销注册申请 NDR1'],
+    sla:'约 8 个月（政府审批）',
+    materials:['公司名称 / 商业登记号 BR','全体股东同意','税务结清证明 / 无外债声明','（如需）清算审计报告'],
     process:['支付','提交注销信息','申请 IR1263','备决议 + NDR1','快递签字','递交 + 公告'],
-    meta:'办理时效：约 8 个月（政府审批）<br>撤销注册须<b>全体股东同意、无未偿还债务、停业逾 3 个月</b>；先申请<b>税务局不反对通知书 IR1263</b>（如有欠税须结清，可能需额外清算审计报告）。<br>NDR1 + 决议线下快递签字后递交注册处并宪报公告（异议期约 3 个月）。官费 HKD 270+420，价格面议。'},
+    meta:'撤销注册须<b>全体股东同意、无未偿还债务、停业逾 3 个月</b>；先申请<b>税务局不反对通知书 IR1263</b>（如有欠税须结清，可能需额外清算审计报告）。<br>NDR1 + 决议线下快递签字后递交注册处并宪报公告（异议期约 3 个月）。官费 HKD 270+420，价格面议。'},
   // ── 商标 ──
   'tmreg':{name:'商标注册申请',icon:'ti-trademark',price:3311,cny:2980,old:0,form:'tmreg',tags:'约 6 个月 · 每类别 · IPD',
+    intro:'香港知识产权署 IPD 商标注册，每个类别单独申请。',
     incl:['注册申请表','商标注册证书'],
+    sla:'约 6 个月',
+    materials:['商标名称 / 图样','申请类别 Class（如 9 / 35 / 42）','申请人信息','联系邮箱'],
     process:['支付','提交商标信息','递交 IPD','审查 + 公告','发证'],
-    meta:'办理时效：约 6 个月<br>递交<b>知识产权署 IPD</b>：<b>每个类别单独申请</b>（一个类别 HKD 3,311 / ¥2,980）→ 审查 → <b>宪报公告（异议期 3 个月）</b> → 发证。'},
+    meta:'递交<b>知识产权署 IPD</b>：<b>每个类别单独申请</b>（一个类别 HKD 3,311 / ¥2,980）→ 审查 → <b>宪报公告（异议期 3 个月）</b> → 发证。'},
   'tmrenew':{name:'商标注册续期',icon:'ti-refresh',price:2200,cny:1980,old:0,form:'tmrenew',tags:'约 5 工作日 · 每 10 年',
+    intro:'商标每 10 年续期，向 IPD 递交续期申请。',
     incl:['商标续期申请','续期回执'],
+    sla:'约 5 个工作日',
+    materials:['商标名称','商标注册编号','续期年度'],
     process:['支付','提交商标编号','递交续期 IPD','完结'],
-    meta:'办理时效：约 5 个工作日<br>商标<b>每 10 年续期一次</b>；提交商标注册编号后由我们向知识产权署 IPD 递交续期。续期费 HKD 2,200（¥1,980）。'},
+    meta:'商标<b>每 10 年续期一次</b>；提交商标注册编号后由我们向知识产权署 IPD 递交续期。续期费 HKD 2,200（¥1,980）。'},
   // ── 地址租赁 ──
   'addr-solo':{name:'独立注册地址',icon:'ti-map-pin',price:6000,cny:5400,old:0,form:'addr',tags:'HKD 6,000 / 年 · 不可办公',
+    intro:'独立香港注册地址（不可办公），交付租约 + 厘印税单 + 水电单。',
     incl:['正规租赁合约','厘印税单（印花税）','物业出具水电单'],
+    sla:'付款后 1–2 个工作日出资料',
+    materials:['公司名称 / 拟注册名称','用途说明','联系人 · 手机'],
     process:['支付','提交公司资料','平台配置地址','出厘印税单 + 水电单','完结'],
-    meta:'办理时效：付款后 1–2 个工作日出资料<br>独立香港<b>注册地址</b>（不可实体办公），交付<b>租约 + 厘印税单 + 水电单</b>，满足亚马逊等平台地址验证。<br>款项须付至香港公司主体（合规要求）。'},
+    meta:'独立香港<b>注册地址</b>（不可实体办公），交付<b>租约 + 厘印税单 + 水电单</b>，满足亚马逊等平台地址验证。<br>款项须付至香港公司主体（合规要求）。'},
   'addr-seat':{name:'工位租赁',icon:'ti-armchair',price:3000,cny:2500,old:0,form:'addr',tags:'HKD 3,000 / 月 · 可办公',
+    intro:'达利大厦实体工位（可办公），可作注册地址，按月租赁。',
     incl:['正规租赁合约','厘印税单（印花税）','物业出具水电单','实体工位（可办公）'],
+    sla:'预约后达利对接 · 签约即交付',
+    materials:['公司 / 联系人','工位数量','期望起租日'],
     process:['支付','提交需求','生态合作 · 达利对接','签约','交付'],
     meta:'达利大厦<b>实体工位</b>（可办公），交付<b>租约 + 厘印税单 + 水电单</b>，可作注册地址。<br><b>生态合作</b>：预约后由达利对接、双方签约；按月结算。'},
   'addr-office':{name:'独立办公室租赁',icon:'ti-building-skyscraper',price:0,old:0,consult:true,tags:'面议 · 与达利直签',
+    intro:'达利大厦独立办公室（可办公），按面积 / 楼层报价。',
     incl:['正规租赁合约','厘印税单（印花税）','物业出具水电单','独立办公室（可办公）'],
+    sla:'预约后达利对接 · 看房报价',
+    materials:['公司 / 联系人','面积需求','预算区间'],
     process:['提交需求','生态合作 · 达利对接','看房 / 报价','与达利直签'],
     meta:'达利大厦<b>独立办公室</b>（可办公）。<br><b>生态合作</b>：预约后由达利对接，客户<b>与达利直签</b>；按面积 / 楼层报价（面议）。'},
 };
@@ -2677,8 +2739,13 @@ function openSvc(key){
     cta.textContent = '立即办理';
     cta.setAttribute('onclick', 'buyNow()');
   }
-  document.getElementById('sd-incl').innerHTML = s.incl.map(function(x){
+  document.getElementById('sd-intro').innerHTML = s.intro || s.tags || '';
+  document.getElementById('sd-incl').innerHTML = (s.incl||[]).map(function(x){
     return '<div class="incl"><i class="ti ti-circle-check"></i><span>'+x+'</span></div>'; }).join('');
+  document.getElementById('sd-sla').textContent = s.sla || s.tags || '—';
+  document.getElementById('sd-materials').innerHTML = (s.materials && s.materials.length)
+    ? s.materials.map(function(x){ return '<div class="incl"><i class="ti ti-file-text" style="color:var(--blue)"></i><span>'+x+'</span></div>'; }).join('')
+    : '<div class="note">下单后按流程提示补充资料。</div>';
   document.getElementById('sd-process').innerHTML = s.process.map(function(p,i){
     return (i ? '<div class="step-line done"></div>' : '')
       + '<div class="step-i done"><div class="step-dot">'+(i+1)+'</div><div class="step-lab">'+p+'</div></div>';

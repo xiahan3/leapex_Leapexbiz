@@ -1049,17 +1049,23 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
 <!-- 新增 / 编辑商品 Modal -->
 <div class="mask" id="m-product" onclick="if(event.target===this)closeM('m-product')">
   <div class="modal" style="max-width:680px">
-    <div class="mh"><div><b style="font-size:14px" id="prod-title">新增商品</b><div style="font-size:11px;color:var(--text3)">单项服务 · 字段统一 · 富文本详情</div></div><button class="x" onclick="closeM('m-product')">×</button></div>
+    <div class="mh"><div><b style="font-size:14px" id="prod-title">新增商品</b><div style="font-size:11px;color:var(--text3)">名称 · icon · 简要介绍 · 交付内容 · 时效 · 所需材料 · 办理流程 · 详细描述</div></div><button class="x" onclick="closeM('m-product')">×</button></div>
     <div class="mb">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 16px">
-        <div style="grid-column:1 / -1"><label class="flbl">商品名称 *</label><input class="inp" style="width:100%" id="prod-name" placeholder="如 标准公司注册"></div>
-        <div style="grid-column:1 / -1"><label class="flbl">副标题</label><input class="inp" style="width:100%" id="prod-sub" placeholder="如 含首年秘书 + 注册地址 · 最多人选"></div>
-        <div><label class="flbl">服务类型 *</label><select class="inp" style="width:100%"><option>注册</option><option>秘书 &amp; 地址</option><option>记账报税</option><option>工商变更</option><option>商标</option></select></div>
+        <div style="grid-column:1 / -1"><label class="flbl">商品名称 *</label><input class="inp" style="width:100%" id="prod-name" placeholder="如 新设香港本地有限公司"></div>
+        <div><label class="flbl">商品 icon（Tabler 名）</label>
+          <div style="display:flex;gap:8px;align-items:center">
+            <input class="inp" style="flex:1" id="prod-icon" placeholder="ti-building-plus" oninput="var p=document.getElementById('prod-icon-pv');if(p)p.className='ti '+this.value">
+            <div style="width:38px;height:38px;border-radius:8px;background:var(--accent-bg);color:var(--accent-d);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i id="prod-icon-pv" class="ti ti-building-plus" style="font-size:19px"></i></div>
+          </div>
+        </div>
+        <div><label class="flbl">服务类型 *</label><select class="inp" style="width:100%" id="prod-type"><option>核名商标</option><option>注册</option><option>秘书 &amp; 地址</option><option>记账报税</option><option>工商变更</option><option>商标</option><option>地址租赁</option></select></div>
+        <div style="grid-column:1 / -1"><label class="flbl">服务简要介绍</label><input class="inp" style="width:100%" id="prod-intro" placeholder="一句话介绍，展示在服务详情页顶部"></div>
+        <div><label class="flbl">标准价 · 港币 (HKD)</label><input class="inp" style="width:100%" id="prod-hkd" placeholder="5533 / 面议 / 免费"></div>
+        <div><label class="flbl">标准价 · 人民币 (¥)</label><input class="inp" style="width:100%" id="prod-cny" placeholder="4980"></div>
+        <div><label class="flbl">办理时效</label><input class="inp" style="width:100%" id="prod-sla" placeholder="约 10 个工作日"></div>
         <div><label class="flbl">上 / 下架</label><select class="inp" style="width:100%"><option>上架</option><option>下架</option></select></div>
-        <div><label class="flbl">标准价 · 港币 (HKD)</label><input class="inp" style="width:100%" placeholder="5800"></div>
-        <div><label class="flbl">标准价 · 人民币 (¥)</label><input class="inp" style="width:100%" placeholder="5220"></div>
-        <div><label class="flbl">办理时效</label><input class="inp" style="width:100%" placeholder="3–5 工作日"></div>
-        <div><label class="flbl">适用人群（画像推荐）</label><input class="inp" style="width:100%" placeholder="要一步到位"></div>
+        <div style="grid-column:1 / -1"><label class="flbl">适用人群（画像推荐）</label><input class="inp" style="width:100%" id="prod-persona" placeholder="首次在港设立"></div>
         <div style="grid-column:1 / -1"><label class="flbl">适用区域</label>
           <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:4px;font-size:12.5px">
             <label style="display:flex;align-items:center;gap:5px"><input type="checkbox" checked> 香港</label>
@@ -1068,7 +1074,9 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
             <label style="display:flex;align-items:center;gap:5px"><input type="checkbox"> BVI</label>
           </div>
         </div>
-        <div style="grid-column:1 / -1"><label class="flbl">主要交付物</label><input class="inp" style="width:100%" placeholder="CI + BR + 章程 + 名册 …"></div>
+        <div style="grid-column:1 / -1"><label class="flbl">服务交付内容（每行一项）</label><textarea class="inp" style="width:100%;min-height:90px;resize:vertical;font-family:inherit;line-height:1.7" id="prod-deliver" placeholder="注册证书 CI ×1&#10;商业登记证 BR ×1&#10;公司章程 ×10"></textarea></div>
+        <div style="grid-column:1 / -1"><label class="flbl">所需材料（每行一项）</label><textarea class="inp" style="width:100%;min-height:76px;resize:vertical;font-family:inherit;line-height:1.7" id="prod-materials" placeholder="董事 / 股东身份证或护照&#10;拟用公司名称（中 / 英）"></textarea></div>
+        <div style="grid-column:1 / -1"><label class="flbl">办理流程（每行一个节点，按顺序）</label><textarea class="inp" style="width:100%;min-height:76px;resize:vertical;font-family:inherit;line-height:1.7" id="prod-process" placeholder="支付&#10;KYC 认证&#10;提交注册信息&#10;人工预审&#10;政府审批&#10;交付 CI / BR"></textarea></div>
         <div style="grid-column:1 / -1">
           <label class="flbl">详细描述（富文本 · 前端服务详情页直接渲染）</label>
           <div class="rt-tb">
@@ -1524,9 +1532,37 @@ function go(el){
 }
 function closeM(id){document.getElementById(id).classList.remove('on')}
 /* 新增/编辑商品 + 富文本 */
+/* 商品示例数据（8 字段：icon/type/intro/hkd/cny/sla/persona/deliver/materials/process/desc）· 与小程序 SVC_DATA 对齐 */
+var PRODUCT_SAMPLE = {
+  '公司名称查册 + 商标查询':{icon:'ti-file-search',type:'核名商标',intro:'注册前的名称与商标预查，顾问人工核查可用性，降低驳回 / 侵权风险。',hkd:'免费',cny:'免费',sla:'约 1–2 个工作日',persona:'注册前先查',deliver:'公司名称可用性查册（公司注册处）\n商标近似查询（知识产权署 IPD）\n中 / 英 / 繁体名称核查\n可用性建议报告',materials:'拟用公司名称（英文 / 繁体）\n拟查商标名称 / 图样（如需）\n联系邮箱',process:'提交名称 / 商标\n顾问人工查册\n出核查结果\n可用即下单注册',desc:'<p>在<b>公司注册处</b>核查名称、<b>IPD</b>查商标近似；查册只支持英文或繁体。<b>新客免费赠 1 次</b>。</p>'},
+  '新设香港本地有限公司':{icon:'ti-building-plus',type:'注册',intro:'香港本地有限公司一站式注册，含全套证照、印章与绿盒，全程托办。',hkd:'5533',cny:'4980',sla:'约 10 个工作日',persona:'首次在港设立',deliver:'注册证书 CI ×1\n商业登记证 BR ×1\n公司章程 ×10\n法团成立表格 NNC1\n股票本 / 会议记录本\n钢印 / 条形 / 小圆章\n绿盒',materials:'董事 / 股东身份证或护照\n拟用公司名称（中 / 英）\n注册股本与持股比例\n业务性质说明（KYC）',process:'支付\nKYC 认证\n提交注册信息\n人工预审\n政府审批\n交付 CI / BR',desc:'<p>涵盖 <b>NNC1 递交 + 商业登记 + 章程制作</b>，人工预审后递交政府审批，通过即交付全套绿盒。</p>'},
+  '年审服务':{icon:'ti-shield-check',type:'秘书 & 地址',intro:'法定秘书 + 注册地址 + 周年申报 NAR1 的年度合规打包服务。',hkd:'4422',cny:'3980',sla:'年费 · NAR1 周年日起 42 天内',persona:'已有公司 · 年度合规',deliver:'担任法定公司秘书\n维护法定登记册\n周年申报 NAR1\n香港注册地址\n政府信件接收 / 转发',materials:'公司名称 / 商业登记号 BR\n公司成立周年日\n董事 / 股东最新资料',process:'支付 / 续费\n信息核对\n编制 NAR1\n递交注册处\n完结',desc:'<p><b>公司注册处</b>年度合规打包；与税务局的审计 / 利得税报税不同。</p>'},
+  '审计（含理账）':{icon:'ti-calculator',type:'记账报税',intro:'理账 + 财务报表 + 独立审计 + 利得税报税表 PTR，面向税务局 IRD。',hkd:'面议',cny:'面议',sla:'按年度办理 · 视资料完整度',persona:'有经营公司',deliver:'日常记账与凭证整理\n财务报表\n独立审计报告（CPA）\n利得税报税表 PTR',materials:'全年银行流水 / 对账单\n销售与采购单据 / 发票\n各项费用凭证\n上年度审计报告（如有）',process:'报价确认\n资料收集\n理账 + 财报\n独立审计\n利得税 PTR\n提交 IRD',desc:'<p>按<b>年度流水 / 交易笔数</b>报价（面议），执业会计师出具审计报告。</p>'},
+  '公司薪俸税 IR56A&B':{icon:'ti-report-money',type:'记账报税',intro:'雇主为员工申报薪金的报税服务，按人头计费、帮填帮交。',hkd:'556',cny:'500',sla:'约 3 个工作日',persona:'有员工雇主',deliver:'IR56B（逐员工）\nIR56A（汇总表）\n税表回执',materials:'公司名称 / 商业登记号 BR\n员工名单与薪金明细\n申报年度',process:'支付\n提交员工薪金\n编制 IR56B / A\n雇主签署提交 IRD\n完结',desc:'<p>按人头计 HKD 556（¥500）/ 人，含帮填帮交。</p>'},
+  '个别人士报税':{icon:'ti-coin',type:'记账报税',intro:'个人入息 / 薪俸税 BIR60 申报，帮填帮交。',hkd:'2222',cny:'2000',sla:'约 3 个工作日',persona:'个人报税',deliver:'BIR60 个人报税表\n帮填帮交\n税表回执',materials:'姓名 / 香港身份证或税务档案号\n年度收入资料（薪俸 / 租金）\n可申报的免税额资料',process:'支付\n提交收入资料\n编制 BIR60\n客户签署提交 IRD\n完结',desc:'<p>薪俸 / 租金 / 免税额；不含豁免场景。</p>'},
+  '董事变更':{icon:'ti-user-edit',type:'工商变更',intro:'委任 / 停任董事，备 ND2A / ND4 并递交公司注册处。',hkd:'333',cny:'300',sla:'约 5 个工作日',persona:'董事调整',deliver:'ND2A 变更董事通知书\nND4 董事辞职通知书\n更新董事名册',materials:'公司名称 / BR\n变更类型（委任 / 停任）\n董事姓名 + 证件\n生效日期\n新董事 KYC（委任时）',process:'支付\n提交关键信息\n新董事 KYC\n平台备表 ND2A\n快递签字确认\n递交注册处\n完结',desc:'<p>您提供关键信息，表格我们备好快递签字后递交。</p>'},
+  '变更秘书公司':{icon:'ti-user-cog',type:'工商变更',intro:'将法定公司秘书转由 Leapex 利柏思 接任，备 ND2A 递交。',hkd:'333',cny:'300',sla:'约 5 个工作日',persona:'更换秘书',deliver:'最新商业登记证 BR\n变更秘书通知书 ND2A\nLeapex 利柏思 接任法定秘书',materials:'公司名称 / BR\n现任秘书公司（如有）\n确认接任\n董事签字',process:'支付\n确认接任信息\n平台备表 ND2A\n快递签字确认\n递交注册处\n完结',desc:'<p>秘书部分我们填，含历史文件交接核对。</p>'},
+  '变更注册地址':{icon:'ti-map-2',type:'工商变更',intro:'变更公司注册办事处地址，备 NR1 递交公司注册处。',hkd:'333',cny:'300',sla:'约 5 个工作日',persona:'公司迁址',deliver:'最新商业登记证 BR\n变更地址通知书 NR1',materials:'公司名称 / BR\n新注册地址 或 Leapex 地址\n生效日期',process:'支付\n提交关键信息\n平台备表 NR1\n快递签字确认\n递交注册处\n完结',desc:'<p>可选用 Leapex 利柏思 地址。</p>'},
+  '公司更名':{icon:'ti-forms',type:'工商变更',intro:'公司更名，先人工查名再备 NNC2 + 股东特别决议，含新印章。',hkd:'1667',cny:'1500',sla:'7–10 工作日；新 BR +2 周',persona:'品牌升级',deliver:'拟用新名称查册结果\n股东特别决议书\n更名文件 NNC2\n新商业登记证 BR\n更新印章 ×2',materials:'现公司中 / 英文名 + BR\n拟用新名称（中 / 英）\n股东特别决议签署',process:'支付\n提交拟用新名称\n人工查名\n平台备表 NNC2 + 决议\n快递签字确认\n递交注册处\n完结',desc:'<p>官费 HKD 295，含新印章重制 ×2。</p>'},
+  '股份转让（股东变更）':{icon:'ti-arrows-exchange',type:'工商变更',intro:'股东股份转让，核定作价并代缴从价印花税 0.2%。',hkd:'面议',cny:'面议',sla:'约 5 个工作日',persona:'股权变动',deliver:'转股文书 + 买卖单据\n印花税代缴（从价 0.2%）\n更新股东名册 + 新股票',materials:'公司名称 / BR\n转让方 / 受让方 + 转让股数\n转让对价\n近 6 月审计或近 3 月财报\n受让方 KYC',process:'支付服务费\n提交转让信息\n核定作价 + 印花税\n受让方 KYC\n备文书缴印花\n快递签字\n完结',desc:'<p>从价印花税 0.2%（买卖各 0.1% + 每份 HK$5，作价与净值孰高）。</p>'},
+  '公司注销（撤销注册）':{icon:'ti-building-off',type:'工商变更',intro:'撤销注册注销公司，办 IR1263 不反对通知书 + NDR1。',hkd:'面议',cny:'面议',sla:'约 8 个月（政府审批）',persona:'停止经营',deliver:'税务局不反对通知书 IR1263\n股东特别决议书\n撤销注册申请 NDR1',materials:'公司名称 / BR\n全体股东同意\n税务结清 / 无外债声明\n（如需）清算审计报告',process:'支付\n提交注销信息\n申请 IR1263\n备决议 + NDR1\n快递签字\n递交 + 公告',desc:'<p>须无外债、停业逾 3 个月；官费 HKD 270+420。</p>'},
+  '商标注册申请':{icon:'ti-trademark',type:'商标',intro:'香港知识产权署 IPD 商标注册，每个类别单独申请。',hkd:'3311',cny:'2980',sla:'约 6 个月',persona:'品牌保护',deliver:'注册申请表\n商标注册证书',materials:'商标名称 / 图样\n申请类别 Class（如 9 / 35 / 42）\n申请人信息\n联系邮箱',process:'支付\n提交商标信息\n递交 IPD\n审查 + 公告\n发证',desc:'<p>每类别 HKD 3,311；宪报公告异议期 3 个月。</p>'},
+  '商标注册续期':{icon:'ti-refresh',type:'商标',intro:'商标每 10 年续期，向 IPD 递交续期申请。',hkd:'2200',cny:'1980',sla:'约 5 个工作日',persona:'商标到期',deliver:'商标续期申请\n续期回执',materials:'商标名称\n商标注册编号\n续期年度',process:'支付\n提交商标编号\n递交续期 IPD\n完结',desc:'<p>向 IPD 递交续期，续期费 HKD 2,200。</p>'},
+  '独立注册地址':{icon:'ti-map-pin',type:'地址租赁',intro:'独立香港注册地址（不可办公），交付租约 + 厘印税单 + 水电单。',hkd:'6000',cny:'5400',sla:'付款后 1–2 个工作日',persona:'需注册地址',deliver:'正规租赁合约\n厘印税单（印花税）\n物业出具水电单',materials:'公司名称 / 拟注册名称\n用途说明\n联系人 · 手机',process:'支付\n提交公司资料\n平台配置地址\n出厘印税单 + 水电单\n完结',desc:'<p>满足亚马逊等平台地址验证；款项付至香港公司主体。</p>'},
+  '工位租赁':{icon:'ti-armchair',type:'地址租赁',intro:'达利大厦实体工位（可办公），可作注册地址，按月租赁。',hkd:'3000',cny:'2500',sla:'预约后达利对接 · 签约即交付',persona:'需实体工位',deliver:'正规租赁合约\n厘印税单\n物业水电单\n实体工位（可办公）',materials:'公司 / 联系人\n工位数量\n期望起租日',process:'支付\n提交需求\n生态合作 · 达利对接\n签约\n交付',desc:'<p>生态合作，可作注册地址，按月结算。</p>'},
+  '独立办公室租赁':{icon:'ti-building-skyscraper',type:'地址租赁',intro:'达利大厦独立办公室（可办公），按面积 / 楼层报价。',hkd:'面议',cny:'面议',sla:'预约后达利对接 · 看房报价',persona:'需独立办公室',deliver:'正规租赁合约\n厘印税单\n物业水电单\n独立办公室（可办公）',materials:'公司 / 联系人\n面积需求\n预算区间',process:'提交需求\n生态合作 · 达利对接\n看房 / 报价\n与达利直签',desc:'<p>生态合作，客户与达利直签。</p>'}
+};
+function _setV(id,v){ var e=document.getElementById(id); if(e) e.value=(v==null?'':v); }
 function openProduct(name){
   document.getElementById('prod-title').textContent = name ? '编辑商品 · '+name : '新增商品';
-  var n=document.getElementById('prod-name'); if(n) n.value = name||'';
+  var d = name ? PRODUCT_SAMPLE[name] : null;
+  _setV('prod-name', name||''); _setV('prod-intro', d?d.intro:''); _setV('prod-hkd', d?d.hkd:'');
+  _setV('prod-cny', d?d.cny:''); _setV('prod-sla', d?d.sla:''); _setV('prod-persona', d?d.persona:'');
+  _setV('prod-deliver', d?d.deliver:''); _setV('prod-materials', d?d.materials:''); _setV('prod-process', d?d.process:'');
+  var ic=(d&&d.icon)||'ti-building-plus'; _setV('prod-icon', ic);
+  var pv=document.getElementById('prod-icon-pv'); if(pv) pv.className='ti '+ic;
+  var pt=document.getElementById('prod-type'); if(pt&&d&&d.type){ for(var i=0;i<pt.options.length;i++){ if(pt.options[i].text===d.type){ pt.selectedIndex=i; break; } } }
+  var ed=document.getElementById('prod-desc'); if(ed) ed.innerHTML = d?d.desc:'<p>请填写服务详细描述…</p>';
   document.getElementById('m-product').classList.add('on');
 }
 function rt(cmd,val){ document.execCommand(cmd,false,val||null); var e=document.getElementById('prod-desc'); if(e) e.focus(); }
