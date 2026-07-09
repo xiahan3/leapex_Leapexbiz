@@ -1349,8 +1349,8 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
 
           <!-- 注册办事处地址 -->
           <div class="reg-grp">公司在香港的注册办事处的建议地址</div>
-          <div class="radio-card on" id="ro-sec" onclick="pickRegAddr('sec')"><div class="radio-dot"></div><div style="flex:1"><div style="font-weight:600;font-size:14px">填写秘书公司地址</div><div class="note">直接采用 Leapex 利柏思 法定秘书注册地址，免额外费用</div></div></div>
-          <div class="radio-card" id="ro-office" onclick="pickRegAddr('office')"><div class="radio-dot"></div><div style="flex:1"><div style="font-weight:600;font-size:14px">需要租赁办公室</div><div class="note">由顾问对接达利安排独立地址 / 工位 / 办公室（另计费）</div></div></div>
+          <div class="radio-card on" id="ro-sec" onclick="pickRegAddr('sec')"><div class="radio-dot"></div><div style="flex:1"><div style="font-weight:600;font-size:14px">填写秘书公司地址</div><div class="note">直接采用 Leapex 利柏思 法定秘书注册地址</div></div></div>
+          <div class="radio-card" id="ro-office" onclick="pickRegAddr('office')"><div class="radio-dot"></div><div style="flex:1"><div style="font-weight:600;font-size:14px">需要租赁办公室</div><div class="note">由顾问对接达利安排独立地址 / 工位 / 办公室</div></div></div>
           <div class="note" style="margin:8px 2px 16px">注册地址须为香港地址；如选租赁将在办理时与顾问确认方案。</div>
 
           <!-- 公司联络资料 -->
@@ -1369,7 +1369,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
           </div>
           <div class="note" style="margin:-2px 2px 0">已缴款额按认购股本计；尚未缴付款额自动结算。</div>
 
-          <div class="fixed-foot"><button class="btn" onclick="regStep(2)">下一步 · 成员 / 董事</button></div>
+          <div class="fixed-foot" style="display:flex;gap:8px"><button class="btn ghost" style="width:76px" onclick="regSaveDraft()">暂存</button><button class="btn" style="flex:1" onclick="regStep(2)">下一步 · 成员 / 董事</button></div>
         </div>
 
         <div class="reg-pane" id="reg-2" style="display:none">
@@ -1378,7 +1378,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
           <div id="reg-persons"></div>
           <button class="btn ghost" style="width:100%;margin-bottom:12px" onclick="openPerson()"><i class="ti ti-user-plus"></i> 添加创办成员 / 董事</button>
           <div class="card card-pad" style="background:var(--green-bg)"><div style="font-size:13px;color:var(--green-d);font-weight:600"><i class="ti ti-shield-check"></i> 法定秘书：Leapex 利柏思（内嵌服务）</div><div class="note" style="color:var(--green-d);margin-top:3px">已含于注册服务，自动担任公司法定秘书</div></div>
-          <div class="fixed-foot" style="display:flex;gap:8px"><button class="btn ghost" style="width:90px" onclick="regStep(1)">上一步</button><button class="btn" onclick="regStep(3)">下一步 · 组织章程</button></div>
+          <div class="fixed-foot" style="display:flex;gap:8px"><button class="btn ghost" style="width:76px" onclick="regStep(1)">上一步</button><button class="btn ghost" style="width:76px" onclick="regSaveDraft()">暂存</button><button class="btn" style="flex:1" onclick="regStep(3)">下一步 · 组织章程</button></div>
         </div>
 
         <!-- Step 3 人工预审 -->
@@ -1395,7 +1395,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
             </div>
           </div>
           <div class="card" onclick="toast('打开 样本章程全文预览')" style="cursor:pointer"><div class="cell" style="border:none"><div class="cell-ic" style="background:var(--red-bg);color:var(--red)"><i class="ti ti-file-type-pdf"></i></div><div class="cell-main"><div class="cell-t">预览章程全文</div><div class="cell-d" id="art-preview-file">Articles_SampleA_EN.pdf</div></div><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div></div>
-          <div class="fixed-foot" style="display:flex;gap:8px"><button class="btn ghost" style="width:90px" onclick="regStep(2)">上一步</button><button class="btn" onclick="regStep(4)">下一步 · 人工预审</button></div>
+          <div class="fixed-foot" style="display:flex;gap:8px"><button class="btn ghost" style="width:76px" onclick="regStep(2)">上一步</button><button class="btn ghost" style="width:76px" onclick="regSaveDraft()">暂存</button><button class="btn" style="flex:1" onclick="regStep(4)">下一步 · 人工预审</button></div>
         </div>
 
         <!-- Step 4 人工预审 -->
@@ -1413,7 +1413,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
           </div>
           <div class="card" onclick="toast('打开 NNC1 表格预览')" style="cursor:pointer"><div class="cell" style="border:none"><div class="cell-ic" style="background:var(--red-bg);color:var(--red)"><i class="ti ti-file-type-pdf"></i></div><div class="cell-main"><div class="cell-t">预览 NNC1 法团成立表格</div><div class="cell-d">系统依你填写信息自动生成</div></div><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div></div>
           <div class="check-row" onclick="toggleCheck('reg-confirm')"><div class="cbox" id="reg-confirm"><i class="ti ti-check"></i></div><div style="font-size:13px">本人确认以上资料属实，同意提交予香港公司注册处办理</div></div>
-          <div class="fixed-foot" style="display:flex;gap:8px"><button class="btn ghost" style="width:90px" onclick="regStep(3)">上一步</button><button class="btn" id="reg-submit-btn" disabled onclick="regSubmit()">提交人工预审</button></div>
+          <div class="fixed-foot" style="display:flex;gap:8px"><button class="btn ghost" style="width:76px" onclick="regStep(3)">上一步</button><button class="btn ghost" style="width:76px" onclick="regSaveDraft()">暂存</button><button class="btn" style="flex:1" id="reg-submit-btn" disabled onclick="regSubmit()">提交人工预审</button></div>
         </div>
       </div>
     </div>
@@ -1491,7 +1491,6 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
         <input class="input" id="ma-country" placeholder="国家 / 地区" value="中国" style="display:none">
 
         <div class="reg-grp">常驻地址</div>
-        <div class="note" style="color:var(--red);margin:-4px 2px 8px">常驻地址将不会供公众查阅。</div>
         <div class="check-row" style="margin-bottom:10px" id="chk-samecomm" onclick="toggleSameComm(this)"><div class="cbox on"><i class="ti ti-check"></i></div><div style="font-size:13px">同通讯地址</div></div>
         <div id="perm-addr" style="display:none">
           <div style="display:flex;gap:8px;margin-bottom:8px"><div class="nc-mode on" id="pa-hk" onclick="pickPermMode('hk')">香港地址</div><div class="nc-mode" id="pa-nonhk" onclick="pickPermMode('nonhk')">非香港地址</div></div>
@@ -2517,6 +2516,7 @@ function pickArt(el){
   el.classList.add('on');
 }
 function regSubmit(){ toast('已提交人工预审'); setTimeout(function(){ go('s-bizhandle'); }, 800); }   // 人工预审 → 业务办理
+function regSaveDraft(){ toast('已暂存，可稍后在「我的订单」继续填写'); }   // 暂存草稿
 /* 新公司注册：从核名结果页进入，重置到第 1 步 */
 function startNewReg(){ PERSONS = defaultPersons(); renderPersons(); var c=document.getElementById('reg-confirm'); if(c) c.classList.remove('on'); var b=document.getElementById('reg-submit-btn'); if(b) b.disabled=true; regStep(1); go('s-reg'); }
 /* 创办成员/董事/公司秘书 人员管理 */
