@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Leapexbiz 管理后台 · 原型</title>
+<title>Leapex 利柏思 管理后台 · 原型</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -144,7 +144,7 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
   <aside class="sb">
     <div class="sb-logo">
       <div style="width:30px;height:30px;border-radius:7px;background:#D4A853;color:#1A1A1A;display:flex;align-items:center;justify-content:center;font-weight:800">L</div>
-      <div><b>Leapexbiz</b><br><span>持牌 TCSP · 管理后台</span></div>
+      <div><b>Leapex 利柏思</b><br><span>持牌 TCSP · 管理后台</span></div>
     </div>
     <nav class="nav">
       <div class="ng">01 · 概览</div>
@@ -165,8 +165,9 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
 
       <div class="ng">05 · 服务管理</div>
       <div class="ni" data-p="register" onclick="go(this)"><i class="ti ti-building-plus"></i>注册公司<span class="nb">3</span></div>
-      <div class="ni" data-p="svc-annual" onclick="go(this)"><i class="ti ti-shield-check"></i>秘书年审<span class="nb">2</span></div>
+      <div class="ni" data-p="svc-annual" onclick="go(this)"><i class="ti ti-shield-check"></i>年审服务<span class="nb">1</span></div>
       <div class="ni" data-p="svc-acct" onclick="go(this)"><i class="ti ti-calculator"></i>记账报税<span class="nb">3</span></div>
+      <div class="ni" data-p="svc-addr" onclick="go(this)"><i class="ti ti-building-community"></i>地址租赁<span class="nb">3</span></div>
       <div class="ni" data-p="chg-address" onclick="go(this)"><i class="ti ti-map-2"></i>地址变更<span class="nb">2</span></div>
       <div class="ni" data-p="chg-director" onclick="go(this)"><i class="ti ti-user-edit"></i>董事变更<span class="nb">2</span></div>
       <div class="ni" data-p="chg-secretary" onclick="go(this)"><i class="ti ti-user-cog"></i>变更秘书<span class="nb">1</span></div>
@@ -302,7 +303,7 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
 
       <!-- ════ 地址变更（NR1）════ -->
       <div class="page" id="p-chg-address">
-        <div class="card cp" style="background:var(--accent-bg);border-color:var(--accent-d)"><div style="font-size:12px;color:var(--accent-d)"><i class="ti ti-map-2"></i> <b>地址变更（NR1）</b>：对应政府表格 <b>NR1 注册办事处地址变更通知书</b>。客户仅提交关键信息（新注册地址 + 生效日期，或选用 Leapexbiz 地址），服务人员<b>线下备表 → 快递签字确认 → 递交公司注册处</b>（不向客户端提供表格 PDF 预览）。</div></div>
+        <div class="card cp" style="background:var(--accent-bg);border-color:var(--accent-d)"><div style="font-size:12px;color:var(--accent-d)"><i class="ti ti-map-2"></i> <b>地址变更（NR1）</b>：对应政府表格 <b>NR1 注册办事处地址变更通知书</b>。客户仅提交关键信息（新注册地址 + 生效日期，或选用 Leapex 利柏思 地址），服务人员<b>线下备表 → 快递签字确认 → 递交公司注册处</b>（不向客户端提供表格 PDF 预览）。</div></div>
         <div class="filters"><span class="chip on">全部 2</span><span class="chip">提交关键信息</span><span class="chip">平台备表</span><span class="chip">待客户签回</span><span class="chip">递交注册处</span><span class="chip">已完结</span><input class="inp" placeholder="订单号 / 公司名" style="margin-left:auto;width:180px"></div>
         <div class="card"><table>
           <thead><tr><th>订单号</th><th>公司</th><th>客户</th><th>当前节点</th><th>进度</th><th>状态</th><th></th></tr></thead>
@@ -326,9 +327,9 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
         </table></div>
       </div>
 
-      <!-- ════ 变更秘书（ND2A · Leapexbiz 接任）════ -->
+      <!-- ════ 变更秘书（ND2A · Leapex 利柏思 接任）════ -->
       <div class="page" id="p-chg-secretary">
-        <div class="card cp" style="background:var(--accent-bg);border-color:var(--accent-d)"><div style="font-size:12px;color:var(--accent-d)"><i class="ti ti-user-cog"></i> <b>变更秘书（ND2A）</b>：对应政府表格 <b>ND2A 秘书变更通知书</b>。<b>秘书公司即 Leapexbiz，秘书部分由我方填写</b>，客户仅需确认接任并由董事签字；服务人员<b>线下备表 → 快递签字确认 → 递交注册处</b>，含历史文件交接核对。</div></div>
+        <div class="card cp" style="background:var(--accent-bg);border-color:var(--accent-d)"><div style="font-size:12px;color:var(--accent-d)"><i class="ti ti-user-cog"></i> <b>变更秘书（ND2A）</b>：对应政府表格 <b>ND2A 秘书变更通知书</b>。<b>秘书公司即 Leapex 利柏思，秘书部分由我方填写</b>，客户仅需确认接任并由董事签字；服务人员<b>线下备表 → 快递签字确认 → 递交注册处</b>，含历史文件交接核对。</div></div>
         <div class="filters"><span class="chip on">全部 1</span><span class="chip">确认接任信息</span><span class="chip">平台备表</span><span class="chip">待客户签回</span><span class="chip">已完结</span><input class="inp" placeholder="订单号 / 公司名" style="margin-left:auto;width:180px"></div>
         <div class="card"><table>
           <thead><tr><th>订单号</th><th>公司</th><th>客户</th><th>当前节点</th><th>进度</th><th>状态</th><th></th></tr></thead>
@@ -374,15 +375,28 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
         </table></div>
       </div>
 
-      <!-- ════ 秘书年审（NAR1 + 通讯地址）════ -->
+      <!-- ════ 年审服务（法定秘书 + 注册地址 + NAR1）════ -->
       <div class="page" id="p-svc-annual">
-        <div class="card cp" style="background:var(--accent-bg);border-color:var(--accent-d)"><div style="font-size:12px;color:var(--accent-d)"><i class="ti ti-shield-check"></i> <b>秘书年审</b>：<b>法定公司秘书 / 周年申报 NAR1</b>（公司注册处，须于成立周年日起 <b>42 天内</b>递交，逾期罚款递增）+ <b>注册通讯地址</b>（信件代收）。注意：周年申报 NAR1 属公司注册处年度合规，<b>与税务局的年度审计 / 利得税报税（见「记账报税」）不同</b>。</div></div>
-        <div class="filters"><span class="chip on">全部 2</span><span class="chip">法定秘书 / NAR1</span><span class="chip">通讯地址</span><span class="chip">递交注册处</span><span class="chip">已完结</span><input class="inp" placeholder="订单号 / 公司名" style="margin-left:auto;width:180px"></div>
+        <div class="card cp" style="background:var(--accent-bg);border-color:var(--accent-d)"><div style="font-size:12px;color:var(--accent-d)"><i class="ti ti-shield-check"></i> <b>年审服务</b>（打包年费）：<b>法定公司秘书 + 注册地址 + 周年申报 NAR1</b>。NAR1 须于成立周年日起 <b>42 天内</b>递交公司注册处，逾期罚款递增。注意：周年申报 NAR1 属公司注册处年度合规，<b>与税务局的审计 / 利得税报税（见「记账报税」）不同</b>。</div></div>
+        <div class="filters"><span class="chip on">全部 1</span><span class="chip">信息核对</span><span class="chip">编制 NAR1</span><span class="chip">递交注册处</span><span class="chip">已完结</span><input class="inp" placeholder="订单号 / 公司名" style="margin-left:auto;width:180px"></div>
         <div class="card"><table>
-          <thead><tr><th>订单号</th><th>公司</th><th>服务</th><th>客户</th><th>当前节点</th><th>进度</th><th>状态</th><th></th></tr></thead>
+          <thead><tr><th>订单号</th><th>公司</th><th>客户</th><th>当前节点</th><th>进度</th><th>状态</th><th></th></tr></thead>
           <tbody>
-            <tr><td>ORD-2026-0260</td><td><b>恒丰贸易有限公司</b></td><td>法定秘书 · NAR1 <span class="pill p-gold">NAR1</span></td><td>陈大文</td><td>编制 NAR1</td><td>3 / 5</td><td><span class="pill p-blue">编制中</span></td><td><button class="btn btn-xs btn-p" onclick="openChange('ORD-2026-0260','annual','恒丰贸易有限公司')">维护</button></td></tr>
-            <tr><td>ORD-2026-0261</td><td><b>星辰科技有限公司</b></td><td>注册通讯地址</td><td>李美琪</td><td>配置地址</td><td>3 / 4</td><td><span class="pill p-blue">配置中</span></td><td><button class="btn btn-xs btn-p" onclick="openChange('ORD-2026-0261','regaddr','星辰科技有限公司')">维护</button></td></tr>
+            <tr><td>ORD-2026-0260</td><td><b>恒丰贸易有限公司</b></td><td>陈大文</td><td>编制 NAR1</td><td>3 / 5</td><td><span class="pill p-blue">编制中</span></td><td><button class="btn btn-xs btn-p" onclick="openChange('ORD-2026-0260','annual','恒丰贸易有限公司')">维护</button></td></tr>
+          </tbody>
+        </table></div>
+      </div>
+
+      <!-- ════ 地址租赁（独立地址 / 工位 / 办公室）════ -->
+      <div class="page" id="p-svc-addr">
+        <div class="card cp" style="background:var(--accent-bg);border-color:var(--accent-d)"><div style="font-size:12px;color:var(--accent-d)"><i class="ti ti-building-community"></i> <b>地址租赁（达利大厦）</b>：<b>独立注册地址</b>（HKD 6,000/年·不可办公，我方交付租约 + 厘印税单 + 水电单，满足平台验证）、<b>工位</b>（HKD 3,000/月·可办公）、<b>独立办公室</b>（面议）。工位 / 办公室为<b>生态合作</b>，预约后由<b>达利对接、客户与达利直签</b>；款项须付至香港公司主体。</div></div>
+        <div class="filters"><span class="chip on">全部 3</span><span class="chip">独立地址</span><span class="chip">工位</span><span class="chip">办公室</span><span class="chip">已完结</span><input class="inp" placeholder="订单号 / 公司名" style="margin-left:auto;width:180px"></div>
+        <div class="card"><table>
+          <thead><tr><th>订单号</th><th>公司 / 客户</th><th>服务</th><th>当前节点</th><th>进度</th><th>状态</th><th></th></tr></thead>
+          <tbody>
+            <tr><td>ORD-2026-0290</td><td><b>星辰科技有限公司</b></td><td>独立注册地址 <span class="pill p-gold">6000/年</span></td><td>配置地址</td><td>3 / 5</td><td><span class="pill p-blue">配置中</span></td><td><button class="btn btn-xs btn-p" onclick="openChange('ORD-2026-0290','addr-solo','星辰科技有限公司')">维护</button></td></tr>
+            <tr><td>ORD-2026-0291</td><td><b>恒丰贸易有限公司</b></td><td>工位租赁 <span class="pill p-gold">3000/月</span></td><td>达利对接</td><td>3 / 5</td><td><span class="pill p-amber">生态合作对接</span></td><td><button class="btn btn-xs btn-p" onclick="openChange('ORD-2026-0291','addr-seat','恒丰贸易有限公司')">维护</button></td></tr>
+            <tr><td>ORD-2026-0292</td><td><b>光辉投资有限公司</b></td><td>独立办公室 <span class="pill p-gray">面议</span></td><td>达利对接</td><td>2 / 4</td><td><span class="pill p-amber">看房报价</span></td><td><button class="btn btn-xs btn-p" onclick="openChange('ORD-2026-0292','addr-office','光辉投资有限公司')">维护</button></td></tr>
           </tbody>
         </table></div>
       </div>
@@ -517,7 +531,7 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
           <div class="ch"><span class="ct">供应商列表</span><button class="btn btn-xs btn-p" onclick="toast('新增供应商（超管录入资料）')"><i class="ti ti-plus"></i>新增供应商</button></div>
           <table><thead><tr><th>供应商</th><th>支持服务</th><th>结算方式</th><th>合作订单</th><th>状态</th><th></th></tr></thead>
             <tbody>
-              <tr><td><b>Leapexbiz 直营</b><div style="color:var(--text3);font-size:11px">SUP-001 · 自营</div></td><td>注册 / 年审 / 变更 / 记账</td><td>内部核算</td><td>86</td><td><span class="pill p-green">合作中</span></td><td><button class="btn btn-xs">配置详情</button></td></tr>
+              <tr><td><b>Leapex 利柏思 直营</b><div style="color:var(--text3);font-size:11px">SUP-001 · 自营</div></td><td>注册 / 年审 / 变更 / 记账</td><td>内部核算</td><td>86</td><td><span class="pill p-green">合作中</span></td><td><button class="btn btn-xs">配置详情</button></td></tr>
               <tr><td><b>金印堂</b><div style="color:var(--text3);font-size:11px">SUP-002 · 印章 / 实物</div></td><td>印章制作 · 文件册</td><td>固定额 · 完成后结</td><td>12</td><td><span class="pill p-green">合作中</span></td><td><button class="btn btn-xs">配置详情</button></td></tr>
               <tr><td><b>正诚公证行</b><div style="color:var(--text3);font-size:11px">SUP-003 · 公证</div></td><td>公证认证</td><td>固定额 · 完成后结</td><td>5</td><td><span class="pill p-green">合作中</span></td><td><button class="btn btn-xs">配置详情</button></td></tr>
               <tr><td><b>湾景商务中心</b><div style="color:var(--text3);font-size:11px">SUP-004 · 生态</div></td><td>办公租赁 / 注册地址</td><td>比例 30% · 月结</td><td>3</td><td><span class="pill p-green">合作中</span></td><td><button class="btn btn-xs">配置详情</button></td></tr>
@@ -711,20 +725,21 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
             <thead><tr><th>商品（名称 / 副标题）</th><th>类型</th><th>标准价 HKD / ¥</th><th>时效</th><th>适用人群</th><th>适用区域</th><th>状态</th><th></th></tr></thead>
             <tbody>
               <tr><td><b>新设香港本地有限公司</b> <span class="pill p-gold">主推</span><div style="color:var(--text3);font-size:11px">CI + BR + 章程10份 + 股票本 + 印章 + 绿盒</div></td><td><span class="pill p-gold">注册</span></td><td>5,533 / 4,980</td><td>约 10 工作日</td><td>首次在港设立</td><td>香港</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('新设香港本地有限公司')">编辑</button> <button class="btn btn-xs" onclick="openNodes(this)"><i class="ti ti-list-check"></i>流程节点</button> <button class="btn btn-xs btn-red">下架</button></td></tr>
-              <tr><td><b>法定公司秘书（周年申报）</b><div style="color:var(--text3);font-size:11px">担任法定秘书 + 维护登记册 + NAR1</div></td><td><span class="pill p-accent">秘书</span></td><td>2,200 / 1,980</td><td>年费</td><td>已有公司 · 年度合规</td><td>香港</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('法定公司秘书（周年申报）')">编辑</button> <button class="btn btn-xs" onclick="openNodes(this)"><i class="ti ti-list-check"></i>流程节点</button></td></tr>
-              <tr><td>注册通讯地址<div style="color:var(--text3);font-size:11px">香港商业注册地址 + 信件接收转发</div></td><td><span class="pill p-accent">秘书</span></td><td>2,200 / 1,980</td><td>年费</td><td>需注册地址</td><td>香港</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('注册通讯地址')">编辑</button></td></tr>
-              <tr><td>年度审计 · 记账报税<div style="color:var(--text3);font-size:11px">财务报表 + 执业会计师审计 + 利得税报税表 PTR</div></td><td><span class="pill p-green">记账</span></td><td>面议</td><td>按年</td><td>有经营公司</td><td>香港</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('年度审计 · 记账报税')">编辑</button></td></tr>
+              <tr><td><b>年审服务</b><div style="color:var(--text3);font-size:11px">法定秘书 + 维护登记册 + 注册地址 + NAR1（打包年费）</div></td><td><span class="pill p-accent">年审</span></td><td>4,422 / 3,980</td><td>年费</td><td>已有公司 · 年度合规</td><td>香港</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('年审服务')">编辑</button> <button class="btn btn-xs" onclick="openNodes(this)"><i class="ti ti-list-check"></i>流程节点</button></td></tr>
+              <tr><td>审计（含理账）<div style="color:var(--text3);font-size:11px">理账 + 财务报表 + 审计报告 + 利得税报税表 PTR</div></td><td><span class="pill p-green">记账</span></td><td>面议</td><td>按年</td><td>有经营公司</td><td>香港</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('审计（含理账）')">编辑</button></td></tr>
               <tr><td>公司薪俸税 IR56A&B<div style="color:var(--text3);font-size:11px">雇主申报员工薪金 · 按人头 · 帮填帮交</div></td><td><span class="pill p-green">记账</span></td><td>556 / 500 <span style="color:var(--text3)">/人</span></td><td>约 3 工作日</td><td>有员工雇主</td><td>香港</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('公司薪俸税 IR56A&B')">编辑</button></td></tr>
               <tr><td>个别人士报税<div style="color:var(--text3);font-size:11px">个税申报 · 帮填帮交（不含豁免场景）</div></td><td><span class="pill p-green">记账</span></td><td>2,222 / 2,000</td><td>约 3 工作日</td><td>个人报税</td><td>香港</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('个别人士报税')">编辑</button></td></tr>
               <tr><td>董事变更<div style="color:var(--text3);font-size:11px">委任 / 停任 · ND2A + ND4</div></td><td><span class="pill p-blue">变更</span></td><td>333 / 300</td><td>约 5 工作日</td><td>运营中公司</td><td>香港</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('董事变更')">编辑</button></td></tr>
-              <tr><td>变更秘书公司<div style="color:var(--text3);font-size:11px">转入 Leapexbiz 秘书 + 变更通知书</div></td><td><span class="pill p-blue">变更</span></td><td>333 / 300</td><td>约 5 工作日</td><td>转秘书公司</td><td>香港</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('变更秘书公司')">编辑</button></td></tr>
+              <tr><td>变更秘书公司<div style="color:var(--text3);font-size:11px">转入 Leapex 利柏思 秘书 + 变更通知书</div></td><td><span class="pill p-blue">变更</span></td><td>333 / 300</td><td>约 5 工作日</td><td>转秘书公司</td><td>香港</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('变更秘书公司')">编辑</button></td></tr>
               <tr><td>变更注册地址<div style="color:var(--text3);font-size:11px">变更地址通知书 + 最新 BR</div></td><td><span class="pill p-blue">变更</span></td><td>333 / 300</td><td>约 5 工作日</td><td>迁址公司</td><td>香港</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('变更注册地址')">编辑</button></td></tr>
               <tr><td>公司更名<div style="color:var(--text3);font-size:11px">NNC2 + 新 BR + 更新印章 ×2</div></td><td><span class="pill p-blue">变更</span></td><td>1,667 / 1,500</td><td>7–10 工作日</td><td>更名公司</td><td>香港</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('公司更名')">编辑</button></td></tr>
               <tr><td>股份转让（股东变更）<div style="color:var(--text3);font-size:11px">转股文件 + 印花税代缴（从价 0.2%）</div></td><td><span class="pill p-blue">变更</span></td><td>面议</td><td>约 5 工作日</td><td>股权变动</td><td>香港</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('股份转让（股东变更）')">编辑</button></td></tr>
               <tr><td>公司注销（撤销注册）<div style="color:var(--text3);font-size:11px">NDR1 + IR1263 + 政府审批</div></td><td><span class="pill p-blue">变更</span></td><td>面议</td><td>8 个月起</td><td>停业公司</td><td>香港</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('公司注销（撤销注册）')">编辑</button></td></tr>
-              <tr><td>商标初步意见 & 政府检索<div style="color:var(--text3);font-size:11px">政府检索 + 初步意见回信 · 每类别</div></td><td><span class="pill p-purple">商标</span></td><td>3,311 / 2,980</td><td>约 3 工作日</td><td>拟注册商标</td><td>香港</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('商标初步意见 & 政府检索')">编辑</button></td></tr>
-              <tr><td>商标注册申请<div style="color:var(--text3);font-size:11px">注册申请表 + 商标证书</div></td><td><span class="pill p-purple">商标</span></td><td>面议</td><td>6 个月起</td><td>商标申请</td><td>香港</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('商标注册申请')">编辑</button></td></tr>
-              <tr><td>商标注册续期<div style="color:var(--text3);font-size:11px">续期申请 + 回执</div></td><td><span class="pill p-purple">商标</span></td><td>2,200 / 1,980</td><td>约 5 工作日</td><td>商标续期</td><td>香港</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('商标注册续期')">编辑</button></td></tr>
+              <tr><td>商标注册申请<div style="color:var(--text3);font-size:11px">递交知识产权署 IPD · 每类别单独申请</div></td><td><span class="pill p-purple">商标</span></td><td>3,311 / 2,980</td><td>6 个月起</td><td>商标申请</td><td>香港</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('商标注册申请')">编辑</button></td></tr>
+              <tr><td>商标注册续期<div style="color:var(--text3);font-size:11px">续期申请 + 回执 · 每 10 年</div></td><td><span class="pill p-purple">商标</span></td><td>2,200 / 1,980</td><td>约 5 工作日</td><td>商标续期</td><td>香港</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('商标注册续期')">编辑</button></td></tr>
+              <tr><td>独立注册地址<div style="color:var(--text3);font-size:11px">租约 + 厘印税单 + 水电单 · 不可办公</div></td><td><span class="pill p-gold">地址</span></td><td>6,000 / 5,400 <span style="color:var(--text3)">/年</span></td><td>付款后 1–2 日</td><td>需注册地址 / 平台验证</td><td>香港</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('独立注册地址')">编辑</button></td></tr>
+              <tr><td>工位租赁<div style="color:var(--text3);font-size:11px">达利大厦实体工位 · 可办公 · 生态合作</div></td><td><span class="pill p-gold">地址</span></td><td>3,000 / 2,500 <span style="color:var(--text3)">/月</span></td><td>按需</td><td>需实体办公</td><td>香港</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('工位租赁')">编辑</button></td></tr>
+              <tr><td>独立办公室租赁<div style="color:var(--text3);font-size:11px">与达利直签 · 生态合作</div></td><td><span class="pill p-gold">地址</span></td><td>面议</td><td>按需</td><td>需独立办公室</td><td>香港</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('独立办公室租赁')">编辑</button></td></tr>
             </tbody>
           </table>
         </div>
@@ -789,7 +804,7 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
             <tbody>
               <tr><td>ORD-2026-0185</td><td>公司圆章 + 签字章</td><td>金印堂</td><td>06-13</td><td>制作中</td><td><span class="pill p-blue">履约中</span></td></tr>
               <tr><td>ORD-2026-0182</td><td>章程公证 ×1</td><td>正诚公证行</td><td>06-15</td><td>已寄出</td><td><span class="pill p-amber">待确认收货</span></td></tr>
-              <tr><td>ORD-2026-0142</td><td>注册全流程</td><td>Leapexbiz 直营</td><td>06-09</td><td>已交付</td><td><span class="pill p-green">已完成</span></td></tr>
+              <tr><td>ORD-2026-0142</td><td>注册全流程</td><td>Leapex 利柏思 直营</td><td>06-09</td><td>已交付</td><td><span class="pill p-green">已完成</span></td></tr>
             </tbody>
           </table>
         </div>
@@ -799,7 +814,7 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
             <label style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><input type="checkbox" checked> 优先级 1：按<b>支持该服务</b>的供应商匹配</label>
             <label style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><input type="checkbox" checked> 优先级 2：按供应商<b>负载均衡</b>（在办任务少者优先）</label>
             <label style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><input type="checkbox"> 优先级 3：按<b>结算成本</b>择优</label>
-            <label style="display:flex;align-items:center;gap:8px"><input type="checkbox" checked> 兜底：无合适供应商则<b>转 Leapexbiz 直营</b>履约</label>
+            <label style="display:flex;align-items:center;gap:8px"><input type="checkbox" checked> 兜底：无合适供应商则<b>转 Leapex 利柏思 直营</b>履约</label>
           </div>
         </div>
         <div class="card cp" style="background:var(--blue-bg);border-color:var(--blue)"><div style="font-size:12px;color:var(--blue)"><i class="ti ti-arrows-split"></i> 订单付款后进入待履约：按"供应商支持的服务 + 负载"分配给供应商，供应商在其工作台维护进度。订单<b>已完成</b>后，对应结算项进入「订单结算」。</div></div>
@@ -1019,7 +1034,7 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
 <!-- Login -->
 <div class="login" id="login">
   <div class="login-card">
-    <div class="b">Leapexbiz</div>
+    <div class="b">Leapex 利柏思</div>
     <div style="text-align:center;font-size:11px;color:var(--text3);margin:4px 0 22px">持牌 TCSP · 管理后台</div>
     <div style="font-size:12px;color:var(--text2);margin-bottom:6px">邮箱</div>
     <input class="inp" style="width:100%;margin-bottom:12px" value="chen@leapexbiz">
@@ -1235,7 +1250,7 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
         <tbody>
           <tr><td>陈大文</td><td>董事 + 股东</td><td>70%</td><td><span class="pill p-green">是（UBO）</span></td></tr>
           <tr><td>李美琪</td><td>股东</td><td>30%</td><td><span class="pill p-green">是（UBO）</span></td></tr>
-          <tr><td>Leapexbiz</td><td>公司秘书（法定）</td><td>—</td><td>—</td></tr>
+          <tr><td>Leapex 利柏思</td><td>公司秘书（法定）</td><td>—</td><td>—</td></tr>
         </tbody>
       </table></div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
@@ -1502,7 +1517,7 @@ function go(el){
   var p=el.dataset.p;
   document.querySelectorAll('.page').forEach(pg=>pg.classList.remove('on'));
   document.getElementById('p-'+p).classList.add('on');
-  var meta={dash:['数据驾驶舱','实时运营总览'],supplierwt:['供应商工作台','供应商自助：分配订单 / 更新进度 / 结算对账（不在线结算）'],partner:['渠道商工作台','渠道商自助：归属订单 / 佣金对账（不在线结算）'],customers:['客户信息管理','客户档案与画像'],companies:['客户公司管理','法人主体 / CI·BR / SCR / 年审'],kyc:['KYC / EDD 审核','AMLO 尽职调查 · 后台跑 PEP/制裁'],register:['注册公司','公司注册服务执行 · 维护进度 / 资料'],'svc-annual':['秘书年审','法定秘书 / 周年申报 NAR1（注册处·42 天内）+ 通讯地址'],'svc-acct':['记账报税','年度审计 · 记账 + 利得税 PTR / 薪俸税 IR56 / 个税 BIR60（IRD）'],'chg-address':['地址变更','NR1 · 关键信息 → 线下备表 → 快递签字 → 递交'],'chg-director':['董事变更','ND2A · 关键信息 + 新董事 KYC → 线下备表 → 快递签字'],'chg-secretary':['变更秘书','ND2A · 秘书部分 Leapexbiz 填 → 快递签字 → 递交'],'chg-rename':['公司更名','NNC2 · 先付费后查名 → 备 NNC2 + 决议 → 快递签字'],'chg-transfer':['股份转让','转让文书 + 印花税 0.2% · 作价估值 → 缴印花 → 更新名册'],'chg-deregister':['公司注销','NDR1 + IR1263 不反对通知书 · 宪报公告约 8 个月'],namecheck:['核名&商标','人工核名（繁体/英文）+ 商标查询 · 无智能预检'],'svc-tm':['商标办理','商标注册 IPD（宪报公告 3 个月）/ 续期（每 10 年）'],orders:['订单列表','进度只读联动服务 · 资料可下载'],bills:['账单 / 回单确认','服务人员核验回单 · 确认付款 / 未收到付款（不含退款·重开）'],products:['商品','商品目录 · 基础信息 + 流程节点 + 节点资料'],coupons:['卡券','卡券模板 + 发放 + 核销统计（承接小程序优惠券）'],messages:['消息','消息模板 + 年审 6 轮提醒 + 群发 + 发送记录'],supplier:['供应商管理','超管新增 · 支持服务 + 结算规则'],assign:['订单分配','派单给供应商履约'],suppliersettle:['订单结算','已完成订单 → 供应商结算（线下）'],channel:['渠道商管理','超管新增 · 推荐码 + 佣金（弹窗配置）'],commission:['佣金结算','已完成订单 → 渠道返点（线下）'],rbac:['员工和角色','RBAC 7 角色 + 自定义'],menuperm:['菜单权限','角色 × 菜单可见性配置'],compliance:['合规与审计','制裁 / SCR / 哈希链'],config:['系统参数','时效 / 额度 / 税率']};
+  var meta={dash:['数据驾驶舱','实时运营总览'],supplierwt:['供应商工作台','供应商自助：分配订单 / 更新进度 / 结算对账（不在线结算）'],partner:['渠道商工作台','渠道商自助：归属订单 / 佣金对账（不在线结算）'],customers:['客户信息管理','客户档案与画像'],companies:['客户公司管理','法人主体 / CI·BR / SCR / 年审'],kyc:['KYC / EDD 审核','AMLO 尽职调查 · 后台跑 PEP/制裁'],register:['注册公司','公司注册服务执行 · 维护进度 / 资料'],'svc-annual':['年审服务','法定秘书 + 注册地址 + 周年申报 NAR1（注册处·42 天内）'],'svc-acct':['记账报税','审计（含理账）+ 利得税 PTR / 薪俸税 IR56 / 个税 BIR60（IRD）'],'svc-addr':['地址租赁','独立地址 6000/年 · 工位 3000/月 · 办公室面议（达利直签）'],'chg-address':['地址变更','NR1 · 关键信息 → 线下备表 → 快递签字 → 递交'],'chg-director':['董事变更','ND2A · 关键信息 + 新董事 KYC → 线下备表 → 快递签字'],'chg-secretary':['变更秘书','ND2A · 秘书部分 Leapex 利柏思 填 → 快递签字 → 递交'],'chg-rename':['公司更名','NNC2 · 先付费后查名 → 备 NNC2 + 决议 → 快递签字'],'chg-transfer':['股份转让','转让文书 + 印花税 0.2% · 作价估值 → 缴印花 → 更新名册'],'chg-deregister':['公司注销','NDR1 + IR1263 不反对通知书 · 宪报公告约 8 个月'],namecheck:['核名&商标','人工核名（繁体/英文）+ 商标查询 · 无智能预检'],'svc-tm':['商标办理','商标注册 IPD（宪报公告 3 个月）/ 续期（每 10 年）'],orders:['订单列表','进度只读联动服务 · 资料可下载'],bills:['账单 / 回单确认','服务人员核验回单 · 确认付款 / 未收到付款（不含退款·重开）'],products:['商品','商品目录 · 基础信息 + 流程节点 + 节点资料'],coupons:['卡券','卡券模板 + 发放 + 核销统计（承接小程序优惠券）'],messages:['消息','消息模板 + 年审 6 轮提醒 + 群发 + 发送记录'],supplier:['供应商管理','超管新增 · 支持服务 + 结算规则'],assign:['订单分配','派单给供应商履约'],suppliersettle:['订单结算','已完成订单 → 供应商结算（线下）'],channel:['渠道商管理','超管新增 · 推荐码 + 佣金（弹窗配置）'],commission:['佣金结算','已完成订单 → 渠道返点（线下）'],rbac:['员工和角色','RBAC 7 角色 + 自定义'],menuperm:['菜单权限','角色 × 菜单可见性配置'],compliance:['合规与审计','制裁 / SCR / 哈希链'],config:['系统参数','时效 / 额度 / 税率']};
   var m=meta[p]||['',''];document.getElementById('pt').textContent=m[0];document.getElementById('ps').textContent=m[1];
   document.querySelector('.content').scrollTop=0;
 }
@@ -1608,7 +1623,7 @@ var REG_NODES=[
     fields:[{label:'公司中文名',value:'星辰科技有限公司'},{label:'公司英文名',value:'Star Tech Limited'},{label:'业务性质（HSIC）',value:'62xx 计算机编程'},{label:'注册股本',value:'HKD 10,000 / 10,000 股'}],
     docs:[{name:'业务说明.docx',pending:true}],supp:[],remark:'资料齐全。'},
   {name:'成员 / 董事 / 秘书',party:'客户 / 平台',status:'已完成',
-    fields:[{label:'董事',value:'陈大文'},{label:'股东 / 持股',value:'陈大文 70% · 李美琪 30%'},{label:'法定秘书',value:'Leapexbiz（持牌 TCSP）'}],
+    fields:[{label:'董事',value:'陈大文'},{label:'股东 / 持股',value:'陈大文 70% · 李美琪 30%'},{label:'法定秘书',value:'Leapex 利柏思（持牌 TCSP）'}],
     docs:[{name:'股东身份证明.pdf'}],supp:[],remark:''},
   {name:'组织章程',party:'客户 / 平台',status:'进行中',
     fields:[{label:'章程样本',type:'select',options:['样本 A（推荐）','样本 B'],value:'样本 A（推荐）'},{label:'章程语言',type:'select',options:['英文','繁体中文'],value:'繁体中文'}],
@@ -1648,7 +1663,7 @@ var CHANGE_NODES={
     {name:'支付',party:'客户',locked:true,status:'已完成',remark:'服务费 HKD 333 已到账。'},
     {name:'提交关键信息',party:'客户',status:'已完成',statusOpts:NODE_ST_REG,
       fields:[{label:'公司名称',value:'恒丰贸易有限公司'},{label:'商业登记号 BR（首 8 位）',value:'91234567'},{label:'新注册地址（室/楼/座 · 大厦 · 街道 · 地区）',value:'香港中环皇后大道中 99 号 9901-9905 室',wide:true},{label:'生效日期',value:'2026-08-01'}],
-      remark:'客户选用自有新地址（非 Leapexbiz 地址）。'},
+      remark:'客户选用自有新地址（非 Leapex 利柏思 地址）。'},
     {name:'平台备表 NR1',party:'平台',status:'已完成',statusOpts:NODE_ST_REG,supp:['NR1 地址变更通知书（草稿）.pdf'],remark:'NR1 已按客户信息填妥，待快递签字。'},
     {name:'快递签字确认',party:'平台 / 客户',status:'进行中',statusOpts:NODE_ST_REG,supp:['快递面单 SF1234567890.pdf'],remark:'NR1 已快递（顺丰 SF1234567890）给客户签字，待签妥回寄。'},
     {name:'递交注册处',party:'平台',status:'未开始',statusOpts:NODE_ST_REG,remark:''},
@@ -1668,9 +1683,9 @@ var CHANGE_NODES={
   secretary:[
     {name:'支付',party:'客户',locked:true,status:'已完成',remark:'服务费 HKD 333 已到账。'},
     {name:'确认接任信息',party:'客户',status:'已完成',statusOpts:NODE_ST_REG,
-      fields:[{label:'公司名称',value:'光辉投资有限公司'},{label:'商业登记号 BR（首 8 位）',value:'88991234'},{label:'现任秘书公司（如有）',value:'旧秘书顾问有限公司'},{label:'确认由 Leapexbiz 接任',type:'select',options:['是','否'],value:'是'}],
-      remark:'秘书公司即 Leapexbiz，ND2A 秘书部分由我方填写，客户仅需董事签字。'},
-    {name:'平台备表 ND2A（秘书部分我方填）',party:'平台',status:'进行中',statusOpts:NODE_ST_REG,supp:['ND2A 变更秘书通知书（草稿）.pdf','秘书委任书（Leapexbiz）.pdf'],remark:'ND2A 秘书部分 + 委任书已备，待客户 / 董事签字。'},
+      fields:[{label:'公司名称',value:'光辉投资有限公司'},{label:'商业登记号 BR（首 8 位）',value:'88991234'},{label:'现任秘书公司（如有）',value:'旧秘书顾问有限公司'},{label:'确认由 Leapex 利柏思 接任',type:'select',options:['是','否'],value:'是'}],
+      remark:'秘书公司即 Leapex 利柏思，ND2A 秘书部分由我方填写，客户仅需董事签字。'},
+    {name:'平台备表 ND2A（秘书部分我方填）',party:'平台',status:'进行中',statusOpts:NODE_ST_REG,supp:['ND2A 变更秘书通知书（草稿）.pdf','秘书委任书（Leapex 利柏思）.pdf'],remark:'ND2A 秘书部分 + 委任书已备，待客户 / 董事签字。'},
     {name:'快递签字确认',party:'平台 / 客户',status:'未开始',statusOpts:NODE_ST_REG,remark:''},
     {name:'递交注册处',party:'平台',status:'未开始',statusOpts:NODE_ST_REG,remark:''},
     {name:'完结（更新秘书 + 交接登记册）',party:'平台',status:'未开始',statusOpts:NODE_ST_REG,remark:''}
@@ -1717,13 +1732,31 @@ var CHANGE_NODES={
     {name:'递交注册处（周年 + 42 天内）',party:'平台',status:'未开始',statusOpts:NODE_ST_REG,remark:'须于成立周年日起 42 天内递交，逾期政府罚款递增。'},
     {name:'完结（NAR1 回执 + 更新 BR）',party:'平台',status:'未开始',statusOpts:NODE_ST_REG,remark:''}
   ],
-  regaddr:[
-    {name:'支付',party:'客户',locked:true,status:'已完成',remark:'年费 HKD 2,200 已到账。'},
+  'addr-solo':[
+    {name:'支付',party:'客户',locked:true,status:'已完成',remark:'独立注册地址年费 HKD 6,000 已到账。'},
     {name:'确认公司资料',party:'客户',status:'已完成',statusOpts:NODE_ST_REG,
-      fields:[{label:'公司名称',value:'星辰科技有限公司'},{label:'商业登记号 BR（首 8 位）',value:'72884301'},{label:'信件转发方式',type:'select',options:['电邮扫描 + 每月汇总','实体转寄'],value:'电邮扫描 + 每月汇总'}],
-      remark:'如需同时变更注册地址须另办 NR1（地址须与秘书服务一并提供）。'},
+      fields:[{label:'公司名称 / 拟注册名称',value:'星辰科技有限公司'},{label:'用途',type:'select',options:['注册地址','平台验证','信件代收'],value:'注册地址'},{label:'信件转发方式',type:'select',options:['电邮扫描 + 每月汇总','实体转寄'],value:'电邮扫描 + 每月汇总'}],
+      remark:'独立注册地址（达利大厦）仅供注册 / 信件代收，<b>不可实地办公</b>。'},
     {name:'配置注册 / 通讯地址',party:'平台',status:'进行中',statusOpts:NODE_ST_REG,supp:['地址使用确认书.pdf'],remark:'开通香港商业注册地址 + 政府信件代收。'},
-    {name:'完结（地址证明）',party:'平台',status:'未开始',statusOpts:NODE_ST_REG,remark:''}
+    {name:'交付地址证明',party:'平台',status:'未开始',statusOpts:NODE_ST_REG,docs:[{name:'租约 Tenancy Agreement',pending:true},{name:'厘印税单 Stamp',pending:true},{name:'水电单 Utility Bill',pending:true}],remark:'交付租约 + 厘印税单 + 水电单，满足银行 / 平台地址验证。'},
+    {name:'完结',party:'平台',status:'未开始',statusOpts:NODE_ST_REG,remark:''}
+  ],
+  'addr-seat':[
+    {name:'预约',party:'客户',locked:true,status:'已完成',remark:'工位租赁 HKD 3,000/月 · 已提交预约。款项须付至香港公司主体。'},
+    {name:'需求确认',party:'客户',status:'已完成',statusOpts:NODE_ST_REG,
+      fields:[{label:'公司 / 联系人',value:'恒丰贸易有限公司 · 陈大文'},{label:'工位数量',value:'1'},{label:'期望起租日',type:'date',value:'2026-08-01'}],
+      remark:'工位<b>可实地办公</b>；为生态合作，由达利对接。'},
+    {name:'达利对接',party:'平台 / 达利',status:'进行中',statusOpts:NODE_ST_REG,supp:[],remark:'转介达利安排看位 / 报价。'},
+    {name:'客户与达利直签',party:'客户 / 达利',status:'未开始',statusOpts:NODE_ST_REG,docs:[{name:'工位租赁合同',pending:true}],remark:'租约由客户与达利直签，我方协助跟进。'},
+    {name:'完结',party:'平台',status:'未开始',statusOpts:NODE_ST_REG,remark:''}
+  ],
+  'addr-office':[
+    {name:'预约咨询',party:'客户',locked:true,status:'已完成',remark:'独立办公室（面议）· 已提交预约。'},
+    {name:'需求确认',party:'客户',status:'已完成',statusOpts:NODE_ST_REG,
+      fields:[{label:'公司 / 联系人',value:'光辉投资有限公司'},{label:'面积需求',value:'约 40 ㎡'},{label:'预算区间',value:'面议'}],
+      remark:'独立办公室为生态合作，由达利对接、看房报价。'},
+    {name:'达利对接 · 看房报价',party:'平台 / 达利',status:'进行中',statusOpts:NODE_ST_REG,remark:'转介达利安排看房与正式报价。'},
+    {name:'客户与达利直签',party:'客户 / 达利',status:'未开始',statusOpts:NODE_ST_REG,docs:[{name:'办公室租赁合同',pending:true}],remark:'租约由客户与达利直签，我方协助跟进。'}
   ],
   bookkeep:[
     {name:'报价确认',party:'客户 / 平台',locked:true,status:'已完成',remark:'按交易笔数 / 营业规模报价（面议），已确认。'},
@@ -1778,13 +1811,15 @@ function openChange(no,type,company){
   var META={
     address:['地址变更','NR1 注册办事处地址变更通知书','客户提交新地址关键信息 → 平台备 NR1 → 快递签字 → 递交注册处 → 更新地址 + 新 BR。'],
     director:['董事变更','ND2A 董事委任 / 停任通知书','客户提交董事关键信息（委任 / 停任）→ 新董事 KYC → 平台备 ND2A → 快递签字 → 递交注册处 → 更新董事名册 + SCR。'],
-    secretary:['变更秘书公司','ND2A 秘书变更（Leapexbiz 接任）','秘书公司即 Leapexbiz，秘书部分我方填 → 客户 / 董事签字 → 递交注册处，含历史文件交接。'],
+    secretary:['变更秘书公司','ND2A 秘书变更（Leapex 利柏思 接任）','秘书公司即 Leapex 利柏思，秘书部分我方填 → 客户 / 董事签字 → 递交注册处，含历史文件交接。'],
     rename:['公司更名','NNC2 更改公司名称 + 股东特别决议','先付费后人工查名 → 平台备 NNC2 + 决议 → 快递签字 → 递交注册处 → 新名称证书 + 新 BR + 印章 ×2。'],
     transfer:['股份转让','转让文书 + 印花税（IRD 加盖印花）','客户提交转让信息 + 估值资料 → 核定作价 + 预估印花税（0.2%，买卖双方各 0.1% + 每份 HK$5，作价或资产净值孰高）→ 受让方 KYC → 备转股文书缴印花 → 更新股东名册 + 新股票。'],
     deregister:['公司注销','撤销注册 NDR1 + IR1263 不反对通知书','客户确认无外债 / 税务结清 → 申请 IRD 不反对通知书 IR1263 → 备特别决议 + NDR1 → 快递签字 → 递交注册处 + 宪报公告（约 8 个月）。'],
-    annual:['法定秘书 / 周年申报','周年申报表 NAR1（公司注册处）','信息核对 → 编制 NAR1 → 于成立周年日起 42 天内递交注册处（逾期罚款递增）→ NAR1 回执 + 更新 BR。'],
-    regaddr:['注册通讯地址','香港商业注册地址 + 信件代收','确认公司资料 → 配置注册 / 通讯地址 + 政府信件代收 → 出具地址证明（地址须与秘书服务一并提供）。'],
-    bookkeep:['年度审计 · 记账报税','财务报表 + 审计报告 + 利得税报税表 PTR（税务局 IRD）','资料收集 → 记账 + 财务报表 → 执业会计师独立审计 → 编制利得税 PTR → 提交 IRD → 审计报告 + 报税回执。'],
+    annual:['年审服务','法定秘书 + 注册地址 + 周年申报 NAR1（公司注册处）','信息核对 → 编制 NAR1 → 于成立周年日起 42 天内递交注册处（逾期罚款递增）→ NAR1 回执 + 更新 BR。'],
+    'addr-solo':['独立注册地址','达利大厦注册地址（不可办公）· HKD 6,000/年','确认公司资料 → 配置注册 / 通讯地址 + 信件代收 → 交付租约 + 厘印税单 + 水电单（满足平台验证）→ 完结。'],
+    'addr-seat':['工位租赁','达利大厦工位（可办公）· HKD 3,000/月','需求确认 → 达利对接看位报价 → 客户与达利直签 → 完结。款项须付至香港公司主体。'],
+    'addr-office':['独立办公室','达利大厦独立办公室（可办公）· 面议','需求确认 → 达利对接看房报价 → 客户与达利直签。生态合作，租约由客户与达利直签。'],
+    bookkeep:['审计（含理账）','财务报表 + 审计报告 + 利得税报税表 PTR（税务局 IRD）','资料收集 → 记账 + 财务报表 → 执业会计师独立审计 → 编制利得税 PTR → 提交 IRD → 审计报告 + 报税回执。'],
     salarytax:['公司薪俸税 IR56A&B','雇主报税表 IR56A（汇总）+ IR56B（逐员工）','提交员工薪金 → 编制 IR56B / IR56A → 雇主签署后于 IRD 发出后 1 个月内提交 → 税表回执。'],
     persontax:['个别人士报税','个人报税表 BIR60','提交个人收入资料 → 编制 BIR60 → 客户签署提交 IRD → 回执。'],
     tmreg:['商标注册申请','知识产权署 IPD 注册申请','提交商标信息（每类别单独申请）→ 初步检索建议 → 递交 IPD → 审查 + 宪报公告（3 个月异议期）→ 商标证书（约 6 个月）。'],
