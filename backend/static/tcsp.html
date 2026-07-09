@@ -741,12 +741,23 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
           <div class="filt-row" style="margin-top:7px">
             <span class="filt-lab">类型</span>
             <div class="fchip on" onclick="svcType('all',this)">全部</div>
+            <div class="fchip" onclick="svcType('name',this)">核名商标</div>
             <div class="fchip" onclick="svcType('reg',this)">注册</div>
             <div class="fchip" onclick="svcType('sec',this)">年审服务</div>
             <div class="fchip" onclick="svcType('change',this)">变更</div>
             <div class="fchip" onclick="svcType('book',this)">记账报税</div>
             <div class="fchip" onclick="svcType('tm',this)">商标</div>
             <div class="fchip" onclick="svcType('addr',this)">地址租赁</div>
+          </div>
+        </div>
+
+        <!-- 核名 & 商标查询 -->
+        <div class="svc-grp" data-type="name">
+          <div class="sec-t"><i class="ti ti-file-search" style="font-size:13px;margin-right:4px"></i>核名 &amp; 商标查询</div>
+          <div class="prod" data-type="name" data-region="hk" onclick="openSvc('nametm')">
+            <div class="prod-ico" style="background:var(--green-bg);color:var(--green-d)"><i class="ti ti-file-search"></i></div>
+            <div class="prod-main"><div class="prod-name">公司名称查册 + 商标查询</div><div class="prod-desc">注册处名称查册 + IPD 商标近似查询 · 顾问人工 · 1–2 工作日</div></div>
+            <div class="prod-price"><div class="price" style="color:var(--green-d)">免费</div><div class="prod-coupon">新客赠券</div></div>
           </div>
         </div>
 
@@ -2527,6 +2538,11 @@ var CHANNEL = 'LEX888';
 // 服务目录数据
 /* 商品与报价对齐《利柏思服务清单与报价 202607》：HKD = 人民币 ÷ 0.9（取整）；面议项 consult:true */
 var SVC_DATA = {
+  // ── 核名 & 商标查询 ──
+  'nametm':{name:'公司名称查册 + 商标查询',icon:'ti-file-search',price:0,old:0,free:true,tags:'约 1–2 工作日 · 顾问人工核查',
+    incl:['公司名称可用性查册（公司注册处）','商标近似查询（知识产权署 IPD）','中 / 英 / 繁体名称核查','顾问人工核查 + 可用性建议','1–2 个工作日出结果'],
+    process:['提交名称 / 商标','顾问人工查册','出核查结果','可用即下单注册'],
+    meta:'<b>公司名称查册 + 商标查询</b>：注册香港公司前，先确认名称是否可用、是否与已有商标近似冲突，降低被驳回 / 侵权风险。<br>提交后由顾问在<b>香港公司注册处</b>（名称查册）与<b>知识产权署 IPD</b>（商标近似查询）<b>人工核查</b>，约 <b>1–2 个工作日</b>出结果并给出可用性建议。<br>查册语言<b>只支持英文或繁体中文</b>；名称通过后可直接进入公司注册。<br><b>新客免费赠送 1 次</b>，不占用付费额度。'},
   // ── 注册 ──
   'reg':{name:'新设香港本地有限公司',icon:'ti-building-plus',price:5533,cny:4980,old:0,form:'register',tags:'约 10 个工作日 · 全套证照 + 绿盒',
     incl:['注册证书 CI ×1','商业登记证 BR ×1','公司章程 ×10','法团成立表格 NNC1 ×1','股票本','会议记录本','钢印章','条形章','小圆章','绿盒'],
@@ -2646,6 +2662,13 @@ function openSvc(key){
     document.getElementById('sd-barlabel').textContent = '顾问报价';
     cta.textContent = '预约咨询';
     cta.setAttribute('onclick', "openWecom('"+s.name+"')");
+  } else if(s.free){
+    document.getElementById('sd-price').textContent = '免费';
+    document.getElementById('sd-priceold').textContent = '';
+    document.getElementById('sd-barprice').textContent = '免费';
+    document.getElementById('sd-barlabel').textContent = '新客赠券';
+    cta.textContent = '立即免费核名';
+    cta.setAttribute('onclick', "ncReset();go('s-namecheck')");
   } else {
     document.getElementById('sd-price').textContent = 'HKD '+fmtMoney(cp);
     document.getElementById('sd-priceold').textContent = op>cp ? 'HKD '+fmtMoney(op) : '';

@@ -715,7 +715,7 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
       <!-- ════ 商品管理 · 服务与套餐 ════ -->
       <div class="page" id="p-products">
         <div class="filters">
-          <span class="chip on">全部</span><span class="chip">注册</span><span class="chip">秘书 &amp; 地址</span><span class="chip">记账报税</span><span class="chip">工商变更</span><span class="chip">商标</span><span class="chip">已下架</span>
+          <span class="chip on">全部</span><span class="chip">核名商标</span><span class="chip">注册</span><span class="chip">秘书 &amp; 地址</span><span class="chip">记账报税</span><span class="chip">工商变更</span><span class="chip">商标</span><span class="chip">已下架</span>
           <button class="btn btn-p" style="margin-left:auto" onclick="openProduct()"><i class="ti ti-plus"></i>新增商品</button>
         </div>
         <div class="card cp" style="background:var(--gold-bg);border-color:var(--gold)"><div style="font-size:12px;color:var(--gold)"><i class="ti ti-package"></i> 编辑<b>服务基础信息</b>（类型 · 标准价双币 · 时效 · 适用人群 · 交付物 · 富文本详情）；并可点<b>「流程节点」</b>编辑每项服务的<b>办理流程节点</b>——每个节点含<b>责任方（客户/平台/供应商）+ 该节点客户需上传的资料 + 时效</b>。此配置<b>同时驱动小程序的办理步骤/进度</b>与后台的订单进度维护。</div></div>
@@ -724,6 +724,7 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
           <table>
             <thead><tr><th>商品（名称 / 副标题）</th><th>类型</th><th>标准价 HKD / ¥</th><th>时效</th><th>适用人群</th><th>适用区域</th><th>状态</th><th></th></tr></thead>
             <tbody>
+              <tr><td><b>公司名称查册 + 商标查询</b> <span class="pill p-green">免费</span><div style="color:var(--text3);font-size:11px">注册处名称查册 + IPD 商标近似查询 · 顾问人工 · 新客赠券</div></td><td><span class="pill p-blue">核名</span></td><td>免费 <span style="color:var(--text3)">（新客赠券）</span></td><td>约 1–2 工作日</td><td>注册前先查</td><td>香港</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('公司名称查册 + 商标查询')">编辑</button> <button class="btn btn-xs" onclick="go(document.querySelector('.ni[data-p=\'namecheck\']'))"><i class="ti ti-list-check"></i>核名&商标办理</button></td></tr>
               <tr><td><b>新设香港本地有限公司</b> <span class="pill p-gold">主推</span><div style="color:var(--text3);font-size:11px">CI + BR + 章程10份 + 股票本 + 印章 + 绿盒</div></td><td><span class="pill p-gold">注册</span></td><td>5,533 / 4,980</td><td>约 10 工作日</td><td>首次在港设立</td><td>香港</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('新设香港本地有限公司')">编辑</button> <button class="btn btn-xs" onclick="openNodes(this)"><i class="ti ti-list-check"></i>流程节点</button> <button class="btn btn-xs btn-red">下架</button></td></tr>
               <tr><td><b>年审服务</b><div style="color:var(--text3);font-size:11px">法定秘书 + 维护登记册 + 注册地址 + NAR1（打包年费）</div></td><td><span class="pill p-accent">年审</span></td><td>4,422 / 3,980</td><td>年费</td><td>已有公司 · 年度合规</td><td>香港</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('年审服务')">编辑</button> <button class="btn btn-xs" onclick="openNodes(this)"><i class="ti ti-list-check"></i>流程节点</button></td></tr>
               <tr><td>审计（含理账）<div style="color:var(--text3);font-size:11px">理账 + 财务报表 + 审计报告 + 利得税报税表 PTR</div></td><td><span class="pill p-green">记账</span></td><td>面议</td><td>按年</td><td>有经营公司</td><td>香港</td><td><span class="pill p-green">上架</span></td><td><button class="btn btn-xs" onclick="openProduct('审计（含理账）')">编辑</button></td></tr>
