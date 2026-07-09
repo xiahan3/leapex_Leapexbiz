@@ -138,6 +138,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue'
 .cur-tab.on{background:var(--accent);color:#fff;font-weight:600}
 .nc-mode{flex:1;text-align:center;padding:10px 8px;border:1px solid var(--line2);border-radius:9px;font-size:13px;color:var(--text2);cursor:pointer;background:var(--card)}
 .nc-mode.on{background:var(--accent-bg);border-color:var(--accent);color:var(--accent-d);font-weight:600}
+.nc-pick{flex:1;display:flex;align-items:center;gap:8px;padding:12px 13px;border:1.5px solid var(--line2);border-radius:12px;background:#fff;cursor:pointer;font-size:13.5px;font-weight:600;color:var(--text2)}
+.nc-pick.on{border-color:var(--accent);background:var(--accent-bg);color:var(--accent-d)}
 @keyframes sheetUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
 .sheet-panel{animation:sheetUp .26s cubic-bezier(.22,.61,.36,1)}
 .sheet-row{padding:12px 0;border-bottom:1px solid var(--line)}
@@ -1221,24 +1223,35 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
     <div class="screen" id="s-namecheck" data-title="公司核名" data-back="s-home">
       <div class="body-pad">
         <div id="nc-input-pane">
-          <div class="note" style="margin-bottom:14px;background:var(--bg2);padding:12px;border-radius:10px"><b style="color:var(--green-d)">免费核名</b>：公司名称查册 + 商标查询，提交后由顾问在香港公司注册处与知识产权署<b>人工查册</b>（约 1–2 天）。查册语言<b>只支持英文或繁体中文</b>。</div>
+          <div class="note" style="margin-bottom:14px;background:var(--bg2);padding:12px;border-radius:10px"><b style="color:var(--green-d)">核名 &amp; 商标查询</b>：勾选要办理的项目后填写，提交后由顾问在香港公司注册处与知识产权署<b>人工查册</b>（约 1–2 天）。查册语言<b>只支持英文或繁体中文</b>。</div>
 
-          <!-- 公司核名查册 -->
-          <div class="sec-t" style="padding-top:0">① 公司核名查册</div>
-          <div class="field"><div class="field-l">查册方式（香港公司注册处）</div>
-            <div style="display:flex;gap:8px">
-              <div class="nc-mode on" id="nc-mode-full" onclick="ncMode('full')">以全名查册</div>
-              <div class="nc-mode" id="nc-mode-start" onclick="ncMode('start')">以名称起首查册</div>
-            </div>
+          <!-- 顶部勾选：选择要办理的项目（多选） -->
+          <div class="sec-t" style="padding-top:0">选择要办理的项目（可多选）</div>
+          <div style="display:flex;gap:10px;margin-bottom:16px">
+            <div class="nc-pick on" id="nc-chk-name" onclick="ncToggleSec('name')"><div class="cbox on"><i class="ti ti-check"></i></div><span>公司名称查册</span></div>
+            <div class="nc-pick on" id="nc-chk-tm" onclick="ncToggleSec('tm')"><div class="cbox on"><i class="ti ti-check"></i></div><span>商标查询</span></div>
           </div>
-          <div class="field"><div class="field-l" id="nc-input-label">拟用公司全名（繁体中文）</div><input class="input" id="nc-name-zh" placeholder="如 時躍有限公司" oninput="ncZhConv()"><div id="nc-zh-hint" style="font-size:12px;color:var(--green-d);margin:6px 2px 0;display:none"></div></div>
-          <div class="field"><div class="field-l" id="nc-input-label-en">拟用公司全名（英文）</div><input class="input" id="nc-name-en" placeholder="如 TimeLeap Limited" value="TimeLeap"></div>
-          <div class="card card-pad" id="nc-mode-hint" style="background:var(--blue-bg);font-size:12px;color:var(--blue);margin-bottom:16px">「以全名查册」：输入<b>整个</b>拟用公司名称，结果显示与输入字元<b>完全符合</b>、仍在登记册上的公司现用名称。</div>
 
-          <!-- 商标查询 -->
-          <div class="sec-t">② 商标查询</div>
-          <div class="field"><div class="field-l">商标关键字（英文或繁体中文）</div><input class="input" id="nc-tm" placeholder="如 Leapex" value="Leapex"></div>
-          <div class="card card-pad" style="background:var(--bg2);font-size:12px;color:var(--text3);margin-bottom:16px">取名称关键字在香港知识产权署商标库查询同名 / 近似商标，返回各类别（Class）注册结果。</div>
+          <!-- ① 公司核名查册 -->
+          <div id="nc-sec-name">
+            <div class="sec-t" style="padding-top:0">① 公司核名查册</div>
+            <div class="field"><div class="field-l">查册方式（香港公司注册处）</div>
+              <div style="display:flex;gap:8px">
+                <div class="nc-mode on" id="nc-mode-full" onclick="ncMode('full')">以全名查册</div>
+                <div class="nc-mode" id="nc-mode-start" onclick="ncMode('start')">以名称起首查册</div>
+              </div>
+            </div>
+            <div class="field"><div class="field-l" id="nc-input-label">拟用公司全名（繁体中文）</div><input class="input" id="nc-name-zh" placeholder="如 時躍有限公司" oninput="ncZhConv()"><div id="nc-zh-hint" style="font-size:12px;color:var(--green-d);margin:6px 2px 0;display:none"></div></div>
+            <div class="field"><div class="field-l" id="nc-input-label-en">拟用公司全名（英文）</div><input class="input" id="nc-name-en" placeholder="如 TimeLeap Limited" value="TimeLeap"></div>
+            <div class="card card-pad" id="nc-mode-hint" style="background:var(--blue-bg);font-size:12px;color:var(--blue);margin-bottom:16px">「以全名查册」：输入<b>整个</b>拟用公司名称，结果显示与输入字元<b>完全符合</b>、仍在登记册上的公司现用名称。</div>
+          </div>
+
+          <!-- ② 商标查询 -->
+          <div id="nc-sec-tm">
+            <div class="sec-t">② 商标查询</div>
+            <div class="field"><div class="field-l">商标关键字（英文或繁体中文）</div><input class="input" id="nc-tm" placeholder="如 Leapex" value="Leapex"></div>
+            <div class="card card-pad" style="background:var(--bg2);font-size:12px;color:var(--text3);margin-bottom:16px">取名称关键字在香港知识产权署商标库查询同名 / 近似商标，返回各类别（Class）注册结果。</div>
+          </div>
 
           <div style="font-size:12px;color:var(--text3);margin:6px 4px"><i class="ti ti-gift" style="color:var(--green-d)"></i> <b style="color:var(--green-d)">剩余 3 次免费</b></div>
           <button class="btn" style="margin-top:6px" onclick="ncRun()">提交人工核名</button>
@@ -2312,18 +2325,33 @@ function ncMode(m){
 function ncReset(){
   var i=document.getElementById('nc-input-pane'), r=document.getElementById('nc-result-pane');
   if(i) i.style.display='block'; if(r) r.style.display='none';
+  ['name','tm'].forEach(function(t){ var p=document.getElementById('nc-chk-'+t); if(p&&!p.classList.contains('on')) ncToggleSec(t); });
+}
+/* 顶部勾选：公司名称查册 / 商标查询（可多选，控制填写区域显隐） */
+function ncToggleSec(type){
+  var pick=document.getElementById('nc-chk-'+type);
+  var other=document.getElementById('nc-chk-'+(type==='name'?'tm':'name'));
+  if(pick.classList.contains('on') && !other.classList.contains('on')){ toast('至少选择一项'); return; }
+  var on=!pick.classList.contains('on');
+  pick.classList.toggle('on', on);
+  var cb=pick.querySelector('.cbox'); if(cb) cb.classList.toggle('on', on);
+  var sec=document.getElementById('nc-sec-'+type); if(sec) sec.style.display=on?'':'none';
 }
 function ncRun(){
-  // 人工核名：提交公司名查册（中/英）+ 商标查询，展示「人工核名中」；结果回显到结果页
+  // 人工核名：按顶部勾选提交 公司名称查册（中/英）/ 商标查询，展示「人工核名中」；结果回显到结果页
+  var pickName=document.getElementById('nc-chk-name').classList.contains('on');
+  var pickTm=document.getElementById('nc-chk-tm').classList.contains('on');
+  if(!pickName && !pickTm){ toast('请至少选择一项办理内容'); return; }
   var zh=document.getElementById('nc-name-zh'); zh=zh?zh.value.trim():'';
   var en=document.getElementById('nc-name-en'); en=en?en.value.trim():'';
-  var nm=[en, zh?s2t(zh):''].filter(Boolean).join(' / ') || '（未填）';
-  var tm=document.getElementById('nc-tm'); tm=tm?tm.value:'';
+  var nm=pickName ? ([en, zh?s2t(zh):''].filter(Boolean).join(' / ') || '（未填）') : '（未选）';
+  var tmv=document.getElementById('nc-tm'); tmv=tmv?tmv.value:'';
+  var tm=pickTm ? (tmv||'（未填）') : '（未选）';
   var modeLabel = NC_MODE==='full' ? '以全名查册' : '以名称起首查册';
   var el;
-  if(el=document.getElementById('nc-r-mode')) el.textContent = modeLabel;
-  if(el=document.getElementById('nc-r-name')) el.textContent = nm;
-  if(el=document.getElementById('nc-r-tm'))   el.textContent = tm||'（未填）';
+  if(el=document.getElementById('nc-r-mode')){ el.textContent = modeLabel; if(el.closest('.label-line')) el.closest('.label-line').style.display=pickName?'':'none'; }
+  if(el=document.getElementById('nc-r-name')){ el.textContent = nm; if(el.closest('.label-line')) el.closest('.label-line').style.display=pickName?'':'none'; }
+  if(el=document.getElementById('nc-r-tm')){   el.textContent = tm; if(el.closest('.label-line')) el.closest('.label-line').style.display=pickTm?'':'none'; }
   if(el=document.getElementById('ncr-tm-kw')) el.textContent = tm||'—';
   if(el=document.getElementById('sheet-company-kw')) el.textContent = nm;
   if(el=document.getElementById('sheet-tm-kw')) el.textContent = tm||'—';
