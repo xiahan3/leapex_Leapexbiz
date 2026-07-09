@@ -895,6 +895,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
             <span id="sd-price" style="font-size:26px;font-weight:800">HKD 5,800</span>
             <span id="sd-priceold" style="font-size:13px;opacity:.7;text-decoration:line-through"></span>
           </div>
+          <div id="sd-coupon" style="margin-top:9px;display:none"></div>
         </div>
 
         <div class="sec-t">服务简要介绍</div>
@@ -1377,7 +1378,6 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
           <div class="note" style="margin-bottom:12px">至少需 1 名董事（自然人）与 1 名创办成员；公司秘书由 Leapex 利柏思 内嵌担任，无需填写。身份信息可由 KYC 复用。</div>
           <div id="reg-persons"></div>
           <button class="btn ghost" style="width:100%;margin-bottom:12px" onclick="openPerson()"><i class="ti ti-user-plus"></i> 添加创办成员 / 董事</button>
-          <div class="card card-pad" style="background:var(--green-bg)"><div style="font-size:13px;color:var(--green-d);font-weight:600"><i class="ti ti-shield-check"></i> 法定秘书：Leapex 利柏思（内嵌服务）</div><div class="note" style="color:var(--green-d);margin-top:3px">已含于注册服务，自动担任公司法定秘书</div></div>
           <div class="fixed-foot" style="display:flex;gap:8px"><button class="btn ghost" style="width:76px" onclick="regStep(1)">上一步</button><button class="btn ghost" style="width:76px" onclick="regSaveDraft()">暂存</button><button class="btn" style="flex:1" onclick="regStep(3)">下一步 · 组织章程</button></div>
         </div>
 
@@ -1938,6 +1938,21 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
     </div>
   </div>
 
+  <!-- 预约咨询 · 二次确认底部弹窗（面议服务） -->
+  <div id="consult-sheet" style="display:none;position:absolute;inset:0;z-index:80;background:rgba(0,0,0,.45);align-items:flex-end" onclick="if(event.target===this)closeSheet('consult-sheet')">
+    <div class="sheet-panel" style="width:100%;background:var(--card);border-radius:18px 18px 0 0;display:flex;flex-direction:column">
+      <div style="padding:20px 20px 8px;text-align:center">
+        <div style="width:54px;height:54px;border-radius:50%;background:var(--accent-bg);color:var(--accent-d);display:flex;align-items:center;justify-content:center;margin:0 auto 12px"><i class="ti ti-headset" style="font-size:26px"></i></div>
+        <div style="font-size:16px;font-weight:700">预约咨询确认</div>
+        <div class="note" style="margin:8px 14px 0;line-height:1.7">你正在预约 <b style="color:var(--accent-d)" id="consult-svc-name">独立办公室租赁</b>。确认后，<b>专属顾问将在 24 小时内与你联系</b>并提供报价方案。</div>
+      </div>
+      <div style="padding:14px 20px calc(18px + env(safe-area-inset-bottom));display:flex;gap:10px">
+        <button class="btn ghost" style="flex:1" onclick="closeSheet('consult-sheet')">再想想</button>
+        <button class="btn" style="flex:1.4" onclick="confirmConsult()">确认预约</button>
+      </div>
+    </div>
+  </div>
+
   <!-- ════════ SPLASH · 整页口令入口 ════════ -->
   <div class="splash" id="splash">
     <div class="splash-bg"></div>
@@ -2277,6 +2292,17 @@ function openWecom(from){
 function closeWecom(){ document.getElementById('wecom-sheet').style.display = 'none'; }
 function openSheet(id){ var e=document.getElementById(id); if(e) e.style.display='flex'; }
 function closeSheet(id){ var e=document.getElementById(id); if(e) e.style.display='none'; }
+/* 面议服务：预约咨询二次确认 → 顾问 24h 联系 → 下单完成页 */
+var CONSULT_SVC='';
+function openConsultSheet(name){ CONSULT_SVC=name||(CURRENT_SVC&&CURRENT_SVC.name)||'该服务'; var n=document.getElementById('consult-svc-name'); if(n) n.textContent=CONSULT_SVC; openSheet('consult-sheet'); }
+function confirmConsult(){
+  closeSheet('consult-sheet');
+  var s=CURRENT_SVC||{};
+  var no='ORD-2026-0'+(ORD_SEQ++);
+  ORDERS.unshift({no:no, company:'（待顾问报价）', service:CONSULT_SVC, icon:s.icon||'ti-headset', color:'accent', channel:CHANNEL, status:'待顾问联系', stage:'待顾问联系', amt:0, bill:'—', bs:'面议'});
+  setPersona('user');
+  showResult({title:'预约成功', desc:'已收到你的「<b>'+CONSULT_SVC+'</b>」预约，<b style="color:var(--accent-d)">专属顾问将在 24 小时内与你联系</b>并提供报价方案。可在「我的订单」查看进度。', steps:['提交预约','顾问联系','报价确认'], cur:1, btn:'查看我的订单', next:function(){ go('s-orders'); }});
+}
 
 /* New registration entry → KYC first */
 function startReg(){ go('s-kyc'); }
@@ -2578,7 +2604,7 @@ var CHANNEL = 'LEX888';
 /* 服务字段对齐后台商品：name/icon/intro(简要介绍)/incl(交付内容)/sla(办理时效)/materials(所需材料)/process(办理流程)/meta(详细描述) */
 var SVC_DATA = {
   // ── 核名 & 商标查询 ──
-  'nametm':{name:'公司名称查册 + 商标查询',icon:'ti-file-search',price:99,cny:89,old:0,form:'namecheck',tags:'HKD 99 · 约 1–2 工作日 · 顾问人工核查',
+  'nametm':{name:'公司名称查册 + 商标查询',icon:'ti-file-search',price:99,cny:89,old:0,form:'namecheck',tags:'HKD 99 · 约 1–2 工作日 · 顾问人工核查',couponAfter:'免费',couponNote:'新客赠 3 张免费核名券',
     intro:'注册香港公司前的名称与商标预查，顾问人工核查可用性，降低被驳回 / 侵权风险。新客赠 3 张免费券，下单可抵扣。',
     incl:['公司名称可用性查册（公司注册处）','商标近似查询（知识产权署 IPD）','中 / 英 / 繁体名称核查','顾问人工核查 + 可用性建议报告'],
     sla:'约 1–2 个工作日出结果',
@@ -2752,7 +2778,7 @@ function openSvc(key){
     document.getElementById('sd-barprice').textContent = '面议';
     document.getElementById('sd-barlabel').textContent = '顾问报价';
     cta.textContent = '预约咨询';
-    cta.setAttribute('onclick', "openWecom('"+s.name+"')");
+    cta.setAttribute('onclick', "openConsultSheet('"+s.name+"')");
   } else if(s.free){
     document.getElementById('sd-price').textContent = '免费';
     document.getElementById('sd-priceold').textContent = '';
@@ -2767,6 +2793,11 @@ function openSvc(key){
     document.getElementById('sd-barlabel').textContent = '价格';
     cta.textContent = '立即办理';
     cta.setAttribute('onclick', 'buyNow()');
+  }
+  var scoup=document.getElementById('sd-coupon');
+  if(scoup){
+    if(s.couponAfter){ scoup.style.display=''; scoup.innerHTML='<span style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.16);padding:5px 11px;border-radius:20px;font-size:12.5px"><i class="ti ti-ticket"></i>券后 <b style="font-size:14px">'+s.couponAfter+'</b>'+(s.couponNote?' · '+s.couponNote:'')+'</span>'; }
+    else { scoup.style.display='none'; scoup.innerHTML=''; }
   }
   document.getElementById('sd-intro').innerHTML = s.intro || s.tags || '';
   document.getElementById('sd-incl').innerHTML = (s.incl||[]).map(function(x){

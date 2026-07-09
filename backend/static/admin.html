@@ -1053,16 +1053,22 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
     <div class="mb">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 16px">
         <div style="grid-column:1 / -1"><label class="flbl">商品名称 *</label><input class="inp" style="width:100%" id="prod-name" placeholder="如 新设香港本地有限公司"></div>
-        <div><label class="flbl">商品 icon（Tabler 名）</label>
-          <div style="display:flex;gap:8px;align-items:center">
-            <input class="inp" style="flex:1" id="prod-icon" placeholder="ti-building-plus" oninput="var p=document.getElementById('prod-icon-pv');if(p)p.className='ti '+this.value">
-            <div style="width:38px;height:38px;border-radius:8px;background:var(--accent-bg);color:var(--accent-d);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i id="prod-icon-pv" class="ti ti-building-plus" style="font-size:19px"></i></div>
+        <div style="grid-column:1 / -1"><label class="flbl">副标题</label><input class="inp" style="width:100%" id="prod-sub" placeholder="如 含全套证照 + 绿盒 · 最多人选"></div>
+        <div><label class="flbl">商品图片</label>
+          <div onclick="toast('调用图片选择上传商品图片')" style="display:flex;align-items:center;gap:10px;padding:9px 10px;border:1px dashed var(--line2);border-radius:8px;cursor:pointer;background:var(--bg2)">
+            <div id="prod-img-pv" style="width:38px;height:38px;border-radius:8px;background:var(--accent-bg);color:var(--accent-d);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden"><i class="ti ti-photo" style="font-size:19px"></i></div>
+            <div style="flex:1;line-height:1.35"><div style="font-size:12.5px;font-weight:600">上传商品图片</div><div style="font-size:11px;color:var(--text3)">建议 200×200 · PNG / JPG</div></div>
+            <i class="ti ti-upload" style="color:var(--text3)"></i>
           </div>
         </div>
-        <div><label class="flbl">服务类型 *</label><select class="inp" style="width:100%" id="prod-type"><option>核名商标</option><option>注册</option><option>秘书 &amp; 地址</option><option>记账报税</option><option>工商变更</option><option>商标</option><option>地址租赁</option></select></div>
+        <div><label class="flbl" style="display:flex;align-items:center;gap:8px;justify-content:space-between">服务类型 * <button type="button" class="btn btn-xs" style="padding:2px 8px" onclick="openTypeRank()"><i class="ti ti-arrows-sort"></i>排名权重管理</button></label><select class="inp" style="width:100%" id="prod-type"><option>核名商标</option><option>注册</option><option>秘书 &amp; 地址</option><option>记账报税</option><option>工商变更</option><option>商标</option><option>地址租赁</option></select></div>
         <div style="grid-column:1 / -1"><label class="flbl">服务简要介绍</label><input class="inp" style="width:100%" id="prod-intro" placeholder="一句话介绍，展示在服务详情页顶部"></div>
-        <div><label class="flbl">标准价 · 港币 (HKD)</label><input class="inp" style="width:100%" id="prod-hkd" placeholder="5533 / 面议 / 免费"></div>
-        <div><label class="flbl">标准价 · 人民币 (¥)</label><input class="inp" style="width:100%" id="prod-cny" placeholder="4980"></div>
+        <div style="grid-column:1 / -1"><label class="flbl" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">标准价<label style="display:flex;align-items:center;gap:5px;font-weight:400;font-size:12px;color:var(--text2);cursor:pointer"><input type="checkbox" id="prod-consult" onchange="toggleConsultPrice(this)"> 价格面议（勾选后标准价置灰不可填）</label></label>
+          <div style="display:flex;gap:16px">
+            <div style="flex:1"><div style="font-size:11px;color:var(--text3);margin-bottom:3px">港币 (HKD)</div><input class="inp" style="width:100%" id="prod-hkd" placeholder="5533"></div>
+            <div style="flex:1"><div style="font-size:11px;color:var(--text3);margin-bottom:3px">人民币 (¥)</div><input class="inp" style="width:100%" id="prod-cny" placeholder="4980"></div>
+          </div>
+        </div>
         <div><label class="flbl">办理时效</label><input class="inp" style="width:100%" id="prod-sla" placeholder="约 10 个工作日"></div>
         <div><label class="flbl">上 / 下架</label><select class="inp" style="width:100%"><option>上架</option><option>下架</option></select></div>
         <div style="grid-column:1 / -1"><label class="flbl">适用人群（画像推荐）</label><input class="inp" style="width:100%" id="prod-persona" placeholder="首次在港设立"></div>
@@ -1098,6 +1104,21 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
     <div class="mf">
       <button class="btn" onclick="closeM('m-product')">取消</button>
       <button class="btn btn-p" onclick="closeM('m-product');toast('商品已保存')">保存商品</button>
+    </div>
+  </div>
+</div>
+
+<!-- 服务类型排名权重管理 Modal -->
+<div class="mask" id="m-typerank" onclick="if(event.target===this)closeM('m-typerank')">
+  <div class="modal" style="max-width:460px">
+    <div class="mh"><div><b style="font-size:14px">服务类型排名权重</b><div style="font-size:11px;color:var(--text3)">上移 / 下移调整顺序，排名越靠前，小程序服务页越靠上</div></div><button class="x" onclick="closeM('m-typerank')">×</button></div>
+    <div class="mb">
+      <div class="card cp" style="background:var(--blue-bg);border-color:var(--blue);margin-bottom:12px"><div style="font-size:12px;color:var(--blue)"><i class="ti ti-info-circle"></i> 权重仅影响小程序<b>服务页分组顺序</b>与筛选排序，保存后即时同步。</div></div>
+      <div id="typerank-list"></div>
+    </div>
+    <div class="mf">
+      <button class="btn" onclick="closeM('m-typerank')">取消</button>
+      <button class="btn btn-p" onclick="saveTypeRank()">保存排名</button>
     </div>
   </div>
 </div>
@@ -1553,18 +1574,60 @@ var PRODUCT_SAMPLE = {
   '独立办公室租赁':{icon:'ti-building-skyscraper',type:'地址租赁',intro:'达利大厦独立办公室（可办公），按面积 / 楼层报价。',hkd:'面议',cny:'面议',sla:'预约后达利对接 · 看房报价',persona:'需独立办公室',deliver:'正规租赁合约\n厘印税单\n物业水电单\n独立办公室（可办公）',materials:'公司 / 联系人\n面积需求\n预算区间',process:'提交需求\n生态合作 · 达利对接\n看房 / 报价\n与达利直签',desc:'<p>生态合作，客户与达利直签。</p>'}
 };
 function _setV(id,v){ var e=document.getElementById(id); if(e) e.value=(v==null?'':v); }
+var PRODUCT_SUB = {
+  '公司名称查册 + 商标查询':'注册前必查 · 顾问人工 · 新客赠 3 券',
+  '新设香港本地有限公司':'含全套证照 + 绿盒 · 最多人选',
+  '年审服务':'法定秘书 + 注册地址 + NAR1 · 打包年费',
+  '审计（含理账）':'理账 + 审计报告 + 利得税 PTR',
+  '公司薪俸税 IR56A&B':'雇主报税 · 按人头 · 帮填帮交',
+  '个别人士报税':'个人 BIR60 · 帮填帮交',
+  '董事变更':'委任 / 停任 · ND2A / ND4',
+  '变更秘书公司':'转由 Leapex 利柏思 接任',
+  '变更注册地址':'NR1 · 关键信息 → 线下备表',
+  '公司更名':'先查名 · NNC2 + 决议 + 新印章',
+  '股份转让（股东变更）':'含从价印花税 0.2%',
+  '公司注销（撤销注册）':'IR1263 + NDR1 · 约 8 个月',
+  '商标注册申请':'IPD · 每类别单独申请',
+  '商标注册续期':'每 10 年续期一次',
+  '独立注册地址':'不可办公 · 满足平台验证',
+  '工位租赁':'可办公 · 可作注册地址',
+  '独立办公室租赁':'达利直签 · 按面积报价'
+};
 function openProduct(name){
   document.getElementById('prod-title').textContent = name ? '编辑商品 · '+name : '新增商品';
   var d = name ? PRODUCT_SAMPLE[name] : null;
-  _setV('prod-name', name||''); _setV('prod-intro', d?d.intro:''); _setV('prod-hkd', d?d.hkd:'');
-  _setV('prod-cny', d?d.cny:''); _setV('prod-sla', d?d.sla:''); _setV('prod-persona', d?d.persona:'');
+  _setV('prod-name', name||''); _setV('prod-sub', name?(PRODUCT_SUB[name]||''):''); _setV('prod-intro', d?d.intro:'');
+  _setV('prod-hkd', d?d.hkd:''); _setV('prod-cny', d?d.cny:''); _setV('prod-sla', d?d.sla:''); _setV('prod-persona', d?d.persona:'');
   _setV('prod-deliver', d?d.deliver:''); _setV('prod-materials', d?d.materials:''); _setV('prod-process', d?d.process:'');
-  var ic=(d&&d.icon)||'ti-building-plus'; _setV('prod-icon', ic);
-  var pv=document.getElementById('prod-icon-pv'); if(pv) pv.className='ti '+ic;
+  var ic=(d&&d.icon)||'ti-photo'; var pv=document.getElementById('prod-img-pv'); if(pv) pv.innerHTML='<i class="ti '+ic+'" style="font-size:19px"></i>';
   var pt=document.getElementById('prod-type'); if(pt&&d&&d.type){ for(var i=0;i<pt.options.length;i++){ if(pt.options[i].text===d.type){ pt.selectedIndex=i; break; } } }
+  // 价格面议：示例数据 hkd 为「面议」时默认勾选并置灰
+  var cs=document.getElementById('prod-consult'); if(cs){ cs.checked = !!(d && d.hkd==='面议'); toggleConsultPrice(cs); }
   var ed=document.getElementById('prod-desc'); if(ed) ed.innerHTML = d?d.desc:'<p>请填写服务详细描述…</p>';
   document.getElementById('m-product').classList.add('on');
 }
+function toggleConsultPrice(cb){
+  var on=cb.checked;
+  ['prod-hkd','prod-cny'].forEach(function(id){ var e=document.getElementById(id); if(e){ e.disabled=on; e.style.opacity=on?'.45':''; e.style.background=on?'var(--bg2)':''; if(on) e.value=''; } });
+}
+/* 服务类型排名权重管理（同步小程序服务页顺序） */
+var SVC_TYPE_ORDER=['核名商标','注册','秘书 & 地址','记账报税','工商变更','商标','地址租赁'];
+function openTypeRank(){ renderTypeRank(); document.getElementById('m-typerank').classList.add('on'); }
+function renderTypeRank(){
+  var box=document.getElementById('typerank-list'); if(!box) return;
+  var n=SVC_TYPE_ORDER.length;
+  box.innerHTML=SVC_TYPE_ORDER.map(function(t,i){
+    return '<div style="display:flex;align-items:center;gap:10px;padding:11px 12px;border:1px solid var(--line);border-radius:9px;margin-bottom:8px">'
+      +'<div style="width:24px;height:24px;border-radius:6px;background:var(--accent-bg);color:var(--accent-d);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px">'+(i+1)+'</div>'
+      +'<div style="flex:1;font-size:13.5px;font-weight:600">'+t+'</div>'
+      +'<span style="font-size:11px;color:var(--text3);margin-right:6px">权重 '+((n-i)*10)+'</span>'
+      +'<button class="btn btn-xs" onclick="moveType('+i+',-1)"'+(i===0?' disabled':'')+'><i class="ti ti-arrow-up"></i></button>'
+      +'<button class="btn btn-xs" onclick="moveType('+i+',1)"'+(i===n-1?' disabled':'')+'><i class="ti ti-arrow-down"></i></button>'
+      +'</div>';
+  }).join('');
+}
+function moveType(i,dir){ var j=i+dir; if(j<0||j>=SVC_TYPE_ORDER.length) return; var t=SVC_TYPE_ORDER.splice(i,1)[0]; SVC_TYPE_ORDER.splice(j,0,t); renderTypeRank(); }
+function saveTypeRank(){ closeM('m-typerank'); toast('已保存服务类型排名，将同步小程序服务页顺序'); }
 function rt(cmd,val){ document.execCommand(cmd,false,val||null); var e=document.getElementById('prod-desc'); if(e) e.focus(); }
 function rtLink(){ var u=prompt('链接地址','https://'); if(u) document.execCommand('createLink',false,u); }
 /* 订单详情（只读，进度联动服务管理）*/
