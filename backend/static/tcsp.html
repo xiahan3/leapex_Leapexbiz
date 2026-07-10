@@ -482,9 +482,11 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
     <!-- ════════ 老客版首页（我的公司 / 交付管理台）════════ -->
     <div class="screen" id="s-home" data-title="我的公司" data-tab="home">
       <div class="body-pad">
-        <div class="hero" style="padding:16px 18px">
-          <div class="hero-t" style="font-size:16px">欢迎回来，陈先生</div>
-          <div class="hero-d">您的公司办理进度与交付物，尽在掌握</div>
+        <div class="hero" onclick="go('s-brand')" style="cursor:pointer">
+          <div style="display:flex;align-items:center;gap:5px;font-size:11px;opacity:.85;margin-bottom:7px"><i class="ti ti-shield-check"></i> 香港持牌 TCSP · 牌照号 TC10988</div>
+          <div class="hero-t">香港公司，线上办妥</div>
+          <div class="hero-d">注册 · 年审 · 变更 · 记账报税 全流程托管<br>办理进度全程可见 · 符合 AMLO / 公司条例</div>
+          <div style="margin-top:11px;padding-top:10px;border-top:1px solid rgba(255,255,255,.14);display:flex;align-items:center;gap:6px;font-size:12px;color:#D4A853;font-weight:600"><i class="ti ti-building-skyscraper"></i>了解 Leapex 利柏思 · 品牌与实力 ›</div>
         </div>
 
         <!-- 我的公司 -->
@@ -1022,7 +1024,12 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
       <div class="body-pad">
         <div style="text-align:center">
           <div class="success-ring" style="margin-top:6px"><i class="ti ti-check"></i></div>
-          <div style="font-size:18px;font-weight:700;margin:8px 0 16px">支付完成</div>
+          <div style="font-size:18px;font-weight:700;margin:8px 0 14px">支付完成</div>
+        </div>
+        <div class="steps" style="margin-bottom:16px">
+          <div class="step-i done"><div class="step-dot">✓</div><div class="step-lab">下单</div></div><div class="step-line done"></div>
+          <div class="step-i done"><div class="step-dot">✓</div><div class="step-lab">支付</div></div><div class="step-line done"></div>
+          <div class="step-i act"><div class="step-dot">3</div><div class="step-lab">办理</div></div>
         </div>
 
         <!-- 豆腐块 1：KYC 认证 -->
@@ -1538,6 +1545,11 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
     <!-- ════════ BILL / PAYMENT ════════ -->
     <div class="screen" id="s-bill" data-title="账单支付" data-back="s-home">
       <div class="body-pad">
+        <div class="steps" style="margin-bottom:14px">
+          <div class="step-i done"><div class="step-dot">✓</div><div class="step-lab">下单</div></div><div class="step-line done"></div>
+          <div class="step-i act"><div class="step-dot">2</div><div class="step-lab">支付</div></div><div class="step-line"></div>
+          <div class="step-i"><div class="step-dot">3</div><div class="step-lab">办理</div></div>
+        </div>
         <div class="card card-pad" style="text-align:center">
           <div style="display:inline-flex;border:1px solid var(--line2);border-radius:8px;overflow:hidden;margin:2px 0 6px">
             <div id="cur-cny" class="cur-tab on" onclick="setCur('cny')">人民币 ¥</div>
@@ -2399,7 +2411,8 @@ var BUYING=false, FLOW_TYPE='register', CURRENT_COMPANY='';
 var REG_STEPS=['核名','支付','提交信息','KYC认证'];
 var SVC_STEPS=['选择公司','支付','提交信息','KYC认证'];
 var BILL_CNY='¥ 5,220.00', BILL_HKD='HK$ 5,800.00';
-function flowSteps(){ return FLOW_TYPE==='register' ? REG_STEPS : SVC_STEPS; }
+var STEPS3=['下单','支付','办理'];
+function flowSteps(){ return STEPS3; }
 var _resNext=null;
 function showResult(o){
   var sb=document.getElementById('res-steps');
@@ -2442,7 +2455,7 @@ function payDone(){
   if(CURRENT_ORDER){ CURRENT_ORDER.bs='待确认'; CURRENT_ORDER.status='服务中'; CURRENT_ORDER.stage='待人工预审'; }
   setPersona('user'); // 付款成功 → 转老客
   if(FLOW_TYPE==='register'){ go('s-paydone'); return; }   // 注册流程 → 专属「支付完成」引导页
-  if(FLOW_TYPE==='namecheck'){ showResult({title:'支付完成', desc:'核名 & 商标查询已下单。点击下方开始填写要查册的公司名称与商标，顾问将于约 1–2 个工作日出结果。', steps:['商品详情','下单','支付完成','去核名 & 查商标'], cur:3, btn:'去核名 & 查商标', next:function(){ ncReset(); go('s-namecheck'); }}); return; }
+  if(FLOW_TYPE==='namecheck'){ showResult({title:'支付完成', desc:'核名 & 商标查询已下单。点击下方开始填写要查册的公司名称与商标，顾问将于约 1–2 个工作日出结果。', steps:STEPS3, cur:2, btn:'去核名 & 查商标', next:function(){ ncReset(); go('s-namecheck'); }}); return; }
   showResult({title:'支付成功', desc:'已收到你的款项。请继续提交本次办理所需的信息。', steps:flowSteps(), cur:2, btn:'提交办理信息', next:goInfo});
 }
 function goInfo(){
@@ -2461,7 +2474,7 @@ function goInfo(){
   go('s-svcform');
 }
 function infoDone(){
-  showResult({title:'信息已提交', desc:'办理所需信息已提交。最后一步：完成 KYC 实名认证（香港持牌 TCSP 合规必做）。', steps:flowSteps(), cur:3, btn:'去完成 KYC 认证', next:goKyc});
+  showResult({title:'信息已提交', desc:'办理所需信息已提交。最后一步：完成 KYC 实名认证（香港持牌 TCSP 合规必做）。', steps:flowSteps(), cur:2, btn:'去完成 KYC 认证', next:goKyc});
 }
 function goKyc(){ kycStep(1); go('s-kyc'); }
 function cancelOrder(){
@@ -2611,12 +2624,12 @@ var CHANNEL = 'LEX888';
 /* 服务字段对齐后台商品：name/icon/intro(简要介绍)/incl(交付内容)/sla(办理时效)/materials(所需材料)/process(办理流程)/meta(详细描述) */
 var SVC_DATA = {
   // ── 核名 & 商标查询 ──
-  'nametm':{name:'公司名称查册 + 商标查询',icon:'ti-file-search',price:99,cny:89,old:0,form:'namecheck',tags:'HKD 99 · 约 1–2 工作日 · 顾问人工核查',couponAfter:'免费',couponNote:'新客赠 3 张免费核名券',
+  'nametm':{name:'公司名称查册 + 商标查询',icon:'ti-file-search',price:99,cny:89,old:0,form:'namecheck',tags:'HKD 99 · 约 1–2 工作日 · 顾问人工核查',couponAfter:'0 元',couponNote:'新客共赠 3 张，可免费办 3 次',
     intro:'注册香港公司前的名称与商标预查，顾问人工核查可用性，降低被驳回 / 侵权风险。新客赠 3 张免费券，下单可抵扣。',
     incl:['公司名称可用性查册（公司注册处）','商标近似查询（知识产权署 IPD）','中 / 英 / 繁体名称核查','顾问人工核查 + 可用性建议报告'],
     sla:'约 1–2 个工作日出结果',
     materials:['拟用公司名称（英文 / 繁体中文）','拟查商标名称 / 图样（如需）','联系邮箱'],
-    process:['商品详情','下单','支付完成','去核名 & 查商标'],
+    process:['下单 & 支付','顾问人工查册','出核查结果'],
     meta:'在<b>香港公司注册处</b>核查公司名称可用性，在<b>知识产权署 IPD</b>做商标近似查询，由顾问人工核查并给出可用性建议。<br>查册语言<b>只支持英文或繁体中文</b>；名称通过后可直接进入公司注册。<br>费用 <b>HKD 99</b>；<b>新客赠 3 张免费核名券</b>，下单时可抵扣（最多可免费办理 3 次）。'},
   // ── 注册 ──
   'reg':{name:'新设香港本地有限公司',icon:'ti-building-plus',price:5533,cny:4980,old:0,form:'register',tags:'约 10 个工作日 · 全套证照 + 绿盒',
@@ -2779,6 +2792,7 @@ function openSvc(key){
   document.getElementById('sd-tags').textContent = s.tags;
   // 合作方/顾问类：报价「面议」，主按钮 → 预约咨询（企微承接）
   var cta = document.getElementById('sd-cta');
+  document.getElementById('sd-price').style.color = '';
   if(s.consult){
     document.getElementById('sd-price').textContent = '面议';
     document.getElementById('sd-priceold').textContent = '';
@@ -2793,6 +2807,14 @@ function openSvc(key){
     document.getElementById('sd-barlabel').textContent = '新客赠券';
     cta.textContent = '立即免费核名';
     cta.setAttribute('onclick', "ncReset();go('s-namecheck')");
+  } else if(s.couponAfter){
+    // 有免费券 / 优惠券：顶部原价划线 + 高亮券后价，底部展示券后价
+    var sp=document.getElementById('sd-price'); sp.textContent = '0 元'; sp.style.color = '#F4D9A6';
+    document.getElementById('sd-priceold').textContent = 'HKD '+fmtMoney(cp);
+    document.getElementById('sd-barprice').textContent = '0 元';
+    document.getElementById('sd-barlabel').textContent = '券后价';
+    cta.textContent = '立即办理';
+    cta.setAttribute('onclick', 'buyNow()');
   } else {
     document.getElementById('sd-price').textContent = 'HKD '+fmtMoney(cp);
     document.getElementById('sd-priceold').textContent = op>cp ? 'HKD '+fmtMoney(op) : '';
@@ -2803,7 +2825,7 @@ function openSvc(key){
   }
   var scoup=document.getElementById('sd-coupon');
   if(scoup){
-    if(s.couponAfter){ scoup.style.display=''; scoup.innerHTML='<span style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.16);padding:5px 11px;border-radius:20px;font-size:12.5px"><i class="ti ti-ticket"></i>券后 <b style="font-size:14px">'+s.couponAfter+'</b>'+(s.couponNote?' · '+s.couponNote:'')+'</span>'; }
+    if(s.couponAfter){ scoup.style.display=''; scoup.innerHTML='<span style="display:inline-flex;align-items:center;gap:5px;background:rgba(212,168,83,.22);color:#F4D9A6;padding:5px 11px;border-radius:20px;font-size:12.5px"><i class="ti ti-ticket"></i>已抵免 1 张免费核名券'+(s.couponNote?' · '+s.couponNote:'')+'</span>'; }
     else { scoup.style.display='none'; scoup.innerHTML=''; }
   }
   document.getElementById('sd-intro').innerHTML = s.intro || s.tags || '';
