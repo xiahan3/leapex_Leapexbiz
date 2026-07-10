@@ -467,9 +467,8 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
         </div>
 
         <!-- CTA -->
-        <div style="display:flex;gap:9px;margin-bottom:6px">
-          <button class="btn" style="flex:1.3;padding:12px" onclick="go('s-services')"><i class="ti ti-apps" style="font-size:15px"></i> 查看所有服务</button>
-          <button class="btn ghost" style="flex:1;padding:12px" onclick="openWecom('品牌页')"><i class="ti ti-headset" style="font-size:15px"></i> 免费咨询顾问</button>
+        <div style="margin-bottom:6px">
+          <button class="btn" style="width:100%;padding:12px" onclick="go('s-services')"><i class="ti ti-apps" style="font-size:15px"></i> 查看所有服务</button>
         </div>
         <div class="note" style="text-align:center;margin-top:14px">© 2026 Leapex 利柏思 · 持牌 TCSP · 符合 AMLO / PDPO</div>
       </div>
@@ -966,11 +965,6 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
         <div class="card card-pad">
           <label class="check-row" style="padding:2px" onclick="toggleCheck('so-agree')"><div class="cbox" id="so-agree"><i class="ti ti-check"></i></div><span style="font-size:12.5px">我已阅读并同意《服务条款》及 AMLO 合规说明，确认所填信息真实</span></label>
         </div>
-        <div class="card card-pad" style="display:flex;align-items:center;gap:10px;cursor:pointer" onclick="openWecom('下单确认页')">
-          <div style="width:34px;height:34px;border-radius:9px;background:var(--accent-bg);color:var(--accent-d);display:flex;align-items:center;justify-content:center;font-size:17px"><i class="ti ti-headset"></i></div>
-          <div style="flex:1"><div style="font-size:13px;font-weight:600">下单前有疑问？联系专属顾问</div><div class="note">大额服务 / 合规 / 发票，真人 1 对 1 协助</div></div>
-          <i class="ti ti-chevron-right" style="color:var(--text4);font-size:16px"></i>
-        </div>
       </div>
       <div class="buybar">
         <div><div style="font-size:10px;color:var(--text3)">应付</div><div class="price" style="font-size:18px" id="so-barprice">HKD 5,800</div></div>
@@ -1454,14 +1448,14 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
     <!-- ════════ 添加 股东 / 董事 ════════ -->
     <div class="screen" id="s-regperson" data-title="添加成员 / 董事" data-back="s-reg">
       <div class="body-pad">
+        <div class="field"><div class="field-l">类型</div>
+          <div style="display:flex;gap:8px"><div class="nc-mode on" id="pt-natural" onclick="ptype('natural')">自然人</div><div class="nc-mode" id="pt-corp" onclick="ptype('corp')">法人团体</div></div>
+        </div>
         <div class="field"><div class="field-l">身份（可多选）</div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
             <div class="chk-pill" id="role-founder" onclick="toggleRole(this)">股东</div>
             <div class="chk-pill on" id="role-director" onclick="toggleRole(this)">董事</div>
           </div>
-        </div>
-        <div class="field"><div class="field-l">类型</div>
-          <div style="display:flex;gap:8px"><div class="nc-mode on" id="pt-natural" onclick="ptype('natural')">自然人</div><div class="nc-mode" id="pt-corp" onclick="ptype('corp')">法人团体</div></div>
         </div>
 
         <div class="reg-grp">身份证件</div>
