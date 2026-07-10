@@ -262,6 +262,8 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
 .prod-price{text-align:right;flex-shrink:0}
 .prod-price .price{font-size:16px}
 .prod-coupon{font-size:11px;color:var(--green-d);font-weight:700;margin-top:4px;background:var(--green-bg);padding:1px 7px;border-radius:8px;display:inline-block}
+.price-strike{font-size:12px;color:var(--text3);text-decoration:line-through;font-weight:600}
+.price-cp{font-size:16px;color:var(--green-d);font-weight:800;margin-top:1px}
 .prod-badge{position:absolute;top:0;right:13px;transform:translateY(-50%);background:var(--accent);color:#fff;font-size:9.5px;font-weight:700;padding:2px 9px;border-radius:9px}
 .incl{display:flex;align-items:flex-start;gap:8px;padding:7px 0;font-size:13px}
 .incl i{color:var(--accent);font-size:16px;flex-shrink:0;margin-top:1px}
@@ -318,12 +320,6 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
           <div class="hero-t">香港公司，线上办妥</div>
           <div class="hero-d">注册 · 年审 · 变更 · 记账报税 全流程托管<br>办理进度全程可见 · 符合 AMLO / 公司条例</div>
           <div style="margin-top:11px;padding-top:10px;border-top:1px solid rgba(255,255,255,.14);display:flex;align-items:center;gap:6px;font-size:12px;color:#D4A853;font-weight:600"><i class="ti ti-building-skyscraper"></i>了解 Leapex 利柏思 · 品牌与实力 ›</div>
-        </div>
-
-        <!-- 双通道 CTA -->
-        <div style="display:flex;gap:9px;margin-bottom:12px">
-          <button class="btn" style="flex:1.3;padding:12px" onclick="go('s-services')"><i class="ti ti-apps" style="font-size:15px"></i> 查看所有服务</button>
-          <button class="btn ghost" style="flex:1;padding:12px" onclick="openWecom('新客首页')"><i class="ti ti-headset" style="font-size:15px"></i> 免费咨询顾问</button>
         </div>
 
         <!-- 免费核名钩子 -->
@@ -384,7 +380,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
 
         <!-- 推荐服务 -->
         <div class="sec-t" style="display:flex;justify-content:space-between"><span>推荐服务</span><span style="color:var(--accent);font-weight:500;cursor:pointer" onclick="go('s-services')">全部服务 ›</span></div>
-        <div class="pkg-card rec" onclick="openSvc('reg')"><div class="pkg-badge">主推</div><div style="display:flex;align-items:center;gap:10px"><div class="svc-dot" style="background:var(--accent-bg);color:var(--accent-d);width:36px;height:36px"><i class="ti ti-building-plus"></i></div><div style="flex:1"><div style="font-weight:700">新设香港本地有限公司</div><div class="note">适合：首次在港设立 · 全套证照 + 印章 + 绿盒</div></div><div class="price price-lg">HKD 5,533</div></div></div>
+        <div class="pkg-card rec" onclick="openSvc('reg')"><div style="display:flex;align-items:center;gap:10px"><div class="svc-dot" style="background:var(--accent-bg);color:var(--accent-d);width:36px;height:36px"><i class="ti ti-building-plus"></i></div><div style="flex:1"><div style="font-weight:700">新设香港本地有限公司</div><div class="note">适合：首次在港设立 · 全套证照 + 印章 + 绿盒</div></div><div class="price price-lg">HKD 5,533</div></div></div>
         <div class="pkg-card" onclick="openSvc('annual')"><div style="display:flex;align-items:center;gap:10px"><div class="svc-dot" style="background:var(--blue-bg);color:var(--blue);width:36px;height:36px"><i class="ti ti-shield-check"></i></div><div style="flex:1"><div style="font-weight:700">法定公司秘书（周年申报）</div><div class="note">适合：已有公司 · 年度合规 + NAR1</div></div><div class="price price-lg">HKD 2,200</div></div></div>
         <div class="pkg-card" onclick="openSvc('bookkeep')"><div style="display:flex;align-items:center;gap:10px"><div class="svc-dot" style="background:var(--green-bg);color:var(--green-d);width:36px;height:36px"><i class="ti ti-calculator"></i></div><div style="flex:1"><div style="font-weight:700">年度审计 · 记账报税</div><div class="note">适合：有经营 · 财报 + 审计 + 利得税 PTR</div></div><div class="price price-lg" style="font-size:15px">面议</div></div></div>
       </div>
@@ -445,7 +441,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
           </div>
           <div class="card card-pad" style="cursor:pointer;margin-bottom:0" onclick="openSvc('addr-solo')">
             <div style="display:flex;align-items:center;gap:8px"><div class="svc-dot" style="background:rgba(212,168,83,.16);color:#B8860B"><i class="ti ti-building-community"></i></div><div style="font-weight:700;font-size:13.5px">地址租赁</div></div>
-            <div class="note" style="margin-top:7px;line-height:1.6">达利大厦一手地址，注册 / 工位 / 办公室灵活选，<b style="color:var(--accent-d)">满足平台验证</b>。</div>
+            <div class="note" style="margin-top:7px;line-height:1.6">香港核心地段一手地址，注册 / 工位 / 办公室灵活选，<b style="color:var(--accent-d)">满足平台验证</b>。</div>
           </div>
         </div>
 
@@ -458,7 +454,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
           </div>
           <div style="display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.07)">
             <div style="width:36px;height:36px;border-radius:9px;background:rgba(212,168,83,.15);color:#D4A853;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-map-pin" style="font-size:18px"></i></div>
-            <div style="flex:1"><div style="color:#fff;font-weight:600;font-size:13.5px">一手注册地址</div><div style="color:rgba(255,255,255,.5);font-size:11.5px;margin-top:2px">达利大厦地址 · 可出具地址证明</div></div>
+            <div style="flex:1"><div style="color:#fff;font-weight:600;font-size:13.5px">一手注册地址</div><div style="color:rgba(255,255,255,.5);font-size:11.5px;margin-top:2px">香港核心地段地址 · 可出具地址证明</div></div>
           </div>
           <div style="display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.07)">
             <div style="width:36px;height:36px;border-radius:9px;background:rgba(212,168,83,.15);color:#D4A853;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-route" style="font-size:18px"></i></div>
@@ -768,18 +764,17 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
           <div class="prod" data-type="name" data-region="hk" onclick="openSvc('nametm')">
             <div class="prod-ico" style="background:var(--green-bg);color:var(--green-d)"><i class="ti ti-file-search"></i></div>
             <div class="prod-main"><div class="prod-name">公司名称查册 + 商标查询</div><div class="prod-desc">注册处名称查册 + IPD 商标近似查询 · 顾问人工 · 1–2 工作日</div></div>
-            <div class="prod-price"><div class="price">HKD 99</div><div class="prod-coupon">3 张免费券</div></div>
+            <div class="prod-price"><div class="price-strike">HKD 99</div><div class="price-cp">券后 0 元</div></div>
           </div>
         </div>
 
         <!-- 注册 -->
         <div class="svc-grp" data-type="reg">
           <div class="sec-t"><i class="ti ti-building-plus" style="font-size:13px;margin-right:4px"></i>公司注册</div>
-          <div class="prod prod-rec" data-type="reg" data-region="hk" onclick="openSvc('reg')">
-            <div class="prod-badge">主推</div>
+          <div class="prod" data-type="reg" data-region="hk" onclick="openSvc('reg')">
             <div class="prod-ico" style="background:var(--accent-bg);color:var(--accent-d)"><i class="ti ti-building-plus"></i></div>
             <div class="prod-main"><div class="prod-name">新设香港本地有限公司</div><div class="prod-desc">CI + BR + 章程 10 份 + 股票本 + 印章 + 绿盒 · 约 10 工作日</div></div>
-            <div class="prod-price"><div class="price">HKD 5,533</div><div class="prod-coupon">券后 5,333</div></div>
+            <div class="prod-price"><div class="price-strike">HKD 5,533</div><div class="price-cp">券后 5,333</div></div>
           </div>
         </div>
 
@@ -878,7 +873,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
           </div>
           <div class="prod" data-type="addr" data-region="hk" onclick="openSvc('addr-office')">
             <div class="prod-ico" style="background:var(--blue-bg);color:var(--blue)"><i class="ti ti-building-skyscraper"></i></div>
-            <div class="prod-main"><div class="prod-name">独立办公室租赁</div><div class="prod-desc">独立办公室 · 与达利直签 · 生态合作</div></div>
+            <div class="prod-main"><div class="prod-name">独立办公室租赁</div><div class="prod-desc">独立办公室 · 可办公 · 面议咨询</div></div>
             <div class="prod-price"><div class="price" style="font-size:13px">面议</div></div>
           </div>
         </div>
@@ -929,8 +924,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
       </div>
       <div class="buybar">
         <div><div style="font-size:10px;color:var(--text3)" id="sd-barlabel">价格</div><div class="price" style="font-size:18px" id="sd-barprice">HKD 5,800</div></div>
-        <button class="btn ghost" style="flex:0 0 88px" onclick="openWecom('服务详情')"><i class="ti ti-message-circle" style="font-size:14px"></i>问顾问</button>
-        <button class="btn" id="sd-cta" onclick="buyNow()">立即办理</button>
+        <button class="btn" id="sd-cta" style="flex:1" onclick="buyNow()">立即办理</button>
       </div>
     </div>
 
@@ -1022,14 +1016,14 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
     <!-- ════════ 支付完成（注册流程）════════ -->
     <div class="screen" id="s-paydone" data-title="支付完成">
       <div class="body-pad">
-        <div style="text-align:center">
-          <div class="success-ring" style="margin-top:6px"><i class="ti ti-check"></i></div>
-          <div style="font-size:18px;font-weight:700;margin:8px 0 14px">支付完成</div>
-        </div>
-        <div class="steps" style="margin-bottom:16px">
+        <div class="steps" style="margin:2px 0 16px">
           <div class="step-i done"><div class="step-dot">✓</div><div class="step-lab">下单</div></div><div class="step-line done"></div>
           <div class="step-i done"><div class="step-dot">✓</div><div class="step-lab">支付</div></div><div class="step-line done"></div>
           <div class="step-i act"><div class="step-dot">3</div><div class="step-lab">办理</div></div>
+        </div>
+        <div style="text-align:center">
+          <div class="success-ring"><i class="ti ti-check"></i></div>
+          <div style="font-size:18px;font-weight:700;margin:8px 0 16px">支付完成</div>
         </div>
 
         <!-- 豆腐块 1：KYC 认证 -->
@@ -1268,7 +1262,6 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
             <div class="card card-pad" style="background:var(--bg2);font-size:12px;color:var(--text3);margin-bottom:16px">取名称关键字在香港知识产权署商标库查询同名 / 近似商标，返回各类别（Class）注册结果。</div>
           </div>
 
-          <div style="font-size:12px;color:var(--text3);margin:6px 4px"><i class="ti ti-gift" style="color:var(--green-d)"></i> <b style="color:var(--green-d)">剩余 3 次免费</b></div>
           <button class="btn" style="margin-top:6px" onclick="ncRun()">提交人工核名</button>
         </div>
 
@@ -1349,23 +1342,13 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
           <!-- 拟经营业务性质 -->
           <div class="reg-grp">拟经营业务性质</div>
           <div class="field">
-            <select class="input">
-              <option value="">请选择行业（香港标准行业分类 HSIC）</option>
-              <option>001 – 农作物及动物养殖、狩猎及相关服务活动</option>
-              <option>002 – 林业活动</option>
-              <option>003 – 捕鱼及水产养殖</option>
-              <option selected>620 – 电脑程序编制、顾问及相关活动</option>
-              <option>631 – 数据处理、寄存及相关活动</option>
-              <option>702 – 管理顾问活动</option>
-              <option>463 – 食品、饮品及烟草批发</option>
-              <option>999 – 其他（请于办理时与顾问确认）</option>
-            </select>
+            <div class="input" onclick="openSheet('industry-sheet')" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer"><span id="ind-value" style="color:var(--text3)">请选择行业（香港标准行业分类 HSIC）</span><i class="ti ti-chevron-down" style="color:var(--text3);flex-shrink:0"></i></div>
           </div>
 
           <!-- 注册办事处地址 -->
           <div class="reg-grp">公司在香港的注册办事处的建议地址</div>
-          <div class="radio-card on" id="ro-sec" onclick="pickRegAddr('sec')"><div class="radio-dot"></div><div style="flex:1"><div style="font-weight:600;font-size:14px">填写秘书公司地址</div><div class="note">直接采用 Leapex 利柏思 法定秘书注册地址</div></div></div>
-          <div class="radio-card" id="ro-office" onclick="pickRegAddr('office')"><div class="radio-dot"></div><div style="flex:1"><div style="font-weight:600;font-size:14px">需要租赁办公室</div><div class="note">由顾问对接达利安排独立地址 / 工位 / 办公室</div></div></div>
+          <div class="radio-card on" id="ro-sec" onclick="pickRegAddr('sec')"><div class="radio-dot"></div><div style="flex:1"><div style="font-weight:600;font-size:14px">填写秘书公司地址</div><div class="note">暂填秘书公司地址</div></div></div>
+          <div class="radio-card" id="ro-office" onclick="pickRegAddr('office')"><div class="radio-dot"></div><div style="flex:1"><div style="font-weight:600;font-size:14px">先填写秘书公司地址，后续将租赁办公室</div><div class="note">后续顾问将联系您安排独立地址 / 工位 / 办公室</div></div></div>
           <div class="note" style="margin:8px 2px 16px">注册地址须为香港地址；如选租赁将在办理时与顾问确认方案。</div>
 
           <!-- 公司联络资料 -->
@@ -1375,12 +1358,12 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
           <!-- 股本 -->
           <div class="reg-grp">公司组成时的股本及最初的股份持有情况</div>
           <div class="grid2">
-            <div class="field"><div class="field-l">股份类别</div><select class="input"><option>普通股</option><option>优先股</option></select></div>
+            <div class="field"><div class="field-l">股份类别</div><input class="input" value="普通股" disabled></div>
             <div class="field"><div class="field-l">货币单位</div><select class="input"><option>HKD</option><option>USD</option><option>CNY</option></select></div>
           </div>
           <div class="grid2">
             <div class="field"><div class="field-l">建议发行的股份总数</div><input class="input" value="10,000"></div>
-            <div class="field"><div class="field-l">创办成员认购股本总额</div><input class="input" value="10,000"></div>
+            <div class="field"><div class="field-l">股东认购股本总额</div><input class="input" value="10,000"></div>
           </div>
           <div class="note" style="margin:-2px 2px 0">已缴款额按认购股本计；尚未缴付款额自动结算。</div>
 
@@ -1388,10 +1371,10 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
         </div>
 
         <div class="reg-pane" id="reg-2" style="display:none">
-          <div style="font-size:16px;font-weight:700;margin-bottom:4px">创办成员 / 董事</div>
-          <div class="note" style="margin-bottom:12px">至少需 1 名董事（自然人）与 1 名创办成员；公司秘书由 Leapex 利柏思 内嵌担任，无需填写。身份信息可由 KYC 复用。</div>
+          <div style="font-size:16px;font-weight:700;margin-bottom:4px">股东 / 董事</div>
+          <div class="note" style="margin-bottom:12px">至少需 1 名董事（自然人）与 1 名股东；公司秘书由 Leapex 利柏思 内嵌担任，无需填写。身份信息可由 KYC 复用。</div>
           <div id="reg-persons"></div>
-          <button class="btn ghost" style="width:100%;margin-bottom:12px" onclick="openPerson()"><i class="ti ti-user-plus"></i> 添加创办成员 / 董事</button>
+          <button class="btn ghost" style="width:100%;margin-bottom:12px" onclick="openPerson()"><i class="ti ti-user-plus"></i> 添加股东 / 董事</button>
           <div class="fixed-foot" style="display:flex;gap:8px"><button class="btn ghost" style="width:76px" onclick="regStep(1)">上一步</button><button class="btn ghost" style="width:76px" onclick="regSaveDraft()">暂存</button><button class="btn" style="flex:1" onclick="regStep(3)">下一步 · 组织章程</button></div>
         </div>
 
@@ -1468,17 +1451,17 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
       </div>
     </div>
 
-    <!-- ════════ 添加 创办成员 / 董事 ════════ -->
+    <!-- ════════ 添加 股东 / 董事 ════════ -->
     <div class="screen" id="s-regperson" data-title="添加成员 / 董事" data-back="s-reg">
       <div class="body-pad">
-        <div class="field"><div class="field-l">类型</div>
-          <div style="display:flex;gap:8px"><div class="nc-mode on" id="pt-natural" onclick="ptype('natural')">自然人</div><div class="nc-mode" id="pt-corp" onclick="ptype('corp')">法人团体</div></div>
-        </div>
         <div class="field"><div class="field-l">身份（可多选）</div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <div class="chk-pill" id="role-founder" onclick="toggleRole(this)">创办成员</div>
+            <div class="chk-pill" id="role-founder" onclick="toggleRole(this)">股东</div>
             <div class="chk-pill on" id="role-director" onclick="toggleRole(this)">董事</div>
           </div>
+        </div>
+        <div class="field"><div class="field-l">类型</div>
+          <div style="display:flex;gap:8px"><div class="nc-mode on" id="pt-natural" onclick="ptype('natural')">自然人</div><div class="nc-mode" id="pt-corp" onclick="ptype('corp')">法人团体</div></div>
         </div>
 
         <div class="reg-grp">身份证件</div>
@@ -1972,6 +1955,17 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
     </div>
   </div>
 
+  <!-- 拟经营业务性质 · 底部选择弹窗（HSIC） -->
+  <div id="industry-sheet" style="display:none;position:absolute;inset:0;z-index:80;background:rgba(0,0,0,.45);align-items:flex-end" onclick="if(event.target===this)closeSheet('industry-sheet')">
+    <div class="sheet-panel" style="width:100%;background:var(--card);border-radius:18px 18px 0 0;max-height:76%;display:flex;flex-direction:column">
+      <div style="display:flex;align-items:center;gap:10px;padding:16px 18px 12px;border-bottom:1px solid var(--line)">
+        <div style="flex:1"><div style="font-size:15px;font-weight:700">选择拟经营业务性质</div><div style="font-size:11.5px;color:var(--text3)">香港标准行业分类 HSIC</div></div>
+        <div onclick="closeSheet('industry-sheet')" style="width:28px;height:28px;border-radius:50%;background:var(--bg2);display:flex;align-items:center;justify-content:center;color:var(--text3);cursor:pointer"><i class="ti ti-x" style="font-size:15px"></i></div>
+      </div>
+      <div id="industry-list" style="overflow-y:auto;padding:6px 12px calc(16px + env(safe-area-inset-bottom))"></div>
+    </div>
+  </div>
+
   <!-- ════════ SPLASH · 整页口令入口 ════════ -->
   <div class="splash" id="splash">
     <div class="splash-bg"></div>
@@ -2011,10 +2005,6 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
     </div>
   </div>
 
-  <!-- 企微承接 · 悬浮客服入口 -->
-  <div id="fab-wecom" onclick="openWecom('悬浮入口')" style="position:absolute;right:12px;bottom:118px;z-index:45;display:flex;flex-direction:column;align-items:center;gap:2px;width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;box-shadow:0 4px 14px rgba(193,95,60,.45);justify-content:center;cursor:pointer">
-    <i class="ti ti-headset" style="font-size:20px"></i><span style="font-size:8px;font-weight:600">顾问</span>
-  </div>
 
   <!-- 企微承接 · 底部抽屉 -->
   <div id="wecom-sheet" style="display:none;position:absolute;inset:0;z-index:80;background:rgba(0,0,0,.45);align-items:flex-end" onclick="if(event.target===this)closeWecom()">
@@ -2309,7 +2299,18 @@ function openWecom(from){
   document.getElementById('wecom-sheet').style.display = 'flex';
 }
 function closeWecom(){ document.getElementById('wecom-sheet').style.display = 'none'; }
-function openSheet(id){ var e=document.getElementById(id); if(e) e.style.display='flex'; }
+/* 拟经营业务性质（HSIC）底部选择 */
+var INDUSTRIES=['001 – 农作物及动物养殖、狩猎及相关服务活动','002 – 林业活动','003 – 捕鱼及水产养殖','620 – 电脑程序编制、顾问及相关活动','631 – 数据处理、寄存及相关活动','702 – 管理顾问活动','463 – 食品、饮品及烟草批发','999 – 其他（请于办理时与顾问确认）'];
+function renderIndustries(){
+  var box=document.getElementById('industry-list'); if(!box) return;
+  var cur=(document.getElementById('ind-value')||{}).textContent||'';
+  box.innerHTML=INDUSTRIES.map(function(x){
+    var on=(x===cur);
+    return '<div onclick="pickIndustry(this)" style="display:flex;align-items:center;gap:10px;padding:13px 8px;border-bottom:1px solid var(--line);cursor:pointer;font-size:13.5px;'+(on?'color:var(--accent-d);font-weight:600':'')+'"><span style="flex:1">'+x+'</span>'+(on?'<i class="ti ti-check" style="color:var(--accent-d)"></i>':'')+'</div>';
+  }).join('');
+}
+function pickIndustry(el){ var v=el.querySelector('span').textContent; var f=document.getElementById('ind-value'); if(f){ f.textContent=v; f.style.color='var(--text1)'; } closeSheet('industry-sheet'); }
+function openSheet(id){ if(id==='industry-sheet') renderIndustries(); var e=document.getElementById(id); if(e) e.style.display='flex'; }
 function closeSheet(id){ var e=document.getElementById(id); if(e) e.style.display='none'; }
 /* 面议服务：预约咨询二次确认 → 顾问 24h 联系 → 下单完成页 */
 var CONSULT_SVC='';
@@ -2565,10 +2566,10 @@ function regSubmit(){ toast('已提交人工预审'); setTimeout(function(){ go(
 function regSaveDraft(){ toast('已暂存，可稍后在「我的订单」继续填写'); }   // 暂存草稿
 /* 新公司注册：从核名结果页进入，重置到第 1 步 */
 function startNewReg(){ PERSONS = defaultPersons(); renderPersons(); var c=document.getElementById('reg-confirm'); if(c) c.classList.remove('on'); var b=document.getElementById('reg-submit-btn'); if(b) b.disabled=true; regStep(1); go('s-reg'); }
-/* 创办成员/董事/公司秘书 人员管理 */
-function defaultPersons(){ return [{zh:'夏晗', en:'XIA HAN', roles:['创办成员','董事'], idtype:'护照', idno:'E*****343', share:'10,000 股 · 100%'}]; }
+/* 股东/董事/公司秘书 人员管理 */
+function defaultPersons(){ return [{zh:'夏晗', en:'XIA HAN', roles:['股东','董事'], idtype:'护照', idno:'E*****343', share:'10,000 股 · 100%'}]; }
 var PERSONS = defaultPersons();
-var ROLE_TAG = {'创办成员':'t-blue','董事':'t-green','公司秘书':'t-purple'};
+var ROLE_TAG = {'股东':'t-blue','董事':'t-green','公司秘书':'t-purple'};
 function renderPersons(){
   var box=document.getElementById('reg-persons'); if(!box) return;
   if(!PERSONS.length){ box.innerHTML='<div class="card card-pad" style="text-align:center;color:var(--text3);font-size:12.5px">尚未添加，请点下方按钮添加</div>'; return; }
@@ -2598,13 +2599,13 @@ function pickPermMode(k){ var h=document.getElementById('pa-hk'),n=document.getE
 /* 常驻地址：同通讯地址（默认勾选）→ 收起详细填写 */
 function toggleSameComm(el){ var box=el.querySelector('.cbox'); box.classList.toggle('on'); var p=document.getElementById('perm-addr'); if(p) p.style.display=box.classList.contains('on')?'none':''; }
 function savePerson(){
-  var roles=[]; if(document.getElementById('role-founder').classList.contains('on')) roles.push('创办成员'); if(document.getElementById('role-director').classList.contains('on')) roles.push('董事');
+  var roles=[]; if(document.getElementById('role-founder').classList.contains('on')) roles.push('股东'); if(document.getElementById('role-director').classList.contains('on')) roles.push('董事');
   if(!roles.length){ toast('请至少选择一个身份'); return; }
   var nm=(document.getElementById('p-name').value||'').trim();
   var idno=(document.getElementById('p-idno').value||'').trim();
   if(!nm){ toast('请上传证件，OCR 将自动带出姓名'); return; }
   var it=document.querySelector('.pf-idtype.on'); var idtype=it?it.textContent:'证件';
-  PERSONS.push({zh:nm, en:'', roles:roles, idtype:idtype, idno:idno||'已填', share:roles.indexOf('创办成员')>=0?'待分配':''});
+  PERSONS.push({zh:nm, en:'', roles:roles, idtype:idtype, idno:idno||'已填', share:roles.indexOf('股东')>=0?'待分配':''});
   renderPersons();
   toast('已保存'); go('s-reg');
 }
@@ -2736,19 +2737,19 @@ var SVC_DATA = {
     process:['支付','提交公司资料','平台配置地址','出厘印税单 + 水电单','完结'],
     meta:'独立香港<b>注册地址</b>（不可实体办公），交付<b>租约 + 厘印税单 + 水电单</b>，满足亚马逊等平台地址验证。<br>款项须付至香港公司主体（合规要求）。'},
   'addr-seat':{name:'工位租赁',icon:'ti-armchair',price:3000,cny:2500,old:0,form:'addr',tags:'HKD 3,000 / 月 · 可办公',
-    intro:'达利大厦实体工位（可办公），可作注册地址，按月租赁。',
+    intro:'香港核心地段实体工位（可办公），可作注册地址，按月租赁。',
     incl:['正规租赁合约','厘印税单（印花税）','物业出具水电单','实体工位（可办公）'],
-    sla:'预约后达利对接 · 签约即交付',
+    sla:'预约后顾问对接 · 签约即交付',
     materials:['公司 / 联系人','工位数量','期望起租日'],
-    process:['支付','提交需求','生态合作 · 达利对接','签约','交付'],
-    meta:'达利大厦<b>实体工位</b>（可办公），交付<b>租约 + 厘印税单 + 水电单</b>，可作注册地址。<br><b>生态合作</b>：预约后由达利对接、双方签约；按月结算。'},
-  'addr-office':{name:'独立办公室租赁',icon:'ti-building-skyscraper',price:0,old:0,consult:true,tags:'面议 · 与达利直签',
-    intro:'达利大厦独立办公室（可办公），按面积 / 楼层报价。',
+    process:['支付','提交需求','生态合作 · 顾问对接','签约','交付'],
+    meta:'香港核心地段<b>实体工位</b>（可办公），交付<b>租约 + 厘印税单 + 水电单</b>，可作注册地址。<br><b>生态合作</b>：预约后由顾问对接、双方签约；按月结算。'},
+  'addr-office':{name:'独立办公室租赁',icon:'ti-building-skyscraper',price:0,old:0,consult:true,tags:'面议 · 签约',
+    intro:'香港核心地段独立办公室（可办公），按面积 / 楼层报价。',
     incl:['正规租赁合约','厘印税单（印花税）','物业出具水电单','独立办公室（可办公）'],
-    sla:'预约后达利对接 · 看房报价',
+    sla:'预约后顾问对接 · 看房报价',
     materials:['公司 / 联系人','面积需求','预算区间'],
-    process:['提交需求','生态合作 · 达利对接','看房 / 报价','与达利直签'],
-    meta:'达利大厦<b>独立办公室</b>（可办公）。<br><b>生态合作</b>：预约后由达利对接，客户<b>与达利直签</b>；按面积 / 楼层报价（面议）。'},
+    process:['提交需求','生态合作 · 顾问对接','看房 / 报价','签约'],
+    meta:'香港核心地段<b>独立办公室</b>（可办公）。<br><b>生态合作</b>：预约后由顾问对接，客户<b>签约</b>；按面积 / 楼层报价（面议）。'},
 };
 
 // 各服务必要信息表单
