@@ -2126,7 +2126,7 @@ function chValidate(){
   if(v.length<6){ hint.textContent='请输入 6 位口令码'; hint.style.color='var(--text3)'; return; }
   // demo: any 6-char accepted except "000000"
   if(v==='000000'){ hint.innerHTML='✗ 请确认口令码'; hint.style.color='var(--red)'; }
-  else { hint.innerHTML='✓ 有效口令码 · 合作伙伴：星投资本'; hint.style.color='var(--green-d)'; }
+  else { hint.innerHTML='✓ 有效口令码'; hint.style.color='var(--green-d)'; }
 }
 function chConfirm(){
   var v = (document.getElementById('ch-input').value||'').trim();
@@ -2144,7 +2144,7 @@ function spValidate(){
   if(v.length===0){ hint.textContent=''; return; }
   if(v.length<6){ hint.textContent='请输入 6 位口令码'; hint.style.color='rgba(255,255,255,.6)'; return; }
   if(v==='000000'){ hint.innerHTML='✗ 口令码无效，请确认'; hint.style.color='#FCA5A5'; }
-  else { hint.innerHTML='✓ 有效口令码 · 合作伙伴：星投资本'; hint.style.color='#6EE7B7'; }
+  else { hint.innerHTML='✓ 有效口令码'; hint.style.color='#6EE7B7'; }
 }
 /* ═══ 双版本：新客 / 老客 分流 ═══ */
 var PERSONA = 'new';
