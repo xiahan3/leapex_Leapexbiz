@@ -2473,8 +2473,29 @@ function goInfo(){
   if(e=document.getElementById('sf-name')) e.textContent=s?s.name:'';
   if(e=document.getElementById('sf-kyc-note')) e.textContent=(s&&KYC_NOTE[s.form])||'';
   var fields=(s&&SVC_FORM[s.form])||[];
-  if(e=document.getElementById('sf-fields')) e.innerHTML=fields.map(function(f){return '<div class="field"><div class="field-l">'+f[0]+'</div><input class="input" placeholder="'+(f[1]||'')+'"></div>';}).join('');
+  if(e=document.getElementById('sf-fields')) e.innerHTML=fields.map(renderSvcField).join('');
   go('s-svcform');
+}
+/* 服务信息填写：字段渲染 —— 兼容旧版 [label,placeholder] 数组 + 新版分模块类型化字段（sec/note/txt/sel/up/grp） */
+function renderSvcField(f){
+  if(Array.isArray(f)) return '<div class="field"><div class="field-l">'+f[0]+'</div><input class="input" placeholder="'+(f[1]||'')+'"></div>';
+  var req=f.req?' <span style="color:var(--accent-d)">*</span>':'';
+  switch(f.t){
+    case 'sec': return '<div style="font-weight:700;font-size:13.5px;margin:16px 0 10px">'+f.label+'</div>';
+    case 'note': return '<div class="note" style="margin:-4px 0 12px"><i class="ti ti-info-circle"></i> '+f.label+'</div>';
+    case 'txt': return '<div class="field"><div class="field-l">'+f.label+req+'</div><input class="input" placeholder="'+(f.ph||'')+'"></div>';
+    case 'sel': return '<div class="field"><div class="field-l">'+f.label+req+'</div><select class="input">'+f.opts.map(function(o){return '<option>'+o+'</option>';}).join('')+'</select></div>';
+    case 'up': return '<div class="field"><div class="field-l">'+f.label+req+'</div><div class="uz" onclick="svcUpload()"><i class="ti ti-upload" style="font-size:20px;color:var(--text3)"></i><div style="font-size:12px;margin-top:6px;color:var(--text3)">'+(f.hint||'点击上传')+'</div></div></div>';
+    case 'grp': return '<div class="field"><div class="chk-pill" style="display:inline-flex;align-items:center;gap:6px" onclick="svcGrpTog(this)"><i class="ti ti-square"></i>'+f.label+'</div><div class="svc-grp-box" style="display:none;margin-top:10px">'+f.fields.map(renderSvcField).join('')+'</div></div>';
+    default: return '';
+  }
+}
+function svcUpload(){ toast('调用 wx.chooseMedia 选择文件'); }
+function svcGrpTog(el){
+  var box=el.parentNode.querySelector('.svc-grp-box'); if(!box) return;
+  var on=box.style.display==='none'; box.style.display=on?'block':'none';
+  var ic=el.querySelector('i'); if(ic) ic.className='ti '+(on?'ti-square-check-filled':'ti-square');
+  el.classList.toggle('on',on);
 }
 function infoDone(){
   showResult({title:'信息已提交', desc:'办理所需信息已提交。最后一步：完成 KYC 实名认证。', steps:flowSteps(), cur:2, btn:'去完成 KYC 认证', next:goKyc});
@@ -2720,9 +2741,9 @@ var SVC_DATA = {
     intro:'香港知识产权署 IPD 商标注册，每个类别单独申请。',
     incl:['注册申请表','商标注册证书'],
     sla:'约 6 个月',
-    materials:['商标名称 / 图样','申请类别 Class（如 9 / 35 / 42）','申请人信息','联系邮箱'],
-    process:['支付','提交商标信息','递交 IPD','审查 + 公告','发证'],
-    meta:'递交<b>知识产权署 IPD</b>：<b>每个类别单独申请</b>（一个类别 HKD 3,311 / ¥2,980）→ 审查 → <b>宪报公告（异议期 3 个月）</b> → 发证。'},
+    materials:['申请人信息（名称 / 证件登记号 / 地址）','商标图样（图形 / 组合 / 立体商标）','尼斯分类类别与货品 / 服务说明','优先权证明（如主张，选填）','联系邮箱'],
+    process:['支付','提交商标信息','顾问查询与评估','编制并递交 T2（IPD）','形式审查','实质审查','宪报公告（3 个月异议期）','注册发证'],
+    meta:'递交<b>知识产权署 IPD</b> 的 <b>T2 申请表</b>：填写申请人、商标图样、<b>尼斯分类类别及货品 / 服务</b>（<b>每个类别单独申请</b>，一个类别 HKD 3,311 / ¥2,980）、优先权（如有）。经 <b>形式审查 → 实质审查</b>（显著性 + 在先近似）→ <b>宪报公告（异议期 3 个月）</b>，无异议即注册发证，全程约 6 个月。'},
   'tmrenew':{name:'商标注册续期',icon:'ti-refresh',price:2200,cny:1980,old:0,form:'tmrenew',tags:'约 5 工作日 · 每 10 年',
     intro:'商标每 10 年续期，向 IPD 递交续期申请。',
     incl:['商标续期申请','续期回执'],
@@ -2766,7 +2787,37 @@ var SVC_FORM = {
   rename:[['现有公司英文名',''],['现有公司中文名（无则填「无」）',''],['商业登记号 BR（首 8 位）',''],['拟用新英文名',''],['拟用新中文名（无则填「无」）','']],
   transfer:[['公司名称',''],['转让方姓名',''],['受让方姓名',''],['转让股数',''],['转让对价 (HKD)','用于预估印花税']],
   deregister:[['公司名称',''],['注销原因',''],['税务是否已结清','是 / 否']],
-  tmreg:[['商标名称 / 图样',''],['申请类别 Class','如 9 / 35 / 42'],['申请人',''],['联系邮箱','name@email.com']],
+  tmreg:[
+    {t:'sec',label:'① 申请人信息'},
+    {t:'sel',label:'申请人类型',opts:['法人（公司）','自然人（个人）'],req:1},
+    {t:'txt',label:'申请人名称（中文）',ph:'与证件一致，中英至少填一项'},
+    {t:'txt',label:'申请人名称（英文）',ph:'法人须与 CI / BR 英文名一致'},
+    {t:'txt',label:'证件 / 登记号',ph:'公司 BR / CI 或 身份证 / 护照号',req:1},
+    {t:'txt',label:'成立地 / 国籍',ph:'如 香港',req:1},
+    {t:'txt',label:'地址（通讯 / 注册）',ph:'用于官方送达',req:1},
+    {t:'txt',label:'联系人 · 电话',ph:''},
+    {t:'txt',label:'联系邮箱',ph:'接收 IPD 通知',req:1},
+    {t:'sec',label:'② 商标本体'},
+    {t:'sel',label:'商标类型',opts:['文字','图形','图文组合','立体','颜色','声音','气味','其他'],req:1},
+    {t:'sel',label:'是否系列商标',opts:['否','是（多个近似变体）']},
+    {t:'txt',label:'商标名称（文字）',ph:'文字 / 组合商标的文字内容'},
+    {t:'up',label:'上传商标图样',hint:'图形 / 组合 / 立体商标必传 · 清晰 JPG / PNG'},
+    {t:'txt',label:'特殊字符 音译 / 翻译',ph:'含非中英文字符时填写（选填）'},
+    {t:'txt',label:'颜色声明 / 放弃专用权',ph:'如指定颜色为特征、通用词声明不专用（选填）'},
+    {t:'sec',label:'③ 类别与货品 / 服务（决定官费）'},
+    {t:'txt',label:'尼斯分类类别',ph:'多个用逗号分隔，如 9,35,42',req:1},
+    {t:'txt',label:'各类别货品 / 服务说明',ph:'可参考官方标准说明，或由顾问规范',req:1},
+    {t:'note',label:'每个类别单独计费：服务费 HKD 3,311 / 类 + 每类政府官费（以 IPD 公布为准）。'},
+    {t:'grp',k:'prio',label:'④ 主张优先权（巴黎公约 · 首次申请后 6 个月内 · 选填）',fields:[
+      {t:'txt',label:'首次申请国家 / 地区',ph:''},
+      {t:'txt',label:'首次申请日期',ph:'DD / MM / YYYY'},
+      {t:'txt',label:'首次申请编号',ph:''},
+      {t:'up',label:'上传优先权证明文件',hint:'首次申请的官方证明'}
+    ]},
+    {t:'sec',label:'⑤ 前置检索与委托'},
+    {t:'sel',label:'是否已做商标查询',opts:['已做（Leapex 核名 + 商标查询）','未做，请顾问评估']},
+    {t:'note',label:'提交即授权 Leapex 利柏思 作为代理人编制 T2 表并递交 IPD，并确认所填信息真实。'}
+  ],
   tmrenew:[['商标名称',''],['商标注册编号',''],['续期年度','']],
   addr:[['公司名称 / 拟注册名称',''],['用途','注册地址 / 办公 / 平台验证'],['联系人 · 手机',''],['备注（选填）','']],
 };
@@ -2779,6 +2830,7 @@ var KYC_NOTE = {
   secretary:'秘书转入将进行历史合规文件交接核对。',
   address:'地址变更如选用 Leapex 利柏思 地址，将自动配置注册地址。',
   deregister:'注销前需结清税务并取得税务局不反对注销证明书。',
+  tmreg:'商标注册无需 KYC；提交后顾问将编制 T2 表并递交知识产权署 IPD（每类别单独申请）。',
 };
 
 var CURRENT_SVC = null, CURRENT_ORDER = null;

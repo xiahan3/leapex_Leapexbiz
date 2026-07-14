@@ -417,12 +417,12 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
 
       <!-- ════ 商标办理（注册 / 续期）════ -->
       <div class="page" id="p-svc-tm">
-        <div class="card cp" style="background:var(--accent-bg);border-color:var(--accent-d)"><div style="font-size:12px;color:var(--accent-d)"><i class="ti ti-trademark"></i> <b>商标办理（知识产权署 IPD）</b>：<b>商标注册申请</b>（每类别单独申请 → 初步检索 → 递交 IPD → 审查 + 宪报公告 3 个月异议期 → 证书约 6 个月）、<b>商标注册续期</b>（每 10 年）。注册前的初步意见 / 检索见「核名&商标」。</div></div>
+        <div class="card cp" style="background:var(--accent-bg);border-color:var(--accent-d)"><div style="font-size:12px;color:var(--accent-d)"><i class="ti ti-trademark"></i> <b>商标办理（知识产权署 IPD）</b>：<b>商标注册申请</b>（每类别单独申请 → 顾问查询评估 → 编制并递交 T2 → 形式审查 → 实质审查 → 宪报公告 3 个月异议期 → 注册发证约 6 个月）、<b>商标注册续期</b>（每 10 年）。注册前的初步意见 / 检索见「核名&商标」。</div></div>
         <div class="filters"><span class="chip on">全部 2</span><span class="chip">商标注册</span><span class="chip">商标续期</span><span class="chip">宪报公告</span><span class="chip">已完结</span><input class="inp" placeholder="订单号 / 公司名" style="margin-left:auto;width:180px"></div>
         <div class="card"><table>
           <thead><tr><th>订单号</th><th>公司</th><th>服务</th><th>客户</th><th>当前节点</th><th>进度</th><th>状态</th><th></th></tr></thead>
           <tbody>
-            <tr><td>ORD-2026-0280</td><td><b>星辰科技有限公司</b></td><td>商标注册申请 <span class="pill p-gold">IPD</span></td><td>陈大文</td><td>初步检索建议</td><td>3 / 6</td><td><span class="pill p-blue">检索中</span></td><td><button class="btn btn-xs btn-p" onclick="openChange('ORD-2026-0280','tmreg','星辰科技有限公司')">维护</button></td></tr>
+            <tr><td>ORD-2026-0280</td><td><b>星辰科技有限公司</b></td><td>商标注册申请 <span class="pill p-gold">IPD</span></td><td>陈大文</td><td>顾问查询与评估</td><td>3 / 8</td><td><span class="pill p-blue">查询评估中</span></td><td><button class="btn btn-xs btn-p" onclick="openChange('ORD-2026-0280','tmreg','星辰科技有限公司')">维护</button></td></tr>
             <tr><td>ORD-2026-0281</td><td><b>恒丰贸易有限公司</b></td><td>商标注册续期</td><td>陈大文</td><td>递交续期</td><td>3 / 4</td><td><span class="pill p-blue">续期中</span></td><td><button class="btn btn-xs btn-p" onclick="openChange('ORD-2026-0281','tmrenew','恒丰贸易有限公司')">维护</button></td></tr>
           </tbody>
         </table></div>
@@ -1567,7 +1567,7 @@ var PRODUCT_SAMPLE = {
   '公司更名':{icon:'ti-forms',type:'工商变更',intro:'公司更名，先人工查名再备 NNC2 + 股东特别决议，含新印章。',hkd:'1667',cny:'1500',sla:'7–10 工作日；新 BR +2 周',persona:'品牌升级',deliver:'拟用新名称查册结果\n股东特别决议书\n更名文件 NNC2\n新商业登记证 BR\n更新印章 ×2',materials:'现公司中 / 英文名 + BR\n拟用新名称（中 / 英）\n股东特别决议签署',process:'支付\n提交拟用新名称\n人工查名\n编制 NNC2 + 决议\n文件签字确认\n递交注册处\n完结',desc:'<p>官费 HKD 295，含新印章重制 ×2。</p>'},
   '股份转让（股东变更）':{icon:'ti-arrows-exchange',type:'工商变更',intro:'股东股份转让，核定作价并代缴从价印花税 0.2%。',hkd:'面议',cny:'面议',sla:'约 5 个工作日',persona:'股权变动',deliver:'转股文书 + 买卖单据\n印花税代缴（从价 0.2%）\n更新股东名册 + 新股票',materials:'公司名称 / BR\n转让方 / 受让方 + 转让股数\n转让对价\n近 6 月审计或近 3 月财报\n受让方 KYC',process:'支付服务费\n提交转让信息\n核定作价 + 印花税\n受让方 KYC\n备文书缴印花\n文件签字\n完结',desc:'<p>从价印花税 0.2%（买卖各 0.1% + 每份 HK$5，作价与净值孰高）。</p>'},
   '公司注销（撤销注册）':{icon:'ti-building-off',type:'工商变更',intro:'撤销注册注销公司，办 IR1263 不反对通知书 + NDR1。',hkd:'面议',cny:'面议',sla:'约 8 个月（政府审批）',persona:'停止经营',deliver:'税务局不反对通知书 IR1263\n股东特别决议书\n撤销注册申请 NDR1',materials:'公司名称 / BR\n全体股东同意\n税务结清 / 无外债声明\n（如需）清算审计报告',process:'支付\n提交注销信息\n申请 IR1263\n备决议 + NDR1\n文件签字\n递交 + 公告',desc:'<p>须无外债、停业逾 3 个月；官费 HKD 270+420。</p>'},
-  '商标注册申请':{icon:'ti-trademark',type:'商标',intro:'香港知识产权署 IPD 商标注册，每个类别单独申请。',hkd:'3311',cny:'2980',sla:'约 6 个月',persona:'品牌保护',deliver:'注册申请表\n商标注册证书',materials:'商标名称 / 图样\n申请类别 Class（如 9 / 35 / 42）\n申请人信息\n联系邮箱',process:'支付\n提交商标信息\n递交 IPD\n审查 + 公告\n发证',desc:'<p>每类别 HKD 3,311；宪报公告异议期 3 个月。</p>'},
+  '商标注册申请':{icon:'ti-trademark',type:'商标',intro:'香港知识产权署 IPD 商标注册，每个类别单独申请。',hkd:'3311',cny:'2980',sla:'约 6 个月',persona:'品牌保护',deliver:'注册申请表\n商标注册证书',materials:'申请人信息（名称 / 证件登记号 / 地址）\n商标图样（图形 / 组合 / 立体）\n尼斯分类类别与货品 / 服务说明\n优先权证明（如有）\n联系邮箱',process:'支付\n提交商标信息\n顾问查询与评估\n编制并递交 T2（IPD）\n形式审查\n实质审查\n宪报公告（3 个月异议期）\n注册发证',desc:'<p>递交 IPD 的 <b>T2 申请表</b>；每类别 HKD 3,311，宪报公告异议期 3 个月。</p>'},
   '商标注册续期':{icon:'ti-refresh',type:'商标',intro:'商标每 10 年续期，向 IPD 递交续期申请。',hkd:'2200',cny:'1980',sla:'约 5 个工作日',persona:'商标到期',deliver:'商标续期申请\n续期回执',materials:'商标名称\n商标注册编号\n续期年度',process:'支付\n提交商标编号\n递交续期 IPD\n完结',desc:'<p>向 IPD 递交续期，续期费 HKD 2,200。</p>'},
   '独立注册地址':{icon:'ti-map-pin',type:'地址租赁',intro:'独立香港注册地址（不可办公），交付租约 + 厘印税单 + 水电单。',hkd:'6000',cny:'5400',sla:'付款后 1–2 个工作日',persona:'需注册地址',deliver:'正规租赁合约\n厘印税单（印花税）\n物业出具水电单',materials:'公司名称 / 拟注册名称\n用途说明\n联系人 · 手机',process:'支付\n提交公司资料\n平台配置地址\n出厘印税单 + 水电单\n完结',desc:'<p>满足亚马逊等平台地址验证；款项付至香港公司主体。</p>'},
   '工位租赁':{icon:'ti-armchair',type:'地址租赁',intro:'香港上市公司自持物业实体工位（可办公），可作注册地址，按年租赁。',hkd:'面议',cny:'面议',sla:'预约后线上或香港实地看工位',persona:'需实体工位',deliver:'正规租赁合约\n厘印税单\n物业水电单\n实体工位（可办公）',materials:'公司 / 联系人\n工位数量\n期望起租日',process:'提交需求\n顾问对接\n看位 / 报价\n签约\n交付',desc:'<p>香港上市公司自持物业，可作注册地址，按年结算。</p>'},
@@ -1891,12 +1891,14 @@ var CHANGE_NODES={
   tmreg:[
     {name:'支付',party:'客户',locked:true,status:'已完成',remark:'服务费已到账（官费按类别另计）。'},
     {name:'提交商标信息',party:'客户',status:'已完成',statusOpts:NODE_ST_REG,
-      fields:[{label:'商标名称 / 图样',value:'StarTech'},{label:'申请类别 Class',value:'9 / 35 / 42'},{label:'申请人',value:'星辰科技有限公司'}],
-      docs:[{name:'商标图样.png'}],remark:'每个类别单独申请；建议先做初步检索。'},
-    {name:'初步检索建议',party:'平台',status:'进行中',statusOpts:NODE_ST_REG,supp:['初步检索意见.pdf'],remark:'评估近似 / 冲突风险，可联动「核名&商标」。'},
-    {name:'递交注册申请（IPD）',party:'平台',status:'未开始',statusOpts:NODE_ST_REG,supp:['申请回执.pdf'],remark:'递交知识产权署 IPD。'},
-    {name:'审查 + 宪报公告（3 个月异议期）',party:'平台',status:'未开始',statusOpts:NODE_ST_REG,remark:''},
-    {name:'完结（商标注册证书 · 约 6 个月）',party:'平台',status:'未开始',statusOpts:NODE_ST_REG,remark:''}
+      fields:[{label:'申请人类型',value:'法人（公司）'},{label:'申请人',value:'星辰科技有限公司 / StarTech Limited'},{label:'商标类型',value:'图文组合'},{label:'尼斯分类类别',value:'9,35,42'},{label:'货品 / 服务',value:'计算机软件 / 广告推广 / 软件设计'},{label:'优先权',value:'否'}],
+      docs:[{name:'商标图样.png'}],remark:'每个类别单独申请；如未做查询建议先做可用性评估。'},
+    {name:'顾问查询与评估',party:'平台',status:'进行中',statusOpts:NODE_ST_REG,supp:['可用性检索意见.pdf'],remark:'评估近似 / 冲突风险，可联动「核名&商标」。'},
+    {name:'编制并递交 T2（IPD）',party:'平台',status:'未开始',statusOpts:NODE_ST_REG,supp:['T2 申请表.pdf','申请回执.pdf'],remark:'编制 T2 表并递交知识产权署 IPD。'},
+    {name:'形式审查',party:'IPD / 平台',status:'未开始',statusOpts:NODE_ST_REG,remark:'检查表格与资料完整性。'},
+    {name:'实质审查',party:'IPD / 平台',status:'未开始',statusOpts:NODE_ST_REG,remark:'显著性 + 在先近似；如收到审查意见由顾问协助回复。'},
+    {name:'宪报公告（3 个月异议期）',party:'IPD / 平台',status:'未开始',statusOpts:NODE_ST_REG,remark:'公告期内无异议方可注册。'},
+    {name:'注册发证（商标注册证书 · 约 6 个月）',party:'平台',status:'未开始',statusOpts:NODE_ST_REG,supp:['商标注册证书.pdf'],remark:''}
   ],
   tmrenew:[
     {name:'支付',party:'客户',locked:true,status:'已完成',remark:'续期费 HKD 2,200 已到账。'},
