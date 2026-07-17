@@ -1001,9 +1001,10 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
         <div class="note" id="res-desc" style="margin:6px 14px 14px;line-height:1.65">已完成</div>
         <div class="card card-pad" id="res-info" style="text-align:left;display:none"></div>
         <div style="display:flex;gap:8px;margin-top:16px">
-          <button class="btn ghost" style="width:96px" onclick="go('s-orders')">查看订单</button>
+          <button class="btn ghost" style="width:96px" id="res-orders" onclick="go('s-orders')">查看订单</button>
           <button class="btn" style="flex:1.4" id="res-next" onclick="resNext()">下一步</button>
         </div>
+        <div id="res-home" style="display:none;margin-top:14px"><a onclick="goHome()" style="color:var(--accent-d);font-size:13px;cursor:pointer">返回首页</a></div>
       </div>
     </div>
 
@@ -1691,7 +1692,6 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
         <div class="field"><div class="field-l">公司编号 CI</div><input class="input" id="cf-ci" placeholder="如 78451236"></div>
         <div class="field"><div class="field-l">商业登记号 BR</div><input class="input" id="cf-br" placeholder="如 12345678"></div>
         <div class="field"><div class="field-l">成立日期</div><input class="input" id="cf-date" placeholder="如 2024-09-15"></div>
-        <div class="field"><div class="field-l">注册办事处地址</div><input class="input" id="cf-addr" placeholder="香港…（默认可用法定秘书地址）"></div>
         <button class="btn" style="margin-top:6px" onclick="saveCompany()">保存</button>
       </div>
     </div>
@@ -2277,7 +2277,7 @@ var COMPANY_RETURN = 's-mycompany';
 function openCompanyForm(returnTo, backTo){
   COMPANY_RETURN = returnTo || 's-mycompany';
   var f = document.getElementById('s-companyform'); if(f) f.dataset.back = backTo || 's-mycompany';
-  ['cf-zh','cf-en','cf-ci','cf-br','cf-date','cf-addr'].forEach(function(i){ var e=document.getElementById(i); if(e) e.value=''; });
+  ['cf-zh','cf-en','cf-ci','cf-br','cf-date'].forEach(function(i){ var e=document.getElementById(i); if(e) e.value=''; });
   go('s-companyform');
 }
 function saveCompany(){
@@ -2286,9 +2286,8 @@ function saveCompany(){
   if(!zh && !en){ toast('请填写公司中文或英文名称'); return; }
   var ci = (document.getElementById('cf-ci').value||'').trim();
   var br = (document.getElementById('cf-br').value||'').trim();
-  var addr = (document.getElementById('cf-addr').value||'').trim();
   var info = []; if(ci) info.push('CI: '+ci); if(br) info.push('BR: '+br);
-  MY_COMPANIES.push({ id:'c'+Date.now(), zh: zh||en, en: zh?en:'', status:'存续中', statusClass:'t-green', active:false, info: info.join(' · '), entry:'公司文件', entryD: addr || 'CI / BR / 章程 / 名册 / SCR', annual:'' });
+  MY_COMPANIES.push({ id:'c'+Date.now(), zh: zh||en, en: zh?en:'', status:'存续中', statusClass:'t-green', active:false, info: info.join(' · '), entry:'公司文件', entryD: 'CI / BR / 章程 / 名册 / SCR', annual:'' });
   renderCompanies();
   toast('已保存公司信息');
   setTimeout(function(){ go(COMPANY_RETURN); }, 600);
@@ -2429,7 +2428,16 @@ function showResult(o){
   } else sb.style.display='none';
   document.getElementById('res-title').textContent=o.title;
   document.getElementById('res-desc').innerHTML=o.desc||'';
-  document.getElementById('res-next').textContent=o.btn||'下一步';
+  var np=document.getElementById('res-next'), ob=document.getElementById('res-orders'), hm=document.getElementById('res-home');
+  if(o.orderPrimary){            // 只保留「查看订单」主按钮 + 「返回首页」文字超链（如商标办理结果）
+    np.style.display='none';
+    ob.className='btn'; ob.style.width='100%'; ob.style.flex='1'; ob.textContent='查看订单';
+    if(hm) hm.style.display='block';
+  } else {                       // 常规：查看订单(次) + 下一步(主)
+    np.style.display=''; np.textContent=o.btn||'下一步';
+    ob.className='btn ghost'; ob.style.width='96px'; ob.style.flex=''; ob.textContent='查看订单';
+    if(hm) hm.style.display='none';
+  }
   _resNext=o.next; go('s-result');
 }
 function resNext(){ if(typeof _resNext==='function') _resNext(); }
@@ -2498,6 +2506,11 @@ function svcGrpTog(el){
   el.classList.toggle('on',on);
 }
 function infoDone(){
+  var f=CURRENT_SVC&&CURRENT_SVC.form;
+  if(f==='tmreg'||f==='tmrenew'){   // 商标服务无需 KYC：查看订单为主 + 返回首页超链
+    showResult({title:'信息已提交', desc:'商标办理信息已提交，顾问将按知识产权署 IPD 要求编制并递交，进度可在订单中查看。', steps:flowSteps(), cur:2, orderPrimary:true});
+    return;
+  }
   showResult({title:'信息已提交', desc:'办理所需信息已提交。最后一步：完成 KYC 实名认证。', steps:flowSteps(), cur:2, btn:'去完成 KYC 认证', next:goKyc});
 }
 function goKyc(){ kycStep(1); go('s-kyc'); }
@@ -2741,9 +2754,9 @@ var SVC_DATA = {
     intro:'香港知识产权署 IPD 商标注册，每个类别单独申请。',
     incl:['注册申请表','商标注册证书'],
     sla:'约 6 个月',
-    materials:['申请人信息（名称 / 证件登记号 / 地址）','商标图样（图形 / 组合 / 立体商标）','尼斯分类类别与货品 / 服务说明','优先权证明（如主张，选填）','联系邮箱'],
+    materials:['申请人信息（名称 / 证件登记号 / 地址）','商标图样（图形 / 组合 / 立体商标）','拟保护的货品 / 服务说明','联系邮箱'],
     process:['支付','提交商标信息','顾问查询与评估','编制并递交 T2（IPD）','形式审查','实质审查','宪报公告（3 个月异议期）','注册发证'],
-    meta:'递交<b>知识产权署 IPD</b> 的 <b>T2 申请表</b>：填写申请人、商标图样、<b>尼斯分类类别及货品 / 服务</b>（<b>每个类别单独申请</b>，一个类别 HKD 3,311 / ¥2,980）、优先权（如有）。经 <b>形式审查 → 实质审查</b>（显著性 + 在先近似）→ <b>宪报公告（异议期 3 个月）</b>，无异议即注册发证，全程约 6 个月。'},
+    meta:'递交<b>知识产权署 IPD</b> 的 <b>T2 申请表</b>：提供申请人、商标图样与<b>拟保护的货品 / 服务说明</b>，顾问按<b>尼斯分类</b>规范类别（<b>每个类别单独申请</b>，一个类别 HKD 3,311 / ¥2,980）。经 <b>形式审查 → 实质审查</b>（显著性 + 在先近似）→ <b>宪报公告（异议期 3 个月）</b>，无异议即注册发证，全程约 6 个月。'},
   'tmrenew':{name:'商标注册续期',icon:'ti-refresh',price:2200,cny:1980,old:0,form:'tmrenew',tags:'约 5 工作日 · 每 10 年',
     intro:'商标每 10 年续期，向 IPD 递交续期申请。',
     incl:['商标续期申请','续期回执'],
@@ -2805,16 +2818,9 @@ var SVC_FORM = {
     {t:'txt',label:'特殊字符 音译 / 翻译',ph:'含非中英文字符时填写（选填）'},
     {t:'txt',label:'颜色声明 / 放弃专用权',ph:'如指定颜色为特征、通用词声明不专用（选填）'},
     {t:'sec',label:'③ 类别与货品 / 服务（决定官费）'},
-    {t:'txt',label:'尼斯分类类别',ph:'多个用逗号分隔，如 9,35,42',req:1},
-    {t:'txt',label:'各类别货品 / 服务说明',ph:'可参考官方标准说明，或由顾问规范',req:1},
+    {t:'txt',label:'各类别货品 / 服务说明',ph:'请简要描述，后续由顾问按照官方要求修改',req:1},
     {t:'note',label:'每个类别单独计费：服务费 HKD 3,311 / 类 + 每类政府官费（以 IPD 公布为准）。'},
-    {t:'grp',k:'prio',label:'④ 主张优先权（巴黎公约 · 首次申请后 6 个月内 · 选填）',fields:[
-      {t:'txt',label:'首次申请国家 / 地区',ph:''},
-      {t:'txt',label:'首次申请日期',ph:'DD / MM / YYYY'},
-      {t:'txt',label:'首次申请编号',ph:''},
-      {t:'up',label:'上传优先权证明文件',hint:'首次申请的官方证明'}
-    ]},
-    {t:'sec',label:'⑤ 前置检索与委托'},
+    {t:'sec',label:'④ 前置检索与委托'},
     {t:'sel',label:'是否已做商标查询',opts:['已做（Leapex 核名 + 商标查询）','未做，请顾问评估']},
     {t:'note',label:'提交即授权 Leapex 利柏思 作为代理人编制 T2 表并递交 IPD，并确认所填信息真实。'}
   ],
