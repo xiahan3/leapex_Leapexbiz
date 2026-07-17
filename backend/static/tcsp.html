@@ -2320,9 +2320,15 @@ function confirmConsult(){
   closeSheet('consult-sheet');
   var s=CURRENT_SVC||{};
   var no='ORD-2026-0'+(ORD_SEQ++);
-  ORDERS.unshift({no:no, company:'（待顾问报价）', service:CONSULT_SVC, icon:s.icon||'ti-headset', color:'accent', channel:CHANNEL, status:'待顾问联系', stage:'待顾问联系', amt:0, bill:'—', bs:'面议'});
-  setPersona('user');
-  showResult({title:'预约成功', desc:'已收到你的「<b>'+CONSULT_SVC+'</b>」预约，<b style="color:var(--accent-d)">专属顾问将在 24 小时内与你联系</b>并提供报价方案。可在「我的订单」查看进度。', steps:['提交预约','顾问联系','报价确认'], cur:1, btn:'查看我的订单', next:function(){ go('s-orders'); }});
+  var order={no:no, company:'（待顾问报价）', service:CONSULT_SVC, icon:s.icon||'ti-headset', color:'accent', channel:CHANNEL, status:'待顾问联系', stage:'待顾问联系', amt:0, bill:'—', bs:'面议'};
+  ORDERS.unshift(order); CURRENT_ORDER=order;
+  setPersona('user'); FLOW_TYPE='service';
+  var base='已收到你的「<b>'+CONSULT_SVC+'</b>」预约，<b style="color:var(--accent-d)">专属顾问将在 24 小时内与你联系</b>并提供报价方案。';
+  if(s && s.form && SVC_FORM[s.form]){   // 面议服务如已配置填写表单（如撤销注册 NDR1）：预约成功后可直接填申请信息
+    showResult({title:'预约成功', desc:base+'可先填写申请信息，加快办理。', steps:['提交预约','顾问联系','报价确认'], cur:1, btn:'填写申请信息', next:goInfo});
+  } else {
+    showResult({title:'预约成功', desc:base+'可在「我的订单」查看进度。', steps:['提交预约','顾问联系','报价确认'], cur:1, btn:'查看我的订单', next:function(){ go('s-orders'); }});
+  }
 }
 
 /* New registration entry → KYC first */
@@ -2742,7 +2748,7 @@ var SVC_DATA = {
     materials:['公司名称 / 商业登记号 BR','转让方 / 受让方信息 + 转让股数','转让对价','近 6 月审计报告或近 3 月财务报表','受让方 KYC 资料'],
     process:['支付服务费','提交转让信息','核定作价 + 印花税','受让方 KYC','备文书缴印花','文件签字','完结'],
     meta:'<b>您提交转让信息 + 估值资料</b>（近 6 月审计报告或近 3 月财务报表）；我们核定作价并<b>代缴从价印花税 0.2%</b>（买卖双方各 0.1% + 每份转让文书定额 HK$5，按对价与资产净值孰高）。<br>受让方须完成 KYC；文书线下文件签字后送 IRD 加盖印花。价格面议（视作价）。'},
-  'deregister':{name:'公司注销（撤销注册）',icon:'ti-building-off',price:0,old:0,consult:true,tags:'约 8 个月 · NDR1 + IR1263',
+  'deregister':{name:'公司注销（撤销注册）',icon:'ti-building-off',price:0,old:0,consult:true,form:'deregister',tags:'约 8 个月 · NDR1 + IR1263',
     intro:'撤销注册注销公司，办 IR1263 不反对通知书 + NDR1。',
     incl:['税务局不反对通知书 IR1263','股东特别决议书','撤销注册申请 NDR1'],
     sla:'约 8 个月（政府审批）',
@@ -2817,7 +2823,27 @@ var SVC_FORM = {
   secretary:[['公司名称',''],['商业登记号 BR（首 8 位）',''],['现任秘书公司（如有）',''],['确认由 Leapex 利柏思 接任法定秘书','是 / 否']],
   rename:[['现有公司英文名',''],['现有公司中文名（无则填「无」）',''],['商业登记号 BR（首 8 位）',''],['拟用新英文名',''],['拟用新中文名（无则填「无」）','']],
   transfer:[['公司名称',''],['转让方姓名',''],['受让方姓名',''],['转让股数',''],['转让对价 (HKD)','用于预估印花税']],
-  deregister:[['公司名称',''],['注销原因',''],['税务是否已结清','是 / 否']],
+  deregister:[
+    {t:'sec',label:'① 公司识别'},
+    {t:'txt',label:'公司名称（须与注册证书一致）',ph:'如 好生活有限公司',req:1},
+    {t:'txt',label:'商业登记号 BR（首 8 位）',ph:'如 77777777',req:1},
+    {t:'txt',label:'公司注册编号 CI（如有）',ph:''},
+    {t:'sec',label:'② 申请人'},
+    {t:'sel',label:'申请人身分',opts:['上述公司','公司一名董事','公司一名成员（股东）'],req:1},
+    {t:'txt',label:'申请人姓名 / 名称',ph:'自然人姓名 或 法人名称',req:1},
+    {t:'txt',label:'申请人通讯地址',ph:'室 / 楼 · 大厦 · 街道 · 地区 · 国家',req:1},
+    {t:'txt',label:'申请人电邮 / 传真',ph:'便于公司注册处联络',req:1},
+    {t:'note',label:'如申请人为「公司」本身，须另提名一名自然人接收撤销注册通知书（姓名 / 地址 / 电邮），顾问将协助填报。'},
+    {t:'sec',label:'③ 撤销条件确认（须全部符合）'},
+    {t:'sel',label:'全体成员（股东）是否同意撤销',opts:['是','否'],req:1},
+    {t:'sel',label:'公司是否已停业逾 3 个月或从未营运',opts:['是','否'],req:1},
+    {t:'sel',label:'是否无尚未清偿债务（含或有负债）',opts:['是','否'],req:1},
+    {t:'sel',label:'是否未涉法律程序、且资产不含香港不动产',opts:['是','否'],req:1},
+    {t:'sec',label:'④ 税务不反对通知书（IR1263）'},
+    {t:'sel',label:'是否已取得税务局「不反对撤销注册」通知书 IR1263',opts:['未取得（顾问协助申请）','已取得'],req:1},
+    {t:'up',label:'上传 IR1263 通知书（如已取得）',hint:'须为正本，且自发出日起 3 个月内递交注册处'},
+    {t:'note',label:'NDR1 须由申请人签署；虚假或误导性陈述属刑事罪行。提交后顾问将核对条件、（如需）代办 IR1263，并编制 NDR1 递交注册处（撤销程序约 8 个月，含宪报公告异议期）。'}
+  ],
   tmreg:[
     {t:'sec',label:'① 申请人信息'},
     {t:'sel',label:'申请人类型',opts:['法人（公司）','自然人（个人）'],req:1},
