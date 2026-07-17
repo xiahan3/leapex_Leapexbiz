@@ -2507,11 +2507,11 @@ function svcGrpTog(el){
 }
 function infoDone(){
   var f=CURRENT_SVC&&CURRENT_SVC.form;
-  if(f==='tmreg'||f==='tmrenew'){   // 商标服务无需 KYC：查看订单为主 + 返回首页超链
-    showResult({title:'信息已提交', desc:'商标办理信息已提交，顾问将按知识产权署 IPD 要求编制并递交，进度可在订单中查看。', steps:flowSteps(), cur:2, orderPrimary:true});
-    return;
-  }
-  showResult({title:'信息已提交', desc:'办理所需信息已提交。最后一步：完成 KYC 实名认证。', steps:flowSteps(), cur:2, btn:'去完成 KYC 认证', next:goKyc});
+  // 所有服务办理结果页统一：查看订单为主按钮 + 返回首页文字超链（不再强推 KYC，合规由顾问后台跟进）
+  var desc=(f==='tmreg'||f==='tmrenew')
+    ? '商标办理信息已提交，顾问将按知识产权署 IPD 要求编制并递交，进度可在订单中查看。'
+    : '办理所需信息已提交，顾问将为你推进办理，进度可在订单中查看。';
+  showResult({title:'信息已提交', desc:desc, steps:flowSteps(), cur:2, orderPrimary:true});
 }
 function goKyc(){ kycStep(1); go('s-kyc'); }
 function cancelOrder(){
@@ -2791,7 +2791,25 @@ var SVC_DATA = {
 // 各服务必要信息表单
 var SVC_FORM = {
   register:[['期望公司英文名','如 Star Tech Limited'],['期望公司中文名','如 星辰科技有限公司'],['联系人姓名',''],['联系邮箱','name@email.com']],
-  annual:[['公司名称',''],['公司注册编号 CI',''],['商业登记证号 BR',''],['财政年度结算日','如 03-31']],
+  annual:[
+    {t:'sec',label:'① 公司识别'},
+    {t:'txt',label:'公司名称（须与注册证书一致）',ph:'如 大展鸿图有限公司',req:1},
+    {t:'txt',label:'公司注册编号 CI',ph:'如 78451236',req:1},
+    {t:'txt',label:'商业登记号 BR（首 8 位）',ph:'如 88888888',req:1},
+    {t:'txt',label:'周年结算日（成立周年日）',ph:'DD / MM / YYYY · 决定 42 天递交期限',req:1},
+    {t:'sec',label:'② 公司资料'},
+    {t:'txt',label:'经营业务性质（HSIC 编码 / 描述）',ph:'如 46xx 批发贸易（无变动可留空）'},
+    {t:'txt',label:'电邮地址',ph:'接收公司注册处通知',req:1},
+    {t:'txt',label:'香港联络电话',ph:'+852 …'},
+    {t:'note',label:'注册办事处地址沿用 Leapex 利柏思 法定秘书地址；如需变更请另办「变更注册地址」。'},
+    {t:'sec',label:'③ 股本 · 股东 · 董事（确认 / 变动）'},
+    {t:'txt',label:'已发行股份总数',ph:'如 10,000'},
+    {t:'sel',label:'股东及持股较上次申报是否变动',opts:['否','是（顾问将跟进）'],req:1},
+    {t:'sel',label:'董事较上次申报是否变动',opts:['否','是（顾问将跟进）'],req:1},
+    {t:'note',label:'法定公司秘书由 Leapex 利柏思 担任，无需填写。'},
+    {t:'up',label:'上传上一年度 NAR1 / 变动证明（选填）',hint:'便于顾问比对，非必需'},
+    {t:'note',label:'提交后顾问将编制 NAR1，须于结算日后 42 天内递交注册处（逾期政府罚款递增），并安排董事 / 秘书签署。'}
+  ],
   address:[['公司名称',''],['商业登记号 BR（首 8 位）',''],['新注册地址（室/楼/座 · 大厦 · 街道 · 地区）· 或选用 Leapex 利柏思 地址',''],['生效日期','DD/MM/YYYY']],
   salarytax:[['公司名称',''],['员工人数','按人头计费'],['申报年度','如 2024/25']],
   persontax:[['姓名',''],['香港身份证 / 税务档案号',''],['申报年度','如 2024/25']],
