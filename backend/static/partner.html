@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Leapex 利柏思 · 渠道商招募 | 香港公司服务，云帐房喊你一起做</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  /* Leapex 暗黑金 */
+  --gold:#D4A853; --gold-l:#F4D9A6; --gold-d:#B8860B;
+  --ink:#0D0D0D; --ink2:#141210; --ink3:#1E1B17;
+  --accent:#C15F3C; --accent-d:#A94E30; --accent-bg:#F7EBE5;
+  --green:#2E8B57; --green-bg:#E7F2EC;
+  --red:#D93A3A; --red-bg:#FBEAEA;
+  --text:#1A1A1A; --text2:#6B6B6B; --text3:#9B9B9B; --text4:#BDBDBD;
+  --bg:#F5F5F2; --bg2:#EFEFEC; --card:#FFFFFF; --line:#E5E5E2; --line2:#DDDDD8;
+  --shadow:0 1px 3px rgba(0,0,0,.06);
+}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue',sans-serif;
+  background:#1c1c1e;color:var(--text);font-size:15px;line-height:1.6;overflow-x:hidden}
+.wrap{max-width:480px;margin:0 auto;background:var(--bg);min-height:100vh;overflow:hidden;
+  box-shadow:0 0 60px rgba(0,0,0,.45);position:relative}
+img,svg{max-width:100%}
+.sec{padding:26px 18px}
+.sec-head{margin-bottom:16px}
+.kicker{font-size:11.5px;font-weight:700;letter-spacing:1.4px;color:var(--gold-d);text-transform:uppercase}
+.h2{font-size:21px;font-weight:800;letter-spacing:.3px;margin-top:5px;line-height:1.35}
+.sub{font-size:13px;color:var(--text2);margin-top:6px}
+.card{background:var(--card);border-radius:12px;border:1px solid var(--line);box-shadow:var(--shadow)}
+
+/* ── Hero ── */
+.hero{background:linear-gradient(165deg,#141210 0%,#0D0D0D 60%,#17130C 100%);color:#fff;padding:30px 18px 34px;position:relative;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.28;pointer-events:none}
+.hero-in{position:relative;z-index:2}
+.brandrow{display:flex;align-items:center;gap:9px}
+.brandname{font-size:19px;font-weight:800;letter-spacing:.4px;color:var(--gold)}
+.licline{margin-top:9px;display:inline-flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:11.5px;font-weight:600;
+  color:var(--gold-l);background:rgba(212,168,83,.12);border:1px solid rgba(212,168,83,.3);padding:5px 11px;border-radius:20px}
+.hero-h1{font-size:29px;line-height:1.28;font-weight:800;letter-spacing:.5px;margin-top:22px}
+.hero-h1 em{font-style:normal;background:linear-gradient(100deg,#F4D9A6,#D4A853 55%,#B8860B);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.72);margin-top:12px;line-height:1.6}
+.hero-stats{display:flex;gap:8px;margin-top:20px}
+.hstat{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(212,168,83,.18);border-radius:10px;padding:10px 8px;text-align:center}
+.hstat b{display:block;font-size:18px;font-weight:800;color:var(--gold);letter-spacing:.3px}
+.hstat span{font-size:10.5px;color:rgba(255,255,255,.6)}
+.cta-gold{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;margin-top:22px;padding:15px;border:none;border-radius:13px;
+  background:linear-gradient(135deg,#F4D9A6,#D4A853);color:#1A1A1A;font-size:16.5px;font-weight:800;cursor:pointer;
+  font-family:inherit;box-shadow:0 10px 30px rgba(212,168,83,.35);text-decoration:none;transition:transform .15s,box-shadow .15s}
+.cta-gold:active{transform:translateY(1px);box-shadow:0 5px 16px rgba(212,168,83,.3)}
+.hero-note{text-align:center;font-size:11.5px;color:rgba(255,255,255,.45);margin-top:11px}
+
+/* ── 价值支柱 ── */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pill-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 12px;box-shadow:var(--shadow)}
+.pill-ic{width:36px;height:36px;border-radius:10px;background:rgba(212,168,83,.16);color:var(--gold-d);
+  display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:9px}
+.pill-t{font-size:14.5px;font-weight:700;letter-spacing:.2px}
+.pill-d{font-size:12px;color:var(--text2);margin-top:4px;line-height:1.55}
+
+/* ── 信任墙 ── */
+.trust{background:linear-gradient(160deg,#141210,#0D0D0D);color:#fff;padding:26px 18px}
+.trust .h2{color:#fff}
+.trust .kicker{color:var(--gold)}
+.trust-item{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,.04);
+  border:1px solid rgba(212,168,83,.2);border-radius:12px;padding:14px;margin-bottom:10px}
+.trust-item:last-child{margin-bottom:0}
+.trust-ic{width:38px;height:38px;border-radius:11px;background:rgba(212,168,83,.15);color:var(--gold);
+  display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.trust-t{font-size:14.5px;font-weight:700;color:var(--gold-l)}
+.trust-d{font-size:12.5px;color:rgba(255,255,255,.62);margin-top:3px;line-height:1.55}
+
+/* ── 分佣表 ── */
+.rate-tbl{width:100%;border-collapse:collapse;font-size:14px}
+.rate-tbl th{background:var(--ink2);color:var(--gold-l);font-size:12px;font-weight:700;letter-spacing:.6px;text-align:left;padding:11px 14px}
+.rate-tbl th:last-child{text-align:right}
+.rate-tbl td{padding:12px 14px;border-bottom:1px solid var(--line)}
+.rate-tbl tr:last-child td{border-bottom:none}
+.rate-tbl td:last-child{text-align:right;font-weight:800;color:var(--accent);font-size:16px;white-space:nowrap}
+.rate-svc{font-weight:600}
+.rate-note{font-size:11.5px;color:var(--text3);margin-top:3px;font-weight:400}
+.settle{display:flex;align-items:center;gap:8px;padding:12px 14px;background:var(--accent-bg);border-radius:0 0 12px 12px;font-size:12.5px;color:var(--accent-d);font-weight:600}
+.foot-note{font-size:11.5px;color:var(--text3);margin-top:9px;text-align:center}
+
+/* 收益举例 */
+.calc{background:linear-gradient(155deg,#17130C,#0D0D0D);border-radius:14px;padding:16px;color:#fff;margin-top:14px;border:1px solid rgba(212,168,83,.25)}
+.calc-h{font-size:14px;font-weight:700;color:var(--gold-l);display:flex;align-items:center;gap:6px;margin-bottom:12px}
+.calc-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px dashed rgba(255,255,255,.12)}
+.calc-l{font-size:12.5px;color:rgba(255,255,255,.75);line-height:1.45}
+.calc-l i{display:block;font-style:normal;font-size:11px;color:rgba(255,255,255,.42);margin-top:2px}
+.calc-v{font-size:16px;font-weight:800;color:var(--gold);white-space:nowrap}
+.calc-sum{display:flex;align-items:baseline;justify-content:space-between;margin-top:13px;padding-top:12px;border-top:1px solid rgba(212,168,83,.3)}
+.calc-sum-l{font-size:13px;font-weight:700;color:#fff}
+.calc-sum-v{font-size:26px;font-weight:800;letter-spacing:.5px;
+  background:linear-gradient(100deg,#F4D9A6,#D4A853);-webkit-background-clip:text;background-clip:text;color:transparent}
+.calc-x10{margin-top:12px;background:rgba(212,168,83,.1);border:1px solid rgba(212,168,83,.28);border-radius:10px;padding:12px;text-align:center}
+.calc-x10 b{display:block;font-size:24px;font-weight:800;color:var(--gold);letter-spacing:.5px}
+.calc-x10 span{font-size:11.5px;color:rgba(255,255,255,.55)}
+.calc-tip{font-size:10.5px;color:rgba(255,255,255,.38);margin-top:9px;text-align:center;line-height:1.5}
+
+/* 步骤条 */
+.steps{margin-top:14px}
+.step{display:flex;gap:12px;position:relative;padding-bottom:16px}
+.step:last-child{padding-bottom:0}
+.step::before{content:'';position:absolute;left:14px;top:30px;bottom:2px;width:2px;background:linear-gradient(180deg,var(--gold),rgba(212,168,83,.2))}
+.step:last-child::before{display:none}
+.step-n{width:29px;height:29px;border-radius:50%;background:linear-gradient(135deg,#F4D9A6,#D4A853);color:#1A1A1A;
+  font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;z-index:1}
+.step-t{font-size:14.5px;font-weight:700;line-height:1.35}
+.step-d{font-size:12.5px;color:var(--text2);margin-top:3px;line-height:1.55}
+
+/* ── 表单 ── */
+.form-sec{background:linear-gradient(170deg,#141210,#0D0D0D);padding:28px 18px 32px;color:#fff}
+.form-sec .h2{color:#fff}
+.form-sec .kicker{color:var(--gold)}
+.form-sec .sub{color:rgba(255,255,255,.55)}
+.form-card{background:rgba(255,255,255,.045);border:1px solid rgba(212,168,83,.22);border-radius:16px;padding:18px}
+.fgroup{margin-bottom:15px}
+.flabel{font-size:12.5px;font-weight:700;color:var(--gold-l);margin-bottom:7px;display:block;letter-spacing:.3px}
+.req{color:#E8735A;margin-left:2px}
+.input,.select,.textarea{width:100%;padding:12px 13px;border:1px solid rgba(255,255,255,.16);border-radius:10px;
+  background:rgba(255,255,255,.06);color:#fff;font-size:14.5px;font-family:inherit;outline:none;transition:border-color .18s,background .18s}
+.input::placeholder,.textarea::placeholder{color:rgba(255,255,255,.32)}
+.input:focus,.select:focus,.textarea:focus{border-color:var(--gold);background:rgba(212,168,83,.08)}
+.input.err,.textarea.err,.select.err{border-color:#E8735A;background:rgba(232,115,90,.1)}
+.textarea{min-height:82px;resize:vertical;line-height:1.55}
+.select{appearance:none;-webkit-appearance:none;cursor:pointer;
+  background-image:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23D4A853' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 12px center;background-size:17px;padding-right:36px}
+.select option{background:#1E1B17;color:#fff}
+.seg{display:flex;gap:8px}
+.seg-btn{flex:1;padding:12px;border:1px solid rgba(255,255,255,.16);border-radius:10px;background:rgba(255,255,255,.05);
+  color:rgba(255,255,255,.72);font-size:14.5px;font-weight:600;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:6px;transition:.18s}
+.seg-btn.on{background:linear-gradient(135deg,#F4D9A6,#D4A853);border-color:var(--gold);color:#1A1A1A;font-weight:800}
+.row-code{display:flex;gap:8px}
+.row-code .input{flex:1;min-width:0}
+.btn-code{flex-shrink:0;padding:0 14px;border:1px solid var(--gold);border-radius:10px;background:rgba(212,168,83,.12);
+  color:var(--gold);font-size:13px;font-weight:700;font-family:inherit;cursor:pointer;white-space:nowrap;transition:.18s}
+.btn-code:disabled{border-color:rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:rgba(255,255,255,.35);cursor:not-allowed}
+.biz-fields{display:none}
+.biz-fields.on{display:block}
+.agree{display:flex;align-items:flex-start;gap:9px;margin:4px 0 16px;cursor:pointer}
+.chk{width:20px;height:20px;border-radius:6px;border:1.5px solid rgba(255,255,255,.3);flex-shrink:0;margin-top:1px;
+  display:flex;align-items:center;justify-content:center;color:#1A1A1A;font-size:13px;transition:.18s}
+.chk.on{background:linear-gradient(135deg,#F4D9A6,#D4A853);border-color:var(--gold)}
+.chk i{opacity:0}
+.chk.on i{opacity:1}
+.agree-t{font-size:12.5px;color:rgba(255,255,255,.62);line-height:1.55}
+.agree-t a{color:var(--gold);text-decoration:none;font-weight:600}
+.hint{font-size:11.5px;color:rgba(255,255,255,.35);margin-top:6px;line-height:1.5}
+
+/* 成功态 */
+#successBox{display:none}
+.succ{text-align:center;padding:10px 4px 4px}
+.succ-ic{width:74px;height:74px;border-radius:50%;margin:0 auto 18px;background:linear-gradient(135deg,#F4D9A6,#D4A853);
+  color:#141210;font-size:38px;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 34px rgba(212,168,83,.35)}
+.succ-t{font-size:22px;font-weight:800;color:#fff;letter-spacing:.5px}
+.succ-d{font-size:13.5px;color:rgba(255,255,255,.62);margin-top:11px;line-height:1.65}
+.succ-no{margin-top:18px;background:rgba(212,168,83,.1);border:1px dashed rgba(212,168,83,.4);border-radius:12px;padding:14px}
+.succ-no span{font-size:11.5px;color:rgba(255,255,255,.5);display:block}
+.succ-no b{font-size:21px;font-weight:800;color:var(--gold);letter-spacing:1.6px;display:block;margin-top:4px}
+.succ-back{display:inline-flex;align-items:center;gap:5px;margin-top:20px;color:var(--gold);font-size:13.5px;font-weight:700;
+  text-decoration:none;border-bottom:1px solid rgba(212,168,83,.4);padding-bottom:2px;background:none;border-top:none;border-left:none;border-right:none;font-family:inherit;cursor:pointer}
+
+/* ── FAQ ── */
+.faq{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+.faq-q{display:flex;align-items:center;gap:10px;padding:14px 15px;cursor:pointer;font-size:14.5px;font-weight:600;border-bottom:1px solid var(--line)}
+.faq-item:last-child .faq-q{border-bottom:none}
+.faq-item.open .faq-q{border-bottom:none}
+.faq-q span{flex:1}
+.faq-q i{color:var(--gold-d);font-size:18px;transition:transform .2s;flex-shrink:0}
+.faq-item.open .faq-q i{transform:rotate(180deg)}
+.faq-a{display:none;padding:0 15px 15px 15px;font-size:13px;color:var(--text2);line-height:1.7;border-bottom:1px solid var(--line)}
+.faq-item:last-child .faq-a{border-bottom:none}
+.faq-item.open .faq-a{display:block}
+
+/* ── 页脚 ── */
+.footer{background:var(--ink);color:rgba(255,255,255,.5);padding:26px 18px 34px;text-align:center;font-size:11.5px;line-height:1.85}
+.footer .fname{font-size:14.5px;font-weight:800;color:var(--gold);letter-spacing:.4px;margin-bottom:8px;
+  display:flex;align-items:center;justify-content:center;gap:8px}
+.footer-div{width:40px;height:2px;background:rgba(212,168,83,.35);margin:14px auto}
+
+/* Toast */
+.toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.9);background:rgba(0,0,0,.86);color:#fff;
+  padding:14px 22px;border-radius:10px;font-size:14px;opacity:0;transition:.2s;z-index:999;pointer-events:none;max-width:80vw;text-align:center;line-height:1.5}
+.toast.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
+
+/* 底部吸底 CTA */
+.dock{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:100%;max-width:480px;z-index:80;
+  background:rgba(13,13,13,.92);backdrop-filter:saturate(160%) blur(12px);border-top:1px solid rgba(212,168,83,.22);
+  padding:10px 14px calc(10px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:11px;transition:transform .25s}
+.dock.hide{transform:translateX(-50%) translateY(110%)}
+.dock-l{flex:1;min-width:0}
+.dock-l b{display:block;font-size:13px;font-weight:700;color:var(--gold-l);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dock-l span{font-size:10.5px;color:rgba(255,255,255,.45)}
+.dock-btn{flex-shrink:0;padding:11px 18px;border:none;border-radius:10px;background:linear-gradient(135deg,#F4D9A6,#D4A853);
+  color:#1A1A1A;font-size:14px;font-weight:800;font-family:inherit;cursor:pointer;text-decoration:none}
+.dock-pad{height:74px}
+
+@media (max-width:360px){
+  .hero-h1{font-size:25px}
+  .grid2{gap:8px}
+  .h2{font-size:19px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ═══ 1. Hero ═══ -->
+  <div class="hero">
+    <div class="blob" style="width:200px;height:200px;background:#D4A853;top:-50px;right:-60px"></div>
+    <div class="blob" style="width:170px;height:170px;background:#B8860B;bottom:-70px;left:-50px"></div>
+    <div class="hero-in">
+      <div class="brandrow">
+        <svg viewBox="0 0 16 16" width="28" height="28"><rect x="1" y="1" width="6" height="6" rx="1" fill="#F4D9A6"/><rect x="9" y="1" width="6" height="6" rx="1" fill="#D4A853"/><rect x="1" y="9" width="6" height="6" rx="1" fill="#D4A853"/><rect x="9" y="9" width="6" height="6" rx="1" fill="#B8860B"/></svg>
+        <div class="brandname">Leapex 利柏思</div>
+      </div>
+      <div class="licline"><i class="ti ti-license"></i>持牌 TCSP · 牌照号 TC10988 · 云帐房旗下</div>
+      <h1 class="hero-h1">香港公司服务，<br><em>云帐房喊你一起做</em></h1>
+      <div class="hero-sub">不增一人，多一条高毛利业务线。<br>只管推荐，交付、合规、售后全由 Leapex 承担。</div>
+      <div class="hero-stats">
+        <div class="hstat"><b>15–25%</b><span>渠道分佣比例</span></div>
+        <div class="hstat"><b>0 元</b><span>加盟成本</span></div>
+        <div class="hstat"><b>月结</b><span>线下打款</span></div>
+      </div>
+      <a href="#applyForm" class="cta-gold"><i class="ti ti-rocket"></i>立即申请成为渠道商</a>
+      <div class="hero-note">1 个工作日内审核 · 通过即发放专属推荐码</div>
+    </div>
+  </div>
+
+  <!-- ═══ 2. 六大价值支柱 ═══ -->
+  <div class="sec">
+    <div class="sec-head">
+      <div class="kicker">Why Leapex</div>
+      <div class="h2">为什么和我们合作</div>
+      <div class="sub">六个理由，让香港公司服务成为你最省力的一条业务线。</div>
+    </div>
+    <div class="grid2">
+      <div class="pill-card">
+        <div class="pill-ic"><i class="ti ti-license"></i></div>
+        <div class="pill-t">合规持牌</div>
+        <div class="pill-d">TCSP 持牌，现成合法通道，不用自己申牌。</div>
+      </div>
+      <div class="pill-card">
+        <div class="pill-ic"><i class="ti ti-refresh"></i></div>
+        <div class="pill-t">持续复购</div>
+        <div class="pill-d">一次推荐，年年分佣。年审、记账逐年续单。</div>
+      </div>
+      <div class="pill-card">
+        <div class="pill-ic"><i class="ti ti-hand-stop"></i></div>
+        <div class="pill-t">零交付</div>
+        <div class="pill-d">只管推荐 + 口令码，交付与售后全归我们。</div>
+      </div>
+      <div class="pill-card">
+        <div class="pill-ic"><i class="ti ti-shield-lock"></i></div>
+        <div class="pill-t">不抢客户</div>
+        <div class="pill-d">客户以为是你在服务，客户关系始终归你。</div>
+      </div>
+      <div class="pill-card">
+        <div class="pill-ic"><i class="ti ti-eye-check"></i></div>
+        <div class="pill-t">透明可分</div>
+        <div class="pill-d">工作台实时可见，月结打款不黑箱。</div>
+      </div>
+      <div class="pill-card">
+        <div class="pill-ic"><i class="ti ti-target-arrow"></i></div>
+        <div class="pill-t">精准获客</div>
+        <div class="pill-d">亚马逊 SPN 电商客群，需求真实且集中。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 3. 信任墙 ═══ -->
+  <div class="trust">
+    <div class="sec-head">
+      <div class="kicker">Trust Wall</div>
+      <div class="h2">三张硬资质 · 信任墙</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-ic"><i class="ti ti-license"></i></div>
+      <div>
+        <div class="trust-t">持牌 TCSP</div>
+        <div class="trust-d">香港公司服务牌照，牌照号 TC10988，公开可查。</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-ic"><i class="ti ti-building-skyscraper"></i></div>
+      <div>
+        <div class="trust-t">香港上市公司物业</div>
+        <div class="trust-d">注册地址真实可验，非虚拟信箱，经得起银行与政府核查。</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-ic"><i class="ti ti-brand-amazon"></i></div>
+      <div>
+        <div class="trust-t">亚马逊 SPN 官方认证服务商</div>
+        <div class="trust-d">进入亚马逊服务商网络，跨境电商客群天然对接。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 4. 分佣政策 ═══ -->
+  <div class="sec">
+    <div class="sec-head">
+      <div class="kicker">Commission</div>
+      <div class="h2">渠道分佣政策</div>
+      <div class="sub">按客户实付金额计佣，订单完成即入账，月结打款。</div>
+    </div>
+
+    <div class="card" style="overflow:hidden">
+      <table class="rate-tbl">
+        <thead>
+          <tr><th>服务项目</th><th>佣金率</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="rate-svc">公司注册</div><div class="rate-note">新设香港有限公司 HKD 5,533</div></td>
+            <td>15%</td>
+          </tr>
+          <tr>
+            <td><div class="rate-svc">年审 / 记账 / 变更 / 商标</div><div class="rate-note">年审 4,422 · 商标 3,311/类 · 变更 333 起</div></td>
+            <td>20%</td>
+          </tr>
+          <tr>
+            <td><div class="rate-svc">地址租赁</div><div class="rate-note">独立注册地址 HKD 6,000 / 年</div></td>
+            <td>25%</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="settle"><i class="ti ti-calendar-dollar"></i>结算方式：月结 · 工作台实时可见</div>
+    </div>
+    <div class="foot-note">最终分佣比例以最终协议为准</div>
+
+    <!-- 收益举例 -->
+    <div class="calc">
+      <div class="calc-h"><i class="ti ti-calculator"></i>收益举例 · 推荐 1 家客户能拿多少</div>
+      <div class="calc-row">
+        <div class="calc-l">公司注册 HKD 5,533 × 15%<i>首年新设香港有限公司</i></div>
+        <div class="calc-v">≈ 830</div>
+      </div>
+      <div class="calc-row">
+        <div class="calc-l">年审服务 HKD 4,422 × 20%<i>次年起，年年复购、年年分佣</i></div>
+        <div class="calc-v">≈ 884</div>
+      </div>
+      <div class="calc-row" style="border-bottom:none">
+        <div class="calc-l">地址租赁 HKD 6,000 × 25%<i>可叠加，按年续租</i></div>
+        <div class="calc-v">= 1,500</div>
+      </div>
+      <div class="calc-sum">
+        <div class="calc-sum-l">单客首年（注册 + 地址）</div>
+        <div class="calc-sum-v">HKD 2,330</div>
+      </div>
+      <div class="calc-x10">
+        <span>推荐 10 家客户 · 首年预估收益</span>
+        <b>HKD 23,300</b>
+        <span>次年仅年审复购即再入账 HKD 8,840+</span>
+      </div>
+      <div class="calc-tip">以上按标准价与对应佣金率测算，实际以客户实付金额与正式协议为准。</div>
+    </div>
+
+    <!-- 分佣逻辑 4 步 -->
+    <div class="sec-head" style="margin-top:26px;margin-bottom:12px">
+      <div class="h2" style="font-size:18px">佣金是怎么到你手上的</div>
+    </div>
+    <div class="card" style="padding:16px">
+      <div class="steps">
+        <div class="step">
+          <div class="step-n">1</div>
+          <div>
+            <div class="step-t">拿到专属推荐码</div>
+            <div class="step-d">审核通过后发放你的专属推荐码 / 口令码。</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">2</div>
+          <div>
+            <div class="step-t">客户填码下单</div>
+            <div class="step-d">客户在 Leapex 小程序下单时填写该码，订单自动归属你。</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">3</div>
+          <div>
+            <div class="step-t">订单完成，佣金入账</div>
+            <div class="step-d">客户实付且订单完成后计佣：佣金 = 客户实付 × 佣金率。工作台可只读查看归属订单与佣金。</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">4</div>
+          <div>
+            <div class="step-t">月结线下打款</div>
+            <div class="step-d">按月结算、线下打款，不支持在线提现。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 5. 合作流程 ═══ -->
+  <div class="sec" style="background:var(--bg2);padding-top:24px;padding-bottom:24px">
+    <div class="sec-head">
+      <div class="kicker">How to start</div>
+      <div class="h2">合作流程 · 四步开跑</div>
+    </div>
+    <div class="card" style="padding:16px">
+      <div class="steps">
+        <div class="step">
+          <div class="step-n"><i class="ti ti-edit" style="font-size:14px"></i></div>
+          <div><div class="step-t">提交申请</div><div class="step-d">填写下方表单，1 分钟完成。</div></div>
+        </div>
+        <div class="step">
+          <div class="step-n"><i class="ti ti-shield-check" style="font-size:14px"></i></div>
+          <div><div class="step-t">平台审核</div><div class="step-d">1 个工作日内完成资质审核。</div></div>
+        </div>
+        <div class="step">
+          <div class="step-n"><i class="ti ti-key" style="font-size:14px"></i></div>
+          <div><div class="step-t">获取专属推荐码</div><div class="step-d">短信 / 电话通知，同时开通渠道工作台。</div></div>
+        </div>
+        <div class="step">
+          <div class="step-n"><i class="ti ti-coin" style="font-size:14px"></i></div>
+          <div><div class="step-t">推广并按月分佣</div><div class="step-d">推荐客户下单，订单完成计佣，月结打款。</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 6. 申请表单 ═══ -->
+  <div class="form-sec" id="applyForm">
+    <div class="blob" style="width:180px;height:180px;background:#D4A853;top:0;right:-70px;opacity:.16"></div>
+
+    <div id="formBox">
+      <div class="sec-head">
+        <div class="kicker">Apply Now</div>
+        <div class="h2">申请成为 Leapex 渠道商</div>
+        <div class="sub">0 加盟费 · 1 个工作日审核 · 通过即发放专属推荐码</div>
+      </div>
+
+      <div class="form-card">
+        <!-- 合作方类型 -->
+        <div class="fgroup">
+          <label class="flabel">合作方类型<span class="req">*</span></label>
+          <div class="seg">
+            <button type="button" class="seg-btn on" id="segPerson" onclick="setType('person')"><i class="ti ti-user"></i>个人</button>
+            <button type="button" class="seg-btn" id="segBiz" onclick="setType('biz')"><i class="ti ti-building"></i>企业</button>
+          </div>
+        </div>
+
+        <!-- 企业专属字段 -->
+        <div class="biz-fields" id="bizFields">
+          <div class="fgroup">
+            <label class="flabel">企业名称<span class="req">*</span></label>
+            <input class="input" id="fBizName" placeholder="如：深圳市某某企业服务有限公司">
+          </div>
+          <div class="fgroup">
+            <label class="flabel">统一社会信用代码 / BR 号<span class="req">*</span></label>
+            <input class="input" id="fBizNo" placeholder="内地填统一社会信用代码，香港填 BR 号">
+          </div>
+          <div class="fgroup">
+            <label class="flabel">联系人职务</label>
+            <input class="input" id="fTitle" placeholder="如：合伙人 / 商务总监">
+          </div>
+        </div>
+
+        <div class="fgroup">
+          <label class="flabel" id="lblName">姓名<span class="req">*</span></label>
+          <input class="input" id="fName" placeholder="请填写真实姓名">
+        </div>
+
+        <div class="fgroup">
+          <label class="flabel">手机号（预留手机号）<span class="req">*</span></label>
+          <div class="row-code">
+            <input class="input" id="fPhone" type="tel" inputmode="tel" placeholder="+852 / +86 手机号">
+            <button type="button" class="btn-code" id="btnCode" onclick="sendCode()">获取验证码</button>
+          </div>
+          <div class="hint">审核结果与专属推荐码将发送至该手机号。</div>
+        </div>
+
+        <div class="fgroup">
+          <label class="flabel">短信验证码</label>
+          <input class="input" id="fCode" inputmode="numeric" maxlength="6" placeholder="请输入 6 位验证码">
+        </div>
+
+        <div class="fgroup">
+          <label class="flabel">邮箱（选填）</label>
+          <input class="input" id="fEmail" type="email" placeholder="name@company.com">
+        </div>
+
+        <div class="fgroup">
+          <label class="flabel">所在城市 / 地区<span class="req">*</span></label>
+          <input class="input" id="fCity" placeholder="如：深圳 / 香港 / 杭州">
+        </div>
+
+        <div class="fgroup">
+          <label class="flabel">主要客户群体 / 现有资源</label>
+          <textarea class="textarea" id="fRes" placeholder="如：跨境电商卖家 200+、财税代理同行、投资机构、独立站卖家社群…（有助于加速审核）"></textarea>
+        </div>
+
+        <div class="fgroup">
+          <label class="flabel">预计每月推荐量</label>
+          <select class="select" id="fVol">
+            <option value="1-5">1-5 家</option>
+            <option value="6-20">6-20 家</option>
+            <option value="20+">20 家以上</option>
+            <option value="unknown" selected>暂不确定</option>
+          </select>
+        </div>
+
+        <div class="agree" onclick="toggleAgree()">
+          <div class="chk" id="chkAgree"><i class="ti ti-check"></i></div>
+          <div class="agree-t">我已阅读并同意<a href="javascript:void(0)" onclick="event.stopPropagation();toast('《渠道合作条款》预览')">《渠道合作条款》</a>与<a href="javascript:void(0)" onclick="event.stopPropagation();toast('《隐私政策》预览')">《隐私政策》</a>，并同意 Leapex 使用上述信息与我联系。</div>
+        </div>
+
+        <button type="button" class="cta-gold" style="margin-top:0" onclick="submitForm()"><i class="ti ti-send"></i>提交申请</button>
+        <div class="hint" style="text-align:center;margin-top:10px">提交即视为渠道合作意向，最终分佣以正式协议为准。</div>
+      </div>
+    </div>
+
+    <!-- 7. 提交成功态 -->
+    <div id="successBox">
+      <div class="form-card">
+        <div class="succ">
+          <div class="succ-ic"><i class="ti ti-check"></i></div>
+          <div class="succ-t">申请已提交</div>
+          <div class="succ-d">我们将在 1 个工作日内审核，<br>通过后以短信 / 电话通知并发放专属推荐码。</div>
+          <div class="succ-no">
+            <span>申请编号</span>
+            <b id="appNo">CA-2026-0032</b>
+          </div>
+          <button type="button" class="succ-back" onclick="backToTop()"><i class="ti ti-arrow-up"></i>返回了解更多</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 8. FAQ ═══ -->
+  <div class="sec">
+    <div class="sec-head">
+      <div class="kicker">FAQ</div>
+      <div class="h2">渠道商常见问题</div>
+    </div>
+    <div class="faq">
+      <div class="faq-item open">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>需要我自己交付服务吗？</span><i class="ti ti-chevron-down"></i></div>
+        <div class="faq-a">不需要，零交付。你只负责推荐客户并给出专属推荐码，注册、年审、记账、文件递交、售后全部由 Leapex 持牌团队完成。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>客户会被你们抢走吗？</span><i class="ti ti-chevron-down"></i></div>
+        <div class="faq-a">不会。我们以你的名义在后端提供服务，客户仍然认你；客户关系与后续复购的分佣归属始终跟随你的推荐码。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>佣金怎么结算？</span><i class="ti ti-chevron-down"></i></div>
+        <div class="faq-a">客户实付且订单完成后计佣，佣金 = 客户实付 × 对应佣金率。渠道工作台可只读查看归属订单与佣金明细，按月结算、线下打款，不支持在线提现。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>有加盟费或其他成本吗？</span><i class="ti ti-chevron-down"></i></div>
+        <div class="faq-a">0 加盟费、0 保证金、0 系统使用费。不需要增加人手，也不需要囤任何库存。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>什么样的人适合做渠道商？</span><i class="ti ti-chevron-down"></i></div>
+        <div class="faq-a">手上有跨境电商卖家、财税 / 工商代理、外贸企业、投资与孵化机构客群的个人或企业，都非常适合。你已有的客户关系，就是最好的起点。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 9. 页脚 ═══ -->
+  <div class="footer">
+    <div class="fname">
+      <svg viewBox="0 0 16 16" width="20" height="20"><rect x="1" y="1" width="6" height="6" rx="1" fill="#F4D9A6"/><rect x="9" y="1" width="6" height="6" rx="1" fill="#D4A853"/><rect x="1" y="9" width="6" height="6" rx="1" fill="#D4A853"/><rect x="9" y="9" width="6" height="6" rx="1" fill="#B8860B"/></svg>
+      Leapex 利柏思
+    </div>
+    <div>香港持牌信托及公司服务提供商（TCSP）· 牌照号 TC10988</div>
+    <div>云帐房旗下香港公司服务业务线</div>
+    <div class="footer-div"></div>
+    <div>本页内容为渠道合作说明，最终解释权与分佣比例以双方正式签署的协议为准。</div>
+  </div>
+
+  <div class="dock-pad"></div>
+</div>
+
+<!-- 吸底 CTA -->
+<div class="dock" id="dock">
+  <div class="dock-l">
+    <b>0 加盟费 · 15–25% 分佣</b>
+    <span>1 个工作日审核，通过即发码</span>
+  </div>
+  <a href="#applyForm" class="dock-btn">立即申请</a>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ── Toast ── */
+var toastTimer = null;
+function toast(msg){
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ t.classList.remove('show'); }, 2000);
+}
+
+/* ── 合作方类型切换 ── */
+var partnerType = 'person';
+function setType(type){
+  partnerType = type;
+  var isBiz = (type === 'biz');
+  document.getElementById('segPerson').classList.toggle('on', !isBiz);
+  document.getElementById('segBiz').classList.toggle('on', isBiz);
+  document.getElementById('bizFields').classList.toggle('on', isBiz);
+  document.getElementById('lblName').innerHTML = (isBiz ? '联系人姓名' : '姓名') + '<span class="req">*</span>';
+  document.getElementById('fName').placeholder = isBiz ? '请填写联系人真实姓名' : '请填写真实姓名';
+}
+
+/* ── 同意勾选 ── */
+var agreed = false;
+function toggleAgree(){
+  agreed = !agreed;
+  document.getElementById('chkAgree').classList.toggle('on', agreed);
+}
+
+/* ── 手机号校验（+86 / +852 / 通用 8-11 位） ── */
+function normPhone(v){ return (v || '').replace(/[\s\-()]/g, ''); }
+function validPhone(v){
+  var p = normPhone(v);
+  if(/^(\+?86)?1[3-9]\d{9}$/.test(p)) return true;          // 内地手机号
+  if(/^(\+?852)?[456789]\d{7}$/.test(p)) return true;        // 香港手机号
+  if(/^\+\d{8,15}$/.test(p)) return true;                    // 其他国际号
+  return false;
+}
+
+/* ── 验证码倒计时 ── */
+var codeTimer = null;
+function sendCode(){
+  var btn = document.getElementById('btnCode');
+  if(btn.disabled) return;
+  var phoneEl = document.getElementById('fPhone');
+  if(!validPhone(phoneEl.value)){
+    markErr(phoneEl);
+    toast('请先填写正确的手机号');
+    return;
+  }
+  clearErr(phoneEl);
+  toast('验证码已发送至 ' + normPhone(phoneEl.value));
+  var left = 60;
+  btn.disabled = true;
+  btn.textContent = left + 's 后重发';
+  codeTimer = setInterval(function(){
+    left--;
+    if(left <= 0){
+      clearInterval(codeTimer);
+      btn.disabled = false;
+      btn.textContent = '重新获取';
+    } else {
+      btn.textContent = left + 's 后重发';
+    }
+  }, 1000);
+}
+
+/* ── 错误态 ── */
+function markErr(el){
+  el.classList.add('err');
+  el.focus({ preventScroll: true });
+  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+function clearErr(el){ el.classList.remove('err'); }
+['fName','fPhone','fCity','fBizName','fBizNo'].forEach(function(id){
+  var el = document.getElementById(id);
+  if(el) el.addEventListener('input', function(){ clearErr(el); });
+});
+
+/* ── 提交 ── */
+function submitForm(){
+  var name = document.getElementById('fName');
+  var phone = document.getElementById('fPhone');
+  var city = document.getElementById('fCity');
+
+  if(partnerType === 'biz'){
+    var bizName = document.getElementById('fBizName');
+    var bizNo = document.getElementById('fBizNo');
+    if(!bizName.value.trim()){ markErr(bizName); toast('请填写企业名称'); return; }
+    if(!bizNo.value.trim()){ markErr(bizNo); toast('请填写统一社会信用代码 / BR 号'); return; }
+  }
+  if(!name.value.trim()){ markErr(name); toast(partnerType === 'biz' ? '请填写联系人姓名' : '请填写姓名'); return; }
+  if(!phone.value.trim()){ markErr(phone); toast('请填写手机号'); return; }
+  if(!validPhone(phone.value)){ markErr(phone); toast('手机号格式不正确，请检查'); return; }
+  if(!city.value.trim()){ markErr(city); toast('请填写所在城市 / 地区'); return; }
+  if(!agreed){
+    toast('请先阅读并勾选同意《渠道合作条款》');
+    document.getElementById('chkAgree').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
+  // 生成申请编号（原型：本地流水号）
+  var seq = 1;
+  try {
+    seq = parseInt(localStorage.getItem('lpa_seq') || '0', 10) + 1;
+    localStorage.setItem('lpa_seq', String(seq));
+  } catch(e){ seq = Math.floor(Math.random() * 900) + 1; }
+  var no = 'CA-' + new Date().getFullYear() + '-' + String(seq).padStart(4, '0');
+  document.getElementById('appNo').textContent = no;
+
+  document.getElementById('formBox').style.display = 'none';
+  document.getElementById('successBox').style.display = 'block';
+  document.getElementById('dock').classList.add('hide');
+  document.getElementById('applyForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  toast('提交成功');
+}
+
+function backToTop(){
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.getElementById('dock').classList.remove('hide');
+}
+
+/* ── FAQ 折叠 ── */
+function toggleFaq(el){
+  el.parentElement.classList.toggle('open');
+}
+
+/* ── 吸底 CTA：滚到表单/页脚时隐藏 ── */
+window.addEventListener('scroll', function(){
+  var dock = document.getElementById('dock');
+  if(document.getElementById('successBox').style.display === 'block') return;
+  var form = document.getElementById('applyForm');
+  var rect = form.getBoundingClientRect();
+  var inForm = rect.top < window.innerHeight * 0.75 && rect.bottom > 0;
+  dock.classList.toggle('hide', inForm);
+}, { passive: true });
+</script>
+</body>
+</html>
