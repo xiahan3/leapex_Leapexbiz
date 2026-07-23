@@ -153,7 +153,7 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
       <div class="ng">02 · 客户管理</div>
       <div class="ni" data-p="customers" onclick="go(this)"><i class="ti ti-users"></i>客户信息管理</div>
       <div class="ni" data-p="companies" onclick="go(this)"><i class="ti ti-building"></i>客户公司管理</div>
-      <div class="ni" data-p="kyc" onclick="go(this)"><i class="ti ti-id"></i>KYC / EDD 审核<span class="nb">5</span></div>
+      <div class="ni" data-p="kyc" onclick="go(this)"><i class="ti ti-id"></i>KYC 审核<span class="nb">5</span></div>
 
       <div class="ng">03 · 订单管理</div>
       <div class="ni" data-p="orders" onclick="go(this)"><i class="ti ti-clipboard-list"></i>订单列表</div>
@@ -222,11 +222,10 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
           <div class="kpi"><div class="l">供应商应付</div><div class="v" id="k-sup">HKD 8.6K</div><div class="d">印章 / 公证</div></div>
         </div>
         <div class="card">
-          <div class="ch"><span class="ct">待办事项 · SLA 优先级</span></div>
+          <div class="ch"><span class="ct">待办事项</span></div>
           <div>
-            <div class="todo"><span class="mini" style="background:var(--red)"></span><div style="flex:1">KYC / EDD 审核超时（&gt;48h）</div><span class="pill p-red">2 高</span></div>
+            <div class="todo"><span class="mini" style="background:var(--red)"></span><div style="flex:1">KYC 待审核</div><span class="pill p-red">3 高</span></div>
             <div class="todo"><span class="mini" style="background:var(--red)"></span><div style="flex:1">回单待确认</div><span class="pill p-red">4 高</span></div>
-            <div class="todo"><span class="mini" style="background:var(--red)"></span><div style="flex:1">制裁名单命中待复核</div><span class="pill p-red">1 高</span></div>
             <div class="todo"><span class="mini" style="background:var(--amber)"></span><div style="flex:1">人工核名待处理</div><span class="pill p-amber">3 中</span></div>
             <div class="todo"><span class="mini" style="background:var(--amber)"></span><div style="flex:1">注册公司服务待处理进度</div><span class="pill p-amber">3 中</span></div>
             <div class="todo"><span class="mini" style="background:var(--amber)"></span><div style="flex:1">待分配订单</div><span class="pill p-amber">2 中</span></div>
@@ -246,8 +245,8 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
           <tbody>
             <tr><td><b>陈大文</b><div style="color:var(--text3);font-size:11px">andy@abc.hk · +852 9123</div></td><td><span class="pill p-gold">AGT001 星投资本</span></td><td><span class="pill p-green">已通过</span></td><td>2</td><td>3</td><td><span class="pill p-amber">高价值</span></td><td>2026-05-12</td><td><button class="btn btn-xs" onclick="openCustomer(this)">详情</button> <button class="btn btn-xs btn-p" onclick="openCustEdit(this)">编辑</button></td></tr>
             <tr><td><b>李美琪</b><div style="color:var(--text3);font-size:11px">mary@xy.hk</div></td><td><span class="pill p-gray">自然流量</span></td><td><span class="pill p-blue">审核中</span></td><td>1</td><td>1</td><td>—</td><td>2026-06-08</td><td><button class="btn btn-xs" onclick="openCustomer(this)">详情</button> <button class="btn btn-xs btn-p" onclick="openCustEdit(this)">编辑</button></td></tr>
-            <tr><td><b>王志强</b><div style="color:var(--text3);font-size:11px">wang@fortune.hk</div></td><td><span class="pill p-gold">AGT002</span></td><td><span class="pill p-amber">EDD 中</span></td><td>1</td><td>2</td><td><span class="pill p-purple">PEP</span></td><td>2026-06-01</td><td><button class="btn btn-xs" onclick="openCustomer(this)">详情</button> <button class="btn btn-xs btn-p" onclick="openCustEdit(this)">编辑</button></td></tr>
-            <tr><td><b>张倩</b><div style="color:var(--text3);font-size:11px">zhang@peak.hk</div></td><td><span class="pill p-gray">自然流量</span></td><td><span class="pill p-red">已拒绝</span><span style="font-size:10px;color:var(--text3)"> · 留档 7y</span></td><td>0</td><td>1</td><td>—</td><td>2026-05-28</td><td><button class="btn btn-xs" onclick="openCustomer(this)">详情</button> <button class="btn btn-xs btn-p" onclick="openCustEdit(this)">编辑</button></td></tr>
+            <tr><td><b>王志强</b><div style="color:var(--text3);font-size:11px">wang@fortune.hk</div></td><td><span class="pill p-gold">AGT002</span></td><td><span class="pill p-blue">审核中</span></td><td>1</td><td>2</td><td>—</td><td>2026-06-01</td><td><button class="btn btn-xs" onclick="openCustomer(this)">详情</button> <button class="btn btn-xs btn-p" onclick="openCustEdit(this)">编辑</button></td></tr>
+            <tr><td><b>张倩</b><div style="color:var(--text3);font-size:11px">zhang@peak.hk</div></td><td><span class="pill p-gray">自然流量</span></td><td><span class="pill p-blue">待审核</span></td><td>0</td><td>1</td><td>—</td><td>2026-05-28</td><td><button class="btn btn-xs" onclick="openCustomer(this)">详情</button> <button class="btn btn-xs btn-p" onclick="openCustEdit(this)">编辑</button></td></tr>
           </tbody>
         </table></div>
       </div>
@@ -264,9 +263,9 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
           <thead><tr><th>公司（中 / 英）</th><th>实益拥有人</th><th>CI / BR</th><th>注册日期</th><th>下次年审</th><th>SCR</th><th>状态</th><th></th></tr></thead>
           <tbody>
             <tr><td><b>星辰科技有限公司</b><div style="color:var(--text3);font-size:11px">Star Tech Limited</div></td><td>陈大文</td><td><span style="color:var(--text3)">注册中</span></td><td>—</td><td>—</td><td><span class="pill p-gray">待建</span></td><td><span class="pill p-blue">注册中</span></td><td><button class="btn btn-xs" onclick="openCompany(this)">详情</button> <button class="btn btn-xs btn-p" onclick="openCompEdit(this)">编辑</button></td></tr>
-            <tr><td><b>恒丰贸易有限公司</b><div style="color:var(--text3);font-size:11px">Hang Fung Trading Limited</div></td><td>陈大文</td><td>2891234<div style="color:var(--text3);font-size:11px">BR 91234567</div></td><td>2024-09-15</td><td><span class="pill p-amber">2026-09-15 · 85天</span></td><td><span class="pill p-green">已建</span></td><td><span class="pill p-green">正常</span></td><td><button class="btn btn-xs" onclick="openCompany(this)">详情</button> <button class="btn btn-xs btn-p" onclick="openCompEdit(this)">编辑</button></td></tr>
-            <tr><td><b>光辉投资有限公司</b><div style="color:var(--text3);font-size:11px">Glory Invest Limited</div></td><td>王志强</td><td>2765432</td><td>2023-07-02</td><td><span class="pill p-red">2026-07-02 · 21天</span></td><td><span class="pill p-green">已建</span></td><td><span class="pill p-green">正常</span></td><td><button class="btn btn-xs" onclick="openCompany(this)">详情</button> <button class="btn btn-xs btn-p" onclick="openCompEdit(this)">编辑</button></td></tr>
-            <tr><td><b>九龙国际有限公司</b><div style="color:var(--text3);font-size:11px">Kowloon Intl Limited</div></td><td>李美琪</td><td>2654321</td><td>2022-06-04</td><td><span class="pill p-red">已逾期 7 天</span></td><td><span class="pill p-amber">待更新</span></td><td><span class="pill p-amber">年审待办</span></td><td><button class="btn btn-xs" onclick="openCompany(this)">详情</button> <button class="btn btn-xs btn-p" onclick="openCompEdit(this)">编辑</button> <button class="btn btn-xs btn-red">催办</button></td></tr>
+            <tr><td><b>恒丰贸易有限公司</b><div style="color:var(--text3);font-size:11px">Hang Fung Trading Limited</div></td><td>陈大文</td><td>2891234<div style="color:var(--text3);font-size:11px">BR 91234567</div></td><td>2024-09-15</td><td><span class="pill p-amber">2026-09-15 · 85天</span></td><td><span class="pill p-green">已建</span></td><td><span class="pill p-green">正常</span></td><td><button class="btn btn-xs" onclick="openCompany(this)">详情</button> <button class="btn btn-xs btn-p" onclick="openCompEdit(this)">编辑</button> <button class="btn btn-xs btn-green" onclick="toast('已标记本年度年审完成 · 下次年审顺延一年')">已完成年审</button></td></tr>
+            <tr><td><b>光辉投资有限公司</b><div style="color:var(--text3);font-size:11px">Glory Invest Limited</div></td><td>王志强</td><td>2765432</td><td>2023-07-02</td><td><span class="pill p-red">2026-07-02 · 21天</span></td><td><span class="pill p-green">已建</span></td><td><span class="pill p-green">正常</span></td><td><button class="btn btn-xs" onclick="openCompany(this)">详情</button> <button class="btn btn-xs btn-p" onclick="openCompEdit(this)">编辑</button> <button class="btn btn-xs btn-green" onclick="toast('已标记本年度年审完成 · 下次年审顺延一年')">已完成年审</button></td></tr>
+            <tr><td><b>九龙国际有限公司</b><div style="color:var(--text3);font-size:11px">Kowloon Intl Limited</div></td><td>李美琪</td><td>2654321</td><td>2022-06-04</td><td><span class="pill p-red">已逾期 7 天</span></td><td><span class="pill p-amber">待更新</span></td><td><span class="pill p-amber">年审待办</span></td><td><button class="btn btn-xs" onclick="openCompany(this)">详情</button> <button class="btn btn-xs btn-p" onclick="openCompEdit(this)">编辑</button> <button class="btn btn-xs btn-green" onclick="toast('已标记本年度年审完成 · 下次年审顺延一年')">已完成年审</button></td></tr>
           </tbody>
         </table></div>
         <div class="card cp" style="background:var(--blue-bg);border-color:var(--blue)"><div style="font-size:12px;color:var(--blue)"><i class="ti ti-info-circle"></i> 客户公司 = 法人主体（CI 公司注册证书 / BR 商业登记证 / SCR 重要控制人登记册）。一个客户可有多家公司；公司状态驱动小程序「我的公司」与「为你推荐」服务。</div></div>
@@ -275,15 +274,15 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
       <!-- ════ KYC 审核 ════ -->
       <div class="page" id="p-kyc">
         <div class="filters">
-          <span class="chip on">待审核 5</span><span class="chip">EDD 增强尽调 1</span><span class="chip">制裁命中 1</span><span class="chip">已通过</span><span class="chip">已拒绝</span>
+          <span class="chip on">待审核 3</span><span class="chip">审核中 1</span><span class="chip">已通过</span>
         </div>
         <div class="card"><table>
-          <thead><tr><th>客户</th><th>证件</th><th>PEP</th><th>制裁筛查</th><th>提交时间</th><th>SLA</th><th>状态</th><th></th></tr></thead>
+          <thead><tr><th>客户</th><th>证件</th><th>提交时间</th><th>状态</th><th></th></tr></thead>
           <tbody id="kyc-tb">
-            <tr><td><b>李美琪</b></td><td>香港身份证</td><td><span class="pill p-gray">否</span></td><td><span class="pill p-green">未命中</span></td><td>06-08 09:32</td><td><span class="pill p-green">14h</span></td><td><span class="pill p-blue">待审核</span></td><td><button class="btn btn-xs btn-p" onclick="openKyc('李美琪','submitted','李美琪')">审核</button> <button class="btn btn-xs" onclick="openKycEdit('李美琪')">编辑</button></td></tr>
-            <tr><td><b>刘建国</b></td><td>护照</td><td><span class="pill p-purple">是 · 含家属</span></td><td><span class="pill p-green">未命中</span></td><td>06-07 16:20</td><td><span class="pill p-amber">超时 5h</span></td><td><span class="pill p-amber">EDD 待补</span></td><td><button class="btn btn-xs btn-p" onclick="openKyc('刘建国','edd','刘建国')">审核</button> <button class="btn btn-xs" onclick="openKycEdit('刘建国')">编辑</button></td></tr>
-            <tr><td><b>Ahmed K.</b></td><td>护照</td><td><span class="pill p-gray">否</span></td><td><span class="pill p-red">命中 · 冻结</span></td><td>06-08 11:05</td><td><span class="pill p-red">合规复核</span></td><td><span class="pill p-red">已冻结</span></td><td><button class="btn btn-xs btn-red" onclick="openKyc('Ahmed K.','frozen','Ahmed K.')">复核</button> <button class="btn btn-xs" onclick="openKycEdit('Ahmed K.')">编辑</button></td></tr>
-            <tr><td><b>周敏</b></td><td>香港身份证</td><td><span class="pill p-gray">否</span></td><td><span class="pill p-green">未命中</span></td><td>06-08 13:40</td><td><span class="pill p-green">2h</span></td><td><span class="pill p-blue">待审核</span></td><td><button class="btn btn-xs btn-p" onclick="openKyc('周敏','submitted','周敏')">审核</button> <button class="btn btn-xs" onclick="openKycEdit('周敏')">编辑</button></td></tr>
+            <tr><td><b>李美琪</b></td><td>香港身份证</td><td>06-08 09:32</td><td><span class="pill p-blue">待审核</span></td><td><button class="btn btn-xs btn-p" onclick="openKyc('李美琪','submitted','李美琪')">审核</button> <button class="btn btn-xs" onclick="openKycEdit('李美琪')">编辑</button></td></tr>
+            <tr><td><b>刘建国</b></td><td>护照</td><td>06-07 16:20</td><td><span class="pill p-blue">审核中</span></td><td><button class="btn btn-xs btn-p" onclick="openKyc('刘建国','reviewing','刘建国')">审核</button> <button class="btn btn-xs" onclick="openKycEdit('刘建国')">编辑</button></td></tr>
+            <tr><td><b>Ahmed K.</b></td><td>护照</td><td>06-08 11:05</td><td><span class="pill p-blue">待审核</span></td><td><button class="btn btn-xs btn-p" onclick="openKyc('Ahmed K.','submitted','Ahmed K.')">审核</button> <button class="btn btn-xs" onclick="openKycEdit('Ahmed K.')">编辑</button></td></tr>
+            <tr><td><b>周敏</b></td><td>香港身份证</td><td>06-08 13:40</td><td><span class="pill p-blue">待审核</span></td><td><button class="btn btn-xs btn-p" onclick="openKyc('周敏','submitted','周敏')">审核</button> <button class="btn btn-xs" onclick="openKycEdit('周敏')">编辑</button></td></tr>
           </tbody>
         </table></div>
       </div>
@@ -653,7 +652,7 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
             <tbody>
               <tr><td>数据驾驶舱</td><td><input type="checkbox" checked disabled></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
               <tr><td>客户信息 / 公司管理</td><td><input type="checkbox" checked disabled></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
-              <tr><td>KYC / EDD 审核</td><td><input type="checkbox" checked disabled></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
+              <tr><td>KYC 审核</td><td><input type="checkbox" checked disabled></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
               <tr><td>核名&商标</td><td><input type="checkbox" checked disabled></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
               <tr><td>订单列表（进度维护）</td><td><input type="checkbox" checked disabled></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
               <tr><td>账单 / 回单确认</td><td><input type="checkbox" checked disabled></td><td><input type="checkbox" checked></td><td><input type="checkbox" checked></td><td><input type="checkbox"></td><td><input type="checkbox" checked></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
@@ -997,19 +996,14 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
   </div>
 </div>
 
-<!-- KYC / EDD 审核 Modal（状态自适应 · 打通小程序提交内容）-->
+<!-- KYC 审核 Modal（状态自适应 · 打通小程序提交内容）-->
 <div class="mask" id="m-kyc" onclick="if(event.target===this)closeM('m-kyc')">
   <div class="modal">
-    <div class="mh"><div><b style="font-size:14px" id="kyc-mtitle">KYC / EDD 审核 · 李美琪</b><div style="font-size:11px;color:var(--text3)">来源：小程序 KYC 提交 · AMLO 尽职调查</div></div><button class="x" onclick="closeM('m-kyc')">×</button></div>
+    <div class="mh"><div><b style="font-size:14px" id="kyc-mtitle">KYC 审核 · 李美琪</b><div style="font-size:11px;color:var(--text3)">来源：小程序 KYC 提交 · AMLO 尽职调查</div></div><button class="x" onclick="closeM('m-kyc')">×</button></div>
     <div class="mb">
       <div id="kyc-banner" style="border-radius:7px;margin-bottom:14px;font-size:11.5px;padding:10px 12px"></div>
       <div style="font-size:11px;color:var(--text3);font-weight:600;margin-bottom:8px">小程序 KYC 提交内容（按节点 · 可修改内容 / 替换资料 / 逐节点补充材料与备注）</div>
       <div id="kyc-nodes"></div>
-      <div id="kyc-reject-box" style="display:none;margin-top:14px;border-top:1px solid var(--line);padding-top:12px">
-        <label class="flbl" style="color:var(--red)">拒绝原因（必填 · 将通知客户并留档 7 年）</label>
-        <textarea class="inp" style="width:100%;min-height:54px" placeholder="如：地址证明超期 / 资金来源描述不足 / 证件照片模糊，请客户重传…"></textarea>
-        <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:8px"><button class="btn" onclick="kycRejectCancel()">取消</button><button class="btn btn-red" onclick="kycAct('reject')">确认拒绝</button></div>
-      </div>
     </div>
     <div class="mf" id="kyc-actions"></div>
   </div>
@@ -1477,9 +1471,8 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
       <div><label class="flbl">本人验证</label><select class="inp" style="width:100%"><option selected>手机验证码</option><option>人脸识别</option></select></div>
       <div><label class="flbl">业务性质</label><input class="inp" style="width:100%" value="咨询服务"></div>
       <div><label class="flbl">资金来源</label><input class="inp" style="width:100%" value="营业收入"></div>
-      <div><label class="flbl">审核状态</label><select class="inp" style="width:100%"><option selected>待审核</option><option>审核中</option><option>已通过</option><option>待补正</option><option>EDD</option><option>已拒绝</option></select></div>
-      <div><label class="flbl">EDD 标记</label><select class="inp" style="width:100%"><option selected>否</option><option>是</option></select></div>
-      <div style="grid-column:1/-1"><label class="flbl">备注 / 拒绝原因</label><textarea class="inp" style="width:100%;min-height:48px" placeholder="EDD 原因 / 审核备注 / 拒绝原因"></textarea></div>
+      <div style="grid-column:1/-1"><label class="flbl">审核状态</label><select class="inp" style="width:100%"><option selected>待审核</option><option>审核中</option><option>已通过</option></select></div>
+      <div style="grid-column:1/-1"><label class="flbl">审核备注</label><textarea class="inp" style="width:100%;min-height:48px" placeholder="审核备注"></textarea></div>
     </div></div>
     <div class="mf"><button class="btn" onclick="closeM('m-kycedit')">取消</button><button class="btn btn-p" onclick="closeM('m-kycedit');toast('KYC 资料已保存')">保存</button></div>
   </div>
@@ -1578,7 +1571,7 @@ function go(el){
   var p=el.dataset.p;
   document.querySelectorAll('.page').forEach(pg=>pg.classList.remove('on'));
   document.getElementById('p-'+p).classList.add('on');
-  var meta={dash:['数据驾驶舱','实时运营总览'],supplierwt:['供应商工作台','供应商自助：分配订单 / 更新进度 / 结算对账（不在线结算）'],partner:['渠道商工作台','渠道商自助：归属订单 / 佣金对账（不在线结算）'],customers:['客户信息管理','客户档案与画像'],companies:['客户公司管理','法人主体 / CI·BR / SCR / 年审'],kyc:['KYC / EDD 审核','AMLO 尽职调查 · 后台跑 PEP/制裁'],register:['注册公司','公司注册服务执行 · 维护进度 / 资料'],'svc-annual':['年审服务','法定秘书 + 注册地址 + 周年申报 NAR1（注册处·42 天内）'],'svc-acct':['记账报税','审计（含理账）+ 利得税 PTR / 薪俸税 IR56 / 个税 BIR60（IRD）'],'svc-addr':['地址租赁','独立地址 6000/年 · 工位 3000/月 · 办公室面议（达利直签）'],'chg-address':['地址变更','NR1 · 关键信息 → 线下备表 → 文件签字 → 递交'],'chg-director':['董事变更','ND2A · 关键信息 + 新董事 KYC → 线下备表 → 文件签字'],'chg-secretary':['变更秘书','ND2A · 秘书部分 Leapex 利柏思 填 → 文件签字 → 递交'],'chg-rename':['公司更名','NNC2 · 先付费后查名 → 备 NNC2 + 决议 → 文件签字'],'chg-transfer':['股份转让','转让文书 + 印花税 0.2% · 作价估值 → 缴印花 → 更新名册'],'chg-deregister':['公司注销','NDR1 + IR1263 不反对通知书 · 宪报公告约 8 个月'],namecheck:['核名&商标','人工核名（繁体/英文）+ 商标查询 · 无智能预检'],'svc-tm':['商标办理','商标注册 IPD（宪报公告 3 个月）/ 续期（每 10 年）'],orders:['订单列表','进度只读联动服务 · 资料可下载'],bills:['账单 / 回单确认','服务人员核验回单 · 确认付款 / 未收到付款（不含退款·重开）'],products:['商品','商品目录 · 基础信息 + 价格与本位币'],coupons:['卡券','卡券模板 + 发放 + 核销统计（承接小程序优惠券）'],messages:['消息','消息模板 + 群发 + 发送记录'],supplier:['供应商管理','超管新增 · 支持服务 + 结算规则'],assign:['订单分配','派单给供应商履约'],suppliersettle:['订单结算','已完成订单 → 供应商结算（线下）'],channel:['渠道商管理','超管新增 · 推荐码 + 佣金（弹窗配置）'],'chanapply':['渠道商申请审核','H5 扫码自助申请 · 审核通过生成推荐码'],commission:['佣金结算','已完成订单 → 渠道返点（线下）'],rbac:['员工和角色','RBAC 7 角色 + 自定义'],menuperm:['菜单权限','角色 × 菜单可见性配置'],compliance:['合规与审计','制裁 / SCR / 哈希链'],config:['系统参数','时效 / 额度 / 税率']};
+  var meta={dash:['数据驾驶舱','实时运营总览'],supplierwt:['供应商工作台','供应商自助：分配订单 / 更新进度 / 结算对账（不在线结算）'],partner:['渠道商工作台','渠道商自助：归属订单 / 佣金对账（不在线结算）'],customers:['客户信息管理','客户档案与画像'],companies:['客户公司管理','法人主体 / CI·BR / SCR / 年审'],kyc:['KYC 审核','AMLO 尽职调查 · 客户身份 / 地址 / 业务资料核对'],register:['注册公司','公司注册服务执行 · 维护进度 / 资料'],'svc-annual':['年审服务','法定秘书 + 注册地址 + 周年申报 NAR1（注册处·42 天内）'],'svc-acct':['记账报税','审计（含理账）+ 利得税 PTR / 薪俸税 IR56 / 个税 BIR60（IRD）'],'svc-addr':['地址租赁','独立地址 6000/年 · 工位 3000/月 · 办公室面议（达利直签）'],'chg-address':['地址变更','NR1 · 关键信息 → 线下备表 → 文件签字 → 递交'],'chg-director':['董事变更','ND2A · 关键信息 + 新董事 KYC → 线下备表 → 文件签字'],'chg-secretary':['变更秘书','ND2A · 秘书部分 Leapex 利柏思 填 → 文件签字 → 递交'],'chg-rename':['公司更名','NNC2 · 先付费后查名 → 备 NNC2 + 决议 → 文件签字'],'chg-transfer':['股份转让','转让文书 + 印花税 0.2% · 作价估值 → 缴印花 → 更新名册'],'chg-deregister':['公司注销','NDR1 + IR1263 不反对通知书 · 宪报公告约 8 个月'],namecheck:['核名&商标','人工核名（繁体/英文）+ 商标查询 · 无智能预检'],'svc-tm':['商标办理','商标注册 IPD（宪报公告 3 个月）/ 续期（每 10 年）'],orders:['订单列表','进度只读联动服务 · 资料可下载'],bills:['账单 / 回单确认','服务人员核验回单 · 确认付款 / 未收到付款（不含退款·重开）'],products:['商品','商品目录 · 基础信息 + 价格与本位币'],coupons:['卡券','卡券模板 + 发放 + 核销统计（承接小程序优惠券）'],messages:['消息','消息模板 + 群发 + 发送记录'],supplier:['供应商管理','超管新增 · 支持服务 + 结算规则'],assign:['订单分配','派单给供应商履约'],suppliersettle:['订单结算','已完成订单 → 供应商结算（线下）'],channel:['渠道商管理','超管新增 · 推荐码 + 佣金（弹窗配置）'],'chanapply':['渠道商申请审核','H5 扫码自助申请 · 审核通过生成推荐码'],commission:['佣金结算','已完成订单 → 渠道返点（线下）'],rbac:['员工和角色','RBAC 7 角色 + 自定义'],menuperm:['菜单权限','角色 × 菜单可见性配置'],compliance:['合规与审计','制裁 / SCR / 哈希链'],config:['系统参数','时效 / 额度 / 税率']};
   var m=meta[p]||['',''];document.getElementById('pt').textContent=m[0];document.getElementById('ps').textContent=m[1];
   document.querySelector('.content').scrollTop=0;
 }
@@ -2009,7 +2002,7 @@ var _kid=null,_bid=null;
 function jget(p){return fetch(API+p).then(r=>r.json())}
 function jpost(p){return fetch(API+p,{method:'POST'})}
 function k(n){return 'HKD '+(n>=1000?(n/1000).toFixed(1)+'K':n)}
-var KYC_PILL={submitted:['待审核','p-blue'],reviewing:['审核中','p-blue'],approved:['已通过','p-green'],edd_required:['EDD 待补','p-amber'],rejected:['已拒绝','p-red'],frozen:['已冻结','p-red']};
+var KYC_PILL={submitted:['待审核','p-blue'],reviewing:['审核中','p-blue'],approved:['已通过','p-green']};
 var BILL_PILL={'待支付':'p-amber','待确认':'p-blue','已到账':'p-green','已驳回':'p-red','已作废':'p-gray'};
 
 function loadDash(){jget('/dashboard').then(d=>{
@@ -2020,16 +2013,13 @@ function set(id,v){var e=document.getElementById(id);if(e)e.textContent=v}
 
 function renderKyc(){jget('/kyc').then(rows=>{var tb=document.getElementById('kyc-tb');if(!tb)return;
   tb.innerHTML=rows.map(r=>{
-    var st=KYC_PILL[r.status]||['',''];
-    var pep=r.is_pep?'<span class="pill p-purple">是·含家属</span>':'<span class="pill p-gray">否</span>';
-    var san=r.sanction_hit?'<span class="pill p-red">命中·冻结</span>':'<span class="pill p-green">未命中</span>';
-    var stMap={submitted:'submitted',reviewing:'reviewing',approved:'approved',edd_required:'edd',rejected:'rejected',frozen:'frozen'};
-    var _st=r.sanction_hit?'frozen':(stMap[r.status]||'submitted');
-    var _lb=(_st==='frozen')?'复核':((_st==='approved'||_st==='rejected')?'查看':'审核');
-    var _cls=(_st==='frozen')?'btn-red':((_st==='approved'||_st==='rejected')?'':'btn-p');
+    var st=KYC_PILL[r.status]||KYC_PILL.submitted;
+    var _st=(r.status==='reviewing')?'reviewing':((r.status==='approved')?'approved':'submitted');
+    var _lb=(_st==='approved')?'查看':'审核';
+    var _cls=(_st==='approved')?'':'btn-p';
     var act='<button class="btn btn-xs '+_cls+'" onclick="openKyc(\''+r.id+'\',\''+_st+'\',\''+r.customer_name+'\')">'+_lb+'</button> <button class="btn btn-xs" onclick="openKycEdit(\''+r.customer_name+'\')">编辑</button>';
     var doc={hkid:'香港身份证',passport:'护照',other:'其他证件',cn_id:'其他证件'}[r.id_doc_type]||'其他证件';
-    return '<tr><td><b>'+r.customer_name+'</b></td><td>'+doc+'</td><td>'+pep+'</td><td>'+san+'</td><td>'+(r.submitted_at||'')+'</td><td><span class="pill '+(r.status==='edd_required'||r.sanction_hit?'p-amber':'p-green')+'">'+r.sla_hours+'h</span></td><td><span class="pill '+st[1]+'">'+st[0]+'</span></td><td>'+act+'</td></tr>';
+    return '<tr><td><b>'+r.customer_name+'</b></td><td>'+doc+'</td><td>'+(r.submitted_at||'')+'</td><td><span class="pill '+st[1]+'">'+st[0]+'</span></td><td>'+act+'</td></tr>';
   }).join('');
 })}
 function renderBills(){jget('/bills').then(rows=>{var tb=document.getElementById('bill-tb');if(!tb)return;
@@ -2050,39 +2040,30 @@ function renderComm(){jget('/commissions').then(rows=>{var tb=document.getElemen
 
 function openKyc(id,status,name){
   _kid=id; var st=status||'submitted'; name=name||id||'';
-  var titles={submitted:'KYC / EDD 审核',reviewing:'KYC / EDD 审核',edd:'EDD 增强尽调',frozen:'制裁命中复核',approved:'KYC 已通过（查看）',rejected:'KYC 已拒绝（查看）'};
+  var titles={submitted:'KYC 审核',reviewing:'KYC 审核',approved:'KYC 已通过（查看）'};
   document.getElementById('kyc-mtitle').textContent=(titles[st]||'KYC 审核')+' · '+name;
   var banners={
-    submitted:['p-blue','待审核 · SLA 倒计时：核对小程序提交的身份 / 地址 / 业务资料后处理。'],
-    reviewing:['p-blue','审核中：可编辑修改内容 / 重新上传证件，然后通过 / 拒绝 / 标记 EDD。'],
-    edd:['p-amber','EDD 增强尽调：命中 PEP / 高风险，需补资金来源证明 + 业务关系合理性，合规二次审核。'],
-    frozen:['p-red','⚠ 制裁名单命中，订单已自动冻结。合规复核后解冻或上报 STR；对客户 no tipping-off。'],
-    approved:['p-green','已通过：尽调完成，资料 AMLO 留存 7 年。仅查看。'],
-    rejected:['p-red','已拒绝：不予服务，留档 7 年（含拒绝原因）。仅查看。']
+    submitted:['p-blue','待审核：核对小程序提交的身份 / 地址 / 业务资料后处理。'],
+    reviewing:['p-blue','审核中：可编辑修改内容 / 重新上传证件，核对无误后点「通过」。'],
+    approved:['p-green','已通过：尽调完成，资料 AMLO 留存 7 年。仅查看。']
   };
   var b=banners[st]||banners.submitted, banner=document.getElementById('kyc-banner');
   banner.className='pill '+b[0]; banner.style.display='block'; banner.style.padding='10px 12px';
   banner.innerHTML='<i class="ti ti-info-circle"></i> '+b[1];
-  var rb=document.getElementById('kyc-reject-box'); if(rb) rb.style.display='none';
   var DL='<button class="btn"><i class="ti ti-download"></i>打包下载</button>';
   var SAVE='<button class="btn" onclick="toast(\'KYC 资料修改已保存\')">保存修改</button>';
-  var REJ='<button class="btn btn-red" onclick="kycReject()">拒绝</button>';
-  var full=DL+SAVE+REJ+'<button class="btn" onclick="kycAct(\'edd\')">标记 EDD</button><button class="btn btn-p" onclick="kycAct(\'approve\')">通过</button>';
+  var REVW='<button class="btn" onclick="kycAct(\'reviewing\')">标记审核中</button>';
   var acts={
-    submitted:full, reviewing:full,
-    edd:DL+SAVE+REJ+'<button class="btn btn-p" onclick="kycAct(\'approve\')">EDD 通过</button>',
-    frozen:DL+'<button class="btn btn-red" onclick="kycAct(\'str\')">上报 STR</button><button class="btn btn-p" onclick="kycAct(\'unfreeze\')">解冻放行</button>',
-    approved:DL+SAVE+'<button class="btn btn-p" onclick="closeM(\'m-kyc\')">关闭</button>',
-    rejected:DL+'<button class="btn btn-p" onclick="closeM(\'m-kyc\')">关闭</button>'
+    submitted:DL+SAVE+REVW+'<button class="btn btn-p" onclick="kycAct(\'approve\')">通过</button>',
+    reviewing:DL+SAVE+'<button class="btn btn-p" onclick="kycAct(\'approve\')">通过</button>',
+    approved:DL+'<button class="btn btn-p" onclick="closeM(\'m-kyc\')">关闭</button>'
   };
-  document.getElementById('kyc-actions').innerHTML=acts[st]||full;
+  document.getElementById('kyc-actions').innerHTML=acts[st]||acts.submitted;
   var kn=document.getElementById('kyc-nodes'); if(kn) kn.innerHTML=nodePanel(KYC_NODES,NODE_ST_KYC);
   document.getElementById('m-kyc').classList.add('on');
 }
 function openBill(id){_bid=id;document.getElementById('m-bill').classList.add('on')}
-function kycReject(){var rb=document.getElementById('kyc-reject-box');if(rb){rb.style.display='block';rb.scrollIntoView({block:'nearest'});}}
-function kycRejectCancel(){var rb=document.getElementById('kyc-reject-box');if(rb)rb.style.display='none';}
-function kycAct(action){var m={'reject':'已拒绝，留档 7 年','edd':'已标记 EDD 增强尽调','approve':'已通过','unfreeze':'已解冻放行','str':'已上报可疑交易 STR'};if(_kid){jpost('/kyc/'+_kid+'/'+action).then(function(){renderKyc();loadDash();}).catch(function(){});}closeM('m-kyc');toast(m[action]||'已处理')}
+function kycAct(action){var m={'reviewing':'已标记审核中','approve':'已通过'};if(_kid){jpost('/kyc/'+_kid+'/'+action).then(function(){renderKyc();loadDash();}).catch(function(){});}closeM('m-kyc');toast(m[action]||'已处理')}
 function billConfirm(){closeM('m-bill');toast('已确认付款 · 订单进入服务中');if(_bid)jpost('/bills/'+_bid+'/confirm').then(()=>{renderBills();loadDash()}).catch(()=>{})}
 function billReject(){closeM('m-bill');toast('已标记未收到付款 · 通知客户');if(_bid)jpost('/bills/'+_bid+'/reject').then(()=>{renderBills();loadDash()}).catch(()=>{})}
 function settleComm(id){jpost('/commissions/'+id+'/settle').then(()=>{toast('佣金已标记结算');renderComm();loadDash()})}
