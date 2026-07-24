@@ -117,6 +117,11 @@ img,svg{max-width:100%}
 .form-sec .kicker{color:var(--gold)}
 .form-sec .sub{color:rgba(255,255,255,.55)}
 .form-card{background:rgba(255,255,255,.045);border:1px solid rgba(212,168,83,.22);border-radius:16px;padding:18px}
+.form-mod{border:1px solid rgba(212,168,83,.18);border-radius:13px;padding:15px 14px 4px;margin-bottom:16px;background:rgba(255,255,255,.025)}
+.mod-head{display:flex;align-items:baseline;gap:8px;margin-bottom:14px}
+.mod-head b{font-size:14px;font-weight:800;color:var(--gold-l);letter-spacing:.3px;display:flex;align-items:center;gap:6px}
+.mod-head b i{color:var(--gold);font-size:16px}
+.mod-head span{font-size:11px;color:rgba(255,255,255,.4);font-weight:500}
 .fgroup{margin-bottom:15px}
 .flabel{font-size:12.5px;font-weight:700;color:var(--gold-l);margin-bottom:7px;display:block;letter-spacing:.3px}
 .req{color:#E8735A;margin-left:2px}
@@ -317,15 +322,15 @@ img,svg{max-width:100%}
         </thead>
         <tbody>
           <tr>
-            <td><div class="rate-svc">公司注册</div><div class="rate-note">新设香港有限公司 HKD 5,533</div></td>
+            <td><div class="rate-svc">公司注册</div><div class="rate-note">新设香港有限公司 ¥ 4,980</div></td>
             <td>15%</td>
           </tr>
           <tr>
-            <td><div class="rate-svc">年审 / 记账 / 变更 / 商标</div><div class="rate-note">年审 4,422 · 商标 3,311/类 · 变更 333 起</div></td>
+            <td><div class="rate-svc">年审 / 记账 / 变更 / 商标</div><div class="rate-note">年审 ¥ 3,980 · 商标 ¥ 2,980/类 · 变更 ¥ 300 起</div></td>
             <td>20%</td>
           </tr>
           <tr>
-            <td><div class="rate-svc">地址租赁</div><div class="rate-note">独立注册地址 HKD 6,000 / 年</div></td>
+            <td><div class="rate-svc">地址租赁</div><div class="rate-note">独立注册地址 ¥ 5,400 / 年</div></td>
             <td>25%</td>
           </tr>
         </tbody>
@@ -338,25 +343,25 @@ img,svg{max-width:100%}
     <div class="calc">
       <div class="calc-h"><i class="ti ti-calculator"></i>收益举例 · 推荐 1 家客户能拿多少</div>
       <div class="calc-row">
-        <div class="calc-l">公司注册 HKD 5,533 × 15%<i>首年新设香港有限公司</i></div>
-        <div class="calc-v">≈ 830</div>
+        <div class="calc-l">公司注册 ¥ 4,980 × 15%<i>首年新设香港有限公司</i></div>
+        <div class="calc-v">≈ 747</div>
       </div>
       <div class="calc-row">
-        <div class="calc-l">年审服务 HKD 4,422 × 20%<i>次年起，年年复购、年年分佣</i></div>
-        <div class="calc-v">≈ 884</div>
+        <div class="calc-l">年审服务 ¥ 3,980 × 20%<i>次年起，年年复购、年年分佣</i></div>
+        <div class="calc-v">≈ 796</div>
       </div>
       <div class="calc-row" style="border-bottom:none">
-        <div class="calc-l">地址租赁 HKD 6,000 × 25%<i>可叠加，按年续租</i></div>
-        <div class="calc-v">= 1,500</div>
+        <div class="calc-l">地址租赁 ¥ 5,400 × 25%<i>可叠加，按年续租</i></div>
+        <div class="calc-v">= 1,350</div>
       </div>
       <div class="calc-sum">
         <div class="calc-sum-l">单客首年（注册 + 地址）</div>
-        <div class="calc-sum-v">HKD 2,330</div>
+        <div class="calc-sum-v">¥ 2,097</div>
       </div>
       <div class="calc-x10">
         <span>推荐 10 家客户 · 首年预估收益</span>
-        <b>HKD 23,300</b>
-        <span>次年仅年审复购即再入账 HKD 8,840+</span>
+        <b>¥ 20,970</b>
+        <span>次年仅年审复购即再入账 ¥ 7,960+</span>
       </div>
       <div class="calc-tip">以上按标准价与对应佣金率测算，实际以客户实付金额与正式协议为准。</div>
     </div>
@@ -439,73 +444,83 @@ img,svg{max-width:100%}
       </div>
 
       <div class="form-card">
-        <!-- 合作方类型 -->
-        <div class="fgroup">
-          <label class="flabel">合作方类型<span class="req">*</span></label>
-          <div class="seg">
-            <button type="button" class="seg-btn on" id="segPerson" onclick="setType('person')"><i class="ti ti-user"></i>个人</button>
-            <button type="button" class="seg-btn" id="segBiz" onclick="setType('biz')"><i class="ti ti-building"></i>企业</button>
+        <!-- ── 模块一：必填信息 ── -->
+        <div class="form-mod">
+          <div class="mod-head">
+            <b><i class="ti ti-asterisk"></i>必填信息</b>
+            <span>带 <span class="req" style="margin:0">*</span> 为必填项</span>
           </div>
-        </div>
 
-        <!-- 企业专属字段 -->
-        <div class="biz-fields" id="bizFields">
+          <!-- 合作方类型 -->
           <div class="fgroup">
-            <label class="flabel">企业名称<span class="req">*</span></label>
-            <input class="input" id="fBizName" placeholder="如：深圳市某某企业服务有限公司">
+            <label class="flabel">合作方类型<span class="req">*</span></label>
+            <div class="seg">
+              <button type="button" class="seg-btn on" id="segPerson" onclick="setType('person')"><i class="ti ti-user"></i>个人</button>
+              <button type="button" class="seg-btn" id="segBiz" onclick="setType('biz')"><i class="ti ti-building"></i>企业</button>
+            </div>
           </div>
+
+          <!-- 企业专属必填字段 -->
+          <div class="biz-fields" id="bizFields">
+            <div class="fgroup">
+              <label class="flabel">企业名称<span class="req">*</span></label>
+              <input class="input" id="fBizName" placeholder="如：深圳市某某企业服务有限公司">
+            </div>
+            <div class="fgroup">
+              <label class="flabel">统一社会信用代码 / BR 号<span class="req">*</span></label>
+              <input class="input" id="fBizNo" placeholder="内地填统一社会信用代码，香港填 BR 号">
+            </div>
+          </div>
+
           <div class="fgroup">
-            <label class="flabel">统一社会信用代码 / BR 号<span class="req">*</span></label>
-            <input class="input" id="fBizNo" placeholder="内地填统一社会信用代码，香港填 BR 号">
+            <label class="flabel" id="lblName">姓名<span class="req">*</span></label>
+            <input class="input" id="fName" placeholder="请填写真实姓名">
           </div>
+
           <div class="fgroup">
-            <label class="flabel">联系人职务</label>
-            <input class="input" id="fTitle" placeholder="如：合伙人 / 商务总监">
+            <label class="flabel">手机号（预留手机号）<span class="req">*</span></label>
+            <div class="row-code">
+              <input class="input" id="fPhone" type="tel" inputmode="tel" placeholder="+852 / +86 手机号">
+              <button type="button" class="btn-code" id="btnCode" onclick="sendCode()">获取验证码</button>
+            </div>
+            <div class="hint">审核结果与专属推荐码将发送至该手机号。</div>
+          </div>
+
+          <div class="fgroup">
+            <label class="flabel">短信验证码</label>
+            <input class="input" id="fCode" inputmode="numeric" maxlength="6" placeholder="请输入 6 位验证码">
+          </div>
+
+          <div class="fgroup">
+            <label class="flabel">所在城市 / 地区<span class="req">*</span></label>
+            <input class="input" id="fCity" placeholder="如：深圳 / 香港 / 杭州">
           </div>
         </div>
 
-        <div class="fgroup">
-          <label class="flabel" id="lblName">姓名<span class="req">*</span></label>
-          <input class="input" id="fName" placeholder="请填写真实姓名">
-        </div>
-
-        <div class="fgroup">
-          <label class="flabel">手机号（预留手机号）<span class="req">*</span></label>
-          <div class="row-code">
-            <input class="input" id="fPhone" type="tel" inputmode="tel" placeholder="+852 / +86 手机号">
-            <button type="button" class="btn-code" id="btnCode" onclick="sendCode()">获取验证码</button>
+        <!-- ── 模块二：选填信息 ── -->
+        <div class="form-mod">
+          <div class="mod-head">
+            <b><i class="ti ti-notes"></i>选填信息</b>
+            <span>有助于加速审核</span>
           </div>
-          <div class="hint">审核结果与专属推荐码将发送至该手机号。</div>
-        </div>
 
-        <div class="fgroup">
-          <label class="flabel">短信验证码</label>
-          <input class="input" id="fCode" inputmode="numeric" maxlength="6" placeholder="请输入 6 位验证码">
-        </div>
+          <!-- 企业专属选填字段 -->
+          <div class="biz-fields" id="bizOpt">
+            <div class="fgroup">
+              <label class="flabel">联系人职务</label>
+              <input class="input" id="fTitle" placeholder="如：合伙人 / 商务总监">
+            </div>
+          </div>
 
-        <div class="fgroup">
-          <label class="flabel">邮箱（选填）</label>
-          <input class="input" id="fEmail" type="email" placeholder="name@company.com">
-        </div>
+          <div class="fgroup">
+            <label class="flabel">邮箱</label>
+            <input class="input" id="fEmail" type="email" placeholder="name@company.com">
+          </div>
 
-        <div class="fgroup">
-          <label class="flabel">所在城市 / 地区<span class="req">*</span></label>
-          <input class="input" id="fCity" placeholder="如：深圳 / 香港 / 杭州">
-        </div>
-
-        <div class="fgroup">
-          <label class="flabel">主要客户群体 / 现有资源</label>
-          <textarea class="textarea" id="fRes" placeholder="如：跨境电商卖家 200+、财税代理同行、投资机构、独立站卖家社群…（有助于加速审核）"></textarea>
-        </div>
-
-        <div class="fgroup">
-          <label class="flabel">预计每月推荐量</label>
-          <select class="select" id="fVol">
-            <option value="1-5">1-5 家</option>
-            <option value="6-20">6-20 家</option>
-            <option value="20+">20 家以上</option>
-            <option value="unknown" selected>暂不确定</option>
-          </select>
+          <div class="fgroup" style="margin-bottom:11px">
+            <label class="flabel">主要客户群体 / 现有资源</label>
+            <textarea class="textarea" id="fRes" placeholder="如：跨境电商卖家 200+、财税代理同行、投资机构、独立站卖家社群…（有助于加速审核）"></textarea>
+          </div>
         </div>
 
         <div class="agree" onclick="toggleAgree()">
@@ -573,6 +588,7 @@ img,svg{max-width:100%}
     </div>
     <div>香港持牌信托及公司服务提供商（TCSP）· 牌照号 TC10988</div>
     <div>云帐房旗下香港公司服务业务线</div>
+    <div>利柏思商务服务（上海）有限公司</div>
     <div class="footer-div"></div>
     <div>本页内容为渠道合作说明，最终解释权与分佣比例以双方正式签署的协议为准。</div>
   </div>
@@ -610,6 +626,7 @@ function setType(type){
   document.getElementById('segPerson').classList.toggle('on', !isBiz);
   document.getElementById('segBiz').classList.toggle('on', isBiz);
   document.getElementById('bizFields').classList.toggle('on', isBiz);
+  document.getElementById('bizOpt').classList.toggle('on', isBiz);
   document.getElementById('lblName').innerHTML = (isBiz ? '联系人姓名' : '姓名') + '<span class="req">*</span>';
   document.getElementById('fName').placeholder = isBiz ? '请填写联系人真实姓名' : '请填写真实姓名';
 }
