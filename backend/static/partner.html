@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Leapex 利柏思 · 渠道商招募 | 香港公司服务，云帐房喊你一起做</title>
+<title>Leapex利柏思 · 渠道商招募 | 香港公司注册、年审、审计、开户、地址</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -32,24 +32,41 @@ img,svg{max-width:100%}
 .card{background:var(--card);border-radius:12px;border:1px solid var(--line);box-shadow:var(--shadow)}
 
 /* ── Hero ── */
-.hero{background:linear-gradient(165deg,#141210 0%,#0D0D0D 60%,#17130C 100%);color:#fff;padding:30px 18px 34px;position:relative;overflow:hidden}
+.hero{background:
+  radial-gradient(circle at 88% 4%,rgba(212,168,83,.25),transparent 31%),
+  radial-gradient(circle at 4% 78%,rgba(184,134,11,.2),transparent 38%),
+  linear-gradient(155deg,#17130C 0%,#080705 58%,#151006 100%);
+  color:#fff;padding:22px 18px 32px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;opacity:.11;pointer-events:none;
+  background-image:linear-gradient(rgba(244,217,166,.18) 1px,transparent 1px),linear-gradient(90deg,rgba(244,217,166,.18) 1px,transparent 1px);
+  background-size:26px 26px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.8),transparent 72%)}
 .blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.28;pointer-events:none}
 .hero-in{position:relative;z-index:2}
-.brandrow{display:flex;align-items:center;gap:9px}
-.brandname{font-size:19px;font-weight:800;letter-spacing:.4px;color:var(--gold)}
-.licline{margin-top:9px;display:inline-flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:11.5px;font-weight:600;
-  color:var(--gold-l);background:rgba(212,168,83,.12);border:1px solid rgba(212,168,83,.3);padding:5px 11px;border-radius:20px}
-.hero-h1{font-size:29px;line-height:1.28;font-weight:800;letter-spacing:.5px;margin-top:22px}
+.brandrow{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand-lockup{display:flex;align-items:center;gap:12px;min-width:0}
+.brand-logo{display:block;width:68px;height:68px;object-fit:contain;border:0;box-shadow:none}
+.brand-copy{min-width:0}
+.brand-en{font-size:24px;line-height:1;font-weight:850;letter-spacing:-.5px;color:#fff}
+.brand-cn{font-size:13px;font-weight:650;letter-spacing:3.4px;color:var(--gold);margin-top:8px;white-space:nowrap}
+.brand-proof{flex-shrink:0;display:flex;align-items:center;gap:4px;padding:6px 8px;border-radius:9px;border:1px solid rgba(212,168,83,.28);
+  background:rgba(212,168,83,.1);color:var(--gold-l);font-size:9.5px;font-weight:700;line-height:1.25;text-align:center}
+.licline{margin-top:16px;display:inline-flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:11.5px;font-weight:600;
+  color:var(--gold-l);background:rgba(212,168,83,.1);border:1px solid rgba(212,168,83,.28);padding:6px 11px;border-radius:20px}
+.hero-h1{font-size:29px;line-height:1.28;font-weight:800;letter-spacing:.2px;margin-top:22px}
 .hero-h1 em{font-style:normal;background:linear-gradient(100deg,#F4D9A6,#D4A853 55%,#B8860B);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero-sub{font-size:15px;color:rgba(255,255,255,.72);margin-top:12px;line-height:1.6}
+.hero-services{display:flex;flex-wrap:wrap;gap:6px;margin-top:13px}
+.hero-services span{padding:5px 9px;border-radius:7px;background:rgba(255,255,255,.055);border:1px solid rgba(212,168,83,.2);
+  color:var(--gold-l);font-size:11.5px;font-weight:600}
+.hero-sub{font-size:14px;color:rgba(255,255,255,.66);margin-top:13px;line-height:1.65}
 .hero-stats{display:flex;gap:8px;margin-top:20px}
-.hstat{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(212,168,83,.18);border-radius:10px;padding:10px 8px;text-align:center}
-.hstat b{display:block;font-size:18px;font-weight:800;color:var(--gold);letter-spacing:.3px}
+.hstat{flex:1;background:rgba(255,255,255,.045);border:1px solid rgba(212,168,83,.18);border-radius:11px;padding:11px 7px;text-align:center}
+.hstat b{display:block;font-size:18px;font-weight:800;color:var(--gold);letter-spacing:.2px}
 .hstat span{font-size:10.5px;color:rgba(255,255,255,.6)}
 .cta-gold{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;margin-top:22px;padding:15px;border:none;border-radius:13px;
   background:linear-gradient(135deg,#F4D9A6,#D4A853);color:#1A1A1A;font-size:16.5px;font-weight:800;cursor:pointer;
   font-family:inherit;box-shadow:0 10px 30px rgba(212,168,83,.35);text-decoration:none;transition:transform .15s,box-shadow .15s}
 .cta-gold:active{transform:translateY(1px);box-shadow:0 5px 16px rgba(212,168,83,.3)}
+.hero .cta-gold{background:linear-gradient(135deg,#F4D9A6,#D4A853);color:#1A1A1A;box-shadow:0 12px 30px rgba(212,168,83,.3)}
 .hero-note{text-align:center;font-size:11.5px;color:rgba(255,255,255,.45);margin-top:11px}
 
 /* ── 价值支柱 ── */
@@ -110,6 +127,13 @@ img,svg{max-width:100%}
   font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;z-index:1}
 .step-t{font-size:14.5px;font-weight:700;line-height:1.35}
 .step-d{font-size:12.5px;color:var(--text2);margin-top:3px;line-height:1.55}
+.fastlane{margin-top:14px;padding:15px;border-radius:13px;background:linear-gradient(135deg,#FFF8E8,#F8E8C8);border:1px solid #E7C879}
+.fastlane-h{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:800;color:#7A5510}
+.fastlane-sub{font-size:12px;color:#8B6B32;margin-top:4px}
+.fastlane-flow{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:12px}
+.fastlane-step{background:rgba(255,255,255,.7);border:1px solid rgba(184,134,11,.18);border-radius:9px;padding:9px 6px;text-align:center}
+.fastlane-step b{display:block;font-size:11.5px;color:#6E4B0C}
+.fastlane-step span{display:block;font-size:10px;color:#9A783A;margin-top:2px;line-height:1.35}
 
 /* ── 表单 ── */
 .form-sec{background:linear-gradient(170deg,#141210,#0D0D0D);padding:28px 18px 32px;color:#fff}
@@ -156,6 +180,10 @@ img,svg{max-width:100%}
 .agree-t{font-size:12.5px;color:rgba(255,255,255,.62);line-height:1.55}
 .agree-t a{color:var(--gold);text-decoration:none;font-weight:600}
 .hint{font-size:11.5px;color:rgba(255,255,255,.35);margin-top:6px;line-height:1.5}
+.intent-note{display:flex;gap:8px;align-items:flex-start;margin:2px 0 16px;padding:11px 12px;border-radius:10px;
+  background:rgba(212,168,83,.08);border:1px solid rgba(212,168,83,.2);font-size:11.8px;color:rgba(255,255,255,.62);line-height:1.55}
+.intent-note i{color:var(--gold);font-size:16px;margin-top:1px;flex-shrink:0}
+.intent-note a{color:var(--gold);text-decoration:none;font-weight:600}
 
 /* 成功态 */
 #successBox{display:none}
@@ -169,6 +197,20 @@ img,svg{max-width:100%}
 .succ-no b{font-size:21px;font-weight:800;color:var(--gold);letter-spacing:1.6px;display:block;margin-top:4px}
 .succ-back{display:inline-flex;align-items:center;gap:5px;margin-top:20px;color:var(--gold);font-size:13.5px;font-weight:700;
   text-decoration:none;border-bottom:1px solid rgba(212,168,83,.4);padding-bottom:2px;background:none;border-top:none;border-left:none;border-right:none;font-family:inherit;cursor:pointer}
+.next-flow{margin-top:16px;text-align:left}
+.next-item{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.next-item:last-child{border-bottom:none}
+.next-dot{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  background:rgba(212,168,83,.14);border:1px solid rgba(212,168,83,.35);color:var(--gold);font-size:11px;font-weight:800}
+.next-item.done .next-dot{background:var(--gold);color:#17130C}
+.next-copy b{display:block;color:var(--gold-l);font-size:12.5px}
+.next-copy span{display:block;color:rgba(255,255,255,.48);font-size:11px;margin-top:2px;line-height:1.45}
+.signing-box{margin-top:16px;text-align:left;padding-top:16px;border-top:1px solid rgba(212,168,83,.2)}
+.signing-title{font-size:14px;font-weight:800;color:var(--gold-l);margin-bottom:3px}
+.signing-sub{font-size:11.5px;color:rgba(255,255,255,.45);margin-bottom:14px}
+.signing-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}
+.signing-grid .wide{grid-column:1/-1}
+.signing-status{display:none;margin-top:13px;padding:12px;border-radius:10px;background:rgba(46,139,87,.14);border:1px solid rgba(46,139,87,.42);color:#BDE8CD;font-size:12px;line-height:1.55}
 
 /* ── FAQ ── */
 .faq{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
@@ -184,10 +226,14 @@ img,svg{max-width:100%}
 
 /* ── 页脚 ── */
 .footer{background:var(--ink);color:rgba(255,255,255,.5);padding:26px 18px 34px;text-align:center;font-size:11.5px;line-height:1.85}
-.footer .fname{font-size:14.5px;font-weight:800;color:var(--gold);letter-spacing:.4px;margin-bottom:8px;
-  display:flex;align-items:center;justify-content:center;gap:8px}
+.footer .fname{margin-bottom:12px;display:flex;align-items:center;justify-content:center}
+.footer-brand{display:flex;align-items:center;gap:9px;text-align:left}
+.footer-logo{display:block;width:44px;height:44px;object-fit:contain;border:0;box-shadow:none}
+.footer-brand .brand-en{font-size:17px}
+.footer-brand .brand-cn{font-size:9.5px;letter-spacing:2px;margin-top:4px}
 .footer-div{width:40px;height:2px;background:rgba(212,168,83,.35);margin:14px auto}
-
+.licence-media{display:block;margin-top:18px;padding:7px;background:#fff;border-radius:10px;text-decoration:none;overflow:hidden}
+.licence-media img{display:block;width:100%;height:auto;border-radius:6px}
 /* Toast */
 .toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.9);background:rgba(0,0,0,.86);color:#fff;
   padding:14px 22px;border-radius:10px;font-size:14px;opacity:0;transition:.2s;z-index:999;pointer-events:none;max-width:80vw;text-align:center;line-height:1.5}
@@ -207,6 +253,10 @@ img,svg{max-width:100%}
 
 @media (max-width:360px){
   .hero-h1{font-size:25px}
+  .brand-logo{width:60px;height:60px}
+  .brand-en{font-size:21px}
+  .brand-cn{font-size:11px;letter-spacing:2.7px}
+  .brand-proof{font-size:8.5px;padding:5px 6px}
   .grid2{gap:8px}
   .h2{font-size:19px}
 }
@@ -217,30 +267,37 @@ img,svg{max-width:100%}
 
   <!-- ═══ 1. Hero ═══ -->
   <div class="hero">
-    <div class="blob" style="width:200px;height:200px;background:#D4A853;top:-50px;right:-60px"></div>
-    <div class="blob" style="width:170px;height:170px;background:#B8860B;bottom:-70px;left:-50px"></div>
+    <div class="blob" style="width:210px;height:210px;background:#D4A853;top:-60px;right:-70px"></div>
+    <div class="blob" style="width:170px;height:170px;background:#B8860B;bottom:-70px;left:-55px"></div>
     <div class="hero-in">
       <div class="brandrow">
-        <svg viewBox="0 0 16 16" width="28" height="28"><rect x="1" y="1" width="6" height="6" rx="1" fill="#F4D9A6"/><rect x="9" y="1" width="6" height="6" rx="1" fill="#D4A853"/><rect x="1" y="9" width="6" height="6" rx="1" fill="#D4A853"/><rect x="9" y="9" width="6" height="6" rx="1" fill="#B8860B"/></svg>
-        <div class="brandname">Leapex 利柏思</div>
+        <div class="brand-lockup">
+          <img class="brand-logo" src="./leapex-icon-gold.svg" alt="Leapex 标志">
+          <div class="brand-copy">
+            <div class="brand-en">Leapex</div>
+            <div class="brand-cn">利柏思商务</div>
+          </div>
+        </div>
+        <div class="brand-proof"><i class="ti ti-shield-check"></i><span>香港持牌<br>秘书服务公司</span></div>
       </div>
-      <div class="licline"><i class="ti ti-license"></i>持牌 TCSP · 牌照号 TC10988 · 云帐房旗下</div>
-      <h1 class="hero-h1">香港公司服务，<br><em>云帐房喊你一起做</em></h1>
-      <div class="hero-sub">不增一人，多一条高毛利业务线。<br>只管推荐，交付、合规、售后全由 Leapex 承担。</div>
+      <div class="licline"><i class="ti ti-building-skyscraper"></i>云帐房旗下业务 · 牌照号 TC10988</div>
+      <h1 class="hero-h1">把客户的香港业务需求，<br><em>变成你的长期收入</em></h1>
+      <div class="hero-services"><span>公司注册</span><span>年审</span><span>审计</span><span>开户</span><span>地址</span></div>
+      <div class="hero-sub">不用组建香港团队，只管推荐客户。<br>合规、交付与售后，由 Leapex利柏思 全程承担。</div>
       <div class="hero-stats">
         <div class="hstat"><b>15–25%</b><span>渠道分佣比例</span></div>
         <div class="hstat"><b>0 元</b><span>加盟成本</span></div>
-        <div class="hstat"><b>月结</b><span>线下打款</span></div>
+        <div class="hstat"><b>分两笔</b><span>支付后 50% · 完成后 50%</span></div>
       </div>
       <a href="#applyForm" class="cta-gold"><i class="ti ti-rocket"></i>立即申请成为渠道商</a>
-      <div class="hero-note">1 个工作日内审核 · 通过即发放专属推荐码</div>
+      <div class="hero-note">1 个工作日内审核 · 通过后短信 + 页面推送专属口令码</div>
     </div>
   </div>
 
   <!-- ═══ 2. 六大价值支柱 ═══ -->
   <div class="sec">
     <div class="sec-head">
-      <div class="kicker">Why Leapex</div>
+      <div class="kicker">Why Leapex利柏思</div>
       <div class="h2">为什么和我们合作</div>
       <div class="sub">六个理由，让香港公司服务成为你最省力的一条业务线。</div>
     </div>
@@ -248,7 +305,7 @@ img,svg{max-width:100%}
       <div class="pill-card">
         <div class="pill-ic"><i class="ti ti-license"></i></div>
         <div class="pill-t">合规持牌</div>
-        <div class="pill-d">TCSP 持牌，现成合法通道，不用自己申牌。</div>
+        <div class="pill-d">香港持牌秘书服务公司，现成合法通道，不用自己申牌。</div>
       </div>
       <div class="pill-card">
         <div class="pill-ic"><i class="ti ti-refresh"></i></div>
@@ -268,7 +325,7 @@ img,svg{max-width:100%}
       <div class="pill-card">
         <div class="pill-ic"><i class="ti ti-eye-check"></i></div>
         <div class="pill-t">透明可分</div>
-        <div class="pill-d">工作台实时可见，月结打款不黑箱。</div>
+        <div class="pill-d">客户完成支付发放 50%，服务完成发放剩余 50%，具体以合同为准。</div>
       </div>
       <div class="pill-card">
         <div class="pill-ic"><i class="ti ti-target-arrow"></i></div>
@@ -287,8 +344,8 @@ img,svg{max-width:100%}
     <div class="trust-item">
       <div class="trust-ic"><i class="ti ti-license"></i></div>
       <div>
-        <div class="trust-t">持牌 TCSP</div>
-        <div class="trust-d">香港公司服务牌照，牌照号 TC10988，公开可查。</div>
+        <div class="trust-t">香港持牌秘书服务公司</div>
+        <div class="trust-d">持有香港信托及公司服务提供商牌照，牌照号 TC10988，公开可查。</div>
       </div>
     </div>
     <div class="trust-item">
@@ -312,7 +369,7 @@ img,svg{max-width:100%}
     <div class="sec-head">
       <div class="kicker">Commission</div>
       <div class="h2">渠道分佣政策</div>
-      <div class="sub">按客户实付金额计佣，订单完成即入账，月结打款。</div>
+      <div class="sub">客户完成支付后发放 50% 佣金，服务完成后发放剩余 50% 佣金，具体以合同为准。</div>
     </div>
 
     <div class="card" style="overflow:hidden">
@@ -335,7 +392,7 @@ img,svg{max-width:100%}
           </tr>
         </tbody>
       </table>
-      <div class="settle"><i class="ti ti-calendar-dollar"></i>结算方式：月结 · 工作台实时可见</div>
+      <div class="settle"><i class="ti ti-calendar-dollar"></i>结算方式：客户完成支付后发放 50% 佣金，服务完成后发放剩余 50% 佣金，具体以合同为准 · 工作台实时可见</div>
     </div>
     <div class="foot-note">最终分佣比例以最终协议为准</div>
 
@@ -383,7 +440,7 @@ img,svg{max-width:100%}
           <div class="step-n">2</div>
           <div>
             <div class="step-t">客户填码下单</div>
-            <div class="step-d">客户在 Leapex 小程序下单时填写该码，订单自动归属你。</div>
+            <div class="step-d">客户在 Leapex利柏思 小程序下单时填写该码，订单自动归属你。</div>
           </div>
         </div>
         <div class="step">
@@ -396,8 +453,8 @@ img,svg{max-width:100%}
         <div class="step">
           <div class="step-n">4</div>
           <div>
-            <div class="step-t">月结线下打款</div>
-            <div class="step-d">按月结算、线下打款，不支持在线提现。</div>
+            <div class="step-t">按合同分两笔结算</div>
+            <div class="step-d">客户完成支付后发放50%佣金，服务完成后发放剩余50% 佣金，具体以合同为准。</div>
           </div>
         </div>
       </div>
@@ -408,26 +465,31 @@ img,svg{max-width:100%}
   <div class="sec" style="background:var(--bg2);padding-top:24px;padding-bottom:24px">
     <div class="sec-head">
       <div class="kicker">How to start</div>
-      <div class="h2">合作流程 · 四步开跑</div>
+      <div class="h2">合作流程 · 三步完成签约</div>
     </div>
     <div class="card" style="padding:16px">
       <div class="steps">
         <div class="step">
           <div class="step-n"><i class="ti ti-edit" style="font-size:14px"></i></div>
-          <div><div class="step-t">提交申请</div><div class="step-d">填写下方表单，1 分钟完成。</div></div>
+          <div><div class="step-t">1 · 轻申请・约 30 秒</div><div class="step-d">只采集“识别 + 联系”所需最少字段，降低首屏门槛，最大化申请转化。</div></div>
         </div>
         <div class="step">
           <div class="step-n"><i class="ti ti-shield-check" style="font-size:14px"></i></div>
-          <div><div class="step-t">平台审核</div><div class="step-d">1 个工作日内完成资质审核。</div></div>
+          <div><div class="step-t">2 · 平台审核 + 发放口令码・1 工作日</div><div class="step-d">系统 / 人工 KYC（合同 4.1），通过后短信 + 页面推送专属口令码，并开通渠道工作台。</div></div>
         </div>
         <div class="step">
-          <div class="step-n"><i class="ti ti-key" style="font-size:14px"></i></div>
-          <div><div class="step-t">获取专属推荐码</div><div class="step-d">短信 / 电话通知，同时开通渠道工作台。</div></div>
+          <div class="step-n"><i class="ti ti-signature" style="font-size:14px"></i></div>
+          <div><div class="step-t">3 · 单屏补全资料 + 在线签约・真正的“签”</div><div class="step-d">高承诺时刻一次性补全合同剩余必填项并完成电子签署，生成协议编号。</div></div>
         </div>
-        <div class="step">
-          <div class="step-n"><i class="ti ti-coin" style="font-size:14px"></i></div>
-          <div><div class="step-t">推广并按月分佣</div><div class="step-d">推荐客户下单，订单完成计佣，月结打款。</div></div>
-        </div>
+      </div>
+    </div>
+    <div class="fastlane">
+      <div class="fastlane-h"><i class="ti ti-bolt"></i>818 大会现场快速通道</div>
+      <div class="fastlane-sub">现场串联完成意向、审核与签约，离场前建立正式合作关系。</div>
+      <div class="fastlane-flow">
+        <div class="fastlane-step"><b>扫码 Step 1</b><span>提交合作意向</span></div>
+        <div class="fastlane-step"><b>现场审核发码</b><span>邮件正式通知<br>微信辅助建联</span></div>
+        <div class="fastlane-step"><b>离场前 Step 3</b><span>完成协议签署</span></div>
       </div>
     </div>
   </div>
@@ -439,8 +501,8 @@ img,svg{max-width:100%}
     <div id="formBox">
       <div class="sec-head">
         <div class="kicker">Apply Now</div>
-        <div class="h2">申请成为 Leapex 渠道商</div>
-        <div class="sub">0 加盟费 · 1 个工作日审核 · 通过即发放专属推荐码</div>
+        <div class="h2">申请成为 Leapex利柏思 渠道商</div>
+        <div class="sub">0 加盟费 · 先提交合作意向 · 审核通过后进入正式签约</div>
       </div>
 
       <div class="form-card">
@@ -483,7 +545,7 @@ img,svg{max-width:100%}
               <input class="input" id="fPhone" type="tel" inputmode="tel" placeholder="+852 / +86 手机号">
               <button type="button" class="btn-code" id="btnCode" onclick="sendCode()">获取验证码</button>
             </div>
-            <div class="hint">审核结果与专属推荐码将发送至该手机号。</div>
+            <div class="hint">用于审核联系，并在审核通过后接收专属口令码短信。</div>
           </div>
 
           <div class="fgroup">
@@ -494,6 +556,12 @@ img,svg{max-width:100%}
           <div class="fgroup">
             <label class="flabel">所在城市 / 地区<span class="req">*</span></label>
             <input class="input" id="fCity" placeholder="如：深圳 / 香港 / 杭州">
+          </div>
+
+          <div class="fgroup">
+            <label class="flabel">邮箱（正式通知邮箱）<span class="req">*</span></label>
+            <input class="input" id="fEmail" type="email" placeholder="name@company.com">
+            <div class="hint">审核结果与正式合作协议将发送至该邮箱。</div>
           </div>
         </div>
 
@@ -512,37 +580,52 @@ img,svg{max-width:100%}
             </div>
           </div>
 
-          <div class="fgroup">
-            <label class="flabel">邮箱</label>
-            <input class="input" id="fEmail" type="email" placeholder="name@company.com">
-          </div>
-
           <div class="fgroup" style="margin-bottom:11px">
             <label class="flabel">主要客户群体 / 现有资源</label>
             <textarea class="textarea" id="fRes" placeholder="如：跨境电商卖家 200+、财税代理同行、投资机构、独立站卖家社群…（有助于加速审核）"></textarea>
           </div>
         </div>
 
-        <div class="agree" onclick="toggleAgree()">
-          <div class="chk" id="chkAgree"><i class="ti ti-check"></i></div>
-          <div class="agree-t">我已阅读并同意<a href="javascript:void(0)" onclick="event.stopPropagation();toast('《渠道合作条款》预览')">《渠道合作条款》</a>与<a href="javascript:void(0)" onclick="event.stopPropagation();toast('《隐私政策》预览')">《隐私政策》</a>，并同意 Leapex 使用上述信息与我联系。</div>
+        <div class="intent-note">
+          <i class="ti ti-info-circle"></i>
+          <div>本页提交仅代表合作意向，不构成渠道合作协议。正式协议将在审核通过单独发送并与您签约。提交资料即表示已阅读<a href="javascript:void(0)" onclick="toast('《隐私政策》预览')">《隐私政策》</a>并同意 Leapex利柏思 为审核合作意向与您联系。</div>
         </div>
 
-        <button type="button" class="cta-gold" style="margin-top:0" onclick="submitForm()"><i class="ti ti-send"></i>提交申请</button>
-        <div class="hint" style="text-align:center;margin-top:10px">提交即视为渠道合作意向，最终分佣以正式协议为准。</div>
+        <button type="button" class="cta-gold" style="margin-top:0" onclick="submitForm()"><i class="ti ti-send"></i>提交合作意向</button>
+        <div class="hint" style="text-align:center;margin-top:10px">提交不代表签约成功，最终合作与分佣规则以正式协议为准。</div>
       </div>
     </div>
 
-    <!-- 7. 提交成功态 -->
+    <!-- 7. 意向提交态 + Step 2 签约资料 -->
     <div id="successBox">
       <div class="form-card">
         <div class="succ">
-          <div class="succ-ic"><i class="ti ti-check"></i></div>
-          <div class="succ-t">申请已提交</div>
-          <div class="succ-d">我们将在 1 个工作日内审核，<br>通过后以短信 / 电话通知并发放专属推荐码。</div>
+          <div class="succ-ic"><i class="ti ti-file-check"></i></div>
+          <div class="succ-t">合作意向已提交</div>
+          <div class="succ-d">已完成“轻申请”，并不代表签约成功。<br>平台将在 1 个工作日内完成审核。</div>
           <div class="succ-no">
-            <span>申请编号</span>
+            <span>意向编号</span>
             <b id="appNo">CA-2026-0032</b>
+          </div>
+
+          <div class="next-flow">
+            <div class="next-item done"><div class="next-dot">✓</div><div class="next-copy"><b>1 · 轻申请・约 30 秒</b><span>“识别 + 联系”基础资料已提交</span></div></div>
+            <div class="next-item"><div class="next-dot">2</div><div class="next-copy"><b>平台审核 + 发放口令码・1 工作日</b><span>系统 / 人工 KYC，通过后短信 + 页面推送口令码并开通工作台</span></div></div>
+            <div class="next-item"><div class="next-dot">3</div><div class="next-copy"><b>单屏补全资料 + 在线签约</b><span>一次性补全合同必填项并完成电子签署，生成协议编号</span></div></div>
+          </div>
+
+          <div class="signing-box" id="signingBox">
+            <div class="signing-title">Step 3 · 单屏补全资料 + 在线签约</div>
+            <div class="signing-sub">原型演示：平台审核通过并发放口令码后进入，一次性补全合同剩余必填项。</div>
+            <div class="signing-grid">
+              <div class="fgroup wide"><label class="flabel">通讯地址<span class="req">*</span></label><input class="input" id="fAddress" placeholder="省 / 市 / 区（县）/ 详细地址"></div>
+              <div class="fgroup wide"><label class="flabel">微信号<span class="req">*</span></label><input class="input" id="fWechat" placeholder="用于渠道商辅助建联"></div>
+              <div class="fgroup"><label class="flabel">开户银行<span class="req">*</span></label><input class="input" id="fBank" placeholder="银行名称"></div>
+              <div class="fgroup"><label class="flabel">账户名称<span class="req">*</span></label><input class="input" id="fAccountName" placeholder="与银行账户一致"></div>
+              <div class="fgroup wide"><label class="flabel">银行账号<span class="req">*</span></label><input class="input" id="fAccountNo" inputmode="numeric" placeholder="用于后续佣金结算"></div>
+            </div>
+            <button type="button" class="cta-gold" style="margin-top:0" onclick="saveSigningInfo()"><i class="ti ti-signature"></i>确认资料并完成电子签署（原型）</button>
+            <div class="signing-status" id="signingStatus"></div>
           </div>
           <button type="button" class="succ-back" onclick="backToTop()"><i class="ti ti-arrow-up"></i>返回了解更多</button>
         </div>
@@ -559,7 +642,7 @@ img,svg{max-width:100%}
     <div class="faq">
       <div class="faq-item open">
         <div class="faq-q" onclick="toggleFaq(this)"><span>需要我自己交付服务吗？</span><i class="ti ti-chevron-down"></i></div>
-        <div class="faq-a">不需要，零交付。你只负责推荐客户并给出专属推荐码，注册、年审、记账、文件递交、售后全部由 Leapex 持牌团队完成。</div>
+        <div class="faq-a">不需要，零交付。你只负责推荐客户并给出专属推荐码，注册、年审、记账、文件递交、售后全部由 Leapex利柏思 持牌团队完成。</div>
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)"><span>客户会被你们抢走吗？</span><i class="ti ti-chevron-down"></i></div>
@@ -567,7 +650,7 @@ img,svg{max-width:100%}
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)"><span>佣金怎么结算？</span><i class="ti ti-chevron-down"></i></div>
-        <div class="faq-a">客户实付且订单完成后计佣，佣金 = 客户实付 × 对应佣金率。渠道工作台可只读查看归属订单与佣金明细，按月结算、线下打款，不支持在线提现。</div>
+        <div class="faq-a">佣金 = 客户实付 × 对应佣金率。客户完成支付后发放 50% 佣金，服务完成后发放剩余 50% 佣金，具体以合同为准；渠道工作台可只读查看归属订单与佣金明细。</div>
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)"><span>有加盟费或其他成本吗？</span><i class="ti ti-chevron-down"></i></div>
@@ -583,14 +666,23 @@ img,svg{max-width:100%}
   <!-- ═══ 9. 页脚 ═══ -->
   <div class="footer">
     <div class="fname">
-      <svg viewBox="0 0 16 16" width="20" height="20"><rect x="1" y="1" width="6" height="6" rx="1" fill="#F4D9A6"/><rect x="9" y="1" width="6" height="6" rx="1" fill="#D4A853"/><rect x="1" y="9" width="6" height="6" rx="1" fill="#D4A853"/><rect x="9" y="9" width="6" height="6" rx="1" fill="#B8860B"/></svg>
-      Leapex 利柏思
+      <div class="footer-brand">
+        <img class="footer-logo" src="./leapex-icon-gold.svg" alt="Leapex 标志">
+        <div>
+          <div class="brand-en">Leapex</div>
+          <div class="brand-cn">利柏思商务</div>
+        </div>
+      </div>
     </div>
+    <div>云帐房旗下业务</div>
     <div>香港持牌信托及公司服务提供商（TCSP）· 牌照号 TC10988</div>
-    <div>云帐房旗下香港公司服务业务线</div>
     <div>利柏思商务服务（上海）有限公司</div>
+    <div>TimeLeap Technology (Hong Kong) Limited 100% 持股</div>
     <div class="footer-div"></div>
     <div>本页内容为渠道合作说明，最终解释权与分佣比例以双方正式签署的协议为准。</div>
+    <a class="licence-media" href="./tcsp-licence.png" target="_blank" rel="noopener" aria-label="查看香港 TCSP 牌照原图">
+      <img src="./tcsp-licence.png" alt="TimeLeap Technology (Hong Kong) Limited 香港信托或公司服务提供者牌照">
+    </a>
   </div>
 
   <div class="dock-pad"></div>
@@ -600,7 +692,7 @@ img,svg{max-width:100%}
 <div class="dock" id="dock">
   <div class="dock-l">
     <b>0 加盟费 · 15–25% 分佣</b>
-    <span>1 个工作日审核，通过即发码</span>
+    <span>先提交意向 · 邮件正式发码 · 佣金分两笔发放</span>
   </div>
   <a href="#applyForm" class="dock-btn">立即申请</a>
 </div>
@@ -629,13 +721,6 @@ function setType(type){
   document.getElementById('bizOpt').classList.toggle('on', isBiz);
   document.getElementById('lblName').innerHTML = (isBiz ? '联系人姓名' : '姓名') + '<span class="req">*</span>';
   document.getElementById('fName').placeholder = isBiz ? '请填写联系人真实姓名' : '请填写真实姓名';
-}
-
-/* ── 同意勾选 ── */
-var agreed = false;
-function toggleAgree(){
-  agreed = !agreed;
-  document.getElementById('chkAgree').classList.toggle('on', agreed);
 }
 
 /* ── 手机号校验（+86 / +852 / 通用 8-11 位） ── */
@@ -683,7 +768,7 @@ function markErr(el){
   el.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 function clearErr(el){ el.classList.remove('err'); }
-['fName','fPhone','fCity','fBizName','fBizNo'].forEach(function(id){
+['fName','fPhone','fCity','fEmail','fBizName','fBizNo','fAddress','fWechat','fBank','fAccountName','fAccountNo'].forEach(function(id){
   var el = document.getElementById(id);
   if(el) el.addEventListener('input', function(){ clearErr(el); });
 });
@@ -693,6 +778,7 @@ function submitForm(){
   var name = document.getElementById('fName');
   var phone = document.getElementById('fPhone');
   var city = document.getElementById('fCity');
+  var email = document.getElementById('fEmail');
 
   if(partnerType === 'biz'){
     var bizName = document.getElementById('fBizName');
@@ -704,11 +790,8 @@ function submitForm(){
   if(!phone.value.trim()){ markErr(phone); toast('请填写手机号'); return; }
   if(!validPhone(phone.value)){ markErr(phone); toast('手机号格式不正确，请检查'); return; }
   if(!city.value.trim()){ markErr(city); toast('请填写所在城市 / 地区'); return; }
-  if(!agreed){
-    toast('请先阅读并勾选同意《渠道合作条款》');
-    document.getElementById('chkAgree').scrollIntoView({ behavior: 'smooth', block: 'center' });
-    return;
-  }
+  if(!email.value.trim()){ markErr(email); toast('请填写正式通知邮箱'); return; }
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())){ markErr(email); toast('邮箱格式不正确，请检查'); return; }
 
   // 生成申请编号（原型：本地流水号）
   var seq = 1;
@@ -723,7 +806,27 @@ function submitForm(){
   document.getElementById('successBox').style.display = 'block';
   document.getElementById('dock').classList.add('hide');
   document.getElementById('applyForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  toast('提交成功');
+  toast('合作意向已提交');
+}
+
+function saveSigningInfo(){
+  var ids=['fAddress','fWechat','fBank','fAccountName','fAccountNo'];
+  var labels=['通讯地址','微信号','开户银行','账户名称','银行账号'];
+  for(var i=0;i<ids.length;i++){
+    var el=document.getElementById(ids[i]);
+    if(!el.value.trim()){markErr(el);toast('请填写'+labels[i]);return;}
+  }
+  var contractSeq=1;
+  try{
+    contractSeq=parseInt(localStorage.getItem('lpa_contract_seq')||'0',10)+1;
+    localStorage.setItem('lpa_contract_seq',String(contractSeq));
+  }catch(e){contractSeq=Math.floor(Math.random()*900)+1;}
+  var contractNo='LPA-'+new Date().getFullYear()+'-'+String(contractSeq).padStart(4,'0');
+  var status=document.getElementById('signingStatus');
+  status.innerHTML='电子签署已完成（原型），协议编号：<b>'+contractNo+'</b>。正式协议将发送至必填邮箱。';
+  status.style.display='block';
+  status.scrollIntoView({behavior:'smooth',block:'center'});
+  toast('电子签署已完成，协议编号已生成');
 }
 
 function backToTop(){
