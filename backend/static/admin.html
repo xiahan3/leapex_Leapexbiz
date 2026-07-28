@@ -534,24 +534,25 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
       <!-- ════ 渠道商申请审核（承接 H5 自助申请页 partner.html）════ -->
       <div class="page" id="p-chanapply">
         <div class="card cp" style="background:var(--gold-bg);border-color:var(--gold)"><div style="font-size:12px;color:var(--gold)"><i class="ti ti-qrcode"></i> 申请来源：<b>易拉宝二维码 → H5 自助申请页</b>（「香港公司服务，云帐房喊你一起做」）。审核通过后进入<b>待签约</b>并发送合同模板；完成电子签约后转为正式渠道商，专属口令码同步生效。渠道商<b>只推荐、不履约</b>。</div></div>
-        <div class="grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:16px">
+        <div class="grid" style="grid-template-columns:repeat(5,1fr);margin-bottom:16px">
           <div class="kpi"><div class="l">待审核</div><div class="v" style="color:var(--blue)">3</div><div class="d">等待资质核验</div></div>
-          <div class="kpi"><div class="l">待签约</div><div class="v" style="color:var(--amber)">1</div><div class="d">合同模板已发送</div></div>
+          <div class="kpi"><div class="l">待签约</div><div class="v" style="color:var(--amber)">0</div><div class="d">合同模板已发送</div></div>
+          <div class="kpi"><div class="l">签约过期</div><div class="v" style="color:var(--red)">1</div><div class="d">可重新发送邀请</div></div>
           <div class="kpi"><div class="l">本月已签约</div><div class="v">17</div><div class="d" style="color:var(--green)">口令码已生效</div></div>
           <div class="kpi"><div class="l">本月驳回</div><div class="v">5</div><div class="d">资质 / 资源不符</div></div>
         </div>
-        <div class="filters"><span class="chip on">全部</span><span class="chip">待审核</span><span class="chip">待签约</span><span class="chip">已签约</span><span class="chip">已驳回</span></div>
+        <div class="filters"><span class="chip on">全部</span><span class="chip">待审核</span><span class="chip">待签约</span><span class="chip">签约过期</span><span class="chip">已签约</span><span class="chip">已驳回</span></div>
         <div class="card">
           <div class="ch"><span class="ct">渠道商申请列表</span></div>
           <table>
-            <thead><tr><th>申请编号</th><th>申请人</th><th>类型</th><th>手机</th><th>城市</th><th>客户群体 / 资源</th><th>预计月推荐量</th><th>提交时间</th><th>状态</th><th>合同</th><th></th></tr></thead>
+            <thead><tr><th>申请编号</th><th>申请人</th><th>类型</th><th>手机</th><th>城市</th><th>客户群体 / 资源</th><th>提交时间</th><th>状态</th><th>合同</th><th></th></tr></thead>
             <tbody>
-              <tr id="ca-row-0031"><td>CA-2026-0031</td><td><b>深圳市跨云电商服务有限公司</b><div style="color:var(--text3);font-size:11px">联系人：周敏</div></td><td>企业</td><td>138****6021</td><td>深圳</td><td>亚马逊 SPN 卖家代运营 · 在服 120 家</td><td>8–12 单</td><td>07-18 10:24</td><td data-ca-status><span class="pill p-blue">待审核</span></td><td data-ca-contract>—</td><td data-ca-action><button class="btn btn-xs btn-p" onclick="openChanApply('CA-2026-0031','深圳市跨云电商服务有限公司','企业','pending')">审核</button></td></tr>
-              <tr id="ca-row-0030"><td>CA-2026-0030</td><td><b>李文彬</b><div style="color:var(--text3);font-size:11px">个人 · 跨境财税自媒体</div></td><td>个人</td><td>159****3387</td><td>广州</td><td>公众号 / 视频号跨境卖家粉丝 2.4 万</td><td>5–8 单</td><td>07-17 16:52</td><td data-ca-status><span class="pill p-blue">待审核</span></td><td data-ca-contract>—</td><td data-ca-action><button class="btn btn-xs btn-p" onclick="openChanApply('CA-2026-0030','李文彬','个人','pending')">审核</button></td></tr>
-              <tr id="ca-row-0029"><td>CA-2026-0029</td><td><b>东莞恒信企业管理咨询</b><div style="color:var(--text3);font-size:11px">联系人：陈志强</div></td><td>企业</td><td>136****9044</td><td>东莞</td><td>内地工商代办 · 老客有出海需求</td><td>10 单以上</td><td>07-16 09:10</td><td data-ca-status><span class="pill p-amber">待签约</span></td><td data-ca-contract><button class="btn btn-xs" onclick="openChannelContract('CA-2026-0029','template')"><i class="ti ti-file-text"></i>合同模板</button></td><td data-ca-action><button class="btn btn-xs" onclick="openChanApply('CA-2026-0029','东莞恒信企业管理咨询','企业','signing')">查看</button></td></tr>
-              <tr id="ca-row-0028"><td>CA-2026-0028</td><td><b>张倩</b><div style="color:var(--text3);font-size:11px">个人 · 独立顾问</div></td><td>个人</td><td>187****2210</td><td>杭州</td><td>跨境电商卖家社群运营 · 群 3 个约 800 人</td><td>3–5 单</td><td>07-15 14:30</td><td data-ca-status><span class="pill p-blue">待审核</span></td><td data-ca-contract>—</td><td data-ca-action><button class="btn btn-xs btn-p" onclick="openChanApply('CA-2026-0028','张倩','个人','pending')">审核</button></td></tr>
-              <tr id="ca-row-0027"><td>CA-2026-0027</td><td><b>上海睿承商务服务有限公司</b><div style="color:var(--text3);font-size:11px">联系人：吴锦华</div></td><td>企业</td><td>133****7788</td><td>上海</td><td>外贸企业财税外包 · 在服 60 余家</td><td>8 单</td><td>07-12 11:05</td><td data-ca-status><span class="pill p-green">已签约</span></td><td data-ca-contract><button class="btn btn-xs" onclick="openChannelContract('CA-2026-0027','signed')"><i class="ti ti-file-check"></i>合同内容</button></td><td data-ca-action><button class="btn btn-xs" onclick="openChanApply('CA-2026-0027','上海睿承商务服务有限公司','企业','signed')">查看</button></td></tr>
-              <tr id="ca-row-0026"><td>CA-2026-0026</td><td><b>刘海洋</b><div style="color:var(--text3);font-size:11px">个人</div></td><td>个人</td><td>150****4412</td><td>成都</td><td>无明确客户群体 · 仅个人兴趣</td><td>1 单以内</td><td>07-10 20:41</td><td data-ca-status><span class="pill p-red">已驳回</span></td><td data-ca-contract>—</td><td data-ca-action><button class="btn btn-xs" onclick="openChanApply('CA-2026-0026','刘海洋','个人','rejected')">查看</button></td></tr>
+              <tr id="ca-row-0031"><td>CA-2026-0031</td><td><b>深圳市跨云电商服务有限公司</b><div style="color:var(--text3);font-size:11px">联系人：周敏</div></td><td>企业</td><td>138****6021</td><td>深圳</td><td>亚马逊 SPN 卖家代运营 · 在服 120 家</td><td>07-18 10:24</td><td data-ca-status><span class="pill p-blue">待审核</span></td><td data-ca-contract>—</td><td data-ca-action><button class="btn btn-xs btn-p" onclick="openChanApply('CA-2026-0031','深圳市跨云电商服务有限公司','企业','pending')">审核</button></td></tr>
+              <tr id="ca-row-0030"><td>CA-2026-0030</td><td><b>李文彬</b><div style="color:var(--text3);font-size:11px">个人 · 跨境财税自媒体</div></td><td>个人</td><td>159****3387</td><td>广州</td><td>公众号 / 视频号跨境卖家粉丝 2.4 万</td><td>07-17 16:52</td><td data-ca-status><span class="pill p-blue">待审核</span></td><td data-ca-contract>—</td><td data-ca-action><button class="btn btn-xs btn-p" onclick="openChanApply('CA-2026-0030','李文彬','个人','pending')">审核</button></td></tr>
+              <tr id="ca-row-0029"><td>CA-2026-0029</td><td><b>东莞恒信企业管理咨询</b><div style="color:var(--text3);font-size:11px">联系人：陈志强</div></td><td>企业</td><td>136****9044</td><td>东莞</td><td>内地工商代办 · 老客有出海需求</td><td>07-16 09:10</td><td data-ca-status><span class="pill p-red">签约过期</span></td><td data-ca-contract><button class="btn btn-xs" onclick="openChannelContract('CA-2026-0029','template')"><i class="ti ti-file-text"></i>合同模板</button></td><td data-ca-action><button class="btn btn-xs" onclick="openChanApply('CA-2026-0029','东莞恒信企业管理咨询','企业','expired')">查看</button></td></tr>
+              <tr id="ca-row-0028"><td>CA-2026-0028</td><td><b>张倩</b><div style="color:var(--text3);font-size:11px">个人 · 独立顾问</div></td><td>个人</td><td>187****2210</td><td>杭州</td><td>跨境电商卖家社群运营 · 群 3 个约 800 人</td><td>07-15 14:30</td><td data-ca-status><span class="pill p-blue">待审核</span></td><td data-ca-contract>—</td><td data-ca-action><button class="btn btn-xs btn-p" onclick="openChanApply('CA-2026-0028','张倩','个人','pending')">审核</button></td></tr>
+              <tr id="ca-row-0027"><td>CA-2026-0027</td><td><b>上海睿承商务服务有限公司</b><div style="color:var(--text3);font-size:11px">联系人：吴锦华</div></td><td>企业</td><td>133****7788</td><td>上海</td><td>外贸企业财税外包 · 在服 60 余家</td><td>07-12 11:05</td><td data-ca-status><span class="pill p-green">已签约</span></td><td data-ca-contract><button class="btn btn-xs" onclick="openChannelContract('CA-2026-0027','signed')"><i class="ti ti-file-check"></i>合同内容</button></td><td data-ca-action><button class="btn btn-xs" onclick="openChanApply('CA-2026-0027','上海睿承商务服务有限公司','企业','signed')">查看</button></td></tr>
+              <tr id="ca-row-0026"><td>CA-2026-0026</td><td><b>刘海洋</b><div style="color:var(--text3);font-size:11px">个人</div></td><td>个人</td><td>150****4412</td><td>成都</td><td>无明确客户群体 · 仅个人兴趣</td><td>07-10 20:41</td><td data-ca-status><span class="pill p-red">已驳回</span></td><td data-ca-contract>—</td><td data-ca-action><button class="btn btn-xs" onclick="openChanApply('CA-2026-0026','刘海洋','个人','rejected')">查看</button></td></tr>
             </tbody>
           </table>
         </div>
@@ -1034,13 +1035,12 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
         <span class="k">申请类型</span><span id="ca-type">企业</span>
         <span class="k">姓名 / 企业名称</span><span id="ca-name"><b>深圳市跨云电商服务有限公司</b></span>
         <span class="k">统一社会信用代码 / BR</span><span id="ca-uscc">91440300MA5F2K8X3Q</span>
-        <span class="k">手机</span><span>138****6021（周敏）</span>
-        <span class="k">邮箱</span><span>zhoumin@kuayun-ec.com</span>
-        <span class="k">城市</span><span>深圳</span>
-        <span class="k">主要客户群体 / 资源</span><span>亚马逊 SPN 卖家代运营 · 在服 120 家跨境店铺</span>
-        <span class="k">预计月推荐量</span><span>8–12 单</span>
-        <span class="k">提交时间</span><span>2026-07-18 10:24</span>
-        <span class="k">来源</span><span><span class="pill p-gold">易拉宝 H5</span> 推荐人：市场部 · 王倩</span>
+        <span class="k">手机</span><span id="ca-phone">138****6021（周敏）</span>
+        <span class="k">邮箱</span><span id="ca-mail">zhoumin@kuayun-ec.com</span>
+        <span class="k">城市</span><span id="ca-city">深圳</span>
+        <span class="k">主要客户群体 / 资源</span><span id="ca-biz">亚马逊 SPN 卖家代运营 · 在服 120 家跨境店铺</span>
+        <span class="k">提交时间</span><span id="ca-at">2026-07-18 10:24</span>
+        <span class="k">来源</span><span id="ca-src"><span class="pill p-gold">易拉宝 H5</span> 推荐人：市场部 · 王倩</span>
       </div>
       <div id="ca-review">
         <div style="font-size:11px;color:var(--text3);font-weight:600;margin-bottom:8px">审核与签约准备（通过后发送合同模板）</div>
@@ -1651,7 +1651,7 @@ function go(el){
   var p=el.dataset.p;
   document.querySelectorAll('.page').forEach(pg=>pg.classList.remove('on'));
   document.getElementById('p-'+p).classList.add('on');
-  var meta={dash:['数据驾驶舱','实时运营总览'],supplierwt:['供应商工作台','供应商自助：分配订单 / 更新进度 / 结算对账（不在线结算）'],partner:['渠道商工作台','渠道商自助：归属订单 / 佣金对账（不在线结算）'],customers:['客户信息管理','客户档案与画像'],companies:['客户公司管理','法人主体 / CI·BR / SCR / 年审'],kyc:['KYC 审核','AMLO 尽职调查 · 客户身份 / 地址 / 业务资料核对'],register:['注册公司','公司注册服务执行 · 维护进度 / 资料'],'svc-annual':['年审服务','法定秘书 + 注册地址 + 周年申报 NAR1（注册处·42 天内）'],'svc-acct':['记账报税','审计（含理账）+ 利得税 PTR / 薪俸税 IR56 / 个税 BIR60（IRD）'],'svc-addr':['地址租赁','独立地址 6000/年 · 工位 3000/月 · 办公室面议（达利直签）'],'chg-address':['地址变更','NR1 · 关键信息 → 线下备表 → 文件签字 → 递交'],'chg-director':['董事变更','ND2A · 关键信息 + 新董事 KYC → 线下备表 → 文件签字'],'chg-secretary':['变更秘书','ND2A · 秘书部分 Leapex 利柏思 填 → 文件签字 → 递交'],'chg-rename':['公司更名','NNC2 · 先付费后查名 → 备 NNC2 + 决议 → 文件签字'],'chg-transfer':['股份转让','转让文书 + 印花税 0.2% · 作价估值 → 缴印花 → 更新名册'],'chg-deregister':['公司注销','NDR1 + IR1263 不反对通知书 · 宪报公告约 8 个月'],namecheck:['核名&商标','人工核名（繁体/英文）+ 商标查询 · 无智能预检'],'svc-tm':['商标办理','商标注册 IPD（宪报公告 3 个月）/ 续期（每 10 年）'],orders:['订单列表','进度只读联动服务 · 资料可下载'],bills:['账单 / 回单确认','服务人员核验回单 · 确认付款 / 未收到付款（不含退款·重开）'],products:['商品','商品目录 · 基础信息 + 价格与本位币'],coupons:['卡券','卡券模板 + 发放 + 核销统计（承接小程序优惠券）'],messages:['消息','消息模板 + 群发 + 发送记录'],supplier:['供应商管理','超管新增 · 支持服务 + 结算规则'],assign:['订单分配','派单给供应商履约'],suppliersettle:['订单结算','已完成订单 → 供应商结算（线下）'],channel:['渠道商管理','超管新增 · 口令码 + 佣金（弹窗配置）'],'chanapply':['渠道商申请审核','待审核 → 待签约 → 已签约 / 已驳回'],commission:['佣金结算','已完成订单 → 渠道返点（线下）'],rbac:['员工和角色','RBAC 7 角色 + 自定义'],menuperm:['菜单权限','角色 × 菜单可见性配置'],compliance:['合规与审计','制裁 / SCR / 哈希链'],config:['系统参数','时效 / 额度 / 税率']};
+  var meta={dash:['数据驾驶舱','实时运营总览'],supplierwt:['供应商工作台','供应商自助：分配订单 / 更新进度 / 结算对账（不在线结算）'],partner:['渠道商工作台','渠道商自助：归属订单 / 佣金对账（不在线结算）'],customers:['客户信息管理','客户档案与画像'],companies:['客户公司管理','法人主体 / CI·BR / SCR / 年审'],kyc:['KYC 审核','AMLO 尽职调查 · 客户身份 / 地址 / 业务资料核对'],register:['注册公司','公司注册服务执行 · 维护进度 / 资料'],'svc-annual':['年审服务','法定秘书 + 注册地址 + 周年申报 NAR1（注册处·42 天内）'],'svc-acct':['记账报税','审计（含理账）+ 利得税 PTR / 薪俸税 IR56 / 个税 BIR60（IRD）'],'svc-addr':['地址租赁','独立地址 6000/年 · 工位 3000/月 · 办公室面议（达利直签）'],'chg-address':['地址变更','NR1 · 关键信息 → 线下备表 → 文件签字 → 递交'],'chg-director':['董事变更','ND2A · 关键信息 + 新董事 KYC → 线下备表 → 文件签字'],'chg-secretary':['变更秘书','ND2A · 秘书部分 Leapex 利柏思 填 → 文件签字 → 递交'],'chg-rename':['公司更名','NNC2 · 先付费后查名 → 备 NNC2 + 决议 → 文件签字'],'chg-transfer':['股份转让','转让文书 + 印花税 0.2% · 作价估值 → 缴印花 → 更新名册'],'chg-deregister':['公司注销','NDR1 + IR1263 不反对通知书 · 宪报公告约 8 个月'],namecheck:['核名&商标','人工核名（繁体/英文）+ 商标查询 · 无智能预检'],'svc-tm':['商标办理','商标注册 IPD（宪报公告 3 个月）/ 续期（每 10 年）'],orders:['订单列表','进度只读联动服务 · 资料可下载'],bills:['账单 / 回单确认','服务人员核验回单 · 确认付款 / 未收到付款（不含退款·重开）'],products:['商品','商品目录 · 基础信息 + 价格与本位币'],coupons:['卡券','卡券模板 + 发放 + 核销统计（承接小程序优惠券）'],messages:['消息','消息模板 + 群发 + 发送记录'],supplier:['供应商管理','超管新增 · 支持服务 + 结算规则'],assign:['订单分配','派单给供应商履约'],suppliersettle:['订单结算','已完成订单 → 供应商结算（线下）'],channel:['渠道商管理','超管新增 · 口令码 + 佣金（弹窗配置）'],'chanapply':['渠道商申请审核','待审核 → 待签约 / 签约过期 → 已签约 / 已驳回'],commission:['佣金结算','已完成订单 → 渠道返点（线下）'],rbac:['员工和角色','RBAC 7 角色 + 自定义'],menuperm:['菜单权限','角色 × 菜单可见性配置'],compliance:['合规与审计','制裁 / SCR / 哈希链'],config:['系统参数','时效 / 额度 / 税率']};
   var m=meta[p]||['',''];document.getElementById('pt').textContent=m[0];document.getElementById('ps').textContent=m[1];
   document.querySelector('.content').scrollTop=0;
 }
@@ -1764,34 +1764,35 @@ function openChannel(name,code,rmk){
 }
 /* 渠道商申请审核弹窗（状态自适应 · 承接易拉宝 H5 自助申请）*/
 var CHAN_APPLY={
-  'CA-2026-0031':{uscc:'91440300MA5F2K8X3Q',phone:'138****6021（周敏）',mail:'zhoumin@kuayun-ec.com',city:'深圳',biz:'亚马逊 SPN 卖家代运营 · 在服 120 家跨境店铺',vol:'8–12 单',at:'2026-07-18 10:24',src:'推荐人：市场部 · 王倩',code:'LEX0031'},
-  'CA-2026-0030':{uscc:'—（个人申请 · 已核身份证）',phone:'159****3387',mail:'liwenbin@163.com',city:'广州',biz:'公众号 / 视频号跨境财税内容 · 卖家粉丝 2.4 万',vol:'5–8 单',at:'2026-07-17 16:52',src:'自然扫码',code:'LEX0030'},
-  'CA-2026-0029':{uscc:'91441900MA4W7T2L6H',phone:'136****9044（陈志强）',mail:'chen@hxqygl.cn',city:'东莞',biz:'内地工商代办 · 老客有香港出海需求',vol:'10 单以上',at:'2026-07-16 09:10',src:'自然扫码',code:'LEX0029'},
-  'CA-2026-0028':{uscc:'—（个人申请 · 已核身份证）',phone:'187****2210',mail:'zhangqian@qq.com',city:'杭州',biz:'跨境电商卖家社群运营 · 3 个群约 800 人',vol:'3–5 单',at:'2026-07-15 14:30',src:'自然扫码',code:'LEX0028'},
-  'CA-2026-0027':{uscc:'91310115MA1K3P9R2D',phone:'133****7788（吴锦华）',mail:'wu@ruicheng-sh.com',city:'上海',biz:'外贸企业财税外包 · 在服 60 余家',vol:'8 单',at:'2026-07-12 11:05',src:'推荐人：渠道部 · 李昊',code:'LEX0027'},
-  'CA-2026-0026':{uscc:'—（个人申请）',phone:'150****4412',mail:'liuhy@126.com',city:'成都',biz:'无明确客户群体 · 仅个人兴趣',vol:'1 单以内',at:'2026-07-10 20:41',src:'自然扫码',code:'LEX0026'}
+  'CA-2026-0031':{uscc:'91440300MA5F2K8X3Q',phone:'138****6021（周敏）',mail:'zhoumin@kuayun-ec.com',city:'深圳',biz:'亚马逊 SPN 卖家代运营 · 在服 120 家跨境店铺',at:'2026-07-18 10:24',src:'推荐人：市场部 · 王倩',code:'LEX0031'},
+  'CA-2026-0030':{uscc:'—（个人申请 · 已核身份证）',phone:'159****3387',mail:'liwenbin@163.com',city:'广州',biz:'公众号 / 视频号跨境财税内容 · 卖家粉丝 2.4 万',at:'2026-07-17 16:52',src:'自然扫码',code:'LEX0030'},
+  'CA-2026-0029':{uscc:'91441900MA4W7T2L6H',phone:'136****9044（陈志强）',mail:'chen@hxqygl.cn',city:'东莞',biz:'内地工商代办 · 老客有香港出海需求',at:'2026-07-16 09:10',src:'自然扫码',code:'LEX0029'},
+  'CA-2026-0028':{uscc:'—（个人申请 · 已核身份证）',phone:'187****2210',mail:'zhangqian@qq.com',city:'杭州',biz:'跨境电商卖家社群运营 · 3 个群约 800 人',at:'2026-07-15 14:30',src:'自然扫码',code:'LEX0028'},
+  'CA-2026-0027':{uscc:'91310115MA1K3P9R2D',phone:'133****7788（吴锦华）',mail:'wu@ruicheng-sh.com',city:'上海',biz:'外贸企业财税外包 · 在服 60 余家',at:'2026-07-12 11:05',src:'推荐人：渠道部 · 李昊',code:'LEX0027'},
+  'CA-2026-0026':{uscc:'—（个人申请）',phone:'150****4412',mail:'liuhy@126.com',city:'成都',biz:'无明确客户群体 · 仅个人兴趣',at:'2026-07-10 20:41',src:'自然扫码',code:'LEX0026'}
 };
 var _caCode='',_caNo='',_caName='',_caType='',_caStatus='pending';
 function openChanApply(no,name,type,status){
   var d=CHAN_APPLY[no]||{};
   _caCode=d.code||'LEX0000';_caNo=no||'';_caName=name||'';_caType=type||'';_caStatus=status||'pending';
-  var st={pending:'待审核',signing:'待签约',signed:'已签约',rejected:'已驳回'}[status]||'待审核';
+  var st={pending:'待审核',signing:'待签约',expired:'签约过期',signed:'已签约',rejected:'已驳回'}[status]||'待审核';
   document.getElementById('ca-title').textContent='渠道商申请审核 · '+(name||'');
   document.getElementById('ca-sub').textContent='来源：易拉宝二维码 · H5 自助申请页 · '+(no||'')+' · '+st;
   document.getElementById('ca-no').textContent=no||'';
   document.getElementById('ca-type').textContent=type||'';
   document.getElementById('ca-name').innerHTML='<b>'+(name||'')+'</b>';
   document.getElementById('ca-uscc').textContent=d.uscc||'—';
-  var kvs=document.querySelectorAll('#m-chanapply .kv > span');
-  if(kvs.length>=22){
-    kvs[9].textContent=d.phone||'';kvs[11].textContent=d.mail||'';kvs[13].textContent=d.city||'';
-    kvs[15].textContent=d.biz||'';kvs[17].textContent=d.vol||'';kvs[19].textContent=d.at||'';
-    kvs[21].innerHTML='<span class="pill p-gold">易拉宝 H5</span> '+(d.src||'');
-  }
+  document.getElementById('ca-phone').textContent=d.phone||'';
+  document.getElementById('ca-mail').textContent=d.mail||'';
+  document.getElementById('ca-city').textContent=d.city||'';
+  document.getElementById('ca-biz').textContent=d.biz||'';
+  document.getElementById('ca-at').textContent=d.at||'';
+  document.getElementById('ca-src').innerHTML='<span class="pill p-gold">易拉宝 H5</span> '+(d.src||'');
   var c=document.getElementById('ca-code'); if(c) c.value=_caCode;
   var banners={
     pending:['var(--blue-bg)','var(--blue)','待审核：请核实申请人资质与客户资源真实性。审核通过后发送合同模板，申请进入待签约状态。'],
     signing:['var(--amber-bg)','var(--amber)','待签约：合同模板已发送，等待申请人在线补全资料并完成电子签署。拟定口令码 '+_caCode+' 将在签约后生效。'],
+    expired:['var(--red-bg)','var(--red)','签约过期：原电子签邀请已失效。核对用户邮箱和手机号后，可重新发送电子签邀请。'],
     signed:['var(--green-bg)','var(--green)','已签约：协议已完成电子签署，口令码 '+_caCode+' 已生效，正式渠道商已建档。'],
     rejected:['var(--red-bg)','var(--red)','已驳回：驳回结果已通知申请人，申请留档备查。']
   };
@@ -1803,6 +1804,7 @@ function openChanApply(no,name,type,status){
   var acts={
     pending:'<button class="btn btn-red" onclick="chanApplyReject()">驳回</button><button class="btn btn-p" onclick="chanApplyAct(\'approve\')"><i class="ti ti-file-upload"></i>审核通过并发送合同</button>',
     signing:'<button class="btn" onclick="openChannelContract(_caNo,\'template\')"><i class="ti ti-file-text"></i>查看合同模板</button><button class="btn btn-p" onclick="chanApplyAct(\'sign\')"><i class="ti ti-signature"></i>模拟完成签约</button>',
+    expired:'<button class="btn" onclick="openChannelContract(_caNo,\'template\')"><i class="ti ti-file-text"></i>查看合同模板</button><button class="btn btn-p" onclick="chanApplyAct(\'resend\')"><i class="ti ti-send"></i>重新发送电子签邀请</button>',
     signed:'<button class="btn" onclick="openChannelContract(_caNo,\'signed\')"><i class="ti ti-file-check"></i>查看已签合同</button><button class="btn btn-p" onclick="closeM(\'m-chanapply\')">关闭</button>',
     rejected:'<button class="btn" onclick="closeM(\'m-chanapply\')">关闭</button>'
   };
@@ -1813,12 +1815,13 @@ function openChanApply(no,name,type,status){
 function chanApplyReject(){var rb=document.getElementById('ca-reject-box');if(rb){rb.style.display='block';rb.scrollIntoView({block:'nearest'});}}
 function chanApplyRejectCancel(){var rb=document.getElementById('ca-reject-box');if(rb)rb.style.display='none';var r=document.getElementById('ca-reason');if(r)r.value='';}
 function updateChanApplyRow(status){
+  _caStatus=status;
   var row=document.getElementById('ca-row-'+_caNo.slice(-4));if(!row)return;
   var statusCell=row.querySelector('[data-ca-status]'),contractCell=row.querySelector('[data-ca-contract]'),actionCell=row.querySelector('[data-ca-action]');
-  var pills={pending:['p-blue','待审核'],signing:['p-amber','待签约'],signed:['p-green','已签约'],rejected:['p-red','已驳回']};
+  var pills={pending:['p-blue','待审核'],signing:['p-amber','待签约'],expired:['p-red','签约过期'],signed:['p-green','已签约'],rejected:['p-red','已驳回']};
   var p=pills[status]||pills.pending;
   if(statusCell)statusCell.innerHTML='<span class="pill '+p[0]+'">'+p[1]+'</span>';
-  if(contractCell)contractCell.innerHTML=status==='signing'?'<button class="btn btn-xs" onclick="openChannelContract(\''+_caNo+'\',\'template\')"><i class="ti ti-file-text"></i>合同模板</button>':(status==='signed'?'<button class="btn btn-xs" onclick="openChannelContract(\''+_caNo+'\',\'signed\')"><i class="ti ti-file-check"></i>合同内容</button>':'—');
+  if(contractCell)contractCell.innerHTML=(status==='signing'||status==='expired')?'<button class="btn btn-xs" onclick="openChannelContract(\''+_caNo+'\',\'template\')"><i class="ti ti-file-text"></i>合同模板</button>':(status==='signed'?'<button class="btn btn-xs" onclick="openChannelContract(\''+_caNo+'\',\'signed\')"><i class="ti ti-file-check"></i>合同内容</button>':'—');
   if(actionCell)actionCell.innerHTML='<button class="btn btn-xs '+(status==='pending'?'btn-p':'')+'" onclick="openChanApply(\''+_caNo+'\',\''+_caName+'\',\''+_caType+'\',\''+status+'\')">'+(status==='pending'?'审核':'查看')+'</button>';
 }
 function chanApplyAct(action){
@@ -1831,6 +1834,9 @@ function chanApplyAct(action){
   var code=(c&&c.value.trim())||_caCode;
   if(action==='sign'){
     updateChanApplyRow('signed');closeM('m-chanapply');toast('电子签约已完成，口令码 '+code+' 已生效');return;
+  }
+  if(action==='resend'){
+    updateChanApplyRow('signing');closeM('m-chanapply');toast('新的电子签邀请已通过邮箱和短信发送，状态已恢复为待签约');return;
   }
   updateChanApplyRow('signing');closeM('m-chanapply');toast('审核已通过，合同模板已发送，当前为待签约');
 }
