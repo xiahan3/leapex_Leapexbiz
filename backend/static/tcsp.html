@@ -175,27 +175,38 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
 .phone{transition:background .25s}
 .card,.btn,.input,.svc,.msg-item,.tabbar,.capsule{transition:background .25s,border-color .25s,color .25s}
 
-/* ── Splash · 整页口令入口（酷炫背景）── */
-.splash{position:absolute;inset:0;z-index:60;display:none;flex-direction:column;overflow:hidden;background:#0B0A08;color:#fff}
+/* ── Splash · 整页口令入口（维港实景 + 深色蒙层）── */
+.splash{position:absolute;inset:0;z-index:60;display:none;flex-direction:column;overflow:hidden;background:#07131D;color:#fff}
 .splash.on{display:flex}
-.splash-bg{position:absolute;inset:0;background:
-  radial-gradient(55% 45% at 18% 12%,rgba(212,168,83,.5),transparent 60%),
-  radial-gradient(50% 40% at 88% 22%,rgba(184,134,11,.42),transparent 60%),
-  radial-gradient(65% 55% at 62% 100%,rgba(212,168,83,.45),transparent 62%),
-  linear-gradient(160deg,#0B0A08,#15120A 60%,#0B0A08);}
-.splash-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:34px 34px;-webkit-mask-image:radial-gradient(circle at 50% 32%,#000,transparent 78%);mask-image:radial-gradient(circle at 50% 32%,#000,transparent 78%)}
-.splash-blob{position:absolute;border-radius:50%;filter:blur(46px);opacity:.5;mix-blend-mode:screen;animation:blob 10s ease-in-out infinite}
-@keyframes blob{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(18px,-30px) scale(1.18)}}
-.splash-inner{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;padding:64px 30px 30px}
-.splash-logo{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,#141210,#2A2212);border:1px solid rgba(212,168,83,.45);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 30px rgba(212,168,83,.45)}
-.glass-input{width:100%;padding:16px 16px;border-radius:13px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);backdrop-filter:blur(10px);color:#fff;font-size:24px;letter-spacing:8px;text-align:center;font-weight:700;font-family:inherit;outline:none;text-transform:uppercase}
-.glass-input::placeholder{color:rgba(255,255,255,.35);letter-spacing:4px;font-weight:500}
-.glass-input:focus{border-color:rgba(212,168,83,.9);box-shadow:0 0 0 4px rgba(212,168,83,.22)}
-.splash-btn{width:100%;padding:15px;border:none;border-radius:13px;background:linear-gradient(135deg,#F4D9A6,#D4A853);color:#1A1A1A;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;box-shadow:0 10px 30px rgba(212,168,83,.4)}
+.splash-bg{position:absolute;inset:-4px;background:url('hong-kong-entry-bg.jpg') center 38%/cover no-repeat;transform:scale(1.015)}
+.splash-bg::after{content:'';position:absolute;inset:0;background:
+  linear-gradient(180deg,rgba(3,16,30,.26) 0%,rgba(3,14,25,.12) 27%,rgba(2,10,18,.42) 58%,rgba(1,8,14,.9) 78%,#061019 100%),
+  linear-gradient(90deg,rgba(4,18,29,.22),transparent 55%,rgba(4,18,29,.16))}
+.splash-inner{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;padding:48px 22px 0;text-shadow:0 1px 18px rgba(0,0,0,.28)}
+.splash-brand{display:flex;align-items:center;gap:12px}
+.splash-logo{width:48px;height:48px;border-radius:13px;overflow:hidden;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(0,80,39,.36);flex-shrink:0}
+.splash-logo img{width:100%;height:100%;display:block}
+.splash-wordmark{font-size:21px;font-weight:800;letter-spacing:.2px}
+.splash-license{font-size:9.5px;color:rgba(255,255,255,.72);margin-top:3px;line-height:1.45;letter-spacing:.1px}
+.splash-copy{margin-top:auto;margin-bottom:22px;padding-left:3px}
+.splash-copy::before{content:'';display:block;width:34px;height:3px;border-radius:2px;background:#20C75A;margin-bottom:13px;box-shadow:0 0 18px rgba(32,199,90,.45)}
+.splash-copy h1{font-size:32px;font-weight:800;line-height:1.16;letter-spacing:.1px}
+.splash-slogan-sub{display:flex;align-items:center;gap:22px;font-size:14px;font-weight:600;line-height:1.5;letter-spacing:1.5px;color:rgba(255,255,255,.88);margin-top:12px}
+.splash-panel{background:rgba(4,15,24,.94);border:1px solid rgba(255,255,255,.13);border-bottom:0;border-radius:28px 28px 0 0;padding:20px 22px 18px;margin:0 -22px;box-shadow:0 -16px 48px rgba(0,0,0,.28);-webkit-backdrop-filter:blur(22px);backdrop-filter:blur(22px);text-shadow:none}
+.splash-panel-title{font-size:16px;font-weight:750;color:#fff}
+.splash-panel-note{font-size:11px;color:rgba(255,255,255,.55);margin-top:3px;margin-bottom:16px}
+.splash-region-row{display:flex;align-items:center;gap:10px;margin-bottom:15px}
+.splash-region-label{font-size:11.5px;color:rgba(255,255,255,.66);white-space:nowrap}
+.splash-region-list{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.splash-region-list::-webkit-scrollbar{display:none}
+.glass-input{width:100%;padding:15px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.11);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#fff;font-size:24px;letter-spacing:8px;text-align:center;font-weight:700;font-family:inherit;outline:none;text-transform:uppercase}
+.glass-input::placeholder{color:rgba(255,255,255,.48);letter-spacing:4px;font-weight:500}
+.glass-input:focus{border-color:rgba(22,184,75,.95);box-shadow:0 0 0 4px rgba(22,184,75,.2)}
+.splash-btn{width:100%;padding:14px;border:none;border-radius:12px;background:linear-gradient(135deg,#19C454,#07983B);color:#fff;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;box-shadow:0 10px 28px rgba(0,156,56,.32)}
 .splash-btn:active{opacity:.85}
 .splash-skip{width:100%;padding:13px;border:1px solid rgba(255,255,255,.25);border-radius:13px;background:transparent;color:rgba(255,255,255,.9);font-size:14px;cursor:pointer;font-family:inherit;margin-top:10px}
-.rg-pill{padding:8px 16px;border:1px solid rgba(255,255,255,.25);border-radius:20px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.85);font-size:13px;cursor:pointer}
-.rg-pill.on{background:#D4A853;border-color:#D4A853;color:#1A1A1A;font-weight:700}
+.rg-pill{padding:6px 12px;border:1px solid rgba(255,255,255,.2);border-radius:16px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.82);font-size:12px;cursor:pointer;white-space:nowrap}
+.rg-pill.on{background:#0AA641;border-color:#16B84B;color:#fff;font-weight:700}
 
 /* ── 订单 > 服务 > 账单 层级 ── */
 .order-card{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:10px;overflow:hidden;margin-bottom:12px}
@@ -1051,27 +1062,16 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
       </div>
     </div>
 
-    <!-- ════════ 选择 / 新增公司（非注册类下单第一步）════════ -->
+    <!-- ════════ 选择 / 新增公司（所有服务下单第一步）════════ -->
     <div class="screen" id="s-selectcompany" data-title="选择办理公司" data-back="s-svcdetail">
       <div class="body-pad">
-        <div class="note" style="margin-bottom:12px">请选择本次服务办理的公司；如尚未注册公司，可先办理「注册服务」。</div>
+        <div class="card card-pad" style="background:var(--accent-bg);margin-bottom:12px">
+          <div class="note" style="color:var(--accent-d)"><i class="ti ti-briefcase"></i> 本次办理：<b id="sc-service-name">—</b></div>
+        </div>
+        <div class="note" style="margin-bottom:12px">请选择本次服务的办理公司；若公司尚未录入，请新增已有公司并完善基本信息。</div>
         <div class="sec-t">我的公司</div>
-        <div class="card" style="padding:0">
-          <div class="cell" style="border-bottom:1px solid var(--line)" onclick="pickCompany('恒丰贸易有限公司')">
-            <div class="cell-ic" style="background:var(--green-bg);color:var(--green-d)">恒</div>
-            <div class="cell-main"><div class="cell-t">恒丰贸易有限公司</div><div class="cell-d">CI 78451236 · 正常运营</div></div>
-            <span class="cell-arrow"><i class="ti ti-chevron-right"></i></span>
-          </div>
-          <div class="cell" style="border:none" onclick="pickCompany('星辰科技有限公司')">
-            <div class="cell-ic" style="background:var(--accent-bg);color:var(--accent-d)">星</div>
-            <div class="cell-main"><div class="cell-t">星辰科技有限公司</div><div class="cell-d">注册进行中</div></div>
-            <span class="cell-arrow"><i class="ti ti-chevron-right"></i></span>
-          </div>
-        </div>
-        <button class="btn ghost" onclick="toast('可在此录入已有公司资料')"><i class="ti ti-plus"></i> 新增已有公司</button>
-        <div class="card card-pad" style="background:var(--accent-bg);margin-top:12px">
-          <div class="note" style="color:var(--accent-d)">还没有香港公司？<b onclick="openSvc('reg')" style="text-decoration:underline;cursor:pointer">先办理注册服务 ›</b>（无公司将为你推荐注册）</div>
-        </div>
+        <div class="card" id="order-company-list" style="padding:0"></div>
+        <button class="btn ghost" onclick="openCompanyForm('checkout','s-selectcompany')"><i class="ti ti-plus"></i> 新增已有公司</button>
       </div>
     </div>
 
@@ -1971,39 +1971,40 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
   <!-- ════════ SPLASH · 整页口令入口 ════════ -->
   <div class="splash" id="splash">
     <div class="splash-bg"></div>
-    <div class="splash-grid"></div>
-    <div class="splash-blob" style="width:160px;height:160px;background:#D4A853;top:60px;left:-30px"></div>
-    <div class="splash-blob" style="width:130px;height:130px;background:#B8860B;bottom:140px;right:-20px;animation-delay:-3s"></div>
     <div class="splash-inner">
-      <div class="splash-logo">
-        <svg viewBox="0 0 16 16" width="24" height="24"><rect x="1" y="1" width="6" height="6" rx="1" fill="#F4D9A6"/><rect x="9" y="1" width="6" height="6" rx="1" fill="#D4A853"/><rect x="1" y="9" width="6" height="6" rx="1" fill="#D4A853"/><rect x="9" y="9" width="6" height="6" rx="1" fill="#B8860B"/></svg>
-      </div>
-      <div style="margin-top:26px">
-        <div style="font-size:30px;font-weight:800;letter-spacing:.5px;color:#D4A853">Leapex 利柏思</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.55);margin-top:4px;letter-spacing:.3px">Licensed Trust &amp; Company Service Provider ("TCSP") in Hong Kong</div>
-        <div style="font-size:23px;font-weight:800;line-height:1.3;margin-top:18px">香港公司秘书<br>线上一站办妥</div>
-        <div style="font-size:13px;color:rgba(255,255,255,.7);margin-top:10px;line-height:1.7">持牌 TCSP · KYC 合规尽调 · 核名注册<br>法定秘书 · 年审变更全托管</div>
-      </div>
-
-      <div style="flex:1"></div>
-
-      <div style="margin-bottom:14px">
-        <div style="font-size:12.5px;color:rgba(255,255,255,.75);margin-bottom:9px;display:flex;align-items:center;gap:6px"><i class="ti ti-map-pin"></i>选择服务地区</div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <div class="rg-pill on" id="rg-hk" onclick="pickRegion('香港')">香港</div>
-          <div class="rg-pill" id="rg-sg" onclick="pickRegion('新加坡')">新加坡</div>
-          <div class="rg-pill" id="rg-dxb" onclick="pickRegion('迪拜')">迪拜</div>
-          <div class="rg-pill" id="rg-bvi" onclick="pickRegion('BVI')">BVI</div>
+      <div class="splash-brand">
+        <div class="splash-logo"><img src="leapex-icon-green.svg" alt="Leapex"></div>
+        <div>
+          <div class="splash-wordmark">Leapex 利柏思</div>
+          <div class="splash-license">Licensed Trust &amp; Company Service Provider<br>("TCSP") in Hong Kong</div>
         </div>
       </div>
-      <div style="margin-bottom:12px">
-        <div style="font-size:14px;font-weight:700;color:#F4D9A6;margin-bottom:10px;display:flex;align-items:center;gap:7px"><i class="ti ti-ticket" style="font-size:17px"></i>输入口令码，领优惠服务</div>
-        <input class="glass-input" id="sp-input" maxlength="6" placeholder="请输入.." style="height:54px;font-size:22px;letter-spacing:5px;text-align:center;font-weight:700" oninput="this.value=this.value.toUpperCase();spValidate()">
-        <div id="sp-hint" style="font-size:12px;margin:9px 2px 0;height:16px;color:rgba(255,255,255,.85)"></div>
+      <div class="splash-copy">
+        <h1>开启您的<br>海外商业布局</h1>
+        <div class="splash-slogan-sub"><span>合法</span><span>合规</span><span>合理</span></div>
       </div>
-      <button class="splash-btn" onclick="loginGo()">填码并登录 / 注册</button>
-      <div style="text-align:center;font-size:11px;color:rgba(255,255,255,.55);margin-top:12px">需填写口令码并完成注册后进入</div>
-      <div style="text-align:center;font-size:10.5px;color:rgba(255,255,255,.4);margin-top:14px">© 2026 Leapex 利柏思 · 持牌 TCSP · 符合 AMLO / PDPO</div>
+
+      <div class="splash-panel">
+        <div class="splash-panel-title">使用口令码开始服务</div>
+        <div class="splash-panel-note">验证合作伙伴口令码，进入专属服务页面</div>
+        <div class="splash-region-row">
+          <div class="splash-region-label"><i class="ti ti-map-pin"></i> 服务地区</div>
+          <div class="splash-region-list">
+            <div class="rg-pill on" id="rg-hk" onclick="pickRegion('香港')">香港</div>
+            <div class="rg-pill" id="rg-sg" onclick="pickRegion('新加坡')">新加坡</div>
+            <div class="rg-pill" id="rg-dxb" onclick="pickRegion('迪拜')">迪拜</div>
+            <div class="rg-pill" id="rg-bvi" onclick="pickRegion('BVI')">BVI</div>
+          </div>
+        </div>
+        <div style="margin-bottom:12px">
+          <div style="font-size:12px;font-weight:600;color:rgba(255,255,255,.78);margin-bottom:8px;display:flex;align-items:center;gap:7px"><i class="ti ti-ticket" style="font-size:16px;color:#57DB82"></i>合作伙伴口令码</div>
+          <input class="glass-input" id="sp-input" maxlength="6" placeholder="请输入.." style="height:52px;font-size:21px;letter-spacing:5px;text-align:center;font-weight:700" oninput="this.value=this.value.toUpperCase();spValidate()">
+          <div id="sp-hint" style="font-size:12px;margin:8px 2px 0;height:15px;color:rgba(255,255,255,.85)"></div>
+        </div>
+        <button class="splash-btn" onclick="loginGo()">填码并登录 / 注册</button>
+        <div style="text-align:center;font-size:10.5px;color:rgba(255,255,255,.5);margin-top:10px">需填写口令码并完成注册后进入</div>
+        <div style="text-align:center;font-size:9.5px;color:rgba(255,255,255,.35);margin-top:11px">© 2026 Leapex 利柏思 · 持牌 TCSP · AMLO / PDPO</div>
+      </div>
     </div>
   </div>
 
@@ -2101,6 +2102,7 @@ function go(id, isBack){
   // page hooks
   if(id==='s-orders' && typeof renderOrders==='function') renderOrders();
   if(id==='s-mycompany' && typeof renderCompanies==='function') renderCompanies();
+  if(id==='s-selectcompany' && typeof renderOrderCompanyOptions==='function') renderOrderCompanyOptions();
   if(id==='s-bill' && typeof renderBill==='function') renderBill();
   if(id==='s-services' && typeof syncSvcRegion==='function') syncSvcRegion();
 }
@@ -2287,9 +2289,15 @@ function saveCompany(){
   var ci = (document.getElementById('cf-ci').value||'').trim();
   var br = (document.getElementById('cf-br').value||'').trim();
   var info = []; if(ci) info.push('CI: '+ci); if(br) info.push('BR: '+br);
-  MY_COMPANIES.push({ id:'c'+Date.now(), zh: zh||en, en: zh?en:'', status:'存续中', statusClass:'t-green', active:false, info: info.join(' · '), entry:'公司文件', entryD: 'CI / BR / 章程 / 名册 / SCR', annual:'' });
+  var savedName = zh||en;
+  MY_COMPANIES.push({ id:'c'+Date.now(), zh: savedName, en: zh?en:'', status:'存续中', statusClass:'t-green', active:false, info: info.join(' · '), entry:'公司文件', entryD: 'CI / BR / 章程 / 名册 / SCR', annual:'' });
   renderCompanies();
   toast('已保存公司信息');
+  if(COMPANY_RETURN==='checkout'){
+    CURRENT_COMPANY=savedName;
+    setTimeout(function(){ goPay(); }, 600);
+    return;
+  }
   setTimeout(function(){ go(COMPANY_RETURN); }, 600);
 }
 
@@ -2450,8 +2458,24 @@ function resNext(){ if(typeof _resNext==='function') _resNext(); }
 function ncAccept(){
   toast('已记录核名申请，继续办理');
   // 人工核名中，点「好的」直接进入下一步
-  if(BUYING && FLOW_TYPE==='register'){ goPay(); }                          // 购买流程 → 直接去支付
+  if(BUYING && FLOW_TYPE==='register'){ go('s-selectcompany'); }           // 购买流程 → 先选择办理公司
   else { setTimeout(function(){ openSvc('reg'); }, 700); }               // 独立免费核名 → 去办理注册服务
+}
+function renderOrderCompanyOptions(){
+  var list=document.getElementById('order-company-list'); if(!list) return;
+  var svc=document.getElementById('sc-service-name'); if(svc) svc.textContent=CURRENT_SVC?CURRENT_SVC.name:'—';
+  if(!MY_COMPANIES.length){
+    list.innerHTML='<div style="padding:22px 14px;text-align:center;color:var(--text3);font-size:13px"><i class="ti ti-building-off" style="font-size:24px"></i><div style="margin-top:7px">暂未录入已有公司</div></div>';
+    return;
+  }
+  list.innerHTML=MY_COMPANIES.map(function(c,i){
+    var meta=c.info||(c.status||'公司档案');
+    var border=i<MY_COMPANIES.length-1?'border-bottom:1px solid var(--line)':'border:none';
+    return '<div class="cell" style="'+border+'" onclick="pickCompany(\''+c.zh.replace(/'/g,"\\'")+'\')">'
+      +'<div class="cell-ic" style="background:'+(c.active?'var(--accent-bg)':'var(--green-bg)')+';color:'+(c.active?'var(--accent-d)':'var(--green-d)')+'">'+(c.zh||'公').slice(0,1)+'</div>'
+      +'<div class="cell-main"><div class="cell-t">'+c.zh+'</div><div class="cell-d">'+meta+'</div></div>'
+      +'<span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div>';
+  }).join('');
 }
 function pickCompany(name){ CURRENT_COMPANY=name; toast('已选择：'+name); goPay(); }
 function goPay(){
@@ -2947,9 +2971,10 @@ function openSvc(key){
 function buyNow(){
   if(!CURRENT_SVC) return;
   BUYING = true; CURRENT_ORDER = null; CURRENT_COMPANY = '';
-  if(CURRENT_SVC.form==='register'){ FLOW_TYPE='register'; goPay(); }   // 注册类：立即办理 → 支付（核名已在前置免费核名完成）
-  else if(CURRENT_SVC.form==='namecheck'){ FLOW_TYPE='namecheck'; goPay(); }   // 核名 & 商标查询：直接支付 → 付款后去核名
-  else { FLOW_TYPE='service'; go('s-selectcompany'); }                              // 非注册：先选公司
+  if(CURRENT_SVC.form==='register') FLOW_TYPE='register';
+  else if(CURRENT_SVC.form==='namecheck') FLOW_TYPE='namecheck';
+  else FLOW_TYPE='service';
+  go('s-selectcompany'); // 所有服务：先选办理公司；新增公司保存后自动继续支付
 }
 function toOrderConfirm(){
   if(!CURRENT_SVC) return;
