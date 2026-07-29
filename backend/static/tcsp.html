@@ -191,8 +191,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
 .splash-copy{margin-top:auto;margin-bottom:22px;padding-left:3px}
 .splash-copy h1{font-size:32px;font-weight:800;line-height:1.16;letter-spacing:.1px}
 .splash-panel{background:rgba(4,15,24,.94);border:1px solid rgba(255,255,255,.13);border-bottom:0;border-radius:28px 28px 0 0;padding:20px 22px 18px;margin:0 -22px;box-shadow:0 -16px 48px rgba(0,0,0,.28);-webkit-backdrop-filter:blur(22px);backdrop-filter:blur(22px);text-shadow:none}
-.splash-panel-title{font-size:16px;font-weight:750;color:#fff}
-.splash-panel-note{font-size:11px;color:rgba(255,255,255,.55);margin-top:3px;margin-bottom:16px}
+.splash-panel-title{font-size:16px;font-weight:750;color:#fff;margin-bottom:16px}
 .splash-region-row{display:flex;align-items:center;gap:10px;margin-bottom:15px}
 .splash-region-label{font-size:11.5px;color:rgba(255,255,255,.66);white-space:nowrap}
 .splash-region-list{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
@@ -1982,24 +1981,20 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
       </div>
 
       <div class="splash-panel">
-        <div class="splash-panel-title">使用口令码开始服务</div>
-        <div class="splash-panel-note">验证合作伙伴口令码，进入专属服务页面</div>
+        <div class="splash-panel-title">输入口令码开始服务</div>
         <div class="splash-region-row">
           <div class="splash-region-label"><i class="ti ti-map-pin"></i> 服务地区</div>
           <div class="splash-region-list">
             <div class="rg-pill on" id="rg-hk" onclick="pickRegion('香港')">香港</div>
-            <div class="rg-pill" id="rg-sg" onclick="pickRegion('新加坡')">新加坡</div>
-            <div class="rg-pill" id="rg-dxb" onclick="pickRegion('迪拜')">迪拜</div>
-            <div class="rg-pill" id="rg-bvi" onclick="pickRegion('BVI')">BVI</div>
           </div>
         </div>
         <div style="margin-bottom:12px">
-          <div style="font-size:12px;font-weight:600;color:rgba(255,255,255,.78);margin-bottom:8px;display:flex;align-items:center;gap:7px"><i class="ti ti-ticket" style="font-size:16px;color:#57DB82"></i>合作伙伴口令码</div>
+          <div style="font-size:12px;font-weight:600;color:rgba(255,255,255,.78);margin-bottom:8px;display:flex;align-items:center;gap:7px"><i class="ti ti-ticket" style="font-size:16px;color:#57DB82"></i>口令码</div>
           <input class="glass-input" id="sp-input" maxlength="6" placeholder="请输入.." style="height:52px;font-size:21px;letter-spacing:5px;text-align:center;font-weight:700" oninput="this.value=this.value.toUpperCase();spValidate()">
           <div id="sp-hint" style="font-size:12px;margin:8px 2px 0;height:15px;color:rgba(255,255,255,.85)"></div>
         </div>
         <button class="splash-btn" onclick="loginGo()">填码并登录 / 注册</button>
-        <div style="text-align:center;font-size:9.5px;color:rgba(255,255,255,.35);margin-top:13px">© 2026 Leapex 利柏思 · 持牌 TCSP · AMLO / PDPO</div>
+        <div style="text-align:center;font-size:9.5px;color:rgba(255,255,255,.35);margin-top:13px">© 2026 Leapex 利柏思 · 持牌 TCSP</div>
       </div>
     </div>
   </div>
