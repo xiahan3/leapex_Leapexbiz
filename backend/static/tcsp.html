@@ -389,7 +389,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
         <!-- 推荐服务 -->
         <div class="sec-t" style="display:flex;justify-content:space-between"><span>推荐服务</span><span style="color:var(--accent);font-weight:500;cursor:pointer" onclick="go('s-services')">全部服务 ›</span></div>
         <div class="pkg-card rec" onclick="openSvc('reg')"><div style="display:flex;align-items:center;gap:10px"><div class="svc-dot" style="background:var(--accent-bg);color:var(--accent-d);width:36px;height:36px"><i class="ti ti-building-plus"></i></div><div style="flex:1"><div style="font-weight:700">新设香港本地有限公司</div><div class="note">适合：首次在港设立 · 全套证照 + 印章 + 绿盒</div></div><div class="price price-lg">HKD 5,533</div></div></div>
-        <div class="pkg-card" onclick="openSvc('annual')"><div style="display:flex;align-items:center;gap:10px"><div class="svc-dot" style="background:var(--blue-bg);color:var(--blue);width:36px;height:36px"><i class="ti ti-shield-check"></i></div><div style="flex:1"><div style="font-weight:700">法定公司秘书（周年申报）</div><div class="note">适合：已有公司 · 年度合规 + NAR1</div></div><div class="price price-lg">HKD 2,200</div></div></div>
+        <div class="pkg-card" onclick="openSvc('annual')"><div style="display:flex;align-items:center;gap:10px"><div class="svc-dot" style="background:var(--blue-bg);color:var(--blue);width:36px;height:36px"><i class="ti ti-shield-check"></i></div><div style="flex:1"><div style="font-weight:700">年审服务</div><div class="note">适合：已有公司 · 法定秘书 + 注册地址 + NAR1</div></div><div class="price price-lg">HKD 4,422</div></div></div>
         <div class="pkg-card" onclick="openSvc('bookkeep')"><div style="display:flex;align-items:center;gap:10px"><div class="svc-dot" style="background:var(--green-bg);color:var(--green-d);width:36px;height:36px"><i class="ti ti-calculator"></i></div><div style="flex:1"><div style="font-weight:700">年度审计 · 记账报税</div><div class="note">适合：有经营 · 财报 + 审计 + 利得税 PTR</div></div><div class="price price-lg" style="font-size:15px">面议</div></div></div>
       </div>
     </div>
@@ -781,7 +781,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
           <div class="prod" data-type="reg" data-region="hk" onclick="openSvc('reg')">
             <div class="prod-ico" style="background:var(--accent-bg);color:var(--accent-d)"><i class="ti ti-building-plus"></i></div>
             <div class="prod-main"><div class="prod-name">新设香港本地有限公司</div><div class="prod-desc">CI + BR + 章程 10 份 + 股票本 + 印章 + 绿盒 · 约 10 工作日</div></div>
-            <div class="prod-price"><div class="price-strike">HKD 5,533</div><div class="price-cp">券后 5,333</div></div>
+            <div class="prod-price"><div class="price">HKD 5,533</div></div>
           </div>
         </div>
 
@@ -903,7 +903,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
           </div>
           <div style="margin-top:14px;display:flex;align-items:baseline;gap:8px">
             <span style="font-size:13px;opacity:.85">价格</span>
-            <span id="sd-price" style="font-size:26px;font-weight:800">HKD 5,800</span>
+            <span id="sd-price" style="font-size:26px;font-weight:800">HKD 5,533</span>
             <span id="sd-priceold" style="font-size:13px;opacity:.7;text-decoration:line-through"></span>
           </div>
           <div id="sd-coupon" style="margin-top:9px;display:none"></div>
@@ -930,7 +930,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
         <div class="card card-pad" style="font-size:12.5px;line-height:1.9" id="sd-meta"></div>
       </div>
       <div class="buybar">
-        <div><div style="font-size:10px;color:var(--text3)" id="sd-barlabel">价格</div><div class="price" style="font-size:18px" id="sd-barprice">HKD 5,800</div></div>
+        <div><div style="font-size:10px;color:var(--text3)" id="sd-barlabel">价格</div><div class="price" style="font-size:18px" id="sd-barprice">HKD 5,533</div></div>
         <button class="btn" id="sd-cta" style="flex:1" onclick="buyNow()">立即办理</button>
       </div>
     </div>
@@ -954,28 +954,35 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
     </div>
 
     <!-- ════════ 订单确认（价格明细）════════ -->
-    <div class="screen has-buybar" id="s-svcorder" data-title="确认订单" data-back="s-svcform">
+    <div class="screen has-buybar" id="s-svcorder" data-title="确认订单" data-back="s-selectcompany">
       <div class="body-pad">
         <div class="sec-t">服务清单</div>
         <div class="card" style="padding:0">
           <div class="svc-row" style="cursor:default">
             <div class="svc-dot" style="background:var(--accent-bg);color:var(--accent-d)" id="so-icon"><i class="ti ti-package"></i></div>
             <div style="flex:1"><div id="so-name" style="font-size:13.5px;font-weight:600">标准注册服务</div><div class="note" id="so-desc">含 4 项服务</div></div>
-            <div class="price" id="so-price">HKD 5,800</div>
+            <div class="price" id="so-price">HKD 5,533</div>
+          </div>
+        </div>
+        <div class="sec-t">办理公司</div>
+        <div class="card">
+          <div class="cell" style="border:none">
+            <div class="cell-ic" style="background:var(--green-bg);color:var(--green-d)"><i class="ti ti-building"></i></div>
+            <div class="cell-main"><div class="cell-t" id="so-company">—</div><div class="cell-d">订单、进度与交付物将归属该公司</div></div>
           </div>
         </div>
         <div class="sec-t">价格明细</div>
         <div class="card card-pad">
           <div class="qty-line"><span style="color:var(--text2)">服务原价</span><span id="so-orig">HKD 6,800</span></div>
           <div class="qty-line"><span style="color:var(--text2)">口令码优惠（LEX888）</span><span style="color:var(--green-d)" id="so-disc">− HKD 1,000</span></div>
-          <div class="qty-line"><span style="font-weight:700;font-size:15px">应付合计</span><span class="price" style="font-size:18px" id="so-total">HKD 5,800</span></div>
+          <div class="qty-line"><span style="font-weight:700;font-size:15px">应付合计</span><span class="price" style="font-size:18px" id="so-total">HKD 5,533</span></div>
         </div>
         <div class="card card-pad">
           <label class="check-row" style="padding:2px" onclick="toggleCheck('so-agree')"><div class="cbox" id="so-agree"><i class="ti ti-check"></i></div><span style="font-size:12.5px">我已阅读并同意《服务条款》及 AMLO 合规说明，确认所填信息真实</span></label>
         </div>
       </div>
       <div class="buybar">
-        <div><div style="font-size:10px;color:var(--text3)">应付</div><div class="price" style="font-size:18px" id="so-barprice">HKD 5,800</div></div>
+        <div><div style="font-size:10px;color:var(--text3)">应付</div><div class="price" style="font-size:18px" id="so-barprice">HKD 5,533</div></div>
         <button class="btn" id="so-submit" onclick="submitOrder()">提交订单 · 去支付</button>
       </div>
     </div>
@@ -989,7 +996,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
         <div class="card card-pad" style="text-align:left">
           <div class="qty-line"><span style="color:var(--text2)">订单号</span><span style="font-family:monospace" id="ps-order">ORD-2026-0205</span></div>
           <div class="qty-line"><span style="color:var(--text2)">服务</span><span id="ps-svc">标准注册服务</span></div>
-          <div class="qty-line"><span style="color:var(--text2)">实付</span><span class="price" id="ps-amt">¥ 5,220</span></div>
+          <div class="qty-line"><span style="color:var(--text2)">实付</span><span class="price" id="ps-amt">¥ 4,980</span></div>
           <div class="qty-line"><span style="color:var(--text2)">状态</span><span class="tag t-green">已支付</span></div>
         </div>
         <div class="card card-pad" style="background:var(--accent-bg);text-align:left;margin-top:10px"><div class="note" style="color:var(--accent-d)"><i class="ti ti-info-circle"></i> KYC 为香港持牌 TCSP 合规必做；如审核不通过将全额退款。</div></div>
@@ -1218,7 +1225,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
             <div class="label-line" style="padding:11px 14px"><span style="color:var(--text3)">本人验证</span><span>邮箱 · 已验证 ✓</span></div>
             <div class="label-line" style="padding:11px 14px"><span style="color:var(--text3)">地址证明</span><span>已上传 ✓</span></div>
           </div>
-          <div class="card card-pad" style="background:var(--red-bg)"><div class="note" style="color:var(--red)"><i class="ti ti-alert-circle"></i> 提交后资料不可修改，将转后台合规审核（约 48 小时）。</div></div>
+          <div class="card card-pad" style="background:var(--red-bg)"><div class="note" style="color:var(--red)"><i class="ti ti-alert-circle"></i> 提交后资料不可修改，将转后台合规审核（约 1 个工作日）。</div></div>
           <div class="fixed-foot" style="display:flex;gap:8px"><button class="btn ghost" style="width:90px" onclick="kycStep(4)">上一步</button><button class="btn" onclick="kycSubmit()">提交审核</button></div>
         </div>
       </div>
@@ -1538,24 +1545,25 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
             <div id="cur-cny" class="cur-tab on" onclick="setCur('cny')">人民币 ¥</div>
             <div id="cur-hkd" class="cur-tab" onclick="setCur('hkd')">港币 HK$</div>
           </div>
-          <div class="amount" style="margin:4px 0;color:var(--text)" id="bill-amt">¥ 5,220.00</div>
-          <span class="tag t-orange">待支付</span>
+          <div class="amount" style="margin:4px 0;color:var(--text)" id="bill-amt">¥ 4,980.00</div>
+          <div class="note" id="bill-no" style="margin:2px 0 7px">账单号 —</div>
+          <span class="tag t-orange" id="bill-status">待支付</span>
         </div>
         <div class="sec-t">费用明细</div>
         <div class="card">
-          <div class="label-line" style="padding:12px 14px"><span>标准注册服务</span><span style="font-weight:600" id="bill-svc-amt">¥ 5,220.00</span></div>
-          <div class="label-line" id="bill-coupon-row" style="padding:12px 14px;display:flex"><span style="color:var(--accent-d)">优惠券抵扣</span><span style="color:var(--accent-d);font-weight:600" id="bill-discount">− ¥ 180.00</span></div>
-          <div class="label-line" style="padding:12px 14px;font-weight:700"><span>应付合计</span><span style="color:var(--green-d)" id="bill-total">¥ 5,220.00</span></div>
+          <div class="label-line" style="padding:12px 14px"><span id="bill-svc">服务项目</span><span style="font-weight:600" id="bill-svc-amt">¥ 4,980.00</span></div>
+          <div class="label-line" id="bill-coupon-row" style="padding:12px 14px;display:none"><span style="color:var(--accent-d)">优惠券抵扣</span><span style="color:var(--accent-d);font-weight:600" id="bill-discount">− ¥ 0.00</span></div>
+          <div class="label-line" style="padding:12px 14px;font-weight:700"><span>应付合计</span><span style="color:var(--green-d)" id="bill-total">¥ 4,980.00</span></div>
         </div>
 
         <div class="sec-t">优惠券</div>
-        <div class="card"><div class="cell" style="border:none;cursor:pointer" onclick="openSheet('coupon-sheet')"><div class="cell-ic" style="background:var(--accent-bg);color:var(--accent-d)"><i class="ti ti-ticket"></i></div><div class="cell-main"><div class="cell-t" id="bill-coupon-t">新客注册立减券</div><div class="cell-d" id="bill-coupon-d">已抵扣 · 点此更换</div></div><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div></div>
+        <div class="card"><div class="cell" style="border:none;cursor:pointer" onclick="openSheet('coupon-sheet')"><div class="cell-ic" style="background:var(--accent-bg);color:var(--accent-d)"><i class="ti ti-ticket"></i></div><div class="cell-main"><div class="cell-t" id="bill-coupon-t">未使用优惠券</div><div class="cell-d" id="bill-coupon-d">查看本单可用优惠券</div></div><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div></div>
 
         <!-- 在线支付（默认 · 国内主体）-->
         <div class="sec-t">支付方式</div>
         <div id="pay-online">
-          <button class="btn" style="margin-bottom:9px" onclick="payDone()"><i class="ti ti-brand-wechat"></i> 微信支付</button>
-          <button class="btn ghost" onclick="payDone()"><i class="ti ti-brand-alipay"></i> 支付宝</button>
+          <button class="btn" style="margin-bottom:9px" onclick="payDone('online')"><i class="ti ti-brand-wechat"></i> 微信支付</button>
+          <button class="btn ghost" onclick="payDone('online')"><i class="ti ti-brand-alipay"></i> 支付宝</button>
         </div>
 
         <!-- 港币线下转账（切到港币时展示）-->
@@ -1567,7 +1575,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
             <div style="margin-bottom:9px"><div style="color:var(--text3);font-size:11px">港币账号</div><div style="font-weight:600;font-family:monospace">60100807956</div></div>
             <div><div style="color:var(--text3);font-size:11px">SWIFT CODE</div><div style="font-weight:600;font-family:monospace">WUBAHKHH</div></div>
           </div>
-          <button class="btn ghost" style="margin-top:12px" onclick="go('s-proof')"><i class="ti ti-upload"></i> 已转账 · 上传回单</button>
+          <button class="btn ghost" style="margin-top:12px" onclick="goProof()"><i class="ti ti-upload"></i> 已转账 · 上传回单</button>
         </div>
 
         <div style="text-align:center;margin-top:18px"><span onclick="cancelOrder()" style="color:var(--text3);font-size:12px;text-decoration:underline;cursor:pointer">取消订单</span></div>
@@ -1578,10 +1586,10 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
     <div class="screen" id="s-proof" data-title="上传汇款回单" data-back="s-bill">
       <div class="body-pad">
         <div class="uz" onclick="proofUploaded()" id="proof-uz"><i class="ti ti-receipt"></i><div style="font-size:13px;margin-top:8px;font-weight:500">上传银行汇款回单截图</div><div class="note">JPG / PNG / PDF</div></div>
-        <div class="field"><div class="field-l">实付金额 (HKD)</div><input class="input" value="2800.00"></div>
+        <div class="field"><div class="field-l">实付金额 (HKD)</div><input class="input" id="proof-amount" value=""></div>
         <div class="field"><div class="field-l">转账日期</div><input class="input" type="date" value="2026-06-11"></div>
         <div class="field"><div class="field-l">付款银行</div><input class="input" placeholder="例：HSBC"></div>
-        <div class="field"><div class="field-l">转账参考号 / 附言</div><input class="input" value="LEA-2026-0188-1"></div>
+        <div class="field"><div class="field-l">转账参考号 / 附言</div><input class="input" id="proof-reference" value=""></div>
         <div class="card card-pad" style="background:var(--green-bg)"><div class="note" style="color:var(--green-d)">提交后账单变为「待确认」，运营在网银核对到账后为您勾销并启动服务。</div></div>
         <button class="btn" onclick="proofSubmit()">提交回单</button>
       </div>
@@ -1657,7 +1665,6 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
           <div class="cell" onclick="go('s-kycdone')"><div class="cell-ic" style="background:var(--blue-bg);color:var(--blue)"><i class="ti ti-shield-check"></i></div><div class="cell-main"><div class="cell-t">KYC认证</div><div class="cell-d">已认证 · 查看尽调资料清单</div></div><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div>
         </div>
         <div class="card">
-          <div class="cell" onclick="toast('通知订阅设置')"><div class="cell-ic" style="background:var(--purple-bg);color:#7A5C9E"><i class="ti ti-bell"></i></div><div class="cell-main"><div class="cell-t">通知订阅</div><div class="cell-d">合规通知不可关闭</div></div><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div>
           <div class="cell" onclick="go('s-agreement')"><div class="cell-ic" style="background:var(--blue-bg);color:var(--blue)"><i class="ti ti-file-description"></i></div><div class="cell-main"><div class="cell-t">用户协议</div><div class="cell-d">服务条款 · 生效 2026-08-01</div></div><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div>
           <div class="cell" onclick="go('s-privacy')"><div class="cell-ic" style="background:var(--bg2);color:var(--text3)"><i class="ti ti-lock"></i></div><div class="cell-main"><div class="cell-t">隐私政策</div><div class="cell-d">个人信息保护 · PDPO / 个保法</div></div><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div>
           <div class="cell" onclick="go('s-brand')"><div class="cell-ic" style="background:var(--green-bg);color:var(--green-d)"><i class="ti ti-info-circle"></i></div><div class="cell-main"><div class="cell-t">关于 Leapex 利柏思</div><div class="cell-d">持牌 TCSP · 品牌与实力</div></div><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div>
@@ -1929,12 +1936,13 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
   <div id="coupon-sheet" style="display:none;position:absolute;inset:0;z-index:80;background:rgba(0,0,0,.45);align-items:flex-end" onclick="if(event.target===this)closeSheet('coupon-sheet')">
     <div class="sheet-panel" style="width:100%;background:var(--card);border-radius:18px 18px 0 0;max-height:80%;display:flex;flex-direction:column">
       <div style="display:flex;align-items:center;gap:10px;padding:16px 18px 12px;border-bottom:1px solid var(--line)">
-        <div style="flex:1"><div style="font-size:15px;font-weight:700">选择优惠券</div><div style="font-size:11.5px;color:var(--text3)">本订单可用 1 张</div></div>
+        <div style="flex:1"><div style="font-size:15px;font-weight:700">选择优惠券</div><div id="coupon-sheet-sub" style="font-size:11.5px;color:var(--text3)">本订单可用 1 张</div></div>
         <div onclick="closeSheet('coupon-sheet')" style="width:28px;height:28px;border-radius:50%;background:var(--bg2);display:flex;align-items:center;justify-content:center;color:var(--text3);cursor:pointer"><i class="ti ti-x" style="font-size:15px"></i></div>
       </div>
       <div style="overflow-y:auto;padding:12px 18px calc(16px + env(safe-area-inset-bottom))">
         <div class="radio-card" id="cp-opt-none" onclick="applyCoupon('none')"><div class="radio-dot"></div><div style="flex:1"><div style="font-weight:600;font-size:14px">不使用优惠券</div><div class="note">按原价支付</div></div></div>
-        <div class="radio-card on" id="cp-opt-reg" onclick="applyCoupon('reg')"><div class="radio-dot"></div><div style="flex:1"><div style="display:flex;justify-content:space-between"><div style="font-weight:600;font-size:14px">新客注册立减券</div><span class="tag t-green">− HK$200</span></div><div class="note">公司注册 / 商标等满 HK$2,000 可用 · 至 2026-09-30</div></div></div>
+        <div class="radio-card" id="cp-opt-namecheck" onclick="applyCoupon('namecheck')" style="display:none"><div class="radio-dot"></div><div style="flex:1"><div style="display:flex;justify-content:space-between"><div style="font-weight:600;font-size:14px">免费核名券</div><span class="tag t-green">全额抵扣</span></div><div class="note">公司名称查册 + 商标查询专用 · 新客共 3 张</div></div></div>
+        <div class="radio-card" id="cp-opt-reg" onclick="applyCoupon('reg')" style="display:none"><div class="radio-dot"></div><div style="flex:1"><div style="display:flex;justify-content:space-between"><div style="font-weight:600;font-size:14px">新客注册立减券</div><span class="tag t-green">− HK$200</span></div><div class="note">公司注册 / 商标等满 HK$2,000 可用 · 至 2026-09-30</div></div></div>
       </div>
     </div>
   </div>
@@ -2286,7 +2294,7 @@ function saveCompany(){
   toast('已保存公司信息');
   if(COMPANY_RETURN==='checkout'){
     CURRENT_COMPANY=savedName;
-    setTimeout(function(){ goPay(); }, 600);
+    setTimeout(function(){ toOrderConfirm(); }, 600);
     return;
   }
   setTimeout(function(){ go(COMPANY_RETURN); }, 600);
@@ -2319,11 +2327,13 @@ function confirmConsult(){
   closeSheet('consult-sheet');
   var s=CURRENT_SVC||{};
   var no='ORD-2026-0'+(ORD_SEQ++);
-  var order={no:no, company:'（待顾问报价）', service:CONSULT_SVC, icon:s.icon||'ti-headset', color:'accent', channel:CHANNEL, status:'待顾问联系', stage:'待顾问联系', amt:0, bill:'—', bs:'面议'};
+  var order={no:no, company:'（待顾问报价）', service:CONSULT_SVC, svcKey:s.key||'', icon:s.icon||'ti-headset', color:'accent', channel:CHANNEL, status:'待顾问联系', stage:'待顾问联系', amt:0, bill:'—', bs:'面议'};
   ORDERS.unshift(order); CURRENT_ORDER=order;
+  ORDER_NODES[no]=buildConsultOrderNodes();
+  activateConsultOrder(no);
   setPersona('user'); FLOW_TYPE='service';
   var base='已收到你的「<b>'+CONSULT_SVC+'</b>」预约，<b style="color:var(--accent-d)">专属顾问将在 24 小时内与你联系</b>并提供报价方案。';
-  if(s && s.form && SVC_FORM[s.form]){   // 面议服务如已配置填写表单（如撤销注册 NDR1）：预约成功后可直接填申请信息
+  if(s && s.form && SVC_FORM[s.form]){
     showResult({title:'预约成功', desc:base+'可先填写申请信息，加快办理。', steps:['提交预约','顾问联系','报价确认'], cur:1, btn:'填写申请信息', next:goInfo});
   } else {
     showResult({title:'预约成功', desc:base+'可在「我的订单」查看进度。', steps:['提交预约','顾问联系','报价确认'], cur:1, btn:'查看我的订单', next:function(){ go('s-orders'); }});
@@ -2343,8 +2353,9 @@ function kycStep(n){
   document.getElementById('s-kyc').scrollTop = 0;
 }
 function kycSubmit(){
+  advanceServiceOrder(CURRENT_ORDER&&CURRENT_ORDER.no,/KYC/);
   if(FLOW_TYPE==='register'){ toast('KYC 认证已提交'); setTimeout(function(){ go('s-kycaudit'); }, 800); return; }   // 注册类：KYC → 人工审核中
-  showResult({title:'KYC 认证已提交', desc:'合规尽调审核中（约 1 个工作日）。通过后我们即开始为你办理；如审核不通过将全额退款。', steps:flowSteps(), cur:4, btn:'查看我的订单', next:function(){ go('s-orders'); }});
+  showResult({title:'KYC 认证已提交', desc:'合规尽调审核中（约 1 个工作日）。通过后我们即开始为你办理；如审核不通过将全额退款。', steps:flowSteps(), cur:2, btn:'查看我的订单', next:function(){ go('s-orders'); }});
 }
 
 /* Name check */
@@ -2406,6 +2417,7 @@ function ncRun(){
   if(el=document.getElementById('ncr-tm-kw')) el.textContent = tm||'—';
   if(el=document.getElementById('sheet-company-kw')) el.textContent = nm;
   if(el=document.getElementById('sheet-tm-kw')) el.textContent = tm||'—';
+  advanceServiceOrder(CURRENT_ORDER&&CURRENT_ORDER.no);
   toast('已提交，顾问人工核名中');
   setTimeout(function(){
     document.getElementById('nc-input-pane').style.display='none';
@@ -2417,7 +2429,6 @@ function ncRun(){
 var BUYING=false, FLOW_TYPE='register', CURRENT_COMPANY='';
 var REG_STEPS=['核名','支付','提交信息','KYC认证'];
 var SVC_STEPS=['选择公司','支付','提交信息','KYC认证'];
-var BILL_CNY='¥ 5,220.00', BILL_HKD='HK$ 5,800.00';
 var STEPS3=['下单','支付','办理'];
 function flowSteps(){ return STEPS3; }
 var _resNext=null;
@@ -2468,23 +2479,20 @@ function renderOrderCompanyOptions(){
       +'<span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div>';
   }).join('');
 }
-function pickCompany(name){ CURRENT_COMPANY=name; toast('已选择：'+name); goPay(); }
-function goPay(){
-  var s=CURRENT_SVC||SVC_DATA['reg'];
-  var cp=s.channelPrice||chPrice(s.price);
-  if(!CURRENT_ORDER){
-    var no='ORD-2026-0'+(ORD_SEQ++);
-    CURRENT_ORDER={no:no, company:CURRENT_COMPANY||('（待注册）'+s.name), service:s.name, icon:s.icon, color:'accent', channel:CHANNEL, status:'待支付', stage:'待支付', amt:cp, bill:no.replace('ORD','LEA')+'-1', bs:'待支付'};
-    ORDERS.unshift(CURRENT_ORDER);
+function pickCompany(name){ CURRENT_COMPANY=name; toast('已选择：'+name); toOrderConfirm(); }
+function payDone(source){
+  if(CURRENT_ORDER){
+    if(source==='bank'){
+      CURRENT_ORDER.bs='待确认';
+      CURRENT_ORDER.status='待支付';
+      CURRENT_ORDER.stage='待确认到账';
+      showResult({title:'回单已提交', desc:'运营人员将在网银核对到账。确认到账后，订单会自动进入办理流程。', steps:STEPS3, cur:1, orderPrimary:true});
+      return;
+    }
+    CURRENT_ORDER.bs='已到账';
+    CURRENT_ORDER.status='服务中';
+    activateServiceOrderAfterPayment(CURRENT_ORDER.no);
   }
-  BILL_HKD='HK$ '+fmtMoney(cp)+'.00';
-  BILL_CNY='¥ '+fmtMoney(Math.round(cp*0.9))+'.00';
-  var bn=document.getElementById('bill-no'); if(bn) bn.textContent='账单号 '+CURRENT_ORDER.bill;
-  setCur('cny');
-  go('s-bill');
-}
-function payDone(){
-  if(CURRENT_ORDER){ CURRENT_ORDER.bs='待确认'; CURRENT_ORDER.status='服务中'; CURRENT_ORDER.stage='待人工预审'; }
   setPersona('user'); // 付款成功 → 转老客
   if(FLOW_TYPE==='register'){ go('s-paydone'); return; }   // 注册流程 → 专属「支付完成」引导页
   if(FLOW_TYPE==='namecheck'){ showResult({title:'支付完成', desc:'核名 & 商标查询已下单。点击下方开始填写要查册的公司名称与商标，顾问将于约 1–2 个工作日出结果。', steps:STEPS3, cur:2, btn:'去核名 & 查商标', next:function(){ ncReset(); go('s-namecheck'); }}); return; }
@@ -2527,11 +2535,16 @@ function svcGrpTog(el){
   el.classList.toggle('on',on);
 }
 function infoDone(){
-  var f=CURRENT_SVC&&CURRENT_SVC.form;
-  // 所有服务办理结果页统一：查看订单为主按钮 + 返回首页文字超链（不再强推 KYC，合规由顾问后台跟进）
-  var desc=(f==='tmreg'||f==='tmrenew')
-    ? '商标办理信息已提交，顾问将按知识产权署 IPD 要求编制并递交，进度可在订单中查看。'
-    : '办理所需信息已提交，顾问将为你推进办理，进度可在订单中查看。';
+  var s=CURRENT_SVC||{}, f=s.form;
+  advanceServiceOrder(CURRENT_ORDER&&CURRENT_ORDER.no,/提交|信息核对|确认接任信息/);
+  if(s.kycRequired){
+    var kycDesc='办理所需信息已提交。最后一步：完成 KYC 实名认证（香港持牌 TCSP 合规必做）。';
+    showResult({title:'信息已提交', desc:kycDesc, steps:flowSteps(), cur:2, btn:'完成 KYC 实名认证', next:goKyc});
+    return;
+  }
+  var desc=(f==='salarytax'||f==='persontax')
+    ? '办理所需信息已提交。顾问将编制税务文件并安排后续签署与递交，进度可在订单中查看。'
+    : '办理所需信息已提交。顾问将按本服务办理流程继续推进，进度可在订单中查看。';
   showResult({title:'信息已提交', desc:desc, steps:flowSteps(), cur:2, orderPrimary:true});
 }
 function goKyc(){ kycStep(1); go('s-kyc'); }
@@ -2557,23 +2570,46 @@ function kycResubmit(){
   }
   showResult({title:'资料已重新提交', desc:'已重新进入 <b>KYC 审核中</b>（约 1 个工作日）。审核通过后我们将继续为你办理。', btn:'返回首页', next:goHome});
 }
-var BILL_CUR='cny', BILL_COUPON='reg';   // 有可用优惠券时默认使用
+var BILL_CUR='cny', BILL_COUPON='none';
+function serviceBaseAmount(s,cny){
+  s=s||SVC_DATA.reg;
+  if(cny && s.cny!=null) return Number(s.cny);
+  return cny ? Math.round(Number(s.price||0)*0.9) : Number(s.price||0);
+}
+function serviceDiscount(s,cny,type){
+  if(!s||type==='none') return 0;
+  var base=serviceBaseAmount(s,cny);
+  if(type==='namecheck' && s.couponAfter) return base;
+  if(type==='reg' && (s.key==='reg'||s.key==='tmreg')) return cny?180:200;
+  return 0;
+}
 function renderBill(){
   var cny = BILL_CUR==='cny';
-  var base = cny ? 4980 : 5533;
-  var disc = BILL_COUPON==='reg' ? (cny?180:200) : 0;
+  var s=CURRENT_SVC||Object.assign({key:'reg'},SVC_DATA.reg);
+  var base=serviceBaseAmount(s,cny);
+  var disc=serviceDiscount(s,cny,BILL_COUPON);
+  var total=Math.max(0,base-disc);
   var sym = cny ? '¥' : 'HK$';
   function fmt(n){ return sym+' '+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}); }
   var el;
+  if(el=document.getElementById('bill-svc')) el.textContent=s.name||'服务项目';
   if(el=document.getElementById('bill-svc-amt')) el.textContent=fmt(base);
-  if(el=document.getElementById('bill-total')) el.textContent=fmt(base-disc);
-  if(el=document.getElementById('bill-amt')) el.textContent=fmt(base-disc);
+  if(el=document.getElementById('bill-total')) el.textContent=fmt(total);
+  if(el=document.getElementById('bill-amt')) el.textContent=fmt(total);
   var row=document.getElementById('bill-coupon-row'), d=document.getElementById('bill-discount');
   if(row){ if(disc>0){ row.style.display='flex'; if(d) d.textContent='− '+fmt(disc); } else { row.style.display='none'; } }
-  // 优惠券入口默认呈现「已使用」状态
+  if(CURRENT_ORDER) CURRENT_ORDER.amt=Math.max(0,serviceBaseAmount(s,false)-serviceDiscount(s,false,BILL_COUPON));
+  // 优惠券入口与选项按商品动态呈现
   var t=document.getElementById('bill-coupon-t'), cd=document.getElementById('bill-coupon-d');
-  if(BILL_COUPON==='reg'){ if(t) t.textContent='新客注册立减券'; if(cd) cd.textContent='已抵扣 · 点此更换'; }
-  else { if(t) t.textContent='未使用优惠券'; if(cd) cd.textContent='1 张可用'; }
+  if(BILL_COUPON==='namecheck'){ if(t) t.textContent='免费核名券'; if(cd) cd.textContent='已全额抵扣 · 点此更换'; }
+  else if(BILL_COUPON==='reg'){ if(t) t.textContent='新客注册立减券'; if(cd) cd.textContent='已抵扣 · 点此更换'; }
+  else { if(t) t.textContent='未使用优惠券'; if(cd) cd.textContent=(s.couponAfter||s.key==='reg'||s.key==='tmreg')?'1 张可用':'本单暂无可用优惠券'; }
+  var nameOpt=document.getElementById('cp-opt-namecheck'), regOpt=document.getElementById('cp-opt-reg'), noneOpt=document.getElementById('cp-opt-none');
+  var sheetSub=document.getElementById('coupon-sheet-sub');
+  if(sheetSub) sheetSub.textContent=(s.couponAfter||s.key==='reg'||s.key==='tmreg')?'本订单可用 1 张':'本订单暂无可用优惠券';
+  if(nameOpt){ nameOpt.style.display=s.couponAfter?'flex':'none'; nameOpt.classList.toggle('on',BILL_COUPON==='namecheck'); }
+  if(regOpt){ regOpt.style.display=(s.key==='reg'||s.key==='tmreg')?'flex':'none'; regOpt.classList.toggle('on',BILL_COUPON==='reg'); }
+  if(noneOpt) noneOpt.classList.toggle('on',BILL_COUPON==='none');
 }
 function setCur(c){
   BILL_CUR = c==='cny' ? 'cny' : 'hkd';
@@ -2585,13 +2621,12 @@ function setCur(c){
   if(el=document.getElementById('pay-hkd')) el.style.display = cny ? 'none' : 'block';
 }
 function applyCoupon(type){
-  BILL_COUPON = type;
-  var el;
-  if(el=document.getElementById('cp-opt-none')) el.classList.toggle('on', type==='none');
-  if(el=document.getElementById('cp-opt-reg')) el.classList.toggle('on', type==='reg');
-  var t=document.getElementById('bill-coupon-t'), d=document.getElementById('bill-coupon-d');
-  if(type==='reg'){ if(t) t.textContent='新客注册立减券'; if(d) d.textContent='已抵扣 · 点此更换'; toast('已使用新客注册立减券'); }
-  else { if(t) t.textContent='未使用优惠券'; if(d) d.textContent='1 张可用'; }
+  var s=CURRENT_SVC||{};
+  if(type==='namecheck'&&!s.couponAfter){ toast('本订单不可使用免费核名券'); return; }
+  if(type==='reg'&&s.key!=='reg'&&s.key!=='tmreg'){ toast('本订单不可使用该优惠券'); return; }
+  BILL_COUPON=type;
+  if(type==='namecheck') toast('已使用免费核名券');
+  else if(type==='reg') toast('已使用新客注册立减券');
   renderBill();
   closeSheet('coupon-sheet');
 }
@@ -2619,7 +2654,7 @@ function pickArt(el){
   document.querySelectorAll('#reg-3 .radio-card').forEach(function(c){ c.classList.remove('on'); });
   el.classList.add('on');
 }
-function regSubmit(){ toast('已提交人工预审'); setTimeout(function(){ go('s-bizhandle'); }, 800); }   // 人工预审 → 业务办理
+function regSubmit(){ advanceServiceOrder(CURRENT_ORDER&&CURRENT_ORDER.no,/提交注册信息/); toast('已提交人工预审'); setTimeout(function(){ go('s-bizhandle'); }, 800); }   // 人工预审 → 业务办理
 function regSaveDraft(){ toast('已暂存，可稍后在「我的订单」继续填写'); }   // 暂存草稿
 /* 新公司注册：从核名结果页进入，重置到第 1 步 */
 function startNewReg(){ PERSONS = defaultPersons(); renderPersons(); var c=document.getElementById('reg-confirm'); if(c) c.classList.remove('on'); var b=document.getElementById('reg-submit-btn'); if(b) b.disabled=true; regStep(1); go('s-reg'); }
@@ -2671,7 +2706,15 @@ function savePerson(){
 function proofUploaded(){
   document.getElementById('proof-uz').innerHTML = '<i class="ti ti-circle-check" style="color:var(--green);font-size:30px"></i><div style="font-size:13px;margin-top:8px;font-weight:500;color:var(--green-d)">✓ 回单已选择：receipt.jpg</div>';
 }
-function proofSubmit(){ toast('回单已提交，等待运营核对到账'); payDone(); }
+function goProof(){
+  var s=CURRENT_SVC||SVC_DATA.reg;
+  var amount=serviceBaseAmount(s,false)-serviceDiscount(s,false,BILL_COUPON);
+  var a=document.getElementById('proof-amount'), r=document.getElementById('proof-reference');
+  if(a) a.value=amount.toFixed(2);
+  if(r) r.value=(CURRENT_ORDER&&CURRENT_ORDER.bill)||'';
+  go('s-proof');
+}
+function proofSubmit(){ toast('回单已提交，等待运营核对到账'); payDone('bank'); }
 
 /* ═══════════ 服务目录 / 电商购买流程 ═══════════ */
 function fmtMoney(n){ return Number(n).toLocaleString('en-HK'); }
@@ -2682,15 +2725,15 @@ var CHANNEL = 'LEX888';
 /* 服务字段对齐后台商品：name/icon/intro(简要介绍)/incl(交付内容)/sla(办理时效)/materials(所需材料)/process(办理流程)/meta(详细描述) */
 var SVC_DATA = {
   // ── 核名 & 商标查询 ──
-  'nametm':{name:'公司名称查册 + 商标查询',icon:'ti-file-search',price:99,cny:89,old:0,form:'namecheck',tags:'HKD 99 · 约 1–2 工作日 · 顾问人工核查',couponAfter:'0 元',couponNote:'新客共赠 3 张，可免费办 3 次',
+  'nametm':{name:'公司名称查册 + 商标查询',icon:'ti-file-search',price:99,cny:89,old:0,form:'namecheck',kycRequired:false,tags:'HKD 99 · 约 1–2 工作日 · 顾问人工核查',couponAfter:'0 元',couponNote:'新客共赠 3 张，可免费办 3 次',
     intro:'注册香港公司前的名称与商标预查，顾问人工核查可用性，降低被驳回 / 侵权风险。新客赠 3 张免费券，下单可抵扣。',
     incl:['公司名称可用性查册（公司注册处）','商标近似查询（知识产权署 IPD）','中 / 英 / 繁体名称核查','顾问人工核查 + 可用性建议报告'],
     sla:'约 1–2 个工作日出结果',
     materials:['拟用公司名称（英文 / 繁体中文）','拟查商标名称 / 图样（如需）','联系邮箱'],
-    process:['下单 & 支付','顾问人工查册','出核查结果'],
+    process:['下单 & 支付','填写并提交查册信息','顾问人工查册','出核查结果'],
     meta:'在<b>香港公司注册处</b>核查公司名称可用性，在<b>知识产权署 IPD</b>做商标近似查询，由顾问人工核查并给出可用性建议。<br>查册语言<b>只支持英文或繁体中文</b>；名称通过后可直接进入公司注册。<br>费用 <b>HKD 99</b>；<b>新客赠 3 张免费核名券</b>，下单时可抵扣（最多可免费办理 3 次）。'},
   // ── 注册 ──
-  'reg':{name:'新设香港本地有限公司',icon:'ti-building-plus',price:5533,cny:4980,old:0,form:'register',tags:'10 个工作日以内 · 全套证照 + 绿盒',
+  'reg':{name:'新设香港本地有限公司',icon:'ti-building-plus',price:5533,cny:4980,old:0,form:'register',kycRequired:true,tags:'10 个工作日以内 · 全套证照 + 绿盒',
     intro:'香港本地有限公司一站式注册，含全套证照、印章与绿盒，全程托办。',
     incl:['注册证书 CI ×1','商业登记证 BR ×1','公司章程 ×10','法团成立表格 NNC1 ×1','股票本','会议记录本','钢印章','条形章','小圆章','绿盒'],
     sla:'10 个工作日以内',
@@ -2698,10 +2741,10 @@ var SVC_DATA = {
     process:['支付','KYC 认证','提交注册信息','预审与文件编制','文件签字','递交注册处','交付 CI / BR'],
     meta:'新设香港本地有限公司，涵盖公司注册处 NNC1 递交、商业登记、章程与法团文件制作。<br>下单后完成支付与 KYC 尽调、提交注册信息，人工预审无误后递交政府审批，通过即签发 CI + BR 并交付全套绿盒资料。'},
   // ── 年审 · 秘书 & 注册地址（年费打包） ──
-  'annual':{name:'年审服务',icon:'ti-shield-check',price:4422,cny:3980,old:0,form:'annual',tags:'年费 · 法定秘书 + 注册地址 + NAR1',
+  'annual':{name:'年审服务',icon:'ti-shield-check',price:4422,cny:3980,old:0,form:'annual',kycRequired:true,tags:'年费 · 法定秘书 + 注册地址 + NAR1',
     intro:'法定秘书 + 注册地址 + 周年申报 NAR1 的年度合规打包服务。',
     incl:['担任法定公司秘书','维护法定登记册','周年申报表 NAR1 编制与提交','提供香港商业注册地址','接收 / 转发政府信件'],
-    sla:'年费 · NAR1 须成立周年日起 42 天内递交 · 约 10 个工作日出件',
+    sla:'年费 · NAR1 须成立周年日起 42 天内递交 · 10 个工作日以内',
     materials:['公司名称 / 商业登记号 BR','公司成立周年日','董事 / 股东最新资料（如有变动）'],
     process:['支付 / 续费','信息核对','编制 NAR1','递交注册处','交付 NAR1 与 BR'],
     meta:'<b>公司注册处</b>年度合规打包：担任法定公司秘书、维护法定登记册、编制并递交周年申报表 NAR1，并提供香港注册地址与政府信件接收 / 转发。<br>NAR1 逾期政府罚款递增。注意：这是公司注册处的年度合规，<b>与税务局的审计 / 利得税报税（见「审计·含理账」）不同</b>。'},
@@ -2713,14 +2756,14 @@ var SVC_DATA = {
     materials:['全年银行流水 / 对账单','销售与采购单据 / 发票','各项费用凭证','上年度审计报告（如有）'],
     process:['报价确认','资料收集','理账 + 财报','独立审计','利得税报税表 PTR','提交 IRD','完结'],
     meta:'<b>审计（含理账）</b>：日常记账与凭证整理 → 财务报表编制 → 执业会计师（CPA）独立审计 → 利得税报税表 PTR 编制与提交（IRD）。<br>跨境电商可导入平台账单批量入账。按<b>年度银行流水总额 / 交易笔数</b>报价（<b>面议</b>）。'},
-  'salarytax':{name:'公司薪俸税 IR56A&B',icon:'ti-report-money',price:556,cny:500,old:0,form:'salarytax',tags:'约 3 个工作日 · 按人头 / 员工',
+  'salarytax':{name:'公司薪俸税 IR56A&B',icon:'ti-report-money',price:556,cny:500,old:0,form:'salarytax',kycRequired:false,tags:'约 3 个工作日 · 按人头 / 员工',
     intro:'雇主为员工申报薪金的报税服务，按人头计费、帮填帮交。',
     incl:['雇主申报员工薪金','IR56B（逐员工）+ IR56A（汇总表）','帮填帮交','税表回执'],
     sla:'约 3 个工作日',
     materials:['公司名称 / 商业登记号 BR','员工名单与薪金明细','申报年度'],
     process:['支付','提交员工薪金','编制 IR56B / A','雇主签署提交 IRD','完结'],
     meta:'雇主报税表：逐员工一张 <b>IR56B</b> + 汇总 <b>IR56A</b>，按人头计 HKD 556（¥500）/ 人。<br>雇主签署后于 IRD 发出后 1 个月内提交，含帮填帮交。'},
-  'persontax':{name:'个别人士报税',icon:'ti-coin',price:2222,cny:2000,old:0,form:'persontax',tags:'约 3 个工作日 · BIR60',
+  'persontax':{name:'个别人士报税',icon:'ti-coin',price:2222,cny:2000,old:0,form:'persontax',kycRequired:false,tags:'约 3 个工作日 · BIR60',
     intro:'个人入息 / 薪俸税 BIR60 申报，帮填帮交。',
     incl:['个人入息 / 薪俸税申报 BIR60','帮填帮交','税表回执'],
     sla:'约 3 个工作日',
@@ -2728,28 +2771,28 @@ var SVC_DATA = {
     process:['支付','提交收入资料','编制 BIR60','客户签署提交 IRD','完结'],
     meta:'个人报税表 <b>BIR60</b>（薪俸 / 租金 / 免税额）；如选个人入息课税另评估。<br>含帮填帮交（不含豁免场景）。'},
   // ── 工商变更 ──
-  'director':{name:'董事变更',icon:'ti-user-edit',price:333,cny:300,old:0,form:'director',tags:'约 5 个工作日 · ND2A / ND4',
+  'director':{name:'董事变更',icon:'ti-user-edit',price:333,cny:300,old:0,form:'director',kycRequired:true,tags:'约 5 个工作日 · ND2A / ND4',
     intro:'委任 / 停任董事，备 ND2A / ND4 并递交公司注册处。',
     incl:['委任 / 停任董事','ND2A 变更董事通知书','ND4 董事辞职通知书'],
     sla:'约 5 个工作日',
     materials:['公司名称 / 商业登记号 BR','变更类型（委任 / 停任）','董事姓名 + 证件','委任 / 停任生效日期','新董事 KYC 资料（委任时）'],
     process:['支付','提交关键信息','新董事 KYC','编制 ND2A','文件签字确认','递交注册处','完结'],
     meta:'<b>您只需提供关键信息</b>（董事姓名 + 证件 + 委任 / 停任及日期）；<b>ND2A / ND4 表格由我们线下准备并快递给您签字确认</b>，签妥回寄后由我们递交公司注册处。<br>委任新董事需完成 KYC 尽调。'},
-  'secretary':{name:'变更秘书公司',icon:'ti-user-cog',price:333,cny:300,old:0,form:'secretary',tags:'约 5 个工作日 · 转入秘书',
+  'secretary':{name:'变更秘书公司',icon:'ti-user-cog',price:333,cny:300,old:0,form:'secretary',kycRequired:true,tags:'约 5 个工作日 · 转入秘书',
     intro:'将法定公司秘书转由 Leapex 利柏思 接任，备 ND2A 递交。',
     incl:['最新商业登记证 BR','变更秘书通知书','Leapex 利柏思 接任法定秘书'],
     sla:'约 5 个工作日',
     materials:['公司名称 / 商业登记号 BR','现任秘书公司（如有）','确认由 Leapex 利柏思 接任','董事签字'],
     process:['支付','确认接任信息','编制 ND2A','文件签字确认','递交注册处','完结'],
     meta:'<b>秘书公司即 Leapex 利柏思，表格由我们填写</b>，您只需确认接任并由董事签字。<br>ND2A（秘书部分）线下准备并快递给您签字，签妥回寄后递交注册处；含历史文件交接核对。'},
-  'address':{name:'变更注册地址',icon:'ti-map-2',price:333,cny:300,old:0,form:'address',tags:'约 5 个工作日 · 变更地址',
+  'address':{name:'变更注册地址',icon:'ti-map-2',price:333,cny:300,old:0,form:'address',kycRequired:false,tags:'约 5 个工作日 · 变更地址',
     intro:'变更公司注册办事处地址，备 NR1 递交公司注册处。',
     incl:['最新商业登记证 BR','变更地址通知书 NR1'],
     sla:'约 5 个工作日',
     materials:['公司名称 / 商业登记号 BR','新注册地址 或 选用 Leapex 利柏思 地址','生效日期'],
     process:['支付','提交关键信息','编制 NR1','文件签字确认','递交注册处','交付新 BR'],
-    meta:'<b>您只需提供关键信息</b>（新注册地址 + 生效日期，或选用 Leapex 利柏思 地址）；<b>NR1 表格由我们线下编制并安排您文件签字确认</b>，签妥后由我们递交公司注册处。'},
-  'rename':{name:'公司更名',icon:'ti-forms',price:1667,cny:1500,old:0,form:'rename',tags:'7-10 工作日 · NNC2 + 新印章',
+    meta:'<b>您只需提供关键信息</b>（新注册地址 + 生效日期，或选用 Leapex 利柏思 地址）；<b>NR1 表格由我们线下准备并快递给您签字确认</b>，签妥回寄后由我们递交公司注册处。'},
+  'rename':{name:'公司更名',icon:'ti-forms',price:1667,cny:1500,old:0,form:'rename',kycRequired:false,tags:'7-10 工作日 · NNC2 + 新印章',
     intro:'公司更名，先人工查名再备 NNC2 + 股东特别决议，含新印章。',
     incl:['拟用新名称查册结果','股东特别决议书','更名文件 NNC2','新商业登记证 BR','更新印章 ×2'],
     sla:'7–10 个工作日；新 BR 约 +2 周',
@@ -2763,7 +2806,7 @@ var SVC_DATA = {
     materials:['公司名称 / 商业登记号 BR','转让方 / 受让方信息 + 转让股数','转让对价','近 6 月审计报告或近 3 月财务报表','受让方 KYC 资料'],
     process:['支付服务费','提交转让信息','核定作价 + 印花税','受让方 KYC','备文书缴印花','文件签字','完结'],
     meta:'<b>您提交转让信息 + 估值资料</b>（近 6 月审计报告或近 3 月财务报表）；我们核定作价并<b>代缴从价印花税 0.2%</b>（买卖双方各 0.1% + 每份转让文书定额 HK$5，按对价与资产净值孰高）。<br>受让方须完成 KYC；文书线下文件签字后送 IRD 加盖印花。价格面议（视作价）。'},
-  'deregister':{name:'公司注销（撤销注册）',icon:'ti-building-off',price:0,old:0,consult:true,form:'deregister',tags:'约 8 个月 · NDR1 + IR1263',
+  'deregister':{name:'公司注销（撤销注册）',icon:'ti-building-off',price:0,old:0,consult:true,tags:'约 8 个月 · NDR1 + IR1263',
     intro:'撤销注册注销公司，办 IR1263 不反对通知书 + NDR1。',
     incl:['税务局不反对通知书 IR1263','股东特别决议书','撤销注册申请 NDR1'],
     sla:'约 8 个月（政府审批）',
@@ -2771,14 +2814,14 @@ var SVC_DATA = {
     process:['支付','提交注销信息','申请 IR1263','备决议 + NDR1','文件签字','递交 + 公告'],
     meta:'撤销注册须<b>全体股东同意、无未偿还债务、停业逾 3 个月</b>；先申请<b>税务局不反对通知书 IR1263</b>（如有欠税须结清，可能需额外清算审计报告）。<br>NDR1 + 决议线下文件签字后递交注册处并宪报公告（异议期约 3 个月）。官费 HKD 270+420，价格面议。'},
   // ── 商标 ──
-  'tmreg':{name:'商标注册申请',icon:'ti-trademark',price:3311,cny:2980,old:0,form:'tmreg',tags:'约 6 个月 · 每类别 · IPD',
+  'tmreg':{name:'商标注册申请',icon:'ti-trademark',price:3311,cny:2980,old:0,form:'tmreg',kycRequired:true,tags:'约 6 个月 · 每类别 · IPD',
     intro:'香港知识产权署 IPD 商标注册，每个类别单独申请。',
     incl:['注册申请表','商标注册证书'],
     sla:'约 6 个月',
-    materials:['申请人信息（名称 / 证件登记号 / 地址）','商标图样（图形 / 组合 / 立体商标）','拟保护的货品 / 服务说明','联系邮箱'],
-    process:['支付','提交商标信息','顾问查询与评估','编制并递交 T2（IPD）','形式审查','实质审查','宪报公告（3 个月异议期）','注册发证'],
-    meta:'递交<b>知识产权署 IPD</b> 的 <b>T2 申请表</b>：提供申请人、商标图样与<b>拟保护的货品 / 服务说明</b>，顾问按<b>尼斯分类</b>规范类别（<b>每个类别单独申请</b>，一个类别 HKD 3,311 / ¥2,980）。经 <b>形式审查 → 实质审查</b>（显著性 + 在先近似）→ <b>宪报公告（异议期 3 个月）</b>，无异议即注册发证，全程约 6 个月。'},
-  'tmrenew':{name:'商标注册续期',icon:'ti-refresh',price:2200,cny:1980,old:0,form:'tmrenew',tags:'约 5 工作日 · 每 10 年',
+    materials:['商标名称 / 图样','申请类别 Class（如 9 / 35 / 42）','申请人信息','联系邮箱'],
+    process:['支付','提交商标信息','递交 IPD','审查 + 公告','发证'],
+    meta:'递交<b>香港知识产权署 IPD</b>：每个类别单独申请（一个类别 HKD 3,311 / ¥2,980）→ 审查 → 宪报公告（异议期 3 个月）→ 发证。'},
+  'tmrenew':{name:'商标注册续期',icon:'ti-refresh',price:2200,cny:1980,old:0,form:'tmrenew',kycRequired:true,tags:'约 5 工作日 · 每 10 年',
     intro:'商标每 10 年续期，向 IPD 递交续期申请。',
     incl:['商标续期申请','续期回执'],
     sla:'约 5 个工作日',
@@ -2786,7 +2829,7 @@ var SVC_DATA = {
     process:['支付','提交商标编号','递交续期 IPD','完结'],
     meta:'商标<b>每 10 年续期一次</b>；提交商标注册编号后由我们向知识产权署 IPD 递交续期。续期费 HKD 2,200（¥1,980）。'},
   // ── 地址租赁 ──
-  'addr-solo':{name:'独立注册地址',icon:'ti-map-pin',price:6000,cny:5400,old:0,form:'addr',tags:'HKD 6,000 / 年 · 不可办公',
+  'addr-solo':{name:'独立注册地址',icon:'ti-map-pin',price:6000,cny:5400,old:0,form:'addr',kycRequired:true,tags:'HKD 6,000 / 年 · 不可办公',
     intro:'独立香港注册地址（不可办公），交付租约 + 厘印税单 + 水电单。',
     incl:['正规租赁合约','厘印税单（印花税）','物业出具水电单'],
     sla:'付款后 1–2 个工作日出资料',
@@ -2794,105 +2837,53 @@ var SVC_DATA = {
     process:['支付','提交公司资料','平台配置地址','出厘印税单 + 水电单','完结'],
     meta:'独立香港<b>注册地址</b>（不可实体办公），交付<b>租约 + 厘印税单 + 水电单</b>，满足亚马逊等平台地址验证。<br>款项须付至香港公司主体（合规要求）。'},
   'addr-seat':{name:'工位租赁',icon:'ti-armchair',price:0,old:0,consult:true,tags:'面议 · 可办公 · 可作注册地址',
-    intro:'香港上市公司自持物业实体工位（可办公），可作注册地址，按年租赁。',
+    intro:'实体工位（可办公），可作注册地址，按年租赁。',
     incl:['正规租赁合约','厘印税单（印花税）','物业出具水电单','实体工位（可办公）'],
     sla:'预约后线上或香港实地看工位',
     materials:['公司 / 联系人','工位数量','期望起租日'],
-    process:['提交需求','顾问对接','看位 / 报价','签约','交付'],
-    meta:'香港上市公司<b>自持物业实体工位</b>（可办公），交付<b>租约 + 厘印税单 + 水电单</b>，可作注册地址。<br>预约后线上或香港实地看位，由顾问对接、双方签约（按年结算）。'},
+    process:['提交需求','达利对接','看位 / 报价','线下签约','交付'],
+    meta:'香港上市公司<b>自持物业实体工位</b>（可办公），交付<b>租约 + 厘印税单 + 水电单</b>，可作注册地址。<br>生态合作：预约后由达利对接、双方签约；按月结算。'},
   'addr-office':{name:'独立办公室租赁',icon:'ti-building-skyscraper',price:0,old:0,consult:true,tags:'面议 · 甲级物业 · 可办公',
     intro:'香港上市公司一手甲级物业，独立办公室（可办公），按面积 / 楼层报价。',
     incl:['正规租赁合约','厘印税单（印花税）','物业出具水电单','独立办公室（可办公）'],
     sla:'预约后线上或香港实地看办公室',
     materials:['公司 / 联系人','面积需求','预算区间'],
-    process:['提交需求','顾问对接','看房 / 报价','签约'],
-    meta:'香港上市公司<b>自持物业独立办公室</b>（可办公）。<br>预约后线上或香港实地看房、报价、双方签约；按面积 / 楼层报价（面议）。'},
+    process:['提交需求','达利对接','看房 / 报价','线下签约'],
+    meta:'香港上市公司<b>自持物业独立办公室</b>（可办公）。<br>生态合作：预约后由达利对接，客户与达利直签；按面积 / 楼层报价（面议）。'},
 };
 
 // 各服务必要信息表单
 var SVC_FORM = {
   register:[['期望公司英文名','如 Star Tech Limited'],['期望公司中文名','如 星辰科技有限公司'],['联系人姓名',''],['联系邮箱','name@email.com']],
-  annual:[
-    {t:'sec',label:'① 公司识别'},
-    {t:'txt',label:'公司名称（须与注册证书一致）',ph:'如 大展鸿图有限公司',req:1},
-    {t:'txt',label:'公司注册编号 CI',ph:'如 78451236',req:1},
-    {t:'txt',label:'商业登记号 BR（首 8 位）',ph:'如 88888888',req:1},
-    {t:'txt',label:'周年结算日（成立周年日）',ph:'DD / MM / YYYY · 决定 42 天递交期限',req:1},
-    {t:'sec',label:'② 公司资料'},
-    {t:'txt',label:'经营业务性质（HSIC 编码 / 描述）',ph:'如 46xx 批发贸易（无变动可留空）'},
-    {t:'txt',label:'电邮地址',ph:'接收公司注册处通知',req:1},
-    {t:'txt',label:'香港联络电话',ph:'+852 …'},
-    {t:'note',label:'注册办事处地址沿用 Leapex 利柏思 法定秘书地址；如需变更请另办「变更注册地址」。'},
-    {t:'sec',label:'③ 股本 · 股东 · 董事（确认 / 变动）'},
-    {t:'txt',label:'已发行股份总数',ph:'如 10,000'},
-    {t:'sel',label:'股东及持股较上次申报是否变动',opts:['否','是（顾问将跟进）'],req:1},
-    {t:'sel',label:'董事较上次申报是否变动',opts:['否','是（顾问将跟进）'],req:1},
-    {t:'note',label:'法定公司秘书由 Leapex 利柏思 担任，无需填写。'},
-    {t:'up',label:'上传上一年度 NAR1 / 变动证明（选填）',hint:'便于顾问比对，非必需'},
-    {t:'note',label:'提交后顾问将编制 NAR1，须于结算日后 42 天内递交注册处（逾期政府罚款递增），并安排董事 / 秘书签署。'}
-  ],
+  annual:[['公司名称','须与注册证书一致'],['公司注册编号 CI',''],['商业登记证号 BR',''],['财政年度结算日','如 03-31']],
   address:[['公司名称',''],['商业登记号 BR（首 8 位）',''],['新注册地址（室/楼/座 · 大厦 · 街道 · 地区）· 或选用 Leapex 利柏思 地址',''],['生效日期','DD/MM/YYYY']],
   salarytax:[['公司名称',''],['员工人数','按人头计费'],['申报年度','如 2024/25']],
   persontax:[['姓名',''],['香港身份证 / 税务档案号',''],['申报年度','如 2024/25']],
   director:[['公司名称',''],['商业登记号 BR（首 8 位）',''],['变更类型','委任新董事 / 停任现董事'],['董事姓名（英文）',''],['董事姓名（中文，无则填「无」）',''],['证件类型 / 号码','香港身份证 / 护照'],['原因 / 生效日期','停任：辞任·去世·其他 · DD/MM/YYYY']],
   secretary:[['公司名称',''],['商业登记号 BR（首 8 位）',''],['现任秘书公司（如有）',''],['确认由 Leapex 利柏思 接任法定秘书','是 / 否']],
   rename:[['现有公司英文名',''],['现有公司中文名（无则填「无」）',''],['商业登记号 BR（首 8 位）',''],['拟用新英文名',''],['拟用新中文名（无则填「无」）','']],
-  transfer:[['公司名称',''],['转让方姓名',''],['受让方姓名',''],['转让股数',''],['转让对价 (HKD)','用于预估印花税']],
-  deregister:[
-    {t:'sec',label:'① 公司识别'},
-    {t:'txt',label:'公司名称（须与注册证书一致）',ph:'如 好生活有限公司',req:1},
-    {t:'txt',label:'商业登记号 BR（首 8 位）',ph:'如 77777777',req:1},
-    {t:'txt',label:'公司注册编号 CI（如有）',ph:''},
-    {t:'sec',label:'② 申请人'},
-    {t:'sel',label:'申请人身分',opts:['上述公司','公司一名董事','公司一名成员（股东）'],req:1},
-    {t:'txt',label:'申请人姓名 / 名称',ph:'自然人姓名 或 法人名称',req:1},
-    {t:'txt',label:'申请人通讯地址',ph:'室 / 楼 · 大厦 · 街道 · 地区 · 国家',req:1},
-    {t:'txt',label:'申请人电邮 / 传真',ph:'便于公司注册处联络',req:1},
-    {t:'note',label:'如申请人为「公司」本身，须另提名一名自然人接收撤销注册通知书（姓名 / 地址 / 电邮），顾问将协助填报。'},
-    {t:'sec',label:'③ 撤销条件确认（须全部符合）'},
-    {t:'sel',label:'全体成员（股东）是否同意撤销',opts:['是','否'],req:1},
-    {t:'sel',label:'公司是否已停业逾 3 个月或从未营运',opts:['是','否'],req:1},
-    {t:'sel',label:'是否无尚未清偿债务（含或有负债）',opts:['是','否'],req:1},
-    {t:'sel',label:'是否未涉法律程序、且资产不含香港不动产',opts:['是','否'],req:1},
-    {t:'note',label:'NDR1 须由申请人签署；虚假或误导性陈述属刑事罪行。提交后顾问将核对条件、代办税务局不反对通知书（IR1263），并编制 NDR1 递交注册处（撤销程序约 8 个月，含宪报公告异议期）。'}
-  ],
   tmreg:[
-    {t:'sec',label:'① 申请人信息'},
-    {t:'sel',label:'申请人类型',opts:['法人（公司）','自然人（个人）'],req:1},
-    {t:'txt',label:'申请人名称（中文）',ph:'与证件一致，中英至少填一项'},
-    {t:'txt',label:'申请人名称（英文）',ph:'法人须与 CI / BR 英文名一致'},
-    {t:'txt',label:'证件 / 登记号',ph:'公司 BR / CI 或 身份证 / 护照号',req:1},
-    {t:'txt',label:'成立地 / 国籍',ph:'如 香港',req:1},
-    {t:'txt',label:'地址（通讯 / 注册）',ph:'用于官方送达',req:1},
-    {t:'txt',label:'联系人 · 电话',ph:''},
-    {t:'txt',label:'联系邮箱',ph:'接收 IPD 通知',req:1},
-    {t:'sec',label:'② 商标本体'},
-    {t:'sel',label:'商标类型',opts:['文字','图形','图文组合','立体','颜色','声音','气味','其他'],req:1},
-    {t:'sel',label:'是否系列商标',opts:['否','是（多个近似变体）']},
-    {t:'txt',label:'商标名称（文字）',ph:'文字 / 组合商标的文字内容'},
-    {t:'up',label:'上传商标图样',hint:'图形 / 组合 / 立体商标必传 · 清晰 JPG / PNG'},
-    {t:'txt',label:'特殊字符 音译 / 翻译',ph:'含非中英文字符时填写（选填）'},
-    {t:'txt',label:'颜色声明 / 放弃专用权',ph:'如指定颜色为特征、通用词声明不专用（选填）'},
-    {t:'sec',label:'③ 类别与货品 / 服务（决定官费）'},
-    {t:'txt',label:'各类别货品 / 服务说明',ph:'请简要描述，后续由顾问按照官方要求修改',req:1},
-    {t:'note',label:'每个类别单独计费：服务费 HKD 3,311 / 类 + 每类政府官费（以 IPD 公布为准）。'},
-    {t:'sec',label:'④ 前置检索与委托'},
-    {t:'sel',label:'是否已做商标查询',opts:['已做（Leapex 核名 + 商标查询）','未做，请顾问评估']},
-    {t:'note',label:'提交即授权 Leapex 利柏思 作为代理人编制 T2 表并递交 IPD，并确认所填信息真实。'}
+    {t:'txt',label:'商标名称',ph:'文字商标请填写完整名称',req:1},
+    {t:'up',label:'上传商标图样（如需）',hint:'图形 / 图文组合商标上传清晰 JPG / PNG'},
+    {t:'txt',label:'申请类别 Class',ph:'如 9 / 35 / 42',req:1},
+    {t:'txt',label:'申请人',ph:'个人姓名或公司名称',req:1},
+    {t:'txt',label:'联系邮箱',ph:'接收 IPD 及办理通知',req:1}
   ],
   tmrenew:[['商标名称',''],['商标注册编号',''],['续期年度','']],
   addr:[['公司名称 / 拟注册名称',''],['用途','注册地址 / 办公 / 平台验证'],['联系人 · 手机',''],['备注（选填）','']],
 };
 var KYC_NOTE = {
-  register:'流程顺序：公司核名 → 支付 → 提交注册信息 → KYC 认证（最后）。',
+  register:'支付后完成 KYC 与注册资料，两项均完成后进入人工预审。',
+  salarytax:'提交员工人数、申报年度等必要信息后，由顾问编制税务文件。',
+  persontax:'提交个人税务档案与申报年度后，由顾问编制 BIR60。',
   director:'新任董事需完成 KYC 尽职调查（含 PEP / 制裁名单筛查）。',
-  transfer:'受让方需完成 KYC；系统将预估应缴印花税。',
   rename:'名称变更需重新走核名流程，通过后方可继续。',
   annual:'年审将触发 KYC 年度复核，如身份信息有变需重新上传。',
   secretary:'秘书转入将进行历史合规文件交接核对。',
   address:'地址变更如选用 Leapex 利柏思 地址，将自动配置注册地址。',
-  deregister:'注销前需结清税务并取得税务局不反对注销证明书。',
-  tmreg:'商标注册无需 KYC；提交后顾问将编制 T2 表并递交知识产权署 IPD（每类别单独申请）。',
+  tmreg:'提交商标信息后完成 KYC，由顾问编制申请并递交知识产权署 IPD。',
+  tmrenew:'提交商标编号后完成 KYC，由顾问向知识产权署 IPD 递交续期。',
+  addr:'提交公司与地址用途信息后完成 KYC，再由平台配置独立注册地址。',
 };
 
 var CURRENT_SVC = null, CURRENT_ORDER = null;
@@ -2901,9 +2892,9 @@ function chPrice(p){ return p; } // 报价表价格为最终价，不再演示�
 function openSvc(key){
   var s = SVC_DATA[key]; if(!s) return;
   CURRENT_SVC = Object.assign({key:key}, s);
-  var cp = s.old ? s.price : chPrice(s.price);
+  var cp = s.couponAfter ? 0 : (s.old ? s.price : chPrice(s.price));
   var op = s.old ? s.old : s.price;
-  CURRENT_SVC.channelPrice = cp; CURRENT_SVC.origPrice = op;
+  CURRENT_SVC.channelPrice = cp; CURRENT_SVC.payPrice = cp; CURRENT_SVC.origPrice = op;
   document.getElementById('sd-icon').className = 'ti '+s.icon;
   document.getElementById('sd-name').textContent = s.name;
   document.getElementById('sd-tags').textContent = s.tags;
@@ -2927,7 +2918,7 @@ function openSvc(key){
   } else if(s.couponAfter){
     // 有免费券 / 优惠券：顶部原价划线 + 高亮券后价，底部展示券后价
     var sp=document.getElementById('sd-price'); sp.textContent = '0 元'; sp.style.color = '#F4D9A6';
-    document.getElementById('sd-priceold').textContent = 'HKD '+fmtMoney(cp);
+    document.getElementById('sd-priceold').textContent = 'HKD '+fmtMoney(op);
     document.getElementById('sd-barprice').textContent = '0 元';
     document.getElementById('sd-barlabel').textContent = '券后价';
     cta.textContent = '立即办理';
@@ -2965,19 +2956,20 @@ function buyNow(){
   if(CURRENT_SVC.form==='register') FLOW_TYPE='register';
   else if(CURRENT_SVC.form==='namecheck') FLOW_TYPE='namecheck';
   else FLOW_TYPE='service';
-  go('s-selectcompany'); // 所有服务：先选办理公司；新增公司保存后自动继续支付
+  go('s-selectcompany'); // 所有在线标准商品：先选办理公司；新增公司保存后自动继续订单确认
 }
 function toOrderConfirm(){
   if(!CURRENT_SVC) return;
-  var cp = CURRENT_SVC.channelPrice, op = CURRENT_SVC.origPrice;
+  var cp = CURRENT_SVC.payPrice, op = CURRENT_SVC.origPrice;
   document.getElementById('so-icon').innerHTML = '<i class="ti '+CURRENT_SVC.icon+'"></i>';
   document.getElementById('so-name').textContent = CURRENT_SVC.name;
   document.getElementById('so-desc').textContent = CURRENT_SVC.tags;
-  document.getElementById('so-price').textContent = 'HKD '+fmtMoney(cp);
+  document.getElementById('so-company').textContent = CURRENT_COMPANY||'—';
+  document.getElementById('so-price').textContent = cp===0 ? '0 元' : 'HKD '+fmtMoney(cp);
   document.getElementById('so-orig').textContent = 'HKD '+fmtMoney(op);
   document.getElementById('so-disc').textContent = op>cp ? '− HKD '+fmtMoney(op-cp) : '− HKD 0';
-  document.getElementById('so-total').textContent = 'HKD '+fmtMoney(cp);
-  document.getElementById('so-barprice').textContent = 'HKD '+fmtMoney(cp);
+  document.getElementById('so-total').textContent = cp===0 ? '0 元' : 'HKD '+fmtMoney(cp);
+  document.getElementById('so-barprice').textContent = cp===0 ? '0 元' : 'HKD '+fmtMoney(cp);
   document.getElementById('so-agree').classList.remove('on');
   go('s-svcorder');
 }
@@ -2986,25 +2978,93 @@ function submitOrder(){
   if(!document.getElementById('so-agree').classList.contains('on')){ toast('请先勾选同意服务条款'); return; }
   var no = 'ORD-2026-0'+(ORD_SEQ++);
   CURRENT_ORDER = {
-    no:no, company:'（待注册）'+CURRENT_SVC.name, service:CURRENT_SVC.name, icon:CURRENT_SVC.icon, color:'accent', channel:CHANNEL,
-    status:'待支付', stage:'待支付', amt:CURRENT_SVC.channelPrice, bill:no.replace('ORD','LEA')+'-1', bs:'待支付'
+    no:no, company:CURRENT_COMPANY||('（待注册）'+CURRENT_SVC.name), service:CURRENT_SVC.name, svcKey:CURRENT_SVC.key, icon:CURRENT_SVC.icon, color:'accent', channel:CHANNEL,
+    status:'待支付', stage:'待支付', amt:CURRENT_SVC.payPrice, bill:no.replace('ORD','LEA')+'-1', bs:'待支付'
   };
   ORDERS.unshift(CURRENT_ORDER);
-  // 填充支付页
-  document.getElementById('bill-no').textContent = '账单号 '+CURRENT_ORDER.bill;
-  document.getElementById('bill-amt').textContent = 'HKD '+fmtMoney(CURRENT_ORDER.amt)+'.00';
-  document.getElementById('bill-status').textContent = '待支付';
-  document.getElementById('bill-status').className = 'tag t-orange';
-  document.getElementById('bill-svc').textContent = CURRENT_SVC.name;
-  document.getElementById('bill-svc-amt').textContent = fmtMoney(CURRENT_ORDER.amt)+'.00';
-  document.getElementById('bill-total').textContent = 'HKD '+fmtMoney(CURRENT_ORDER.amt)+'.00';
+  ORDER_NODES[no]=buildServiceOrderNodes(CURRENT_SVC);
+  BILL_COUPON=CURRENT_SVC.couponAfter?'namecheck':'none';
+  var bn=document.getElementById('bill-no'); if(bn) bn.textContent='账单号 '+CURRENT_ORDER.bill;
+  var bs=document.getElementById('bill-status'); if(bs){ bs.textContent='待支付'; bs.className='tag t-orange'; }
+  setCur('cny');
   toast('订单 '+no+' 已生成');
   setTimeout(function(){ go('s-bill'); }, 600);
 }
 
+/* 商品配置 → 用户订单进度：每个商品使用自己的办理流程，支付 / 填表 / KYC 后同步推进 */
+function orderParty(name){
+  if(/KYC/.test(name)) return '我 / 合规';
+  if(/签字|签署/.test(name)) return '我 / 平台';
+  if(/提交|填写|信息核对|确认接任/.test(name)) return '我';
+  if(/顾问|报价|看房|看位|对接/.test(name)) return '顾问';
+  return '平台';
+}
+function buildServiceOrderNodes(s){
+  var process=((s&&s.process)||[]).slice();
+  if(s&&s.kycRequired&&!process.some(function(name){ return /KYC/.test(name); })){
+    var insertAt=process.length;
+    for(var i=0;i<process.length;i++){
+      if(/提交|信息核对|确认接任/.test(process[i])){ insertAt=i+1; break; }
+      if(/^(下单|支付)/.test(process[i])) insertAt=i+1;
+    }
+    process.splice(insertAt,0,'KYC 认证');
+  }
+  return process.map(function(name){
+    return {name:name, party:orderParty(name), status:'未开始', st:'wait', remark:''};
+  });
+}
+function buildConsultOrderNodes(){
+  return ['提交预约','顾问联系','报价确认'].map(function(name){
+    return {name:name, party:orderParty(name), status:'未开始', st:'wait', remark:''};
+  });
+}
+function findOrder(no){
+  if(!no) return null;
+  for(var i=0;i<ORDERS.length;i++){ if(ORDERS[i].no===no) return ORDERS[i]; }
+  return null;
+}
+function refreshOrderStage(no){
+  var nodes=ORDER_NODES[no]||[], order=findOrder(no), next=null;
+  nodes.forEach(function(n){ if(n.st!=='done'){ n.st='wait'; n.status='未开始'; } });
+  for(var i=0;i<nodes.length;i++){ if(nodes[i].st!=='done'){ next=nodes[i]; break; } }
+  if(next){
+    next.st='act'; next.status='进行中';
+    if(order){ order.stage=next.name; if(order.status!=='待顾问联系') order.status='服务中'; }
+  } else if(order){
+    order.stage='已交付'; order.status='已完成'; order.bs='已交付';
+  }
+}
+function activateServiceOrderAfterPayment(no){
+  var nodes=ORDER_NODES[no]||[];
+  nodes.forEach(function(n){
+    if(/^(下单|支付)/.test(n.name)){ n.st='done'; n.status='已完成'; }
+  });
+  refreshOrderStage(no);
+}
+function advanceServiceOrder(no,matcher){
+  if(!no) return;
+  var nodes=ORDER_NODES[no]||[], target=null;
+  for(var i=0;i<nodes.length;i++){
+    if(nodes[i].st==='done') continue;
+    if(!matcher || matcher.test(nodes[i].name)){ target=nodes[i]; break; }
+  }
+  if(!target){
+    for(var j=0;j<nodes.length;j++){ if(nodes[j].st==='act'){ target=nodes[j]; break; } }
+  }
+  if(target){ target.st='done'; target.status='已完成'; }
+  refreshOrderStage(no);
+}
+function activateConsultOrder(no){
+  var nodes=ORDER_NODES[no]||[];
+  if(nodes.length && /^提交/.test(nodes[0].name)){ nodes[0].st='done'; nodes[0].status='已完成'; }
+  refreshOrderStage(no);
+  var order=findOrder(no);
+  if(order){ order.status='待顾问联系'; order.bs='面议'; }
+}
+
 /* ═══════════ 订单列表（清晰状态体系）═══════════ */
-var ORD_STATUS = { '待支付':'t-orange', '服务中':'t-blue', '已完成':'t-green', '已取消':'t-gray' };
-var BS_CHIP = { '待支付':'t-orange','待确认':'t-blue','已到账':'t-green','已含':'t-green','办理中':'t-blue','已交付':'t-green','已作废':'t-gray' };
+var ORD_STATUS = { '待支付':'t-orange', '待顾问联系':'t-orange', '服务中':'t-blue', '已完成':'t-green', '已取消':'t-gray' };
+var BS_CHIP = { '待支付':'t-orange','待确认':'t-blue','已到账':'t-green','面议':'t-orange','已含':'t-green','办理中':'t-blue','已交付':'t-green','已作废':'t-gray' };
 var COLOR_VAR = {
   accent:['var(--accent-bg)','var(--accent-d)'], green:['var(--green-bg)','var(--green-d)'],
   teal:['var(--blue-bg)','var(--blue)'], blue:['var(--blue-bg)','var(--blue)'],
