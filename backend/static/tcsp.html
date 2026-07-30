@@ -1649,7 +1649,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
     <!-- ════════ MESSAGES ════════ -->
     <div class="screen" id="s-messages" data-title="消息中心" data-tab="messages">
       <div class="body-pad">
-        <div class="msg-rule-box"><i class="ti ti-info-circle"></i> 同一任务仅发送首次通知与最终结果；服务仅发送开始办理与服务完成。以下为原型模板预览，实际消息按用户角色和已触发事件展示。</div>
+        <div class="msg-rule-box"><i class="ti ti-info-circle"></i> 同一任务仅发送首次通知与最终结果；服务仅发送开始办理与服务完成。当前仅展示客户消息样例，实际消息按已触发事件展示。</div>
         <div id="mini-message-list"></div>
         <div class="note" style="text-align:center;margin:14px 8px 0;line-height:1.7"><i class="ti ti-shield-lock"></i> “客户提交新订单”仅通知内部运营，不会出现在客户小程序。</div>
       </div>
@@ -2114,10 +2114,7 @@ var MINI_MESSAGE_TEMPLATES=[
   {code:'CP-003',cat:'合规通知',trigger:'KYC 审核不通过；与“审核通过”互斥',title:'KYC 认证未通过',content:'陈大文，您的 KYC 认证未通过，原因：证件照片信息不清晰。请进入认证页重新提交。',route:'/pages/kyc/edit?taskId=KYC-0188',routeDesc:'KYC 资料修改页',icon:'ti-alert-circle',tone:'red'},
   {code:'SV-001',cat:'服务通知',trigger:'服务首次进入“办理中”状态',title:'新设香港本地有限公司已开始办理',content:'陈大文，Star Tech Limited 的「新设香港本地有限公司」已开始办理，可进入服务详情查看。',route:'/pages/order/detail?bizId=ORD-2026-0188',routeDesc:'服务进度详情',icon:'ti-player-play',tone:'blue'},
   {code:'SV-002',cat:'服务通知',trigger:'服务首次进入“已完成”状态',title:'年审服务已完成',content:'陈大文，恒丰贸易有限公司的「年审服务」已完成，交付结果已更新，请进入服务详情查看。',route:'/pages/order/detail?bizId=ORD-2026-0142',routeDesc:'服务完成与交付详情',icon:'ti-rosette-discount-check',tone:'blue'},
-  {code:'MK-001',cat:'卡券通知',trigger:'卡券首次成功发放到账户',title:'您已获得免费核名券',content:'陈大文，免费核名券 × 3 已发放至您的账户，请进入卡券中心查看使用规则。',route:'/pages/coupon/index',routeDesc:'卡券中心',icon:'ti-ticket',tone:'orange'},
-  {code:'CH-001',cat:'渠道商通知',trigger:'渠道商审核通过且推荐码生效',title:'渠道合作审核已通过',content:'周敏，您的渠道合作审核已通过，推荐码 LEX888 已生效，请进入渠道工作台查看。',route:'/pages/channel/index?tab=overview',routeDesc:'渠道工作台－概览',icon:'ti-user-check',tone:'purple'},
-  {code:'CH-002',cat:'渠道商通知',trigger:'推荐客户首次成功提交订单',title:'推荐客户已下单',content:'客户陈**已通过推荐码 LEX888 下单「新设香港本地有限公司」，可进入渠道工作台查看归属记录。',route:'/pages/channel/index?tab=customers',routeDesc:'渠道工作台－归属客户',icon:'ti-shopping-bag-check',tone:'purple'},
-  {code:'CH-003',cat:'渠道商通知',trigger:'佣金打款状态首次变为“已到账”',title:'佣金已到账',content:'2026 年 7 月佣金 HKD 5,200 已到账，请进入渠道工作台核对收款记录。',route:'/pages/channel/index?tab=commission',routeDesc:'渠道工作台－我的佣金',icon:'ti-cash-banknote',tone:'purple'}
+  {code:'MK-001',cat:'卡券通知',trigger:'卡券首次成功发放到账户',title:'您已获得免费核名券',content:'陈大文，免费核名券 × 3 已发放至您的账户，请进入卡券中心查看使用规则。',route:'/pages/coupon/index',routeDesc:'卡券中心',icon:'ti-ticket',tone:'orange'}
 ];
 var MINI_MSG_TONE={
   green:['var(--green-bg)','var(--green-d)'],red:['#FDE8E8','var(--red)'],blue:['var(--blue-bg)','var(--blue)'],

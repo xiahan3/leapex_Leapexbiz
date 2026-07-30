@@ -41,6 +41,21 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue'
 .top .right{margin-left:auto;display:flex;align-items:center;gap:12px}
 .role-pill{font-size:11px;background:var(--gold-bg);color:var(--gold);padding:3px 10px;border-radius:11px;font-weight:600}
 .avatar{width:32px;height:32px;border-radius:50%;background:#1A1A1A;color:#D4A853;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.sys-notify{position:relative}
+.sys-notify-btn{width:34px;height:34px;border:1px solid var(--line2);border-radius:9px;background:var(--card);color:var(--text2);display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;font-size:17px}
+.sys-notify-btn:hover,.sys-notify-btn.on{background:var(--gold-bg);color:var(--gold);border-color:#E8D29D}
+.sys-notify-badge{position:absolute;right:-4px;top:-5px;min-width:17px;height:17px;border-radius:9px;background:var(--red);color:#fff;border:2px solid var(--card);font-size:9px;font-weight:800;line-height:13px;text-align:center;padding:0 3px}
+.sys-notify-panel{display:none;position:absolute;right:0;top:43px;width:390px;background:var(--card);border:1px solid var(--line2);border-radius:12px;box-shadow:0 18px 48px rgba(0,0,0,.18);z-index:120;overflow:hidden}
+.sys-notify-panel.on{display:block}
+.sys-notify-head{padding:13px 15px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+.sys-notify-item{display:flex;gap:10px;padding:12px 15px;border-bottom:1px solid var(--line);cursor:pointer;position:relative}
+.sys-notify-item:hover{background:#FAFAF8}
+.sys-notify-item.unread::after{content:'';position:absolute;right:14px;top:17px;width:7px;height:7px;border-radius:50%;background:var(--red)}
+.sys-notify-ic{width:34px;height:34px;border-radius:9px;background:var(--blue-bg);color:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:17px}
+.sys-notify-title{font-size:12.5px;font-weight:700;padding-right:15px}
+.sys-notify-copy{font-size:11px;color:var(--text2);line-height:1.55;margin-top:3px}
+.sys-notify-time{font-size:10px;color:var(--text3);margin-top:5px}
+.sys-notify-foot{padding:10px 15px;background:#FAFAF8;font-size:11px;color:var(--text3);text-align:center}
 .content{flex:1;overflow-y:auto;padding:20px 22px}
 .page{display:none}.page.on{display:block}
 
@@ -217,6 +232,25 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
     <div class="top">
       <div><h1 id="pt">数据驾驶舱</h1><div class="sub" id="ps">实时运营总览</div></div>
       <div class="right">
+        <div class="sys-notify" id="sys-notify">
+          <button class="sys-notify-btn" id="sys-notify-btn" title="系统通知" aria-label="系统通知" onclick="toggleSystemNotice(event)"><i class="ti ti-bell"></i><span class="sys-notify-badge">2</span></button>
+          <div class="sys-notify-panel" id="sys-notify-panel">
+            <div class="sys-notify-head"><div><b style="font-size:14px">系统通知</b><div style="font-size:10.5px;color:var(--text3);margin-top:1px">用户下单后通知运营人员</div></div><span class="pill p-red">2 条未读</span></div>
+            <div class="sys-notify-item unread" onclick="openSystemNotice('ORD-2026-0188')">
+              <div class="sys-notify-ic"><i class="ti ti-shopping-bag-check"></i></div>
+              <div style="flex:1"><div class="sys-notify-title">客户已提交新订单</div><div class="sys-notify-copy">陈大文 · 新设香港本地有限公司<br>业务编号 ORD-2026-0188</div><div class="sys-notify-time">2 分钟前</div></div>
+            </div>
+            <div class="sys-notify-item unread" onclick="openSystemNotice('ORD-2026-0143')">
+              <div class="sys-notify-ic"><i class="ti ti-shopping-bag-check"></i></div>
+              <div style="flex:1"><div class="sys-notify-title">客户已提交新订单</div><div class="sys-notify-copy">王志强 · 董事变更<br>业务编号 ORD-2026-0143</div><div class="sys-notify-time">18 分钟前</div></div>
+            </div>
+            <div class="sys-notify-item" onclick="openSystemNotice('ORD-2026-0142')">
+              <div class="sys-notify-ic"><i class="ti ti-shopping-bag-check"></i></div>
+              <div style="flex:1"><div class="sys-notify-title">客户已提交新订单</div><div class="sys-notify-copy">恒丰贸易 · 年审服务<br>业务编号 ORD-2026-0142</div><div class="sys-notify-time">昨天 16:42</div></div>
+            </div>
+            <div class="sys-notify-foot"><i class="ti ti-shield-lock"></i> 仅内部运营可见，不下发客户小程序</div>
+          </div>
+        </div>
         <span class="role-pill"><i class="ti ti-crown" style="font-size:11px"></i> Super Admin</span>
         <div class="avatar">陈</div>
       </div>
@@ -705,7 +739,7 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
         </div>
         <div class="grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:14px">
           <div class="kpi"><div class="l">启用模板</div><div class="v">10</div><div class="d">5 个消息分类</div></div>
-          <div class="kpi"><div class="l">小程序可见</div><div class="v">9</div><div class="d" style="color:var(--green)">按客户 / 渠道角色展示</div></div>
+          <div class="kpi"><div class="l">客户小程序示例</div><div class="v">6</div><div class="d" style="color:var(--green)">不展示渠道商通知样例</div></div>
           <div class="kpi"><div class="l">内部运营模板</div><div class="v">1</div><div class="d">不下发客户小程序</div></div>
           <div class="kpi"><div class="l">重复催办模板</div><div class="v">0</div><div class="d" style="color:var(--green)">已全部停用</div></div>
         </div>
@@ -1672,6 +1706,29 @@ function go(el){
   document.querySelector('.content').scrollTop=0;
 }
 function closeM(id){document.getElementById(id).classList.remove('on')}
+function toggleSystemNotice(ev){
+  if(ev)ev.stopPropagation();
+  var panel=document.getElementById('sys-notify-panel');
+  var btn=document.getElementById('sys-notify-btn');
+  panel.classList.toggle('on');
+  btn.classList.toggle('on',panel.classList.contains('on'));
+}
+function closeSystemNotice(){
+  var panel=document.getElementById('sys-notify-panel');
+  var btn=document.getElementById('sys-notify-btn');
+  if(panel)panel.classList.remove('on');
+  if(btn)btn.classList.remove('on');
+}
+function openSystemNotice(orderNo){
+  closeSystemNotice();
+  var orderNav=document.querySelector('.ni[data-p="orders"]');
+  if(orderNav)go(orderNav);
+  openOrder(orderNo);
+}
+document.addEventListener('click',function(ev){
+  var box=document.getElementById('sys-notify');
+  if(box&&!box.contains(ev.target))closeSystemNotice();
+});
 /* 新增/编辑商品 + 富文本 */
 /* 商品示例数据（8 字段：icon/type/intro/hkd/cny/sla/persona/deliver/materials/process/desc）· 与小程序 SVC_DATA 对齐 */
 var PRODUCT_SAMPLE = {
