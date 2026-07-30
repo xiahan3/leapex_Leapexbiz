@@ -133,6 +133,15 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
 .supp-row{display:flex;align-items:center;gap:8px;font-size:12px;border:1px solid var(--line);border-radius:6px;padding:6px 9px}
 .supp-row .sn{flex:1}
 .node-empty{color:var(--text3);font-size:11.5px;padding:4px 0}
+.msg-rule{display:flex;align-items:flex-start;gap:9px;font-size:12px;color:var(--blue);line-height:1.7}
+.msg-table-wrap{overflow-x:auto}
+.msg-table{min-width:1540px;table-layout:fixed}
+.msg-table th,.msg-table td{white-space:normal;vertical-align:top}
+.msg-table .msg-code{font:600 10.5px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--text3)}
+.msg-table .msg-copy{line-height:1.65;color:var(--text2)}
+.route-code{display:inline-block;font:10.5px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--blue);background:var(--blue-bg);border-radius:5px;padding:3px 6px;word-break:break-all}
+.msg-route-desc{font-size:11px;color:var(--text3);margin-top:5px;line-height:1.55}
+.msg-internal{background:#F8F7F4}
 
 /* Login */
 .login{position:fixed;inset:0;z-index:200;background:linear-gradient(135deg,#1C1B19,#2b2620);display:flex;align-items:center;justify-content:center}
@@ -691,42 +700,43 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
 
       <!-- ════ 消息管理（08 · 承接小程序消息中心）════ -->
       <div class="page" id="p-messages">
-        <div class="card cp" style="background:var(--accent-bg);border-color:var(--accent-d)"><div style="font-size:12px;color:var(--accent-d)"><i class="ti ti-message-2"></i> <b>消息管理</b>：维护<b>消息模板</b>（合规通知 / 流程通知 / 年审提醒 / 营销）+ <b>群发公告</b> + <b>发送记录</b>；多渠道下发（小程序内部消息 / 微信消息 / 邮件 / 短信）。业务事件自动触发，运营亦可手动群发。</div></div>
+        <div class="card cp" style="background:var(--blue-bg);border-color:var(--blue)">
+          <div class="msg-rule"><i class="ti ti-route" style="font-size:17px;margin-top:2px"></i><div><b>消息模板与页面路由统一管理</b>：同一任务只发送“首次通知 + 最终结果”两次，结果通过与驳回互斥；服务仅发送“开始办理 + 服务完成”。不发送订单、支付、补充资料、中间进度、到期提醒与重复催办消息。客户点击小程序消息后，按模板配置进入对应页面。</div></div>
+        </div>
         <div class="grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:14px">
-          <div class="kpi"><div class="l">今日已发送</div><div class="v">156</div><div class="d">条</div></div>
-          <div class="kpi"><div class="l">已读率</div><div class="v">78%</div><div class="d" style="color:var(--green)">小程序 + 微信</div></div>
-          <div class="kpi"><div class="l">待发（定时）</div><div class="v">2</div><div class="d" style="color:var(--amber)">含 1 条公告</div></div>
-          <div class="kpi"><div class="l">发送失败</div><div class="v">3</div><div class="d" style="color:var(--red)">可重发</div></div>
+          <div class="kpi"><div class="l">启用模板</div><div class="v">10</div><div class="d">5 个消息分类</div></div>
+          <div class="kpi"><div class="l">小程序可见</div><div class="v">9</div><div class="d" style="color:var(--green)">按客户 / 渠道角色展示</div></div>
+          <div class="kpi"><div class="l">内部运营模板</div><div class="v">1</div><div class="d">不下发客户小程序</div></div>
+          <div class="kpi"><div class="l">重复催办模板</div><div class="v">0</div><div class="d" style="color:var(--green)">已全部停用</div></div>
         </div>
         <div class="filters">
-          <span class="chip on">全部</span><span class="chip">合规通知</span><span class="chip">流程通知</span><span class="chip">年审提醒</span><span class="chip">营销</span>
-          <button class="btn btn-p" style="margin-left:auto" onclick="openBroadcast()"><i class="ti ti-send"></i>新建群发 / 公告</button>
+          <span class="chip on" onclick="filterMsgTpl(this,'全部')">全部</span>
+          <span class="chip" onclick="filterMsgTpl(this,'合规通知')">合规通知</span>
+          <span class="chip" onclick="filterMsgTpl(this,'服务通知')">服务通知</span>
+          <span class="chip" onclick="filterMsgTpl(this,'卡券通知')">卡券通知</span>
+          <span class="chip" onclick="filterMsgTpl(this,'渠道商通知')">渠道商通知</span>
+          <span class="chip" onclick="filterMsgTpl(this,'系统通知')">系统通知</span>
+          <span style="margin-left:auto;font-size:11px;color:var(--text3)"><i class="ti ti-shield-lock"></i> 系统通知仅内部运营可见</span>
         </div>
         <div class="card">
-          <div class="ch"><span class="ct">消息模板</span><span class="pill p-accent">小程序消息中心数据源</span></div>
-          <table>
-            <thead><tr><th>分类</th><th>触发事件</th><th>标题模板</th><th>渠道</th><th>状态</th><th></th></tr></thead>
-            <tbody>
-              <tr><td><span class="pill p-green">合规通知</span></td><td>KYC 审核结果</td><td>KYC 审核{结果}</td><td>小程序 · 微信 · 邮件</td><td><span class="pill p-green">启用</span></td><td><button class="btn btn-xs" onclick="openMsgTpl('KYC 审核结果','合规通知')">编辑</button></td></tr>
-              <tr><td><span class="pill p-green">合规通知</span></td><td>核名结果</td><td>核名结果 · {公司名}</td><td>小程序 · 微信</td><td><span class="pill p-green">启用</span></td><td><button class="btn btn-xs" onclick="openMsgTpl('核名结果','合规通知')">编辑</button></td></tr>
-              <tr><td><span class="pill p-blue">流程通知</span></td><td>账单生成</td><td>账单已生成 · {金额}</td><td>小程序 · 微信</td><td><span class="pill p-green">启用</span></td><td><button class="btn btn-xs" onclick="openMsgTpl('账单生成','流程通知')">编辑</button></td></tr>
-              <tr><td><span class="pill p-blue">流程通知</span></td><td>待补资料</td><td>订单 {订单号} 需补充资料</td><td>小程序 · 微信 · 短信</td><td><span class="pill p-green">启用</span></td><td><button class="btn btn-xs" onclick="openMsgTpl('待补资料','流程通知')">编辑</button></td></tr>
-              <tr><td><span class="pill p-blue">流程通知</span></td><td>交付完成</td><td>{公司名} 交付物已寄出</td><td>小程序 · 邮件</td><td><span class="pill p-green">启用</span></td><td><button class="btn btn-xs" onclick="openMsgTpl('交付完成','流程通知')">编辑</button></td></tr>
-              <tr><td><span class="pill p-amber">年审提醒</span></td><td>年审到期</td><td>{公司名} 年审到期前 {天数} 天</td><td>小程序 · 微信 · 邮件 · 短信</td><td><span class="pill p-green">启用</span></td><td><button class="btn btn-xs" onclick="openMsgTpl('年审到期','年审提醒')">编辑</button></td></tr>
-              <tr><td><span class="pill p-accent">营销</span></td><td>卡券发放</td><td>您有一张新券待领取</td><td>小程序</td><td><span class="pill p-green">启用</span></td><td><button class="btn btn-xs" onclick="openMsgTpl('卡券发放','营销')">编辑</button></td></tr>
-            </tbody>
-          </table>
+          <div class="ch"><span class="ct">消息模板（10）</span><span class="pill p-accent">管理后台全量数据 · 小程序按角色展示</span></div>
+          <div class="msg-table-wrap">
+            <table class="msg-table">
+              <colgroup><col style="width:68px"><col style="width:108px"><col style="width:220px"><col style="width:200px"><col style="width:310px"><col style="width:245px"><col style="width:190px"><col style="width:100px"><col style="width:62px"></colgroup>
+              <thead><tr><th>编号</th><th>消息分类</th><th>触发条件</th><th>标题模板</th><th>内容模板</th><th>小程序页面路由</th><th>路由页面描述</th><th>接收对象</th><th></th></tr></thead>
+              <tbody id="msg-template-tb"></tbody>
+            </table>
+          </div>
         </div>
         <div class="card">
-          <div class="ch"><span class="ct">发送记录</span><span class="pill p-gray">按接收人 / 手机号 / 分类 / 渠道 / 状态 检索</span></div>
+          <div class="ch"><span class="ct">最近发送记录</span><span class="pill p-gray">仅展示精简规则内的消息</span></div>
           <table>
-            <thead><tr><th>接收人</th><th>手机号</th><th>分类</th><th>标题</th><th>渠道</th><th>状态</th><th>时间</th></tr></thead>
+            <thead><tr><th>接收人</th><th>分类</th><th>标题</th><th>路由页面</th><th>状态</th><th>时间</th></tr></thead>
             <tbody>
-              <tr><td>陈大文</td><td>+852 9123 4567</td><td><span class="pill p-green">合规</span></td><td>KYC 审核已通过</td><td>小程序 · 微信</td><td><span class="pill p-green">已读</span></td><td>今天 09:32</td></tr>
-              <tr><td>陈大文</td><td>+852 9123 4567</td><td><span class="pill p-green">合规</span></td><td>核名结果 · Star Tech Limited 可注册</td><td>小程序</td><td><span class="pill p-green">已读</span></td><td>今天 10:15</td></tr>
-              <tr><td>陈大文</td><td>+852 9123 4567</td><td><span class="pill p-blue">流程</span></td><td>首付款账单已生成 · HKD 2,800</td><td>小程序 · 微信</td><td><span class="pill p-blue">已发送</span></td><td>今天 10:20</td></tr>
-              <tr><td>恒丰贸易（陈大文）</td><td>+852 9123 4567</td><td><span class="pill p-amber">年审</span></td><td>年审到期前 60 天 · 第 1 轮</td><td>小程序 · 邮件 · 短信</td><td><span class="pill p-green">已读</span></td><td>昨天</td></tr>
-              <tr><td>王志强</td><td>+86 138 0013 8000</td><td><span class="pill p-blue">流程</span></td><td>订单 ORD-2026-0190 需补充资料</td><td>微信</td><td><span class="pill p-red">失败 · 可重发</span></td><td>2 天前</td></tr>
+              <tr><td>陈大文</td><td><span class="pill p-green">合规通知</span></td><td>KYC 认证已通过</td><td>KYC 已认证详情</td><td><span class="pill p-green">已读</span></td><td>今天 09:32</td></tr>
+              <tr><td>陈大文</td><td><span class="pill p-blue">服务通知</span></td><td>新设香港本地有限公司已开始办理</td><td>服务进度详情</td><td><span class="pill p-blue">已发送</span></td><td>今天 10:15</td></tr>
+              <tr><td>周敏（渠道商）</td><td><span class="pill p-purple">渠道商通知</span></td><td>推荐客户已下单</td><td>渠道工作台－归属客户</td><td><span class="pill p-green">已读</span></td><td>今天 10:20</td></tr>
+              <tr class="msg-internal"><td>运营组</td><td><span class="pill p-gray">系统通知</span></td><td>【运营】客户已提交新订单</td><td>管理后台－订单详情</td><td><span class="pill p-blue">已发送</span></td><td>今天 10:20</td></tr>
             </tbody>
           </table>
         </div>
@@ -1597,61 +1607,67 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
 
 <!-- 消息模板 · 编辑 Modal -->
 <div class="mask" id="m-msgtpl" onclick="if(event.target===this)closeM('m-msgtpl')">
-  <div class="modal" style="max-width:600px">
-    <div class="mh"><div><b style="font-size:14px" id="msgtpl-title">编辑消息模板</b><div style="font-size:11px;color:var(--text3)">变量占位：{公司名} {金额} {到期日} {订单号} {结果} {天数}</div></div><button class="x" onclick="closeM('m-msgtpl')">×</button></div>
+  <div class="modal" style="max-width:720px">
+    <div class="mh"><div><b style="font-size:14px" id="msgtpl-title">编辑消息模板</b><div style="font-size:11px;color:var(--text3)">同一业务对象按模板编号 + 业务编号去重；最终结果通过 / 驳回互斥。</div></div><button class="x" onclick="closeM('m-msgtpl')">×</button></div>
     <div class="mb"><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 16px">
-      <div><label class="flbl">分类</label><select class="inp" style="width:100%" id="msgtpl-cat"><option>合规通知</option><option>流程通知</option><option>年审提醒</option><option>营销</option></select></div>
-      <div><label class="flbl">触发事件</label><input class="inp" style="width:100%" id="msgtpl-evt" value="KYC 审核结果"></div>
-      <div style="grid-column:1/-1"><label class="flbl">标题模板</label><input class="inp" style="width:100%" value="KYC 审核{结果}"></div>
-      <div style="grid-column:1/-1"><label class="flbl">内容模板</label><textarea class="inp" style="width:100%;min-height:66px">您的尽职调查已{结果}，{公司名} 可继续核名与注册流程。</textarea></div>
-      <div style="grid-column:1/-1"><label class="flbl">下发渠道</label>
-        <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:4px;font-size:12.5px">
-          <label style="display:flex;align-items:center;gap:5px"><input type="checkbox" checked> 小程序内部消息</label>
-          <label style="display:flex;align-items:center;gap:5px"><input type="checkbox" checked> 微信消息</label>
-          <label style="display:flex;align-items:center;gap:5px"><input type="checkbox"> 邮件</label>
-          <label style="display:flex;align-items:center;gap:5px"><input type="checkbox"> 短信</label>
-        </div>
-      </div>
+      <div><label class="flbl">消息分类</label><select class="inp" style="width:100%" id="msgtpl-cat"><option>合规通知</option><option>服务通知</option><option>卡券通知</option><option>渠道商通知</option><option>系统通知</option></select></div>
+      <div><label class="flbl">模板编号</label><input class="inp" style="width:100%" id="msgtpl-code" disabled></div>
+      <div style="grid-column:1/-1"><label class="flbl">触发条件</label><input class="inp" style="width:100%" id="msgtpl-trigger"></div>
+      <div style="grid-column:1/-1"><label class="flbl">标题模板</label><input class="inp" style="width:100%" id="msgtpl-title-input"></div>
+      <div style="grid-column:1/-1"><label class="flbl">内容模板</label><textarea class="inp" style="width:100%;min-height:78px;line-height:1.65" id="msgtpl-content"></textarea></div>
+      <div style="grid-column:1/-1"><label class="flbl">小程序页面路由</label><input class="inp" style="width:100%;font-family:ui-monospace,SFMono-Regular,Menlo,monospace" id="msgtpl-route" placeholder="/pages/..."></div>
+      <div style="grid-column:1/-1"><label class="flbl">路由页面描述</label><input class="inp" style="width:100%" id="msgtpl-route-desc"></div>
+      <div><label class="flbl">接收对象</label><input class="inp" style="width:100%" id="msgtpl-audience" disabled></div>
       <div><label class="flbl">状态</label><select class="inp" style="width:100%"><option>启用</option><option>停用</option></select></div>
     </div></div>
     <div class="mf"><button class="btn" onclick="closeM('m-msgtpl')">取消</button><button class="btn btn-p" onclick="closeM('m-msgtpl');toast('消息模板已保存')">保存模板</button></div>
   </div>
 </div>
 
-<!-- 群发 / 公告 Modal -->
-<div class="mask" id="m-broadcast" onclick="if(event.target===this)closeM('m-broadcast')">
-  <div class="modal" style="max-width:560px">
-    <div class="mh"><div><b style="font-size:14px">新建群发 / 公告</b><div style="font-size:11px;color:var(--text3)">手动向目标人群下发消息 · 可多渠道同时下发</div></div><button class="x" onclick="closeM('m-broadcast')">×</button></div>
-    <div class="mb"><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 16px">
-      <div style="grid-column:1/-1"><label class="flbl">标题 *</label><input class="inp" style="width:100%" placeholder="如 中秋节假期办公时间通知"></div>
-      <div><label class="flbl">分类</label><select class="inp" style="width:100%"><option>营销</option><option>流程通知</option><option>合规通知</option></select></div>
-      <div><label class="flbl">目标人群</label><select class="inp" style="width:100%"><option>全部客户</option><option>按服务地区（香港）</option><option>公司状态 = 年审待办</option><option>按渠道</option><option>指定客户</option></select></div>
-      <div style="grid-column:1/-1"><label class="flbl">内容</label><textarea class="inp" style="width:100%;min-height:70px" placeholder="支持 {公司名} 等变量占位…"></textarea></div>
-      <div style="grid-column:1/-1"><label class="flbl">下发渠道</label>
-        <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:4px;font-size:12.5px">
-          <label style="display:flex;align-items:center;gap:5px"><input type="checkbox" checked> 小程序内部消息</label>
-          <label style="display:flex;align-items:center;gap:5px"><input type="checkbox"> 微信消息</label>
-          <label style="display:flex;align-items:center;gap:5px"><input type="checkbox"> 邮件</label>
-          <label style="display:flex;align-items:center;gap:5px"><input type="checkbox"> 短信</label>
-        </div>
-      </div>
-      <div><label class="flbl">发送方式</label><select class="inp" style="width:100%"><option>立即发送</option><option>定时发送</option></select></div>
-      <div><label class="flbl">预计触达</label><input class="inp" style="width:100%" value="342 人" disabled></div>
-    </div></div>
-    <div class="mf"><button class="btn" onclick="closeM('m-broadcast')">取消</button><button class="btn btn-p" onclick="closeM('m-broadcast');toast('消息已发送 · 已写入发送记录')"><i class="ti ti-send"></i>发送</button></div>
-  </div>
-</div>
-
 <div class="toast" id="toast"></div>
 
 <script>
+var MESSAGE_TEMPLATES=[
+  {code:'CP-001',cat:'合规通知',trigger:'业务首次进入 KYC 待认证状态时发送一次',title:'请完成 KYC 认证',content:'{客户姓名}，办理「{服务名称}」需要完成 KYC 认证。请进入认证页面提交资料。',route:'/pages/kyc/index?taskId={任务编号}',routeDesc:'KYC 认证页',audience:'客户'},
+  {code:'CP-002',cat:'合规通知',trigger:'KYC 审核通过时发送一次；与 CP-003 互斥',title:'KYC 认证已通过',content:'{客户姓名}，您的 KYC 认证已通过，「{服务名称}」将继续办理。',route:'/pages/kyc/result?taskId={任务编号}&result=approved',routeDesc:'KYC 已认证详情',audience:'客户'},
+  {code:'CP-003',cat:'合规通知',trigger:'KYC 审核不通过时发送一次；与 CP-002 互斥',title:'KYC 认证未通过',content:'{客户姓名}，您的 KYC 认证未通过，原因：{驳回原因}。请进入认证页重新提交。',route:'/pages/kyc/edit?taskId={任务编号}',routeDesc:'KYC 资料修改页',audience:'客户'},
+  {code:'SV-001',cat:'服务通知',trigger:'服务首次进入“办理中”状态时发送一次',title:'{服务名称}已开始办理',content:'{客户姓名}，{公司名称}的「{服务名称}」已开始办理，可进入服务详情查看。',route:'/pages/order/detail?bizId={业务编号}',routeDesc:'服务进度详情',audience:'客户'},
+  {code:'SV-002',cat:'服务通知',trigger:'服务首次进入“已完成”状态时发送一次',title:'{服务名称}已完成',content:'{客户姓名}，{公司名称}的「{服务名称}」已完成，交付结果已更新，请进入服务详情查看。',route:'/pages/order/detail?bizId={业务编号}',routeDesc:'服务完成与交付详情',audience:'客户'},
+  {code:'MK-001',cat:'卡券通知',trigger:'卡券首次成功发放到用户账户时发送一次',title:'您已获得{券名称}',content:'{客户姓名}，{券名称}已发放至您的账户，请进入卡券中心查看使用规则。',route:'/pages/coupon/index',routeDesc:'卡券中心',audience:'客户'},
+  {code:'CH-001',cat:'渠道商通知',trigger:'渠道商审核通过且推荐码生效时发送一次',title:'渠道合作审核已通过',content:'{渠道商姓名}，您的渠道合作审核已通过，推荐码 {推荐码} 已生效，请进入渠道工作台查看。',route:'/pages/channel/index?tab=overview',routeDesc:'渠道工作台－概览',audience:'渠道商'},
+  {code:'CH-002',cat:'渠道商通知',trigger:'推荐客户首次成功提交订单时发送一次',title:'推荐客户已下单',content:'客户 {客户姓名脱敏} 已通过推荐码 {推荐码} 下单「{服务名称}」，可进入渠道工作台查看归属记录。',route:'/pages/channel/index?tab=customers',routeDesc:'渠道工作台－归属客户',audience:'渠道商'},
+  {code:'CH-003',cat:'渠道商通知',trigger:'佣金打款状态首次变为“已到账”时发送一次',title:'佣金已到账',content:'{结算月份}佣金 {币种}{佣金金额} 已到账，请进入渠道工作台核对收款记录。',route:'/pages/channel/index?tab=commission',routeDesc:'渠道工作台－我的佣金',audience:'渠道商'},
+  {code:'SY-001',cat:'系统通知',trigger:'用户首次成功提交订单后通知运营人员一次',title:'【运营】客户已提交新订单',content:'客户 {客户姓名} 已提交「{服务名称}」，业务编号 {业务编号}，请进入管理后台处理。',route:'',routeDesc:'管理后台－订单详情（内部运营，不下发客户小程序）',audience:'运营人员'}
+];
+var MSG_CAT_CLASS={'合规通知':'p-green','服务通知':'p-blue','卡券通知':'p-accent','渠道商通知':'p-purple','系统通知':'p-gray'};
+function escMsg(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function renderMessageTemplates(cat){
+  var tb=document.getElementById('msg-template-tb'); if(!tb)return;
+  var rows=MESSAGE_TEMPLATES.filter(function(m){return !cat||cat==='全部'||m.cat===cat;});
+  tb.innerHTML=rows.map(function(m){
+    var route=m.route?'<span class="route-code">'+escMsg(m.route)+'</span>':'<span class="pill p-gray">不适用</span>';
+    return '<tr class="'+(m.audience==='运营人员'?'msg-internal':'')+'">'
+      +'<td><span class="msg-code">'+m.code+'</span></td>'
+      +'<td><span class="pill '+(MSG_CAT_CLASS[m.cat]||'p-gray')+'">'+m.cat+'</span></td>'
+      +'<td class="msg-copy">'+escMsg(m.trigger)+'</td>'
+      +'<td><b>'+escMsg(m.title)+'</b></td>'
+      +'<td class="msg-copy">'+escMsg(m.content)+'</td>'
+      +'<td>'+route+'</td>'
+      +'<td><b>'+escMsg(m.routeDesc)+'</b></td>'
+      +'<td><span class="pill '+(m.audience==='运营人员'?'p-gray':'p-green')+'">'+m.audience+'</span></td>'
+      +'<td><button class="btn btn-xs" onclick="openMsgTpl(\''+m.code+'\')">编辑</button></td></tr>';
+  }).join('');
+}
+function filterMsgTpl(el,cat){
+  el.parentNode.querySelectorAll('.chip').forEach(function(n){n.classList.remove('on');}); el.classList.add('on'); renderMessageTemplates(cat);
+}
 function go(el){
   document.querySelectorAll('.ni').forEach(n=>n.classList.remove('on'));
   el.classList.add('on');
   var p=el.dataset.p;
   document.querySelectorAll('.page').forEach(pg=>pg.classList.remove('on'));
   document.getElementById('p-'+p).classList.add('on');
-  var meta={dash:['数据驾驶舱','实时运营总览'],supplierwt:['供应商工作台','供应商自助：分配订单 / 更新进度 / 结算对账（不在线结算）'],partner:['渠道商工作台','渠道商自助：归属订单 / 佣金对账（不在线结算）'],customers:['客户信息管理','客户档案与画像'],companies:['客户公司管理','法人主体 / CI·BR / SCR / 年审'],kyc:['KYC 审核','AMLO 尽职调查 · 客户身份 / 地址 / 业务资料核对'],register:['注册公司','公司注册服务执行 · 维护进度 / 资料'],'svc-annual':['年审服务','法定秘书 + 注册地址 + 周年申报 NAR1（注册处·42 天内）'],'svc-acct':['记账报税','审计（含理账）+ 利得税 PTR / 薪俸税 IR56 / 个税 BIR60（IRD）'],'svc-addr':['地址租赁','独立地址 6000/年 · 工位 3000/月 · 办公室面议（达利直签）'],'chg-address':['地址变更','NR1 · 关键信息 → 线下备表 → 文件签字 → 递交'],'chg-director':['董事变更','ND2A · 关键信息 + 新董事 KYC → 线下备表 → 文件签字'],'chg-secretary':['变更秘书','ND2A · 秘书部分 Leapex 利柏思 填 → 文件签字 → 递交'],'chg-rename':['公司更名','NNC2 · 先付费后查名 → 备 NNC2 + 决议 → 文件签字'],'chg-transfer':['股份转让','转让文书 + 印花税 0.2% · 作价估值 → 缴印花 → 更新名册'],'chg-deregister':['公司注销','NDR1 + IR1263 不反对通知书 · 宪报公告约 8 个月'],namecheck:['核名&商标','人工核名（繁体/英文）+ 商标查询 · 无智能预检'],'svc-tm':['商标办理','商标注册 IPD（宪报公告 3 个月）/ 续期（每 10 年）'],orders:['订单列表','进度只读联动服务 · 资料可下载'],bills:['账单 / 回单确认','服务人员核验回单 · 确认付款 / 未收到付款（不含退款·重开）'],products:['商品','商品目录 · 基础信息 + 价格与本位币'],coupons:['卡券','卡券模板 + 发放 + 核销统计（承接小程序优惠券）'],messages:['消息','消息模板 + 群发 + 发送记录'],supplier:['供应商管理','超管新增 · 支持服务 + 结算规则'],assign:['订单分配','派单给供应商履约'],suppliersettle:['订单结算','已完成订单 → 供应商结算（线下）'],channel:['渠道商管理','超管新增 · 口令码 + 佣金（弹窗配置）'],'chanapply':['渠道商申请审核','待审核 → 待签约 / 签约过期 → 已签约 / 已驳回'],commission:['佣金结算','已完成订单 → 渠道返点（线下）'],rbac:['员工和角色','RBAC 7 角色 + 自定义'],menuperm:['菜单权限','角色 × 菜单可见性配置'],compliance:['合规与审计','制裁 / SCR / 哈希链'],config:['系统参数','时效 / 额度 / 税率']};
+  var meta={dash:['数据驾驶舱','实时运营总览'],supplierwt:['供应商工作台','供应商自助：分配订单 / 更新进度 / 结算对账（不在线结算）'],partner:['渠道商工作台','渠道商自助：归属订单 / 佣金对账（不在线结算）'],customers:['客户信息管理','客户档案与画像'],companies:['客户公司管理','法人主体 / CI·BR / SCR / 年审'],kyc:['KYC 审核','AMLO 尽职调查 · 客户身份 / 地址 / 业务资料核对'],register:['注册公司','公司注册服务执行 · 维护进度 / 资料'],'svc-annual':['年审服务','法定秘书 + 注册地址 + 周年申报 NAR1（注册处·42 天内）'],'svc-acct':['记账报税','审计（含理账）+ 利得税 PTR / 薪俸税 IR56 / 个税 BIR60（IRD）'],'svc-addr':['地址租赁','独立地址 6000/年 · 工位 3000/月 · 办公室面议（达利直签）'],'chg-address':['地址变更','NR1 · 关键信息 → 线下备表 → 文件签字 → 递交'],'chg-director':['董事变更','ND2A · 关键信息 + 新董事 KYC → 线下备表 → 文件签字'],'chg-secretary':['变更秘书','ND2A · 秘书部分 Leapex 利柏思 填 → 文件签字 → 递交'],'chg-rename':['公司更名','NNC2 · 先付费后查名 → 备 NNC2 + 决议 → 文件签字'],'chg-transfer':['股份转让','转让文书 + 印花税 0.2% · 作价估值 → 缴印花 → 更新名册'],'chg-deregister':['公司注销','NDR1 + IR1263 不反对通知书 · 宪报公告约 8 个月'],namecheck:['核名&商标','人工核名（繁体/英文）+ 商标查询 · 无智能预检'],'svc-tm':['商标办理','商标注册 IPD（宪报公告 3 个月）/ 续期（每 10 年）'],orders:['订单列表','进度只读联动服务 · 资料可下载'],bills:['账单 / 回单确认','服务人员核验回单 · 确认付款 / 未收到付款（不含退款·重开）'],products:['商品','商品目录 · 基础信息 + 价格与本位币'],coupons:['卡券','卡券模板 + 发放 + 核销统计（承接小程序优惠券）'],messages:['消息','消息模板 + 小程序页面路由 + 发送记录'],supplier:['供应商管理','超管新增 · 支持服务 + 结算规则'],assign:['订单分配','派单给供应商履约'],suppliersettle:['订单结算','已完成订单 → 供应商结算（线下）'],channel:['渠道商管理','超管新增 · 口令码 + 佣金（弹窗配置）'],'chanapply':['渠道商申请审核','待审核 → 待签约 / 签约过期 → 已签约 / 已驳回'],commission:['佣金结算','已完成订单 → 渠道返点（线下）'],rbac:['员工和角色','RBAC 7 角色 + 自定义'],menuperm:['菜单权限','角色 × 菜单可见性配置'],compliance:['合规与审计','制裁 / SCR / 哈希链'],config:['系统参数','时效 / 额度 / 税率']};
   var m=meta[p]||['',''];document.getElementById('pt').textContent=m[0];document.getElementById('ps').textContent=m[1];
   document.querySelector('.content').scrollTop=0;
 }
@@ -1753,8 +1769,19 @@ function openKycEdit(name){ var t=document.getElementById('kycedit-title'); if(t
 function openCoupon(name){ var t=document.getElementById('coupon-title'); if(t) t.textContent=name?('编辑卡券 · '+name):'新增卡券'; var n=document.getElementById('coupon-name'); if(n) n.value=name||''; document.getElementById('m-coupon').classList.add('on'); }
 function openCouponIssue(name){ var t=document.getElementById('issue-title'); if(t) t.textContent='发放卡券 · '+(name||''); document.getElementById('m-couponissue').classList.add('on'); }
 /* 消息管理 */
-function openMsgTpl(evt,cat){ var t=document.getElementById('msgtpl-title'); if(t) t.textContent='编辑消息模板 · '+(evt||''); var e=document.getElementById('msgtpl-evt'); if(e) e.value=evt||''; var c=document.getElementById('msgtpl-cat'); if(c&&cat){ for(var i=0;i<c.options.length;i++){ if(c.options[i].text===cat){ c.selectedIndex=i; break; } } } document.getElementById('m-msgtpl').classList.add('on'); }
-function openBroadcast(){ document.getElementById('m-broadcast').classList.add('on'); }
+function openMsgTpl(code){
+  var m=MESSAGE_TEMPLATES.find(function(x){return x.code===code;}); if(!m)return;
+  document.getElementById('msgtpl-title').textContent='编辑消息模板 · '+m.code;
+  document.getElementById('msgtpl-code').value=m.code;
+  document.getElementById('msgtpl-cat').value=m.cat;
+  document.getElementById('msgtpl-trigger').value=m.trigger;
+  document.getElementById('msgtpl-title-input').value=m.title;
+  document.getElementById('msgtpl-content').value=m.content;
+  document.getElementById('msgtpl-route').value=m.route||'';
+  document.getElementById('msgtpl-route-desc').value=m.routeDesc;
+  document.getElementById('msgtpl-audience').value=m.audience;
+  document.getElementById('m-msgtpl').classList.add('on');
+}
 /* 渠道商配置弹窗 */
 function openChannel(name,code,rmk){
   var t=document.getElementById('ch-title'); if(t) t.textContent='渠道商配置 · '+(name||'');
@@ -2200,7 +2227,7 @@ function billConfirm(){closeM('m-bill');toast('已确认付款 · 订单进入�
 function billReject(){closeM('m-bill');toast('已标记未收到付款 · 通知客户');if(_bid)jpost('/bills/'+_bid+'/reject').then(()=>{renderBills();loadDash()}).catch(()=>{})}
 function settleComm(id){jpost('/commissions/'+id+'/settle').then(()=>{toast('佣金已标记结算');renderComm();loadDash()})}
 
-(function boot(){loadDash();renderKyc();renderBills();renderComm();})();
+(function boot(){loadDash();renderKyc();renderBills();renderComm();renderMessageTemplates('全部');})();
 </script>
 </body>
 </html>

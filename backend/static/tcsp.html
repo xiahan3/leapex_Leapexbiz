@@ -156,8 +156,17 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
 .cbox{width:20px;height:20px;border-radius:5px;border:1.5px solid var(--line2);flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px}
 .cbox.on{background:var(--accent);border-color:var(--accent)}
 .cbox.on i{color:#fff;font-size:13px}
-.msg-item{display:flex;gap:11px;padding:14px;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:8px;margin-bottom:10px}
+.msg-item{display:flex;gap:11px;padding:14px;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:10px;margin-bottom:10px;cursor:pointer}
+.msg-item:active{transform:scale(.992);background:var(--bg2)}
 .msg-ic{width:40px;height:40px;border-radius:11px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px;background:var(--bg2);color:var(--text2)}
+.msg-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:7px}
+.msg-trigger{font-size:10.5px;color:var(--text4);line-height:1.55;margin-top:6px}
+.msg-route{font-size:10.5px;color:var(--accent-d);font-weight:600}
+.msg-arrow{align-self:center;color:var(--text4);font-size:17px;flex-shrink:0}
+.msg-rule-box{background:var(--blue-bg);border:1px solid rgba(55,106,160,.2);border-radius:10px;padding:11px 12px;margin-bottom:14px;color:var(--blue);font-size:11.5px;line-height:1.7}
+.channel-kpi{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px}
+.channel-kpi .card{margin-bottom:0;padding:14px}
+.channel-kpi .v{font-size:20px;font-weight:800;margin-top:3px}
 .deliv-row{display:flex;align-items:center;gap:11px;padding:13px 14px;border-bottom:1px solid var(--line)}
 .deliv-row:last-child{border-bottom:none}
 .deliv-ic{width:34px;height:34px;border-radius:8px;background:#FDEEE2;color:var(--orange);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
@@ -1640,13 +1649,32 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
     <!-- ════════ MESSAGES ════════ -->
     <div class="screen" id="s-messages" data-title="消息中心" data-tab="messages">
       <div class="body-pad">
-        <div class="sec-t">合规通知 · 不可关闭</div>
-        <div class="msg-item"><div class="msg-ic" style="background:var(--green-bg);color:var(--green-d)"><i class="ti ti-circle-check"></i></div><div style="flex:1"><div style="font-weight:600;font-size:14px">KYC 审核已通过</div><div class="note" style="margin-top:2px">您的尽职调查已通过，可继续核名与注册流程</div><div style="font-size:11px;color:var(--text4);margin-top:4px">今天 09:32</div></div></div>
-        <div class="msg-item"><div class="msg-ic" style="background:var(--green-bg);color:var(--green-d)"><i class="ti ti-circle-check"></i></div><div style="flex:1"><div style="font-weight:600;font-size:14px">核名结果 · 顾问人工查册完成</div><div class="note" style="margin-top:2px">「Star Tech Limited」可注册，请继续办理</div><div style="font-size:11px;color:var(--text4);margin-top:4px">今天 10:15</div></div></div>
-        <div class="sec-t">流程通知</div>
-        <div class="msg-item"><div class="msg-ic" style="background:var(--yellow-bg);color:var(--orange)"><i class="ti ti-file-invoice"></i></div><div style="flex:1"><div style="font-weight:600;font-size:14px">首付款账单已生成</div><div class="note" style="margin-top:2px">LEA-2026-0188-1 · HKD 2,800 · 7 天内有效</div><div style="font-size:11px;color:var(--text4);margin-top:4px">今天 10:20</div></div></div>
-        <div class="sec-t">年审提醒 · 6 轮递进</div>
-        <div class="msg-item"><div class="msg-ic" style="background:var(--blue-bg);color:var(--blue)"><i class="ti ti-calendar-due"></i></div><div style="flex:1"><div style="font-weight:600;font-size:14px">恒丰贸易：年审到期前 60 天</div><div class="note" style="margin-top:2px">第 1 轮提醒 · 到期日 2026-09-15，请及时处理</div><div style="font-size:11px;color:var(--text4);margin-top:4px">昨天</div></div></div>
+        <div class="msg-rule-box"><i class="ti ti-info-circle"></i> 同一任务仅发送首次通知与最终结果；服务仅发送开始办理与服务完成。以下为原型模板预览，实际消息按用户角色和已触发事件展示。</div>
+        <div id="mini-message-list"></div>
+        <div class="note" style="text-align:center;margin:14px 8px 0;line-height:1.7"><i class="ti ti-shield-lock"></i> “客户提交新订单”仅通知内部运营，不会出现在客户小程序。</div>
+      </div>
+    </div>
+
+    <!-- ════════ 渠道工作台（消息路由承接页）════════ -->
+    <div class="screen" id="s-channel-workbench" data-title="渠道工作台" data-back="s-messages">
+      <div class="body-pad">
+        <div class="card card-pad" style="background:linear-gradient(135deg,#1A1A1A,#6F5220);color:#fff;margin-bottom:12px">
+          <div style="display:flex;align-items:center;gap:11px">
+            <div style="width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center"><i class="ti ti-affiliate" style="font-size:23px"></i></div>
+            <div style="flex:1"><div style="font-size:16px;font-weight:700">渠道合作已生效</div><div style="font-size:11.5px;opacity:.82;margin-top:2px">专属推荐码 LEX888</div></div>
+            <span class="tag t-green">已通过</span>
+          </div>
+        </div>
+        <div class="msg-rule-box" id="channel-route-note">已从消息进入渠道工作台。</div>
+        <div class="channel-kpi">
+          <div class="card"><div class="note">归属客户</div><div class="v">12</div><div class="note">本月新增 3 位</div></div>
+          <div class="card"><div class="note">本月佣金</div><div class="v">HK$ 8,560</div><div class="note">已到账 HK$ 5,200</div></div>
+        </div>
+        <div class="sec-t">最新归属记录</div>
+        <div class="card">
+          <div class="cell"><div class="cell-ic" style="background:var(--blue-bg);color:var(--blue)"><i class="ti ti-user-check"></i></div><div class="cell-main"><div class="cell-t">陈** · 新设香港本地有限公司</div><div class="cell-d">推荐码 LEX888 · 今天 10:20</div></div><span class="tag t-blue">已下单</span></div>
+          <div class="cell" style="border-bottom:none"><div class="cell-ic" style="background:var(--green-bg);color:var(--green-d)"><i class="ti ti-cash"></i></div><div class="cell-main"><div class="cell-t">2026 年 7 月佣金</div><div class="cell-d">收款账户尾号 6628 · 今天 09:18</div></div><span class="tag t-green">已到账</span></div>
+        </div>
       </div>
     </div>
 
@@ -1844,7 +1872,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
 
           <div class="lg-h2">第九章 通知与消息</div>
           <div class="lg-h3">第二十三条 通知方式</div>
-          <p>23.1 我们通过小程序内的消息中心、推送通知、短信等方式向您发送通知。<br>23.2 以下通知为不可关闭的重要通知：KYC 审核结果通知、合规相关通知、年审到期提醒、其他法律法规要求的通知。<br>23.3 您应定期查看小程序内的消息中心，因您未及时查看而导致的不利后果由您自行承担。</p>
+          <p>23.1 我们通过小程序内的消息中心、推送通知、短信等方式向您发送通知。<br>23.2 以下通知为不可关闭的重要通知：KYC 审核结果通知、合规相关通知、服务开始 / 完成通知、其他法律法规要求的通知。<br>23.3 您应定期查看小程序内的消息中心，因您未及时查看而导致的不利后果由您自行承担。</p>
 
           <div class="lg-h2">第十章 协议的变更与终止</div>
           <div class="lg-h3">第二十四条 协议变更</div>
@@ -2080,6 +2108,61 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
 <script>
 var histStack = [];
 var TAB_SCREENS = {home:'s-home', orders:'s-orders', messages:'s-messages', me2:'s-me'};
+var MINI_MESSAGE_TEMPLATES=[
+  {code:'CP-001',cat:'合规通知',trigger:'首次进入 KYC 待认证状态',title:'请完成 KYC 认证',content:'陈大文，办理「新设香港本地有限公司」需要完成 KYC 认证。请进入认证页面提交资料。',route:'/pages/kyc/index?taskId=KYC-0188',routeDesc:'KYC 认证页',icon:'ti-shield-check',tone:'green'},
+  {code:'CP-002',cat:'合规通知',trigger:'KYC 审核通过；与“审核不通过”互斥',title:'KYC 认证已通过',content:'陈大文，您的 KYC 认证已通过，「新设香港本地有限公司」将继续办理。',route:'/pages/kyc/result?taskId=KYC-0188&result=approved',routeDesc:'KYC 已认证详情',icon:'ti-circle-check',tone:'green'},
+  {code:'CP-003',cat:'合规通知',trigger:'KYC 审核不通过；与“审核通过”互斥',title:'KYC 认证未通过',content:'陈大文，您的 KYC 认证未通过，原因：证件照片信息不清晰。请进入认证页重新提交。',route:'/pages/kyc/edit?taskId=KYC-0188',routeDesc:'KYC 资料修改页',icon:'ti-alert-circle',tone:'red'},
+  {code:'SV-001',cat:'服务通知',trigger:'服务首次进入“办理中”状态',title:'新设香港本地有限公司已开始办理',content:'陈大文，Star Tech Limited 的「新设香港本地有限公司」已开始办理，可进入服务详情查看。',route:'/pages/order/detail?bizId=ORD-2026-0188',routeDesc:'服务进度详情',icon:'ti-player-play',tone:'blue'},
+  {code:'SV-002',cat:'服务通知',trigger:'服务首次进入“已完成”状态',title:'年审服务已完成',content:'陈大文，恒丰贸易有限公司的「年审服务」已完成，交付结果已更新，请进入服务详情查看。',route:'/pages/order/detail?bizId=ORD-2026-0142',routeDesc:'服务完成与交付详情',icon:'ti-rosette-discount-check',tone:'blue'},
+  {code:'MK-001',cat:'卡券通知',trigger:'卡券首次成功发放到账户',title:'您已获得免费核名券',content:'陈大文，免费核名券 × 3 已发放至您的账户，请进入卡券中心查看使用规则。',route:'/pages/coupon/index',routeDesc:'卡券中心',icon:'ti-ticket',tone:'orange'},
+  {code:'CH-001',cat:'渠道商通知',trigger:'渠道商审核通过且推荐码生效',title:'渠道合作审核已通过',content:'周敏，您的渠道合作审核已通过，推荐码 LEX888 已生效，请进入渠道工作台查看。',route:'/pages/channel/index?tab=overview',routeDesc:'渠道工作台－概览',icon:'ti-user-check',tone:'purple'},
+  {code:'CH-002',cat:'渠道商通知',trigger:'推荐客户首次成功提交订单',title:'推荐客户已下单',content:'客户陈**已通过推荐码 LEX888 下单「新设香港本地有限公司」，可进入渠道工作台查看归属记录。',route:'/pages/channel/index?tab=customers',routeDesc:'渠道工作台－归属客户',icon:'ti-shopping-bag-check',tone:'purple'},
+  {code:'CH-003',cat:'渠道商通知',trigger:'佣金打款状态首次变为“已到账”',title:'佣金已到账',content:'2026 年 7 月佣金 HKD 5,200 已到账，请进入渠道工作台核对收款记录。',route:'/pages/channel/index?tab=commission',routeDesc:'渠道工作台－我的佣金',icon:'ti-cash-banknote',tone:'purple'}
+];
+var MINI_MSG_TONE={
+  green:['var(--green-bg)','var(--green-d)'],red:['#FDE8E8','var(--red)'],blue:['var(--blue-bg)','var(--blue)'],
+  orange:['var(--yellow-bg)','var(--orange)'],purple:['var(--purple-bg)','#7A5C9E']
+};
+function escMiniMsg(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function renderMiniMessages(){
+  var box=document.getElementById('mini-message-list'); if(!box)return;
+  var html='',cat='';
+  MINI_MESSAGE_TEMPLATES.forEach(function(m){
+    if(cat!==m.cat){cat=m.cat;html+='<div class="sec-t">'+escMiniMsg(cat)+'</div>';}
+    var tone=MINI_MSG_TONE[m.tone]||MINI_MSG_TONE.blue;
+    html+='<div class="msg-item" onclick="openMiniMessage(\''+m.route.replace(/'/g,"\\'")+'\')">'
+      +'<div class="msg-ic" style="background:'+tone[0]+';color:'+tone[1]+'"><i class="ti '+m.icon+'"></i></div>'
+      +'<div style="flex:1;min-width:0"><div style="display:flex;align-items:center;gap:6px"><div style="font-weight:700;font-size:14px;flex:1">'+escMiniMsg(m.title)+'</div><span style="font-size:9.5px;color:var(--text4)">'+m.code+'</span></div>'
+      +'<div class="note" style="margin-top:3px">'+escMiniMsg(m.content)+'</div>'
+      +'<div class="msg-trigger">触发：'+escMiniMsg(m.trigger)+'</div>'
+      +'<div class="msg-meta"><span class="tag t-gray">'+escMiniMsg(m.cat)+'</span><span class="msg-route">点击进入：'+escMiniMsg(m.routeDesc)+'</span></div></div>'
+      +'<i class="ti ti-chevron-right msg-arrow"></i></div>';
+  });
+  box.innerHTML=html;
+}
+function goFromMessage(screenId){
+  var target=document.getElementById(screenId);
+  if(target) target.dataset.back='s-messages';
+  go(screenId);
+}
+function openMiniMessage(route){
+  if(route.indexOf('/pages/kyc/index')===0){kycStep(1);goFromMessage('s-kyc');return;}
+  if(route.indexOf('/pages/kyc/result')===0){goFromMessage('s-kycdone');return;}
+  if(route.indexOf('/pages/kyc/edit')===0){goFromMessage('s-kycfix');return;}
+  if(route.indexOf('/pages/order/detail')===0){
+    var order=(route.match(/bizId=([^&]+)/)||[])[1]||'ORD-2026-0188';
+    var orderDetail=document.getElementById('s-orderdetail'); if(orderDetail)orderDetail.dataset.back='s-messages';
+    openOrderDetail(decodeURIComponent(order)); return;
+  }
+  if(route.indexOf('/pages/coupon/index')===0){goFromMessage('s-coupons');return;}
+  if(route.indexOf('/pages/channel/index')===0){
+    var tab=(route.match(/tab=([^&]+)/)||[])[1]||'overview';
+    var label={overview:'渠道合作审核已通过，推荐码已生效。',customers:'已定位到“归属客户”，可核对推荐客户的下单记录。',commission:'已定位到“我的佣金”，可核对佣金到账与收款记录。'}[tab];
+    document.getElementById('channel-route-note').textContent=label||'已从消息进入渠道工作台。';
+    go('s-channel-workbench');return;
+  }
+  toast('页面路由未配置');
+}
 
 function go(id, isBack){
   var cur = document.querySelector('.screen.on');
@@ -2104,6 +2187,7 @@ function go(id, isBack){
   if(id==='s-selectcompany' && typeof renderOrderCompanyOptions==='function') renderOrderCompanyOptions();
   if(id==='s-bill' && typeof renderBill==='function') renderBill();
   if(id==='s-services' && typeof syncSvcRegion==='function') syncSvcRegion();
+  if(id==='s-messages' && typeof renderMiniMessages==='function') renderMiniMessages();
 }
 function goBack(){
   var cur = document.querySelector('.screen.on');
@@ -3205,6 +3289,7 @@ function openOrderDetail(no){
   var ic = document.getElementById('persona-ic'); if(ic) ic.textContent = (PERSONA==='user'?'老':'新');
   if(typeof renderOrders==='function') renderOrders();
   if(typeof renderPersons==='function') renderPersons();
+  if(typeof renderMiniMessages==='function') renderMiniMessages();
 })();
 </script>
 </body>
