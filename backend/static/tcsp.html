@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Leapex 利柏思 TCSP 公司秘书 · 小程序原型</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<script>if(location.protocol==='file:')document.documentElement.classList.add('local-file')</script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
@@ -187,7 +188,8 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
 /* ── Splash · 整页口令入口（维港实景 + 深色蒙层）── */
 .splash{position:absolute;inset:0;z-index:60;display:none;flex-direction:column;overflow:hidden;background:#07131D;color:#fff}
 .splash.on{display:flex}
-.splash-bg{position:absolute;inset:-4px;background:url('hong-kong-entry-bg.jpg') center 38%/cover no-repeat;transform:scale(1.015)}
+.splash-bg{position:absolute;inset:-4px;background:url('/static/hong-kong-entry-bg.jpg') center 38%/cover no-repeat;transform:scale(1.015)}
+.local-file .splash-bg{background-image:url('hong-kong-entry-bg.jpg')}
 .splash-bg::after{content:'';position:absolute;inset:0;background:
   linear-gradient(180deg,rgba(3,16,30,.26) 0%,rgba(3,14,25,.12) 27%,rgba(2,10,18,.42) 58%,rgba(1,8,14,.9) 78%,#061019 100%),
   linear-gradient(90deg,rgba(4,18,29,.22),transparent 55%,rgba(4,18,29,.16))}
@@ -2006,7 +2008,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
     <div class="splash-bg"></div>
     <div class="splash-inner">
       <div class="splash-brand">
-        <div class="splash-logo"><img src="leapex-icon-green.svg" alt="Leapex"></div>
+        <div class="splash-logo"><img src="/static/leapex-icon-green.svg" alt="Leapex" onerror="this.onerror=null;this.src='leapex-icon-green.svg'"></div>
         <div>
           <div class="splash-wordmark">Leapex 利柏思</div>
           <div class="splash-license">Licensed Trust &amp; Company Service Provider<br>("TCSP") in Hong Kong</div>
