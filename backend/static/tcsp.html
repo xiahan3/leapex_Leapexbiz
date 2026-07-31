@@ -185,36 +185,67 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
 .phone{transition:background .25s}
 .card,.btn,.input,.svc,.msg-item,.tabbar,.capsule{transition:background .25s,border-color .25s,color .25s}
 
-/* ── Splash · 整页口令入口（维港实景 + 深色蒙层）── */
+/* ── Onboarding · Step 1 登录注册 / Step 2 地区与口令码 ── */
 .splash{position:absolute;inset:0;z-index:60;display:none;flex-direction:column;overflow:hidden;background:#07131D;color:#fff}
 .splash.on{display:flex}
 .splash-bg{position:absolute;inset:-4px;background:url('/static/hong-kong-entry-bg.jpg') center 38%/cover no-repeat;transform:scale(1.015)}
 .local-file .splash-bg{background-image:url('hong-kong-entry-bg.jpg')}
 .splash-bg::after{content:'';position:absolute;inset:0;background:
-  linear-gradient(180deg,rgba(3,16,30,.26) 0%,rgba(3,14,25,.12) 27%,rgba(2,10,18,.42) 58%,rgba(1,8,14,.9) 78%,#061019 100%),
-  linear-gradient(90deg,rgba(4,18,29,.22),transparent 55%,rgba(4,18,29,.16))}
-.splash-inner{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;padding:48px 22px 0;text-shadow:0 1px 18px rgba(0,0,0,.28)}
-.splash-brand{display:flex;align-items:center;gap:12px}
-.splash-logo{width:48px;height:48px;border-radius:13px;overflow:hidden;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(0,80,39,.36);flex-shrink:0}
+  linear-gradient(180deg,rgba(2,18,31,.28) 0%,rgba(2,17,28,.18) 22%,rgba(2,13,22,.54) 51%,rgba(3,12,19,.93) 73%,#071119 100%),
+  linear-gradient(90deg,rgba(2,16,28,.3),transparent 58%,rgba(2,14,24,.18))}
+.splash-inner{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;padding:46px 18px 18px;text-shadow:0 1px 18px rgba(0,0,0,.26)}
+.splash-brand{display:flex;align-items:center;gap:11px}
+.splash-logo{width:44px;height:44px;border-radius:12px;overflow:hidden;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(0,80,39,.34);flex-shrink:0}
 .splash-logo img{width:100%;height:100%;display:block}
-.splash-wordmark{font-size:21px;font-weight:800;letter-spacing:.2px}
-.splash-license{font-size:9.5px;color:rgba(255,255,255,.72);margin-top:3px;line-height:1.45;letter-spacing:.1px}
-.splash-copy{margin-top:auto;margin-bottom:22px;padding-left:3px}
-.splash-copy h1{font-size:32px;font-weight:800;line-height:1.16;letter-spacing:.1px}
-.splash-panel{background:rgba(4,15,24,.94);border:1px solid rgba(255,255,255,.13);border-bottom:0;border-radius:28px 28px 0 0;padding:20px 22px 18px;margin:0 -22px;box-shadow:0 -16px 48px rgba(0,0,0,.28);-webkit-backdrop-filter:blur(22px);backdrop-filter:blur(22px);text-shadow:none}
-.splash-panel-title{font-size:16px;font-weight:750;color:#fff;margin-bottom:16px}
-.splash-region-row{display:flex;align-items:center;gap:10px;margin-bottom:15px}
-.splash-region-label{font-size:11.5px;color:rgba(255,255,255,.66);white-space:nowrap}
-.splash-region-list{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
-.splash-region-list::-webkit-scrollbar{display:none}
-.glass-input{width:100%;padding:15px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.11);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#fff;font-size:24px;letter-spacing:8px;text-align:center;font-weight:700;font-family:inherit;outline:none;text-transform:uppercase}
-.glass-input::placeholder{color:rgba(255,255,255,.48);letter-spacing:4px;font-weight:500}
-.glass-input:focus{border-color:rgba(22,184,75,.95);box-shadow:0 0 0 4px rgba(22,184,75,.2)}
-.splash-btn{width:100%;padding:14px;border:none;border-radius:12px;background:linear-gradient(135deg,#19C454,#07983B);color:#fff;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;box-shadow:0 10px 28px rgba(0,156,56,.32)}
+.splash-wordmark{font-size:20px;font-weight:800;letter-spacing:.2px}
+.splash-license{font-size:9px;color:rgba(255,255,255,.72);margin-top:2px;line-height:1.42;letter-spacing:.1px}
+.splash-copy{margin:32px 4px 18px}
+.splash-copy h1{font-size:31px;font-weight:820;line-height:1.13;letter-spacing:.1px}
+.splash-copy h1 span{color:#79E49B}
+.splash-login-card{margin-top:auto;background:rgba(250,252,251,.97);border:1px solid rgba(255,255,255,.76);border-radius:24px;padding:17px 17px 15px;color:#172019;text-shadow:none;box-shadow:0 20px 55px rgba(0,0,0,.34);-webkit-backdrop-filter:blur(22px);backdrop-filter:blur(22px)}
+.onboard-progress{display:flex;align-items:center;margin-bottom:14px;padding:0 2px}
+.onboard-progress-item{display:flex;align-items:center;gap:6px;font-size:10.5px;color:#98A099;white-space:nowrap}
+.onboard-progress-item b{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#E7EAE7;color:#879088;font-size:10px}
+.onboard-progress-item.on{color:#256F46;font-weight:700}
+.onboard-progress-item.on b{background:#256F46;color:#fff}
+.onboard-progress-item.done{color:#63806C;font-weight:650}
+.onboard-progress-item.done b{background:#E5F3E9;color:#256F46}
+.onboard-progress-line{height:1px;background:#DDE2DE;flex:1;margin:0 9px}
+.splash-form-title{font-size:18px;font-weight:780;line-height:1.3}
+.splash-form-sub{font-size:10.5px;color:#7D857E;margin-top:3px}
+.splash-field-label{font-size:10.5px;color:#747D76;font-weight:650;margin:12px 1px 5px}
+.splash-phone-row,.splash-code-row{display:flex;gap:7px}
+.splash-prefix{width:74px;flex-shrink:0;padding:11px 8px;border:1px solid #DDE2DE;border-radius:10px;background:#F4F6F4;color:#263129;font-family:inherit;font-size:12.5px;font-weight:600;outline:none}
+.splash-text-input{min-width:0;flex:1;width:100%;padding:11px 12px;border:1px solid #DDE2DE;border-radius:10px;background:#fff;color:#172019;font-family:inherit;font-size:13.5px;font-weight:500;outline:none}
+.splash-text-input:focus{border-color:#2E8B57;box-shadow:0 0 0 3px rgba(46,139,87,.11)}
+.splash-code-send{flex-shrink:0;padding:0 12px;border:1px solid #D4DDD7;border-radius:10px;background:#EFF5F1;color:#256F46;font-family:inherit;font-size:11.5px;font-weight:650;cursor:pointer}
+.splash-btn{width:100%;padding:12px;border:none;border-radius:11px;background:linear-gradient(135deg,#2E9A5E,#207947);color:#fff;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;box-shadow:0 9px 24px rgba(37,111,70,.22);margin-top:13px}
 .splash-btn:active{opacity:.85}
-.splash-skip{width:100%;padding:13px;border:1px solid rgba(255,255,255,.25);border-radius:13px;background:transparent;color:rgba(255,255,255,.9);font-size:14px;cursor:pointer;font-family:inherit;margin-top:10px}
-.rg-pill{padding:6px 12px;border:1px solid rgba(255,255,255,.2);border-radius:16px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.82);font-size:12px;cursor:pointer;white-space:nowrap}
-.rg-pill.on{background:#0AA641;border-color:#16B84B;color:#fff;font-weight:700}
+.splash-wechat{width:100%;padding:10px;border:0;background:transparent;color:#4A554D;font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;margin-top:2px}
+.splash-agreement{display:flex;align-items:flex-start;gap:6px;font-size:9.5px;color:#879088;line-height:1.55;cursor:pointer}
+.splash-agreement input{width:13px;height:13px;margin-top:1px;flex-shrink:0;accent-color:#2E8B57}
+.splash-agreement a{color:#256F46;font-weight:650}
+
+.onboarding-layer{position:absolute;inset:0;z-index:90;display:none;align-items:flex-end}
+.onboarding-layer.on{display:flex}
+.onboarding-mask{position:absolute;inset:0;background:rgba(4,12,8,.48);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
+.onboarding-sheet{position:relative;width:100%;background:#FAFBFA;border-radius:26px 26px 0 0;padding:9px 20px calc(22px + env(safe-area-inset-bottom));box-shadow:0 -18px 54px rgba(0,0,0,.22);animation:sheetUp .28s cubic-bezier(.22,.61,.36,1)}
+.onboarding-handle{width:38px;height:4px;background:#D7DDD8;border-radius:3px;margin:0 auto 16px}
+.onboarding-success{width:42px;height:42px;border-radius:13px;background:#E5F3E9;color:#256F46;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:12px}
+.onboarding-title{font-size:20px;font-weight:800;color:#172019}
+.onboarding-sheet .onboard-progress{margin:17px 0}
+.region-choice{display:flex;align-items:center;gap:11px;border:1.5px solid #2E8B57;background:#EDF7F0;border-radius:13px;padding:12px 13px;cursor:pointer}
+.region-flag{width:36px;height:36px;border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.region-choice-name{font-size:13.5px;font-weight:750;color:#1C2A20}
+.region-choice-desc{font-size:10.5px;color:#66806E;margin-top:2px}
+.region-check{margin-left:auto;width:20px;height:20px;border-radius:50%;background:#2E8B57;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px}
+.invite-input-wrap{position:relative}
+.invite-input-wrap i{position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:18px;color:#2E8B57}
+.glass-input{width:100%;height:52px;padding:12px 14px 12px 42px;border-radius:12px;border:1px solid #D8DEDA;background:#fff;color:#172019;font-size:19px;letter-spacing:5px;text-align:left;font-weight:750;font-family:inherit;outline:none;text-transform:uppercase}
+.glass-input::placeholder{color:#B1B8B3;letter-spacing:1px;font-size:13px;font-weight:500}
+.glass-input:focus{border-color:#2E8B57;box-shadow:0 0 0 4px rgba(46,139,87,.1)}
+.onboarding-hint{font-size:11px;margin:7px 2px 0;min-height:17px;color:#879088}
+.onboarding-submit{width:100%;padding:14px;border:0;border-radius:12px;background:#256F46;color:#fff;font-family:inherit;font-size:14px;font-weight:700;box-shadow:0 10px 24px rgba(37,111,70,.18);cursor:pointer;margin-top:10px}
 
 /* ── 订单 > 服务 > 账单 层级 ── */
 .order-card{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:10px;overflow:hidden;margin-bottom:12px}
@@ -1778,30 +1809,6 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
       </div>
     </div>
 
-    <!-- ════════ 登录 ════════ -->
-    <div class="screen" id="s-login" data-title="登录">
-      <div class="body-pad">
-        <div style="text-align:center;padding:18px 0 6px">
-          <div style="width:56px;height:56px;border-radius:15px;background:linear-gradient(135deg,#141210,#2E2513);border:1px solid rgba(212,168,83,.4);display:flex;align-items:center;justify-content:center;margin:0 auto 12px">
-            <svg viewBox="0 0 16 16" width="26" height="26"><rect x="1" y="1" width="6" height="6" rx="1" fill="#F4D9A6"/><rect x="9" y="1" width="6" height="6" rx="1" fill="#D4A853"/><rect x="1" y="9" width="6" height="6" rx="1" fill="#D4A853"/><rect x="9" y="9" width="6" height="6" rx="1" fill="#B8860B"/></svg>
-          </div>
-          <div style="font-size:18px;font-weight:700">登录 Leapex 利柏思</div>
-          <div class="note" style="margin-top:4px">香港持牌 TCSP · 公司秘书线上办 · <span id="login-region">香港</span>区</div>
-        </div>
-        <div class="field" style="margin-top:8px"><div class="field-l">手机号</div>
-          <div style="display:flex;gap:8px"><input class="input" id="login-phone" placeholder="+852 / +86 手机号" value="+852 9123 4567"><button class="btn-sm btn" style="flex-shrink:0;color:#fff" onclick="toast('验证码已发送')">获取验证码</button></div>
-        </div>
-        <div class="field"><div class="field-l">短信验证码</div><input class="input" placeholder="输入 6 位验证码"></div>
-        <button class="btn" onclick="loginDone()">登录 / 注册</button>
-        <div class="divider-or">或</div>
-        <button class="btn ghost" onclick="loginDone()"><i class="ti ti-brand-wechat" style="color:#09BB07"></i> 微信授权登录</button>
-        <label style="display:flex;align-items:flex-start;gap:8px;margin-top:16px;font-size:12px;color:var(--text2);line-height:1.6;cursor:pointer">
-          <input type="checkbox" id="login-agree" checked style="width:16px;height:16px;margin-top:1px;flex-shrink:0;accent-color:var(--accent)">
-          <span>我已阅读并同意 <span onclick="event.preventDefault();go('s-agreement')" style="color:var(--accent-d);font-weight:600">《用户协议》</span> 与 <span onclick="event.preventDefault();go('s-privacy')" style="color:var(--accent-d);font-weight:600">《隐私政策》</span>；未注册手机号将自动创建账户。</span>
-        </label>
-      </div>
-    </div>
-
     <!-- ════════ 用户协议 ════════ -->
     <div class="screen" id="s-agreement" data-title="用户协议" data-back="s-me">
       <div class="body-pad">
@@ -2003,7 +2010,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
     </div>
   </div>
 
-  <!-- ════════ SPLASH · 整页口令入口 ════════ -->
+  <!-- ════════ ONBOARDING STEP 1 · 注册 / 登录 ════════ -->
   <div class="splash" id="splash">
     <div class="splash-bg"></div>
     <div class="splash-inner">
@@ -2015,25 +2022,68 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
         </div>
       </div>
       <div class="splash-copy">
-        <h1>开启您的<br>海外商业布局</h1>
+        <h1>开启您的<br><span>海外商业布局</span></h1>
       </div>
 
-      <div class="splash-panel">
-        <div class="splash-panel-title">输入口令码开始服务</div>
-        <div class="splash-region-row">
-          <div class="splash-region-label"><i class="ti ti-map-pin"></i> 服务地区</div>
-          <div class="splash-region-list">
-            <div class="rg-pill on" id="rg-hk" onclick="pickRegion('香港')">香港</div>
-          </div>
+      <div class="splash-login-card">
+        <div class="onboard-progress">
+          <div class="onboard-progress-item on"><b>1</b><span>注册登录</span></div>
+          <div class="onboard-progress-line"></div>
+          <div class="onboard-progress-item"><b>2</b><span>服务验证</span></div>
         </div>
-        <div style="margin-bottom:12px">
-          <div style="font-size:12px;font-weight:600;color:rgba(255,255,255,.78);margin-bottom:8px;display:flex;align-items:center;gap:7px"><i class="ti ti-ticket" style="font-size:16px;color:#57DB82"></i>口令码</div>
-          <input class="glass-input" id="sp-input" maxlength="6" placeholder="请输入.." style="height:52px;font-size:21px;letter-spacing:5px;text-align:center;font-weight:700" oninput="this.value=this.value.toUpperCase();spValidate()">
-          <div id="sp-hint" style="font-size:12px;margin:8px 2px 0;height:15px;color:rgba(255,255,255,.85)"></div>
+        <div class="splash-form-title">登录 / 注册</div>
+        <div class="splash-form-sub">未注册手机号验证后将自动创建账户</div>
+        <div class="splash-field-label">手机号</div>
+        <div class="splash-phone-row">
+          <select class="splash-prefix" id="login-prefix" aria-label="国家或地区区号">
+            <option value="+86">+86</option>
+            <option value="+852">+852</option>
+          </select>
+          <input class="splash-text-input" id="login-phone" inputmode="tel" placeholder="请输入手机号" value="138 0013 8000">
         </div>
-        <button class="splash-btn" onclick="loginGo()">填码并登录 / 注册</button>
-        <div style="text-align:center;font-size:9.5px;color:rgba(255,255,255,.35);margin-top:13px">© 2026 Leapex 利柏思 · 持牌 TCSP</div>
+        <div class="splash-field-label">短信验证码</div>
+        <div class="splash-code-row">
+          <input class="splash-text-input" id="login-code" inputmode="numeric" maxlength="6" placeholder="请输入 6 位验证码" value="123456">
+          <button class="splash-code-send" type="button" onclick="sendLoginCode(this)">获取验证码</button>
+        </div>
+        <button class="splash-btn" onclick="loginDone('sms')">登录 / 注册</button>
+        <button class="splash-wechat" onclick="loginDone('wechat')"><i class="ti ti-brand-wechat" style="font-size:15px;color:#09A83E;margin-right:5px"></i>微信快捷登录</button>
+        <label class="splash-agreement">
+          <input type="checkbox" id="login-agree" checked>
+          <span>我已阅读并同意 <a onclick="event.preventDefault();openSplashLegal('s-agreement')">《用户协议》</a> 与 <a onclick="event.preventDefault();openSplashLegal('s-privacy')">《隐私政策》</a></span>
+        </label>
       </div>
+    </div>
+  </div>
+
+  <!-- ════════ ONBOARDING STEP 2 · 地区 + 口令码底部浮层 ════════ -->
+  <div class="onboarding-layer" id="onboarding-sheet" aria-hidden="true">
+    <div class="onboarding-mask"></div>
+    <div class="onboarding-sheet">
+      <div class="onboarding-handle"></div>
+      <div class="onboarding-success"><i class="ti ti-user-check"></i></div>
+      <div class="onboarding-title">请填写口令码</div>
+      <div class="onboard-progress">
+        <div class="onboard-progress-item done"><b><i class="ti ti-check"></i></b><span>注册登录</span></div>
+        <div class="onboard-progress-line"></div>
+        <div class="onboard-progress-item on"><b>2</b><span>服务验证</span></div>
+      </div>
+      <div class="splash-field-label">服务地区</div>
+      <div class="region-choice" id="rg-hk" onclick="pickRegion('香港')">
+        <div class="region-flag">🇭🇰</div>
+        <div>
+          <div class="region-choice-name">中国香港</div>
+          <div class="region-choice-desc">香港公司注册及企业服务</div>
+        </div>
+        <div class="region-check"><i class="ti ti-check"></i></div>
+      </div>
+      <div class="splash-field-label" style="margin-top:14px">口令码</div>
+      <div class="invite-input-wrap">
+        <i class="ti ti-ticket"></i>
+        <input class="glass-input" id="sp-input" maxlength="6" placeholder="请输入 6 位口令码" oninput="this.value=this.value.toUpperCase();spValidate()">
+      </div>
+      <div class="onboarding-hint" id="sp-hint"></div>
+      <button class="onboarding-submit" onclick="spEnter()">确认并进入首页</button>
     </div>
   </div>
 
@@ -2189,6 +2239,11 @@ function go(id, isBack){
   if(id==='s-messages' && typeof renderMiniMessages==='function') renderMiniMessages();
 }
 function goBack(){
+  if(typeof ONBOARD_LEGAL!=='undefined' && ONBOARD_LEGAL){
+    ONBOARD_LEGAL=false;
+    document.getElementById('splash').classList.add('on');
+    return;
+  }
   var cur = document.querySelector('.screen.on');
   var backTo = cur.dataset.back;
   if(backTo){ go(backTo, true); return; }
@@ -2229,14 +2284,14 @@ function chConfirm(){
 }
 function chSkip(){ go('s-home-new'); }
 
-/* ── Splash · 整页口令入口 ── */
+/* ── Onboarding · Step 1 登录注册 / Step 2 服务验证 ── */
 function spValidate(){
-  var v = document.getElementById('sp-input').value;
+  var v = (document.getElementById('sp-input').value||'').trim();
   var hint = document.getElementById('sp-hint');
-  if(v.length===0){ hint.textContent=''; return; }
-  if(v.length<6){ hint.textContent='请输入 6 位口令码'; hint.style.color='rgba(255,255,255,.6)'; return; }
-  if(v==='000000'){ hint.innerHTML='✗ 口令码无效，请确认'; hint.style.color='#FCA5A5'; }
-  else { hint.innerHTML='✓ 有效口令码'; hint.style.color='#6EE7B7'; }
+  if(v.length===0){ hint.textContent=''; hint.style.color='#879088'; return; }
+  if(v.length<6){ hint.textContent='请输入完整的 6 位口令码'; hint.style.color='#879088'; return; }
+  if(v==='000000'){ hint.innerHTML='<i class="ti ti-alert-circle"></i> 口令码无效，请确认'; hint.style.color='#D93A3A'; }
+  else { hint.innerHTML='<i class="ti ti-circle-check"></i> 口令码有效，可进入服务首页'; hint.style.color='#256F46'; }
 }
 /* ═══ 双版本：新客 / 老客 分流 ═══ */
 var PERSONA = 'new';
@@ -2251,10 +2306,46 @@ function setPersona(p){
 }
 function togglePersona(){ setPersona(PERSONA==='user' ? 'new' : 'user'); }
 
-function _markRegistered(){ try{ localStorage.setItem('tcsp_registered','1'); }catch(e){} }
+var ONBOARD_LEGAL=false;
+function _markLoggedIn(){ try{ localStorage.setItem('tcsp_logged_in','1'); }catch(e){} }
+function _markRegistered(){
+  try{
+    localStorage.setItem('tcsp_logged_in','1');
+    localStorage.setItem('tcsp_registered','1');
+  }catch(e){}
+}
 function _hideSplash(){ document.getElementById('splash').classList.remove('on'); }
-function openSplash(){ document.getElementById('sp-input').value=''; document.getElementById('sp-hint').textContent=''; document.getElementById('splash').classList.add('on'); }
-/* 首屏：地区选择 + 登录 */
+function showOnboardingSheet(){
+  var sheet=document.getElementById('onboarding-sheet');
+  if(sheet){ sheet.classList.add('on'); sheet.setAttribute('aria-hidden','false'); }
+  setTimeout(function(){ var input=document.getElementById('sp-input'); if(input) input.focus(); }, 300);
+}
+function hideOnboardingSheet(){
+  var sheet=document.getElementById('onboarding-sheet');
+  if(sheet){ sheet.classList.remove('on'); sheet.setAttribute('aria-hidden','true'); }
+}
+function openSplash(){
+  var input=document.getElementById('sp-input'), hint=document.getElementById('sp-hint');
+  if(input) input.value='';
+  if(hint){ hint.textContent=''; hint.style.color='#879088'; }
+  document.getElementById('splash').classList.add('on');
+  showOnboardingSheet();
+}
+function openSplashLegal(id){
+  ONBOARD_LEGAL=true;
+  hideOnboardingSheet();
+  _hideSplash();
+  try{ histStack.length=0; }catch(e){}
+  go(id);
+}
+function sendLoginCode(btn){
+  var phone=(document.getElementById('login-phone').value||'').replace(/\s+/g,'');
+  if(phone.length<8){ toast('请输入正确的手机号'); return; }
+  btn.disabled=true; btn.textContent='已发送';
+  toast('验证码已发送');
+  setTimeout(function(){ btn.disabled=false; btn.textContent='重新获取'; }, 1200);
+}
+/* 服务地区：当前仅开放香港 */
 var REGION='香港';
 function pickRegion(r){
   REGION=r;
@@ -2289,33 +2380,38 @@ function syncSvcRegion(){
   });
   applySvcFilter();
 }
-function loginGo(){
-  var v=document.getElementById('sp-input').value, hint=document.getElementById('sp-hint');
-  if(!v || v.length<6 || v==='000000'){ if(hint){ hint.innerHTML='✗ 请输入 6 位合作伙伴口令码（必填）'; hint.style.color='#FCA5A5'; } return; }
-  document.getElementById('home-ch').textContent=v; document.getElementById('home-ch-d').textContent='星投资本 · 合作伙伴';
-  var hh=document.getElementById('home-hero-ch'); if(hh) hh.textContent=v;
-  var lr=document.getElementById('login-region'); if(lr) lr.textContent=REGION;
-  _hideSplash();
-  try{ histStack.length=0; }catch(e){}
-  go('s-login');
-}
-function loginDone(){
+function loginDone(method){
   var ag=document.getElementById('login-agree');
   if(ag && !ag.checked){ toast('请先阅读并勾选《用户协议》与《隐私政策》'); return; }
-  _markRegistered(); toast('登录成功'); setTimeout(function(){ go('s-home-new'); }, 500);
+  if(method!=='wechat'){
+    var phone=(document.getElementById('login-phone').value||'').replace(/\s+/g,'');
+    var code=(document.getElementById('login-code').value||'').trim();
+    if(phone.length<8){ toast('请输入正确的手机号'); return; }
+    if(code.length!==6){ toast('请输入 6 位短信验证码'); return; }
+  }
+  _markLoggedIn();
+  toast(method==='wechat' ? '微信登录成功' : '登录成功');
+  setTimeout(showOnboardingSheet, 360);
 }
 function spEnter(){
-  var v = document.getElementById('sp-input').value;
-  if(v.length<6 || v==='000000'){ document.getElementById('sp-hint').innerHTML='✗ 请输入有效的 6 位口令码'; document.getElementById('sp-hint').style.color='#FCA5A5'; return; }
+  var v = (document.getElementById('sp-input').value||'').trim();
+  if(v.length<6 || v==='000000'){
+    document.getElementById('sp-hint').innerHTML='<i class="ti ti-alert-circle"></i> 请输入有效的 6 位口令码';
+    document.getElementById('sp-hint').style.color='#D93A3A';
+    return;
+  }
   document.getElementById('home-ch').textContent = v;
   document.getElementById('home-ch-d').textContent = '星投资本 · 合作伙伴';
-  _markRegistered(); _hideSplash(); go('s-home-new');
-  toast('口令码 '+v+' 已绑定');
+  var hh=document.getElementById('home-hero-ch'); if(hh) hh.textContent=v;
+  _markRegistered(); hideOnboardingSheet(); _hideSplash();
+  try{ histStack.length=0; }catch(e){}
+  go('s-home-new');
+  toast('验证成功，欢迎使用 Leapex 利柏思');
 }
 function spSkip(){
   document.getElementById('home-ch').textContent = '自然流量';
   document.getElementById('home-ch-d').textContent = 'Leapex 利柏思 直营';
-  _markRegistered(); _hideSplash(); go('s-home-new');
+  _markRegistered(); hideOnboardingSheet(); _hideSplash(); go('s-home-new');
   toast('已跳过口令码');
 }
 
@@ -3279,12 +3375,17 @@ function openOrderDetail(no){
   go('s-orderdetail');
 }
 
-/* ── Boot：新用户先看整页口令入口；已注册直接进入 ── */
+/* ── Boot：未登录进入 Step 1；已登录未验证恢复 Step 2；完成验证进入首页 ── */
 (function boot(){
-  var registered = false;
-  try{ registered = localStorage.getItem('tcsp_registered')==='1'; }catch(e){}
-  if(!registered){ document.getElementById('splash').classList.add('on'); }
-  else { goHome(); }
+  var registered = false, loggedIn = false;
+  try{
+    registered = localStorage.getItem('tcsp_registered')==='1';
+    loggedIn = localStorage.getItem('tcsp_logged_in')==='1';
+  }catch(e){}
+  if(!registered){
+    document.getElementById('splash').classList.add('on');
+    if(loggedIn) setTimeout(showOnboardingSheet, 260);
+  } else { goHome(); }
   var ic = document.getElementById('persona-ic'); if(ic) ic.textContent = (PERSONA==='user'?'老':'新');
   if(typeof renderOrders==='function') renderOrders();
   if(typeof renderPersons==='function') renderPersons();
