@@ -544,42 +544,36 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
           </div>
           <div class="cell" style="border:none">
             <div class="cell-ic" style="background:var(--green-bg);color:var(--green-d)">恒</div>
-            <div class="cell-main"><div class="cell-t">恒丰贸易有限公司</div><div class="cell-d">CI 78451236 · 下次年审 2026-09-15</div></div>
-            <span class="tag t-amber" style="font-size:10px">年审待办</span>
+            <div class="cell-main"><div class="cell-t">恒丰贸易有限公司</div><div class="cell-d">CI 78451236 · 年审已于 2026-07-15 到期</div></div>
+            <span class="tag t-red" style="font-size:10px">年审过期</span>
           </div>
         </div>
 
         <!-- 待办 -->
-        <div class="sec-t">待办事项</div>
+        <div class="sec-t" style="display:flex;justify-content:space-between"><span>待办事项</span><span id="home-todo-count">共 4 项</span></div>
         <div class="card">
-          <div class="cell" style="border-bottom:1px solid var(--line)" onclick="openSvc('nametm')">
-            <div class="cell-ic" style="background:var(--red-bg);color:var(--red)"><i class="ti ti-alert-circle"></i></div>
-            <div class="cell-main"><div class="cell-t">核名未通过 · 需改名重核</div><div class="cell-d">星辰科技 · 与已注册公司近似，请更换名称</div></div>
+          <div class="cell" id="todo-order" style="border-bottom:1px solid var(--line)" onclick="go('s-bill')">
+            <div class="cell-ic" style="background:var(--yellow-bg);color:var(--orange)"><i class="ti ti-credit-card"></i></div>
+            <div class="cell-main"><div class="cell-t">订单待支付</div><div class="cell-d">ORD-2026-0205 · 新设香港本地有限公司 · HKD 5,533</div></div>
+            <span class="tag t-orange">订单</span>
             <span class="cell-arrow"><i class="ti ti-chevron-right"></i></span>
           </div>
-          <div class="cell" style="border-bottom:1px solid var(--line)" onclick="go('s-bill')">
-            <div class="cell-ic" style="background:var(--red-bg);color:var(--red)"><i class="ti ti-credit-card-off"></i></div>
-            <div class="cell-main"><div class="cell-t">支付失败 · 请重新支付</div><div class="cell-d">ORD-2026-0205 · 上次微信支付未完成</div></div>
+          <div class="cell" id="todo-service-info" style="border-bottom:1px solid var(--line)" onclick="resumeServiceInfo('reg')">
+            <div class="cell-ic" style="background:var(--blue-bg);color:var(--blue)"><i class="ti ti-forms"></i></div>
+            <div class="cell-main"><div class="cell-t">服务资料待填写</div><div class="cell-d">星辰科技 · 新设香港本地有限公司</div></div>
+            <span class="tag t-blue">服务</span>
             <span class="cell-arrow"><i class="ti ti-chevron-right"></i></span>
           </div>
-          <div class="cell" id="todo-kyc" style="border-bottom:1px solid var(--line)" onclick="go('s-kycfix')">
-            <div class="cell-ic" style="background:var(--red-bg);color:var(--red)"><i class="ti ti-user-x"></i></div>
-            <div class="cell-main"><div class="cell-t">KYC 未通过 · 需修改资料</div><div class="cell-d">地址证明不清晰，请重新上传后再审</div></div>
+          <div class="cell" id="todo-kyc" style="border-bottom:1px solid var(--line)" onclick="go('s-kyc')">
+            <div class="cell-ic" style="background:var(--yellow-bg);color:var(--orange)"><i class="ti ti-shield-exclamation"></i></div>
+            <div class="cell-main"><div class="cell-t">KYC 待完成</div><div class="cell-d">星辰科技 · 新设香港本地有限公司</div></div>
+            <span class="tag t-orange">服务</span>
             <span class="cell-arrow"><i class="ti ti-chevron-right"></i></span>
           </div>
-          <div class="cell" style="border-bottom:1px solid var(--line)" onclick="go('s-kyc')">
-            <div class="cell-ic" style="background:var(--yellow-bg);color:var(--orange)"><i class="ti ti-file-upload"></i></div>
-            <div class="cell-main"><div class="cell-t">补充地址证明</div><div class="cell-d">星辰科技 · KYC 第 3 步</div></div>
-            <span class="cell-arrow"><i class="ti ti-chevron-right"></i></span>
-          </div>
-          <div class="cell" style="border-bottom:1px solid var(--line)" onclick="go('s-bill')">
-            <div class="cell-ic" style="background:var(--yellow-bg);color:var(--orange)"><i class="ti ti-receipt"></i></div>
-            <div class="cell-main"><div class="cell-t">账单待支付</div><div class="cell-d">LEA-2026-0188-1 · HKD 2,750</div></div>
-            <span class="cell-arrow"><i class="ti ti-chevron-right"></i></span>
-          </div>
-          <div class="cell" style="border:none" onclick="openSvc('annual')">
-            <div class="cell-ic" style="background:var(--blue-bg);color:var(--blue)"><i class="ti ti-calendar-due"></i></div>
-            <div class="cell-main"><div class="cell-t">恒丰贸易 年审到期</div><div class="cell-d">距到期 85 天 · 第 1 轮提醒</div></div>
+          <div class="cell" id="todo-annual" style="border:none" onclick="openSvc('annual')">
+            <div class="cell-ic" style="background:var(--red-bg);color:var(--red)"><i class="ti ti-calendar-exclamation"></i></div>
+            <div class="cell-main"><div class="cell-t">公司年审已过期</div><div class="cell-d">恒丰贸易有限公司 · 已过期 16 天</div></div>
+            <span class="tag t-red">公司</span>
             <span class="cell-arrow"><i class="ti ti-chevron-right"></i></span>
           </div>
         </div>
@@ -1570,7 +1564,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
           <div class="vnode act"><div class="vdot">2</div><div class="vbody"><div class="vtitle">合规人工审核中</div><div class="vsub">PEP / 制裁筛查 + 尽职调查 · 约 1 个工作日</div></div></div>
           <div class="vnode"><div class="vdot">3</div><div class="vbody"><div class="vtitle">审核通过 → 递交香港公司注册处</div><div class="vsub">政府审批约 1–2 个工作日</div></div></div>
         </div>
-        <div class="fixed-foot"><button class="btn" onclick="setPersona('user');goHome()">查看剩余待办</button></div>
+        <div class="fixed-foot"><button class="btn" onclick="setPersona('user');goHome()">返回首页</button></div>
       </div>
     </div>
 
@@ -2418,7 +2412,7 @@ function spSkip(){
 /* ── 我的公司：档案 + 新增 / 删除（订单中禁删）── */
 var MY_COMPANIES = [
   {id:'c1', zh:'星辰科技有限公司', en:'Star Tech Limited', status:'注册进行中', statusClass:'t-orange', active:true, info:'', entry:'交付物中心', entryD:'17 项可见 · 6 项已就绪', annual:''},
-  {id:'c2', zh:'恒丰贸易有限公司', en:'Hang Fung Trading Limited', status:'存续中', statusClass:'t-green', active:false, info:'CI: 78451236 · BR: 12345678 · 下次年审 2026-09-15', entry:'公司文件', entryD:'CI / BR / 章程 / 名册 / SCR', annual:'距到期 96 天 · 提醒中'}
+  {id:'c2', zh:'恒丰贸易有限公司', en:'Hang Fung Trading Limited', status:'年审过期', statusClass:'t-red', active:false, info:'CI: 78451236 · BR: 12345678 · 年审已于 2026-07-15 到期', entry:'公司文件', entryD:'CI / BR / 章程 / 名册 / SCR', annual:'已过期 16 天 · 请尽快办理'}
 ];
 var MC_CONFIRM = null;
 function renderCompanies(){
@@ -2426,7 +2420,7 @@ function renderCompanies(){
   var cnt = document.getElementById('mc-count'); if(cnt) cnt.textContent = MY_COMPANIES.length;
   list.innerHTML = MY_COMPANIES.map(function(c){
     var sub = c.en + (c.info ? (c.en ? ' · ' : '') + c.info : '') || '—';
-    var annualCell = c.annual ? '<div class="cell" onclick="toast(\'年审到期前 6 轮递进提醒中\')"><div class="cell-ic" style="background:var(--blue-bg);color:var(--blue)"><i class="ti ti-calendar-check"></i></div><div class="cell-main"><div class="cell-t">公司年审</div><div class="cell-d" style="color:var(--orange)">'+c.annual+'</div></div><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div>' : '';
+    var annualCell = c.annual ? '<div class="cell" onclick="openSvc(\'annual\')"><div class="cell-ic" style="background:var(--red-bg);color:var(--red)"><i class="ti ti-calendar-exclamation"></i></div><div class="cell-main"><div class="cell-t">公司年审</div><div class="cell-d" style="color:var(--red)">'+c.annual+'</div></div><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div>' : '';
     var del;
     if(c.active){
       del = '<span style="color:var(--text4);font-size:12.5px;display:inline-flex;align-items:center;gap:4px"><i class="ti ti-lock"></i> 有进行中订单 · 暂不可删除</span>';
@@ -2532,6 +2526,7 @@ function kycStep(n){
   document.getElementById('s-kyc').scrollTop = 0;
 }
 function kycSubmit(){
+  completeTodo('todo-kyc');
   advanceServiceOrder(CURRENT_ORDER&&CURRENT_ORDER.no,/KYC/);
   if(FLOW_TYPE==='register'){ toast('KYC 认证已提交'); setTimeout(function(){ go('s-kycaudit'); }, 800); return; }   // 注册类：KYC → 人工审核中
   showResult({title:'KYC 认证已提交', desc:'合规尽调审核中（约 1 个工作日）。通过后我们即开始为你办理；如审核不通过将全额退款。', steps:flowSteps(), cur:2, btn:'查看我的订单', next:function(){ go('s-orders'); }});
@@ -2672,10 +2667,25 @@ function payDone(source){
     CURRENT_ORDER.status='服务中';
     activateServiceOrderAfterPayment(CURRENT_ORDER.no);
   }
+  completeTodo('todo-order');
   setPersona('user'); // 付款成功 → 转老客
   if(FLOW_TYPE==='register'){ go('s-paydone'); return; }   // 注册流程 → 专属「支付完成」引导页
   if(FLOW_TYPE==='namecheck'){ showResult({title:'支付完成', desc:'核名 & 商标查询已下单。点击下方开始填写要查册的公司名称与商标，顾问将于约 1–2 个工作日出结果。', steps:STEPS3, cur:2, btn:'去核名 & 查商标', next:function(){ ncReset(); go('s-namecheck'); }}); return; }
   showResult({title:'支付成功', desc:'已收到你的款项。请继续提交本次办理所需的信息。', steps:flowSteps(), cur:2, btn:'提交办理信息', next:goInfo});
+}
+/* 用户待办仅保留：订单未支付、服务资料未填写、KYC 未完成、公司年审已过期 */
+function completeTodo(id){
+  var item=document.getElementById(id);
+  if(item) item.remove();
+  var count=document.querySelectorAll('#s-home [id^="todo-"]').length;
+  var label=document.getElementById('home-todo-count');
+  if(label) label.textContent='共 '+count+' 项';
+}
+function resumeServiceInfo(key){
+  var s=SVC_DATA[key]; if(!s) return;
+  CURRENT_SVC=Object.assign({key:key},s);
+  FLOW_TYPE=s.form==='register'?'register':s.form;
+  goInfo();
 }
 function goInfo(){
   if(FLOW_TYPE==='register'){
@@ -2715,6 +2725,7 @@ function svcGrpTog(el){
 }
 function infoDone(){
   var s=CURRENT_SVC||{}, f=s.form;
+  completeTodo('todo-service-info');
   advanceServiceOrder(CURRENT_ORDER&&CURRENT_ORDER.no,/提交|信息核对|确认接任信息/);
   if(s.kycRequired){
     var kycDesc='办理所需信息已提交。最后一步：完成 KYC 实名认证（香港持牌 TCSP 合规必做）。';
@@ -2739,14 +2750,7 @@ function fixUpload(id, fname){
   e.innerHTML='<i class="ti ti-circle-check" style="font-size:22px;color:var(--green)"></i><div style="font-size:12px;margin-top:4px;color:var(--green-d)">✓ 已重新上传：'+fname+'</div>';
 }
 function kycResubmit(){
-  // 待办：KYC 未通过 → 审核中
-  var t=document.getElementById('todo-kyc');
-  if(t){
-    var ic=t.querySelector('.cell-ic'); if(ic){ ic.style.background='var(--blue-bg)'; ic.style.color='var(--blue)'; ic.innerHTML='<i class="ti ti-clock-hour-4"></i>'; }
-    var tt=t.querySelector('.cell-t'); if(tt) tt.textContent='KYC 审核中';
-    var td=t.querySelector('.cell-d'); if(td) td.textContent='资料已重新提交 · 预计 1 个工作日';
-    t.setAttribute('onclick',"toast('KYC 审核中，请耐心等待结果')");
-  }
+  completeTodo('todo-kyc');
   showResult({title:'资料已重新提交', desc:'已重新进入 <b>KYC 审核中</b>（约 1 个工作日）。审核通过后我们将继续为你办理。', btn:'返回首页', next:goHome});
 }
 var BILL_CUR='cny', BILL_COUPON='none';
@@ -2833,7 +2837,7 @@ function pickArt(el){
   document.querySelectorAll('#reg-3 .radio-card').forEach(function(c){ c.classList.remove('on'); });
   el.classList.add('on');
 }
-function regSubmit(){ advanceServiceOrder(CURRENT_ORDER&&CURRENT_ORDER.no,/提交注册信息/); toast('已提交人工预审'); setTimeout(function(){ go('s-bizhandle'); }, 800); }   // 人工预审 → 业务办理
+function regSubmit(){ completeTodo('todo-service-info'); advanceServiceOrder(CURRENT_ORDER&&CURRENT_ORDER.no,/提交注册信息/); toast('已提交人工预审'); setTimeout(function(){ go('s-bizhandle'); }, 800); }   // 人工预审 → 业务办理
 function regSaveDraft(){ toast('已暂存，可稍后在「我的订单」继续填写'); }   // 暂存草稿
 /* 新公司注册：从核名结果页进入，重置到第 1 步 */
 function startNewReg(){ PERSONS = defaultPersons(); renderPersons(); var c=document.getElementById('reg-confirm'); if(c) c.classList.remove('on'); var b=document.getElementById('reg-submit-btn'); if(b) b.disabled=true; regStep(1); go('s-reg'); }
