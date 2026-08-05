@@ -104,6 +104,27 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue'
 .hero::before{content:'';position:absolute;right:18px;bottom:-30px;width:80px;height:80px;border:1px solid rgba(212,168,83,.22);border-radius:50%}
 .hero-t{font-size:18px;font-weight:700;margin-bottom:4px}
 .hero-d{font-size:12px;opacity:.92;line-height:1.6}
+.photo-hero{background-image:linear-gradient(105deg,rgba(4,23,38,.88) 0%,rgba(7,35,52,.67) 58%,rgba(5,25,39,.5) 100%),url('/static/leapex-hk-brand-bg.jpg');background-position:center 54%;background-size:cover;min-height:150px;display:flex;flex-direction:column;justify-content:flex-end}
+.local-file .photo-hero{background-image:linear-gradient(105deg,rgba(4,23,38,.88) 0%,rgba(7,35,52,.67) 58%,rgba(5,25,39,.5) 100%),url('leapex-hk-brand-bg.jpg')}
+.photo-hero::before,.photo-hero::after{display:none}
+.brand-photo-hero{background-image:linear-gradient(105deg,rgba(3,24,39,.9) 0%,rgba(6,38,57,.7) 60%,rgba(4,26,41,.54) 100%),url('/static/leapex-hk-brand-bg.jpg');background-position:center 48%;background-size:cover;border-radius:16px;padding:24px 18px;color:#fff;margin-bottom:14px;position:relative;overflow:hidden;min-height:210px;display:flex;flex-direction:column;justify-content:center}
+.local-file .brand-photo-hero{background-image:linear-gradient(105deg,rgba(3,24,39,.9) 0%,rgba(6,38,57,.7) 60%,rgba(4,26,41,.54) 100%),url('leapex-hk-brand-bg.jpg')}
+.brand-logo{width:48px;height:48px;border-radius:12px;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;box-shadow:0 5px 18px rgba(0,0,0,.14)}
+.brand-logo img{width:36px;height:36px;display:block}
+.brand-slogan{font-size:21px;font-weight:800;line-height:1.35;letter-spacing:.2px;margin-top:18px}
+.brand-qualification{display:flex;flex-direction:column;gap:7px;color:var(--text2);font-size:12px;line-height:1.7}
+.brand-licence{margin-top:14px;border-radius:10px;overflow:hidden;border:1px solid var(--line2);background:#fff}
+.brand-licence img{display:block;width:100%;height:auto}
+.brand-trust-wall{background:linear-gradient(145deg,#EDF6EF 0%,#F8FBF8 100%);border:1px solid #CEE1D2;border-radius:16px;padding:17px 14px 14px;margin-bottom:16px;box-shadow:0 8px 24px rgba(38,92,60,.09)}
+.brand-trust-title{display:flex;align-items:center;gap:8px;color:#244E35;font-size:16px;font-weight:700;margin:0 3px 13px}
+.brand-trust-title::before{content:'';width:3px;height:17px;border-radius:2px;background:#3D8B5A}
+.brand-trust-list{display:flex;flex-direction:column;gap:10px}
+.brand-trust-card{display:flex;align-items:center;gap:12px;padding:13px 12px;border:1px solid #D9E8DC;border-radius:12px;background:rgba(255,255,255,.92);box-shadow:0 3px 12px rgba(42,91,60,.05)}
+.brand-trust-icon{width:42px;height:42px;border-radius:12px;background:#E2F0E6;color:#34764D;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.brand-trust-icon i{font-size:21px}
+.brand-trust-copy{flex:1;min-width:0}
+.brand-trust-name{color:#244E35;font-size:13.5px;font-weight:700;line-height:1.45}
+.brand-trust-desc{color:#69776E;font-size:11.5px;line-height:1.6;margin-top:3px}
 
 /* progress order card */
 .prog{display:flex;align-items:center;gap:5px;margin-top:11px}
@@ -365,9 +386,9 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
     <!-- ════════ 新客版首页（咨询接待台）════════ -->
     <div class="screen on" id="s-home-new" data-title="Leapex 利柏思" data-tab="home">
       <div class="body-pad">
-        <div class="hero" onclick="go('s-brand')" style="cursor:pointer">
+        <div class="hero photo-hero" onclick="go('s-brand')" style="cursor:pointer">
           <div style="display:flex;align-items:center;gap:5px;font-size:11px;opacity:.85;margin-bottom:7px"><i class="ti ti-shield-check"></i> 香港持牌 TCSP · 牌照号 TC10988</div>
-          <div class="hero-t">香港公司，线上办妥</div>
+          <div class="hero-t">开启您的海外商业布局</div>
           <div class="hero-d">注册 · 年审 · 变更 · 记账报税 全流程托管<br>办理进度全程可见 · 符合 AMLO / 公司条例</div>
           <div style="margin-top:11px;padding-top:10px;border-top:1px solid rgba(255,255,255,.14);display:flex;align-items:center;gap:6px;font-size:12px;color:#D4A853;font-weight:600"><i class="ti ti-building-skyscraper"></i>了解 Leapex 利柏思 · 品牌与实力 ›</div>
         </div>
@@ -407,27 +428,6 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
           </div>
         </div>
 
-        <!-- 为什么选我们（深色品牌信任面板，与"能帮你做什么"白卡栅格区分）-->
-        <div class="sec-t">为什么选 Leapex 利柏思</div>
-        <div style="background:linear-gradient(135deg,#1C1B19,#2C2722);border-radius:14px;padding:4px 16px;margin-bottom:14px">
-          <div style="display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.07)">
-            <div style="width:36px;height:36px;border-radius:9px;background:rgba(212,168,83,.15);color:#D4A853;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-license" style="font-size:18px"></i></div>
-            <div style="flex:1"><div style="color:#fff;font-weight:600;font-size:13.5px">香港持牌 TCSP</div><div style="color:rgba(255,255,255,.5);font-size:11.5px;margin-top:2px">合规可信 · 资料加密，隐私保护</div></div>
-          </div>
-          <div style="display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.07)">
-            <div style="width:36px;height:36px;border-radius:9px;background:rgba(212,168,83,.15);color:#D4A853;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-map-pin" style="font-size:18px"></i></div>
-            <div style="flex:1"><div style="color:#fff;font-weight:600;font-size:13.5px">一手注册地址</div><div style="color:rgba(255,255,255,.5);font-size:11.5px;margin-top:2px">上市公司地址 · 可出具地址证明</div></div>
-          </div>
-          <div style="display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.07)">
-            <div style="width:36px;height:36px;border-radius:9px;background:rgba(212,168,83,.15);color:#D4A853;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-route" style="font-size:18px"></i></div>
-            <div style="flex:1"><div style="color:#fff;font-weight:600;font-size:13.5px">全链路自营履约</div><div style="color:rgba(255,255,255,.5);font-size:11.5px;margin-top:2px">不经层层代理，进度与质量可控</div></div>
-          </div>
-          <div style="display:flex;align-items:center;gap:12px;padding:13px 0">
-            <div style="width:36px;height:36px;border-radius:9px;background:rgba(212,168,83,.15);color:#D4A853;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-eye-check" style="font-size:18px"></i></div>
-            <div style="flex:1"><div style="color:#fff;font-weight:600;font-size:13.5px">进度全程可见</div><div style="color:rgba(255,255,255,.5);font-size:11.5px;margin-top:2px">交付物随时查，不必追问"好了没"</div></div>
-          </div>
-        </div>
-
         <!-- 推荐服务 -->
         <div class="sec-t" style="display:flex;justify-content:space-between"><span>推荐服务</span><span style="color:var(--accent);font-weight:500;cursor:pointer" onclick="go('s-services')">全部服务 ›</span></div>
         <div class="pkg-card rec" onclick="openSvc('reg')"><div style="display:flex;align-items:center;gap:10px"><div class="svc-dot" style="background:var(--accent-bg);color:var(--accent-d);width:36px;height:36px"><i class="ti ti-building-plus"></i></div><div style="flex:1"><div style="font-weight:700">新设香港本地有限公司</div><div class="note">适合：首次在港设立 · 全套证照 + 印章 + 绿盒</div></div><div class="price price-lg">HKD 5,533</div></div></div>
@@ -440,29 +440,55 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
     <div class="screen" id="s-brand" data-title="关于 Leapex 利柏思" data-back="s-home-new">
       <div class="body-pad">
         <!-- 品牌 Hero -->
-        <div style="background:linear-gradient(135deg,#0D0D0D 0%,#2E2513 55%,#4A3A18 100%);border-radius:16px;padding:22px 18px;color:#fff;margin-bottom:14px;position:relative;overflow:hidden">
+        <div class="brand-photo-hero">
           <div style="display:flex;align-items:center;gap:11px">
-            <div style="width:48px;height:48px;border-radius:12px;background:rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center">
-              <svg viewBox="0 0 16 16" width="26" height="26"><rect x="1" y="1" width="6" height="6" rx="1" fill="#F4D9A6"/><rect x="9" y="1" width="6" height="6" rx="1" fill="#D4A853"/><rect x="1" y="9" width="6" height="6" rx="1" fill="#D4A853"/><rect x="9" y="9" width="6" height="6" rx="1" fill="#B8860B"/></svg>
+            <div class="brand-logo">
+              <img src="/static/leapex-icon-green.svg" alt="Leapex 利柏思" onerror="this.onerror=null;this.src='leapex-icon-green.svg'">
             </div>
-            <div style="flex:1"><div style="font-size:20px;font-weight:800;letter-spacing:.3px;color:#F4D9A6">Leapex 利柏思</div><div style="font-size:10.5px;opacity:.8;margin-top:2px">Licensed TCSP in Hong Kong</div></div>
+            <div style="flex:1"><div style="font-size:20px;font-weight:800;letter-spacing:.3px;color:#fff">Leapex 利柏思</div><div style="font-size:10.5px;opacity:.82;margin-top:2px">Licensed TCSP in Hong Kong</div></div>
           </div>
-          <div style="font-size:15px;font-weight:700;line-height:1.5;margin-top:16px">香港公司秘书，线上一站办妥</div>
+          <div class="brand-slogan">开启您的<br>海外商业布局</div>
           <div style="font-size:12px;opacity:.85;line-height:1.7;margin-top:7px">持牌信托及公司服务提供商（TCSP）· 核名注册 · 法定秘书 · 年审变更 · 记账报税全流程自营托管，办理进度全程可见。</div>
         </div>
 
-        <!-- 三项硬指标 -->
-        <div style="display:flex;gap:9px;margin-bottom:16px">
-          <div class="card card-pad" style="flex:1;text-align:center;margin-bottom:0;padding:14px 6px"><div style="font-size:20px;font-weight:800;color:var(--accent-d)">TCSP</div><div class="note" style="margin-top:3px">香港持牌</div></div>
-          <div class="card card-pad" style="flex:1;text-align:center;margin-bottom:0;padding:14px 6px"><div style="font-size:20px;font-weight:800;color:var(--accent-d)">7×24</div><div class="note" style="margin-top:3px">进度可见</div></div>
-          <div class="card card-pad" style="flex:1;text-align:center;margin-bottom:0;padding:14px 6px"><div style="font-size:16px;font-weight:800;color:var(--accent-d)">专业可靠</div><div class="note" style="margin-top:3px">大厂背书</div></div>
+        <!-- 三张硬资质 · 信任墙 -->
+        <div class="brand-trust-wall">
+          <div class="brand-trust-title">三张硬资质 · 信任墙</div>
+          <div class="brand-trust-list">
+            <div class="brand-trust-card">
+              <div class="brand-trust-icon"><i class="ti ti-certificate"></i></div>
+              <div class="brand-trust-copy">
+                <div class="brand-trust-name">香港持牌秘书公司</div>
+                <div class="brand-trust-desc">持有香港信托及公司服务提供商牌照，牌照号 TC10988，公开可查。</div>
+              </div>
+            </div>
+            <div class="brand-trust-card">
+              <div class="brand-trust-icon"><i class="ti ti-building-skyscraper"></i></div>
+              <div class="brand-trust-copy">
+                <div class="brand-trust-name">香港上市公司物业</div>
+                <div class="brand-trust-desc">注册地址真实可验，非虚拟信箱，经得起银行与政府核查。</div>
+              </div>
+            </div>
+            <div class="brand-trust-card">
+              <div class="brand-trust-icon"><i class="ti ti-brand-amazon"></i></div>
+              <div class="brand-trust-copy">
+                <div class="brand-trust-name">亚马逊 SPN 官方认证服务商</div>
+                <div class="brand-trust-desc">进入亚马逊服务商网络，跨境电商客群天然对接。</div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- 品牌资质 -->
         <div class="sec-t">品牌与资质</div>
         <div class="card card-pad" style="margin-bottom:14px">
-          <div class="note" style="line-height:1.9">
-            <b style="color:var(--text1)">Leapex 利柏思</b> 由 <b>利柏思商务服务（上海）有限公司</b> 运营，系 <b>TimeLeap Technology (Hong Kong) Limited</b> 全资子公司。香港主体持有 <b style="color:var(--accent-d)">香港公司服务提供者牌照（TCSP · 牌照号 TC10988）</b>，严格遵守香港《打击洗钱及恐怖分子资金筹集条例》（AMLO）及《个人资料（私隐）条例》（PDPO）开展业务。
+          <div class="brand-qualification">
+            <div>香港持牌信托及公司服务提供商（TCSP）· 牌照号 TC10988</div>
+            <div>利柏思商务服务（上海）有限公司</div>
+            <div>TimeLeap Technology (Hong Kong) Limited 100% 持股</div>
+          </div>
+          <div class="brand-licence">
+            <img src="/static/tcsp-brand-licence.png" alt="TimeLeap Technology (Hong Kong) Limited 香港信托或公司服务提供者牌照" onerror="this.onerror=null;this.src='tcsp-brand-licence.png'">
           </div>
         </div>
 
@@ -500,19 +526,19 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
         <div style="background:linear-gradient(135deg,#1C1B19,#2C2722);border-radius:14px;padding:4px 16px;margin-bottom:14px">
           <div style="display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.07)">
             <div style="width:36px;height:36px;border-radius:9px;background:rgba(212,168,83,.15);color:#D4A853;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-license" style="font-size:18px"></i></div>
-            <div style="flex:1"><div style="color:#fff;font-weight:600;font-size:13.5px">香港持牌 TCSP</div><div style="color:rgba(255,255,255,.5);font-size:11.5px;margin-top:2px">合规可信 · 资料加密，隐私保护</div></div>
+            <div style="flex:1"><div style="color:#fff;font-weight:600;font-size:13.5px">香港持牌 TCSP</div></div>
           </div>
           <div style="display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.07)">
             <div style="width:36px;height:36px;border-radius:9px;background:rgba(212,168,83,.15);color:#D4A853;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-map-pin" style="font-size:18px"></i></div>
-            <div style="flex:1"><div style="color:#fff;font-weight:600;font-size:13.5px">一手注册地址</div><div style="color:rgba(255,255,255,.5);font-size:11.5px;margin-top:2px">香港上市公司一手物业 · 可出具地址证明</div></div>
+            <div style="flex:1"><div style="color:#fff;font-weight:600;font-size:13.5px">一手注册地址</div></div>
           </div>
           <div style="display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.07)">
             <div style="width:36px;height:36px;border-radius:9px;background:rgba(212,168,83,.15);color:#D4A853;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-route" style="font-size:18px"></i></div>
-            <div style="flex:1"><div style="color:#fff;font-weight:600;font-size:13.5px">全链路自营履约</div><div style="color:rgba(255,255,255,.5);font-size:11.5px;margin-top:2px">不经层层代理，进度与质量可控</div></div>
+            <div style="flex:1"><div style="color:#fff;font-weight:600;font-size:13.5px">全链路自营履约</div></div>
           </div>
           <div style="display:flex;align-items:center;gap:12px;padding:13px 0">
             <div style="width:36px;height:36px;border-radius:9px;background:rgba(212,168,83,.15);color:#D4A853;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-eye-check" style="font-size:18px"></i></div>
-            <div style="flex:1"><div style="color:#fff;font-weight:600;font-size:13.5px">进度全程可见</div><div style="color:rgba(255,255,255,.5);font-size:11.5px;margin-top:2px">交付物随时查，不必追问"好了没"</div></div>
+            <div style="flex:1"><div style="color:#fff;font-weight:600;font-size:13.5px">进度全程可见</div></div>
           </div>
         </div>
 
@@ -529,7 +555,7 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
       <div class="body-pad">
         <div class="hero" onclick="go('s-brand')" style="cursor:pointer">
           <div style="display:flex;align-items:center;gap:5px;font-size:11px;opacity:.85;margin-bottom:7px"><i class="ti ti-shield-check"></i> 香港持牌 TCSP · 牌照号 TC10988</div>
-          <div class="hero-t">香港公司，线上办妥</div>
+          <div class="hero-t">开启您的海外商业布局</div>
           <div class="hero-d">注册 · 年审 · 变更 · 记账报税 全流程托管<br>办理进度全程可见 · 符合 AMLO / 公司条例</div>
           <div style="margin-top:11px;padding-top:10px;border-top:1px solid rgba(255,255,255,.14);display:flex;align-items:center;gap:6px;font-size:12px;color:#D4A853;font-weight:600"><i class="ti ti-building-skyscraper"></i>了解 Leapex 利柏思 · 品牌与实力 ›</div>
         </div>
@@ -976,10 +1002,10 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
       <div class="body-pad">
         <div class="card card-pad" style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
           <div class="svc-dot" style="background:var(--accent-bg);color:var(--accent-d)" id="sf-icon"><i class="ti ti-package"></i></div>
-          <div style="flex:1"><div id="sf-name" style="font-weight:600;font-size:14px">标准注册服务</div><div class="note">请填写办理所需的必要信息</div></div>
+          <div style="flex:1"><div id="sf-name" style="font-weight:600;font-size:14px">标准注册服务</div><div class="note" id="sf-help">请填写办理所需的信息</div></div>
         </div>
         <div id="sf-fields"></div>
-        <div class="card card-pad" style="background:var(--accent-bg)">
+        <div class="card card-pad" id="sf-note-card" style="background:var(--accent-bg)">
           <div class="note" style="color:var(--accent-d)"><i class="ti ti-info-circle"></i> <span id="sf-kyc-note">流程顺序：公司核名 → 支付 → 提交注册信息 → KYC 认证（最后）。</span></div>
         </div>
       </div>
@@ -1000,11 +1026,13 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
             <div class="price" id="so-price">HKD 5,533</div>
           </div>
         </div>
-        <div class="sec-t">办理公司</div>
-        <div class="card">
-          <div class="cell" style="border:none">
-            <div class="cell-ic" style="background:var(--green-bg);color:var(--green-d)"><i class="ti ti-building"></i></div>
-            <div class="cell-main"><div class="cell-t" id="so-company">—</div><div class="cell-d">订单、进度与交付物将归属该公司</div></div>
+        <div id="so-company-wrap">
+          <div class="sec-t">办理公司</div>
+          <div class="card">
+            <div class="cell" style="border:none">
+              <div class="cell-ic" style="background:var(--green-bg);color:var(--green-d)"><i class="ti ti-building"></i></div>
+              <div class="cell-main"><div class="cell-t" id="so-company">—</div><div class="cell-d">订单、进度与交付物将归属该公司</div></div>
+            </div>
           </div>
         </div>
         <div class="sec-t">价格明细</div>
@@ -2697,21 +2725,27 @@ function goInfo(){
   var s=CURRENT_SVC, e;
   if(e=document.getElementById('sf-icon')) e.innerHTML='<i class="ti '+(s?s.icon:'ti-package')+'"></i>';
   if(e=document.getElementById('sf-name')) e.textContent=s?s.name:'';
-  if(e=document.getElementById('sf-kyc-note')) e.textContent=(s&&KYC_NOTE[s.form])||'';
+  var note=(s&&KYC_NOTE[s.form])||'';
+  if(e=document.getElementById('sf-kyc-note')) e.textContent=note;
+  if(e=document.getElementById('sf-note-card')) e.style.display=note?'':'none';
   var fields=(s&&SVC_FORM[s.form])||[];
+  var allOptional=fields.length&&fields.every(function(f){ return !Array.isArray(f)&&!f.req; });
+  if(e=document.getElementById('sf-help')) e.textContent=allOptional?'以下信息均为选填，可按实际情况补充':'请填写办理所需的信息';
   if(e=document.getElementById('sf-fields')) e.innerHTML=fields.map(renderSvcField).join('');
   go('s-svcform');
 }
-/* 服务信息填写：字段渲染 —— 兼容旧版 [label,placeholder] 数组 + 新版分模块类型化字段（sec/note/txt/sel/up/grp） */
+/* 服务信息填写：字段渲染 —— 兼容旧版 [label,placeholder] 数组 + 新版分模块类型化字段（sec/note/txt/ta/sel/up/grp） */
 function renderSvcField(f){
   if(Array.isArray(f)) return '<div class="field"><div class="field-l">'+f[0]+'</div><input class="input" placeholder="'+(f[1]||'')+'"></div>';
   var req=f.req?' <span style="color:var(--accent-d)">*</span>':'';
+  var optional=f.optional?' <span style="color:var(--text3);font-weight:400">选填</span>':'';
   switch(f.t){
     case 'sec': return '<div style="font-weight:700;font-size:13.5px;margin:16px 0 10px">'+f.label+'</div>';
     case 'note': return '<div class="note" style="margin:-4px 0 12px"><i class="ti ti-info-circle"></i> '+f.label+'</div>';
-    case 'txt': return '<div class="field"><div class="field-l">'+f.label+req+'</div><input class="input" placeholder="'+(f.ph||'')+'"></div>';
+    case 'txt': return '<div class="field"><div class="field-l">'+f.label+req+optional+'</div><input class="input" placeholder="'+(f.ph||'')+'"></div>';
+    case 'ta': return '<div class="field"><div class="field-l">'+f.label+req+optional+'</div><textarea class="input" rows="4" placeholder="'+(f.ph||'')+'" style="resize:vertical;min-height:104px"></textarea></div>';
     case 'sel': return '<div class="field"><div class="field-l">'+f.label+req+'</div><select class="input">'+f.opts.map(function(o){return '<option>'+o+'</option>';}).join('')+'</select></div>';
-    case 'up': return '<div class="field"><div class="field-l">'+f.label+req+'</div><div class="uz" onclick="svcUpload()"><i class="ti ti-upload" style="font-size:20px;color:var(--text3)"></i><div style="font-size:12px;margin-top:6px;color:var(--text3)">'+(f.hint||'点击上传')+'</div></div></div>';
+    case 'up': return '<div class="field"><div class="field-l">'+f.label+req+optional+'</div><div class="uz" onclick="svcUpload()"><i class="ti ti-upload" style="font-size:20px;color:var(--text3)"></i><div style="font-size:12px;margin-top:6px;color:var(--text3)">'+(f.hint||'点击上传')+'</div></div></div>';
     case 'grp': return '<div class="field"><div class="chk-pill" style="display:inline-flex;align-items:center;gap:6px" onclick="svcGrpTog(this)"><i class="ti ti-square"></i>'+f.label+'</div><div class="svc-grp-box" style="display:none;margin-top:10px">'+f.fields.map(renderSvcField).join('')+'</div></div>';
     default: return '';
   }
@@ -2726,7 +2760,7 @@ function svcGrpTog(el){
 function infoDone(){
   var s=CURRENT_SVC||{}, f=s.form;
   completeTodo('todo-service-info');
-  advanceServiceOrder(CURRENT_ORDER&&CURRENT_ORDER.no,/提交|信息核对|确认接任信息/);
+  advanceServiceOrder(CURRENT_ORDER&&CURRENT_ORDER.no,/提交|信息核对|确认接任信息|补充办理信息|填写服务信息/);
   if(s.kycRequired){
     var kycDesc='办理所需信息已提交。最后一步：完成 KYC 实名认证（香港持牌 TCSP 合规必做）。';
     showResult({title:'信息已提交', desc:kycDesc, steps:flowSteps(), cur:2, btn:'完成 KYC 实名认证', next:goKyc});
@@ -2908,7 +2942,7 @@ var CHANNEL = 'LEX888';
 /* 服务字段对齐后台商品：name/icon/intro(简要介绍)/incl(交付内容)/sla(办理时效)/materials(所需材料)/process(办理流程)/meta(详细描述) */
 var SVC_DATA = {
   // ── 核名 & 商标查询 ──
-  'nametm':{name:'公司名称查册 + 商标查询',icon:'ti-file-search',price:99,cny:89,old:0,form:'namecheck',kycRequired:false,tags:'HKD 99 · 约 1–2 工作日 · 顾问人工核查',couponAfter:'0 元',couponNote:'新客共赠 3 张，可免费办 3 次',
+  'nametm':{name:'公司名称查册 + 商标查询',icon:'ti-file-search',price:99,cny:89,old:0,form:'namecheck',requiresCompany:false,kycRequired:false,tags:'HKD 99 · 约 1–2 工作日 · 顾问人工核查',couponAfter:'0 元',couponNote:'新客共赠 3 张，可免费办 3 次',
     intro:'注册香港公司前的名称与商标预查，顾问人工核查可用性，降低被驳回 / 侵权风险。新客赠 3 张免费券，下单可抵扣。',
     incl:['公司名称可用性查册（公司注册处）','商标近似查询（知识产权署 IPD）','中 / 英 / 繁体名称核查','顾问人工核查 + 可用性建议报告'],
     sla:'约 1–2 个工作日出结果',
@@ -2944,7 +2978,7 @@ var SVC_DATA = {
     incl:['雇主申报员工薪金','IR56B（逐员工）+ IR56A（汇总表）','帮填帮交','税表回执'],
     sla:'约 3 个工作日',
     materials:['公司名称 / 商业登记号 BR','员工名单与薪金明细','申报年度'],
-    process:['支付','提交员工薪金','编制 IR56B / A','雇主签署提交 IRD','完结'],
+    process:['支付','补充办理信息（选填）','顾问核对申报资料','编制 IR56B / A','雇主签署提交 IRD','完结'],
     meta:'雇主报税表：逐员工一张 <b>IR56B</b> + 汇总 <b>IR56A</b>，按人头计 HKD 556（¥500）/ 人。<br>雇主签署后于 IRD 发出后 1 个月内提交，含帮填帮交。'},
   'persontax':{name:'个别人士报税',icon:'ti-coin',price:2222,cny:2000,old:0,form:'persontax',kycRequired:false,tags:'约 3 个工作日 · BIR60',
     intro:'个人入息 / 薪俸税 BIR60 申报，帮填帮交。',
@@ -2954,33 +2988,33 @@ var SVC_DATA = {
     process:['支付','提交收入资料','编制 BIR60','客户签署提交 IRD','完结'],
     meta:'个人报税表 <b>BIR60</b>（薪俸 / 租金 / 免税额）；如选个人入息课税另评估。<br>含帮填帮交（不含豁免场景）。'},
   // ── 工商变更 ──
-  'director':{name:'董事变更',icon:'ti-user-edit',price:333,cny:300,old:0,form:'director',kycRequired:true,tags:'约 5 个工作日 · ND2A / ND4',
+  'director':{name:'董事变更',icon:'ti-user-edit',price:333,cny:300,old:0,form:'change',kycRequired:true,tags:'约 5 个工作日 · ND2A / ND4',
     intro:'委任 / 停任董事，备 ND2A / ND4 并递交公司注册处。',
     incl:['委任 / 停任董事','ND2A 变更董事通知书','ND4 董事辞职通知书'],
     sla:'约 5 个工作日',
     materials:['公司名称 / 商业登记号 BR','变更类型（委任 / 停任）','董事姓名 + 证件','委任 / 停任生效日期','新董事 KYC 资料（委任时）'],
-    process:['支付','提交关键信息','新董事 KYC','编制 ND2A','文件签字确认','递交注册处','完结'],
+    process:['支付','补充办理信息（选填）','顾问核对变更资料','新董事 KYC','编制 ND2A','文件签字确认','递交注册处','完结'],
     meta:'<b>您只需提供关键信息</b>（董事姓名 + 证件 + 委任 / 停任及日期）；<b>ND2A / ND4 表格由我们线下准备并快递给您签字确认</b>，签妥回寄后由我们递交公司注册处。<br>委任新董事需完成 KYC 尽调。'},
-  'secretary':{name:'变更秘书公司',icon:'ti-user-cog',price:333,cny:300,old:0,form:'secretary',kycRequired:true,tags:'约 5 个工作日 · 转入秘书',
+  'secretary':{name:'变更秘书公司',icon:'ti-user-cog',price:333,cny:300,old:0,form:'change',kycRequired:true,tags:'约 5 个工作日 · 转入秘书',
     intro:'将法定公司秘书转由 Leapex 利柏思 接任，备 ND2A 递交。',
     incl:['最新商业登记证 BR','变更秘书通知书','Leapex 利柏思 接任法定秘书'],
     sla:'约 5 个工作日',
     materials:['公司名称 / 商业登记号 BR','现任秘书公司（如有）','确认由 Leapex 利柏思 接任','董事签字'],
-    process:['支付','确认接任信息','编制 ND2A','文件签字确认','递交注册处','完结'],
+    process:['支付','补充办理信息（选填）','顾问核对接任资料','KYC','编制 ND2A','文件签字确认','递交注册处','完结'],
     meta:'<b>秘书公司即 Leapex 利柏思，表格由我们填写</b>，您只需确认接任并由董事签字。<br>ND2A（秘书部分）线下准备并快递给您签字，签妥回寄后递交注册处；含历史文件交接核对。'},
-  'address':{name:'变更注册地址',icon:'ti-map-2',price:333,cny:300,old:0,form:'address',kycRequired:false,tags:'约 5 个工作日 · 变更地址',
+  'address':{name:'变更注册地址',icon:'ti-map-2',price:333,cny:300,old:0,form:'change',kycRequired:false,tags:'约 5 个工作日 · 变更地址',
     intro:'变更公司注册办事处地址，备 NR1 递交公司注册处。',
     incl:['最新商业登记证 BR','变更地址通知书 NR1'],
     sla:'约 5 个工作日',
     materials:['公司名称 / 商业登记号 BR','新注册地址 或 选用 Leapex 利柏思 地址','生效日期'],
-    process:['支付','提交关键信息','编制 NR1','文件签字确认','递交注册处','交付新 BR'],
+    process:['支付','补充办理信息（选填）','顾问核对地址资料','编制 NR1','文件签字确认','递交注册处','交付新 BR'],
     meta:'<b>您只需提供关键信息</b>（新注册地址 + 生效日期，或选用 Leapex 利柏思 地址）；<b>NR1 表格由我们线下准备并快递给您签字确认</b>，签妥回寄后由我们递交公司注册处。'},
-  'rename':{name:'公司更名',icon:'ti-forms',price:1667,cny:1500,old:0,form:'rename',kycRequired:false,tags:'7-10 工作日 · NNC2 + 新印章',
+  'rename':{name:'公司更名',icon:'ti-forms',price:1667,cny:1500,old:0,form:'change',kycRequired:false,tags:'7-10 工作日 · NNC2 + 新印章',
     intro:'公司更名，先人工查名再备 NNC2 + 股东特别决议，含新印章。',
     incl:['拟用新名称查册结果','股东特别决议书','更名文件 NNC2','新商业登记证 BR','更新印章 ×2'],
     sla:'7–10 个工作日；新 BR 约 +2 周',
     materials:['现公司中 / 英文名 + 商业登记号 BR','拟用新名称（中 / 英）','股东特别决议签署'],
-    process:['支付','提交拟用新名称','人工查名','编制 NNC2 + 决议','文件签字确认','递交注册处','注册处新 BR'],
+    process:['支付','补充办理信息（选填）','顾问核对拟用名称','人工查名','编制 NNC2 + 决议','文件签字确认','递交注册处','注册处新 BR'],
     meta:'<b>先付费，再由顾问对拟用新名称人工查册</b>（是否可用，含商标风险提示）；<b>NNC2 与股东特别决议书由我们线下准备并快递给您签字确认</b>，签妥回寄后递交注册处。<br>官费 HKD 295，含新印章重制 ×2。'},
   'transfer':{name:'股份转让（股东变更）',icon:'ti-arrows-exchange',price:0,old:0,consult:true,tags:'约 5 工作日 · 含印花税 0.2%',
     intro:'股东股份转让，核定作价并代缴从价印花税 0.2%。',
@@ -3002,7 +3036,7 @@ var SVC_DATA = {
     incl:['注册申请表','商标注册证书'],
     sla:'约 6 个月',
     materials:['商标名称 / 图样','申请类别 Class（如 9 / 35 / 42）','申请人信息','联系邮箱'],
-    process:['支付','提交商标信息','递交 IPD','审查 + 公告','发证'],
+    process:['支付','填写服务信息（选填）','顾问确认申请资料','KYC','递交 IPD','审查 + 公告','发证'],
     meta:'递交<b>香港知识产权署 IPD</b>：每个类别单独申请（一个类别 HKD 3,311 / ¥2,980）→ 审查 → 宪报公告（异议期 3 个月）→ 发证。'},
   'tmrenew':{name:'商标注册续期',icon:'ti-refresh',price:2200,cny:1980,old:0,form:'tmrenew',kycRequired:true,tags:'约 5 工作日 · 每 10 年',
     intro:'商标每 10 年续期，向 IPD 递交续期申请。',
@@ -3039,32 +3073,27 @@ var SVC_DATA = {
 var SVC_FORM = {
   register:[['期望公司英文名','如 Star Tech Limited'],['期望公司中文名','如 星辰科技有限公司'],['联系人姓名',''],['联系邮箱','name@email.com']],
   annual:[['公司名称','须与注册证书一致'],['公司注册编号 CI',''],['商业登记证号 BR',''],['财政年度结算日','如 03-31']],
-  address:[['公司名称',''],['商业登记号 BR（首 8 位）',''],['新注册地址（室/楼/座 · 大厦 · 街道 · 地区）· 或选用 Leapex 利柏思 地址',''],['生效日期','DD/MM/YYYY']],
-  salarytax:[['公司名称',''],['员工人数','按人头计费'],['申报年度','如 2024/25']],
+  change:[
+    {t:'ta',label:'补充办理信息',ph:'如有需要补充的办理要求，请填写',optional:1},
+    {t:'ta',label:'备注信息',ph:'如有其他需要说明的事项，请填写',optional:1}
+  ],
+  salarytax:[
+    {t:'ta',label:'补充办理信息',ph:'如有需要补充的薪俸税办理信息，请填写',optional:1},
+    {t:'ta',label:'备注信息',ph:'如有其他需要说明的事项，请填写',optional:1}
+  ],
   persontax:[['姓名',''],['香港身份证 / 税务档案号',''],['申报年度','如 2024/25']],
-  director:[['公司名称',''],['商业登记号 BR（首 8 位）',''],['变更类型','委任新董事 / 停任现董事'],['董事姓名（英文）',''],['董事姓名（中文，无则填「无」）',''],['证件类型 / 号码','香港身份证 / 护照'],['原因 / 生效日期','停任：辞任·去世·其他 · DD/MM/YYYY']],
-  secretary:[['公司名称',''],['商业登记号 BR（首 8 位）',''],['现任秘书公司（如有）',''],['确认由 Leapex 利柏思 接任法定秘书','是 / 否']],
-  rename:[['现有公司英文名',''],['现有公司中文名（无则填「无」）',''],['商业登记号 BR（首 8 位）',''],['拟用新英文名',''],['拟用新中文名（无则填「无」）','']],
   tmreg:[
-    {t:'txt',label:'商标名称',ph:'文字商标请填写完整名称',req:1},
-    {t:'up',label:'上传商标图样（如需）',hint:'图形 / 图文组合商标上传清晰 JPG / PNG'},
-    {t:'txt',label:'申请类别 Class',ph:'如 9 / 35 / 42',req:1},
-    {t:'txt',label:'申请人',ph:'个人姓名或公司名称',req:1},
-    {t:'txt',label:'联系邮箱',ph:'接收 IPD 及办理通知',req:1}
+    {t:'txt',label:'商标名称',ph:'文字商标可填写完整名称',optional:1},
+    {t:'up',label:'上传商标图样',hint:'图形 / 图文组合商标可上传清晰 JPG / PNG',optional:1},
+    {t:'ta',label:'备注信息',ph:'如有其他需要说明的事项，请填写',optional:1}
   ],
   tmrenew:[['商标名称',''],['商标注册编号',''],['续期年度','']],
   addr:[['公司名称 / 拟注册名称',''],['用途','注册地址 / 办公 / 平台验证'],['联系人 · 手机',''],['备注（选填）','']],
 };
 var KYC_NOTE = {
   register:'支付后完成 KYC 与注册资料，两项均完成后进入人工预审。',
-  salarytax:'提交员工人数、申报年度等必要信息后，由顾问编制税务文件。',
   persontax:'提交个人税务档案与申报年度后，由顾问编制 BIR60。',
-  director:'新任董事需完成 KYC 尽职调查（含 PEP / 制裁名单筛查）。',
-  rename:'名称变更需重新走核名流程，通过后方可继续。',
   annual:'年审将触发 KYC 年度复核，如身份信息有变需重新上传。',
-  secretary:'秘书转入将进行历史合规文件交接核对。',
-  address:'地址变更如选用 Leapex 利柏思 地址，将自动配置注册地址。',
-  tmreg:'提交商标信息后完成 KYC，由顾问编制申请并递交知识产权署 IPD。',
   tmrenew:'提交商标编号后完成 KYC，由顾问向知识产权署 IPD 递交续期。',
   addr:'提交公司与地址用途信息后完成 KYC，再由平台配置独立注册地址。',
 };
@@ -3139,15 +3168,19 @@ function buyNow(){
   if(CURRENT_SVC.form==='register') FLOW_TYPE='register';
   else if(CURRENT_SVC.form==='namecheck') FLOW_TYPE='namecheck';
   else FLOW_TYPE='service';
-  go('s-selectcompany'); // 所有在线标准商品：先选办理公司；新增公司保存后自动继续订单确认
+  if(CURRENT_SVC.requiresCompany===false){ toOrderConfirm(); return; }
+  go('s-selectcompany'); // 需要归属公司的在线商品：先选办理公司；新增公司保存后自动继续订单确认
 }
 function toOrderConfirm(){
   if(!CURRENT_SVC) return;
   var cp = CURRENT_SVC.payPrice, op = CURRENT_SVC.origPrice;
+  var requiresCompany=CURRENT_SVC.requiresCompany!==false;
   document.getElementById('so-icon').innerHTML = '<i class="ti '+CURRENT_SVC.icon+'"></i>';
   document.getElementById('so-name').textContent = CURRENT_SVC.name;
   document.getElementById('so-desc').textContent = CURRENT_SVC.tags;
-  document.getElementById('so-company').textContent = CURRENT_COMPANY||'—';
+  document.getElementById('so-company-wrap').style.display=requiresCompany?'':'none';
+  if(requiresCompany) document.getElementById('so-company').textContent = CURRENT_COMPANY||'—';
+  document.getElementById('s-svcorder').dataset.back=requiresCompany?'s-selectcompany':'s-svcdetail';
   document.getElementById('so-price').textContent = cp===0 ? '0 元' : 'HKD '+fmtMoney(cp);
   document.getElementById('so-orig').textContent = 'HKD '+fmtMoney(op);
   document.getElementById('so-disc').textContent = op>cp ? '− HKD '+fmtMoney(op-cp) : '− HKD 0';
@@ -3161,7 +3194,7 @@ function submitOrder(){
   if(!document.getElementById('so-agree').classList.contains('on')){ toast('请先勾选同意服务条款'); return; }
   var no = 'ORD-2026-0'+(ORD_SEQ++);
   CURRENT_ORDER = {
-    no:no, company:CURRENT_COMPANY||('（待注册）'+CURRENT_SVC.name), service:CURRENT_SVC.name, svcKey:CURRENT_SVC.key, icon:CURRENT_SVC.icon, color:'accent', channel:CHANNEL,
+    no:no, company:CURRENT_SVC.requiresCompany===false?'':(CURRENT_COMPANY||('（待注册）'+CURRENT_SVC.name)), companyRequired:CURRENT_SVC.requiresCompany!==false, service:CURRENT_SVC.name, svcKey:CURRENT_SVC.key, icon:CURRENT_SVC.icon, color:'accent', channel:CHANNEL,
     status:'待支付', stage:'待支付', amt:CURRENT_SVC.payPrice, bill:no.replace('ORD','LEA')+'-1', bs:'待支付'
   };
   ORDERS.unshift(CURRENT_ORDER);
@@ -3178,7 +3211,7 @@ function submitOrder(){
 function orderParty(name){
   if(/KYC/.test(name)) return '我 / 合规';
   if(/签字|签署/.test(name)) return '我 / 平台';
-  if(/提交|填写|信息核对|确认接任/.test(name)) return '我';
+  if(/提交|填写|补充|信息核对|确认接任/.test(name)) return '我';
   if(/顾问|报价|看房|看位|对接/.test(name)) return '顾问';
   return '平台';
 }
@@ -3187,7 +3220,7 @@ function buildServiceOrderNodes(s){
   if(s&&s.kycRequired&&!process.some(function(name){ return /KYC/.test(name); })){
     var insertAt=process.length;
     for(var i=0;i<process.length;i++){
-      if(/提交|信息核对|确认接任/.test(process[i])){ insertAt=i+1; break; }
+      if(/提交|填写|补充|信息核对|确认接任/.test(process[i])){ insertAt=i+1; break; }
       if(/^(下单|支付)/.test(process[i])) insertAt=i+1;
     }
     process.splice(insertAt,0,'KYC 认证');
@@ -3270,9 +3303,14 @@ function renderOrders(){
   var box = document.getElementById('orders-list'); if(!box) return;
   var list = ordFilter==='all' ? ORDERS : ORDERS.filter(function(o){ return o.status===ordFilter; });
   if(!list.length){ box.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text3)"><i class="ti ti-clipboard-off" style="font-size:32px"></i><div style="margin-top:8px;font-size:13px">暂无订单</div></div>'; return; }
-  // 按公司维度分组（保持出现顺序）
+  // 需公司商品按公司维度分组；无需公司商品统一归入“其他服务”
   var groups = [], idx = {};
-  list.forEach(function(o){ if(!(o.company in idx)){ idx[o.company]=groups.length; groups.push({company:o.company, orders:[]}); } groups[idx[o.company]].orders.push(o); });
+  list.forEach(function(o){
+    var companyRequired=o.companyRequired!==false;
+    var groupName=companyRequired?o.company:'其他服务';
+    if(!(groupName in idx)){ idx[groupName]=groups.length; groups.push({company:groupName,companyRequired:companyRequired,orders:[]}); }
+    groups[idx[groupName]].orders.push(o);
+  });
   box.innerHTML = groups.map(function(g){
     var rows = g.orders.map(function(o){
       var cv = COLOR_VAR[o.color]||COLOR_VAR.accent;
@@ -3286,7 +3324,7 @@ function renderOrders(){
         + '<i class="ti ti-chevron-right" style="color:var(--text4);font-size:16px;flex-shrink:0;margin-left:2px"></i></div>';
     }).join('');
     return '<div class="ord-company">'
-      + '<div class="ord-company-hd"><i class="ti ti-building" style="color:var(--accent-d);font-size:16px"></i><span style="flex:1;font-weight:700;font-size:14px">'+g.company+'</span><span style="font-size:11px;color:var(--text3)">'+g.orders.length+' 个订单</span></div>'
+      + '<div class="ord-company-hd"><i class="ti '+(g.companyRequired?'ti-building':'ti-packages')+'" style="color:var(--accent-d);font-size:16px"></i><span style="flex:1;font-weight:700;font-size:14px">'+g.company+'</span><span style="font-size:11px;color:var(--text3)">'+g.orders.length+' 个订单</span></div>'
       + rows + '</div>';
   }).join('');
 }
@@ -3357,12 +3395,16 @@ function openOrderDetail(no){
   var curName = o.status==='已取消' ? '已取消'
     : (firstUndone<0 ? (nodes.length ? nodes[nodes.length-1].name : '—') : nodes[firstUndone].name);
   var curStep = firstUndone<0 ? total : firstUndone+1;
+  var headTitle=o.companyRequired===false?o.service:o.company;
+  var headMeta=o.companyRequired===false
+    ? o.no+' · 口令码 '+o.channel
+    : o.service+' · '+o.no+' · 口令码 '+o.channel;
   // 头部
   document.getElementById('od-head').innerHTML =
       '<div style="display:flex;justify-content:space-between;align-items:center">'
-    +   '<div style="font-weight:700;font-size:15.5px">'+o.company+'</div>'
+    +   '<div style="font-weight:700;font-size:15.5px">'+headTitle+'</div>'
     +   '<span class="tag '+(ORD_STATUS[o.status]||"t-gray")+'">'+o.status+'</span></div>'
-    + '<div style="font-size:12px;color:var(--text3);margin-top:3px">'+o.service+' · '+o.no+' · 口令码 '+o.channel+'</div>';
+    + '<div style="font-size:12px;color:var(--text3);margin-top:3px">'+headMeta+'</div>';
   // 豆腐块：所在阶段 + 办理进度
   document.getElementById('od-tofu').innerHTML =
       '<div class="tofu"><div class="tofu-l">当前阶段</div><div class="tofu-v">'+curName+'</div><div class="tofu-s">第 '+curStep+' / '+total+' 步</div></div>'
