@@ -122,9 +122,19 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue'
 .brand-trust-card{display:flex;align-items:center;gap:12px;padding:13px 12px;border:1px solid #D9E8DC;border-radius:12px;background:rgba(255,255,255,.92);box-shadow:0 3px 12px rgba(42,91,60,.05)}
 .brand-trust-icon{width:42px;height:42px;border-radius:12px;background:#E2F0E6;color:#34764D;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .brand-trust-icon i{font-size:21px}
+.brand-trust-icon.spn{width:42px;height:42px;background:#E2F0E6;color:#34764D}
+.amazon-spn-mark{display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;text-transform:none}
+.amazon-word{font-size:7px;font-weight:800;letter-spacing:-.25px;color:#244E35}
+.amazon-smile{width:22px;height:4px;margin-top:-1px;border-bottom:1.5px solid #F29D1F;border-radius:0 0 50% 50%;transform:rotate(-2deg)}
+.amazon-spn-word{font-size:7px;font-weight:800;letter-spacing:1.2px;color:#34764D;margin-top:2px;margin-left:1.2px}
 .brand-trust-copy{flex:1;min-width:0}
 .brand-trust-name{color:#244E35;font-size:13.5px;font-weight:700;line-height:1.45}
-.brand-trust-desc{color:#69776E;font-size:11.5px;line-height:1.6;margin-top:3px}
+.brand-reasons{display:flex;flex-direction:column;padding:4px 14px;background:linear-gradient(145deg,#EDF6EF 0%,#F8FBF8 100%);border:1px solid #CEE1D2;border-radius:16px;margin-bottom:14px;box-shadow:0 8px 24px rgba(38,92,60,.08)}
+.brand-reason{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #D9E8DC}
+.brand-reason:last-child{border-bottom:0}
+.brand-reason-icon{width:36px;height:36px;border-radius:10px;background:#fff;color:#34764D;border:1px solid #D9E8DC;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 8px rgba(42,91,60,.05)}
+.brand-reason-icon i{font-size:18px}
+.brand-reason-name{color:#244E35;font-size:13.5px;font-weight:650;line-height:1.45}
 
 /* progress order card */
 .prog{display:flex;align-items:center;gap:5px;margin-top:11px}
@@ -459,21 +469,20 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
               <div class="brand-trust-icon"><i class="ti ti-certificate"></i></div>
               <div class="brand-trust-copy">
                 <div class="brand-trust-name">香港持牌秘书公司</div>
-                <div class="brand-trust-desc">持有香港信托及公司服务提供商牌照，牌照号 TC10988，公开可查。</div>
               </div>
             </div>
             <div class="brand-trust-card">
               <div class="brand-trust-icon"><i class="ti ti-building-skyscraper"></i></div>
               <div class="brand-trust-copy">
                 <div class="brand-trust-name">香港上市公司物业</div>
-                <div class="brand-trust-desc">注册地址真实可验，非虚拟信箱，经得起银行与政府核查。</div>
               </div>
             </div>
             <div class="brand-trust-card">
-              <div class="brand-trust-icon"><i class="ti ti-brand-amazon"></i></div>
+              <div class="brand-trust-icon spn" aria-label="Amazon SPN">
+                <span class="amazon-spn-mark"><span class="amazon-word">amazon</span><span class="amazon-smile"></span><span class="amazon-spn-word">SPN</span></span>
+              </div>
               <div class="brand-trust-copy">
                 <div class="brand-trust-name">亚马逊 SPN 官方认证服务商</div>
-                <div class="brand-trust-desc">进入亚马逊服务商网络，跨境电商客群天然对接。</div>
               </div>
             </div>
           </div>
@@ -523,22 +532,22 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
 
         <!-- 为什么选我们 -->
         <div class="sec-t">为什么选 Leapex 利柏思</div>
-        <div style="background:linear-gradient(135deg,#1C1B19,#2C2722);border-radius:14px;padding:4px 16px;margin-bottom:14px">
-          <div style="display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.07)">
-            <div style="width:36px;height:36px;border-radius:9px;background:rgba(212,168,83,.15);color:#D4A853;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-license" style="font-size:18px"></i></div>
-            <div style="flex:1"><div style="color:#fff;font-weight:600;font-size:13.5px">香港持牌 TCSP</div></div>
+        <div class="brand-reasons">
+          <div class="brand-reason">
+            <div class="brand-reason-icon"><i class="ti ti-license"></i></div>
+            <div class="brand-reason-name">香港持牌 TCSP</div>
           </div>
-          <div style="display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.07)">
-            <div style="width:36px;height:36px;border-radius:9px;background:rgba(212,168,83,.15);color:#D4A853;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-map-pin" style="font-size:18px"></i></div>
-            <div style="flex:1"><div style="color:#fff;font-weight:600;font-size:13.5px">一手注册地址</div></div>
+          <div class="brand-reason">
+            <div class="brand-reason-icon"><i class="ti ti-map-pin"></i></div>
+            <div class="brand-reason-name">一手注册地址</div>
           </div>
-          <div style="display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.07)">
-            <div style="width:36px;height:36px;border-radius:9px;background:rgba(212,168,83,.15);color:#D4A853;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-route" style="font-size:18px"></i></div>
-            <div style="flex:1"><div style="color:#fff;font-weight:600;font-size:13.5px">全链路自营履约</div></div>
+          <div class="brand-reason">
+            <div class="brand-reason-icon"><i class="ti ti-route"></i></div>
+            <div class="brand-reason-name">全链路自营履约</div>
           </div>
-          <div style="display:flex;align-items:center;gap:12px;padding:13px 0">
-            <div style="width:36px;height:36px;border-radius:9px;background:rgba(212,168,83,.15);color:#D4A853;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-eye-check" style="font-size:18px"></i></div>
-            <div style="flex:1"><div style="color:#fff;font-weight:600;font-size:13.5px">进度全程可见</div></div>
+          <div class="brand-reason">
+            <div class="brand-reason-icon"><i class="ti ti-eye-check"></i></div>
+            <div class="brand-reason-name">进度全程可见</div>
           </div>
         </div>
 
