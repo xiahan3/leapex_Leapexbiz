@@ -135,6 +135,21 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue'
 .brand-reason-icon{width:36px;height:36px;border-radius:10px;background:#fff;color:#34764D;border:1px solid #D9E8DC;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 8px rgba(42,91,60,.05)}
 .brand-reason-icon i{font-size:18px}
 .brand-reason-name{color:#244E35;font-size:13.5px;font-weight:650;line-height:1.45}
+.profile-entry{cursor:pointer;transition:transform .16s,box-shadow .16s}
+.profile-entry:active{transform:scale(.99);box-shadow:none}
+.profile-page{min-height:100%;display:flex;flex-direction:column;padding:12px 14px 14px}
+.profile-hero{display:flex;flex-direction:column;align-items:center;text-align:center;padding:20px 16px 18px;margin-bottom:12px}
+.profile-avatar{width:66px;height:66px;border-radius:50%;background:linear-gradient(135deg,#1A1A1A,#A94E30);color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:750;box-shadow:0 7px 18px rgba(169,78,48,.2)}
+.profile-form{padding:4px 14px 14px;margin-bottom:0}
+.profile-field{padding:13px 0;border-bottom:1px solid var(--line)}
+.profile-field:last-of-type{border-bottom:0}
+.profile-field-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;font-size:13px;font-weight:600;color:var(--text2)}
+.profile-field-head span{font-size:10.5px;font-weight:500;color:var(--text3)}
+.profile-readonly{background:var(--bg2);color:var(--text2);cursor:not-allowed}
+.profile-save{margin-top:14px}
+.profile-logout-wrap{position:sticky;bottom:0;margin-top:auto;padding:40px 0 2px;background:linear-gradient(to bottom,rgba(245,245,242,0),var(--bg) 38%)}
+.profile-logout{background:#fff;color:var(--red);border-color:rgba(217,58,58,.32);box-shadow:0 5px 18px rgba(88,35,35,.08)}
+.profile-logout:active{background:var(--red-bg)}
 
 /* progress order card */
 .prog{display:flex;align-items:center;gap:5px;margin-top:11px}
@@ -1745,10 +1760,14 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
     <!-- ════════ ME ════════ -->
     <div class="screen" id="s-me" data-title="我的" data-tab="me2">
       <div class="body-pad">
-        <div class="card card-pad" style="display:flex;align-items:center;gap:13px">
+        <div class="card card-pad profile-entry" style="display:flex;align-items:center;gap:13px" onclick="openProfile()">
           <div style="width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#1A1A1A,#A94E30);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700">陳</div>
-          <div style="flex:1"><div style="font-size:16px;font-weight:700">陳大文 Andy Chan</div><div class="note" style="margin-top:2px">taiman@example.hk · 口令码 LEX888</div></div>
-          <span class="tag t-green">KYC 已认证</span>
+          <div style="flex:1;min-width:0">
+            <div style="font-size:16px;font-weight:700">陳大文 Andy Chan</div>
+            <div class="note" style="margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis"><span id="me-profile-phone">+86 138 0013 8000</span> · <span id="me-profile-email">taiman@example.hk</span></div>
+            <div style="display:flex;gap:5px;margin-top:6px"><span class="tag t-green">KYC 已认证</span><span class="tag t-gray">LEX888</span></div>
+          </div>
+          <span class="cell-arrow"><i class="ti ti-chevron-right"></i></span>
         </div>
         <div class="card" style="margin-top:12px">
           <div class="cell" onclick="go('s-mycompany')"><div class="cell-ic" style="background:var(--green-bg);color:var(--green-d)"><i class="ti ti-building"></i></div><div class="cell-main"><div class="cell-t">我的公司</div></div><span style="color:var(--text3);font-size:13px">2 家</span><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div>
@@ -1760,6 +1779,39 @@ select.input{cursor:pointer;-webkit-appearance:none;appearance:none;background-i
           <div class="cell" onclick="go('s-agreement')"><div class="cell-ic" style="background:var(--blue-bg);color:var(--blue)"><i class="ti ti-file-description"></i></div><div class="cell-main"><div class="cell-t">用户协议</div><div class="cell-d">服务条款 · 生效 2026-08-01</div></div><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div>
           <div class="cell" onclick="go('s-privacy')"><div class="cell-ic" style="background:var(--bg2);color:var(--text3)"><i class="ti ti-lock"></i></div><div class="cell-main"><div class="cell-t">隐私政策</div><div class="cell-d">个人信息保护 · PDPO / 个保法</div></div><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div>
           <div class="cell" onclick="go('s-brand')"><div class="cell-ic" style="background:var(--green-bg);color:var(--green-d)"><i class="ti ti-info-circle"></i></div><div class="cell-main"><div class="cell-t">关于 Leapex 利柏思</div><div class="cell-d">持牌 TCSP · 品牌与实力</div></div><span class="cell-arrow"><i class="ti ti-chevron-right"></i></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════ 个人信息 ════════ -->
+    <div class="screen" id="s-profile" data-title="个人信息" data-back="s-me">
+      <div class="profile-page">
+        <div>
+          <div class="card profile-hero">
+            <div class="profile-avatar">陳</div>
+            <div style="font-size:16px;font-weight:700;margin-top:10px">陳大文 Andy Chan</div>
+            <div class="note" style="margin-top:3px">账号资料</div>
+          </div>
+
+          <div class="card profile-form">
+            <div class="profile-field">
+              <div class="profile-field-head"><label for="profile-name">姓名</label><span><i class="ti ti-lock"></i> 不支持修改</span></div>
+              <input class="input profile-readonly" id="profile-name" value="陳大文 Andy Chan" readonly aria-readonly="true">
+            </div>
+            <div class="profile-field">
+              <div class="profile-field-head"><label for="profile-phone">手机号</label><span><i class="ti ti-lock"></i> 不支持修改</span></div>
+              <input class="input profile-readonly" id="profile-phone" type="tel" inputmode="tel" value="+86 138 0013 8000" readonly aria-readonly="true">
+            </div>
+            <div class="profile-field">
+              <div class="profile-field-head"><label for="profile-email">邮箱</label><span>可修改</span></div>
+              <input class="input" id="profile-email" type="email" inputmode="email" value="taiman@example.hk" placeholder="请输入邮箱">
+            </div>
+            <button class="btn profile-save" type="button" onclick="saveProfile()"><i class="ti ti-device-floppy"></i> 保存修改</button>
+          </div>
+        </div>
+
+        <div class="profile-logout-wrap">
+          <button class="btn profile-logout" type="button" onclick="logoutAccount()"><i class="ti ti-logout"></i> 退出登录</button>
         </div>
       </div>
     </div>
@@ -2445,6 +2497,57 @@ function spSkip(){
   _markRegistered(); hideOnboardingSheet(); _hideSplash(); go('s-home-new');
   toast('已跳过口令码');
 }
+
+/* ── 个人信息：姓名 / 手机号只读，仅邮箱可维护 ── */
+var PROFILE_DEFAULT={name:'陳大文 Andy Chan',phone:'+86 138 0013 8000',email:'taiman@example.hk'};
+function getProfileData(){
+  var data={name:PROFILE_DEFAULT.name,phone:PROFILE_DEFAULT.phone,email:PROFILE_DEFAULT.email};
+  try{
+    data.phone=localStorage.getItem('tcsp_profile_phone')||data.phone;
+    data.email=localStorage.getItem('tcsp_profile_email')||data.email;
+  }catch(e){}
+  return data;
+}
+function syncProfileSummary(data){
+  data=data||getProfileData();
+  var phone=document.getElementById('me-profile-phone'),email=document.getElementById('me-profile-email');
+  if(phone) phone.textContent=data.phone;
+  if(email) email.textContent=data.email;
+}
+function openProfile(){
+  var data=getProfileData();
+  var name=document.getElementById('profile-name'),phone=document.getElementById('profile-phone'),email=document.getElementById('profile-email');
+  if(name) name.value=data.name;
+  if(phone) phone.value=data.phone;
+  if(email) email.value=data.email;
+  syncProfileSummary(data);
+  go('s-profile');
+}
+function saveProfile(){
+  var phone=getProfileData().phone;
+  var email=(document.getElementById('profile-email').value||'').trim();
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ toast('请输入正确的邮箱'); return; }
+  try{
+    localStorage.setItem('tcsp_profile_email',email);
+  }catch(e){}
+  syncProfileSummary({name:PROFILE_DEFAULT.name,phone:phone,email:email});
+  toast('个人信息已保存');
+}
+function logoutAccount(){
+  try{
+    localStorage.removeItem('tcsp_logged_in');
+    localStorage.removeItem('tcsp_registered');
+    localStorage.removeItem('tcsp_persona');
+  }catch(e){}
+  PERSONA='new'; ONBOARD_LEGAL=false; histStack.length=0;
+  hideOnboardingSheet();
+  var code=document.getElementById('login-code'); if(code) code.value='';
+  var persona=document.getElementById('persona-ic'); if(persona) persona.textContent='新';
+  go('s-home-new',true);
+  document.getElementById('splash').classList.add('on');
+  toast('已退出登录');
+}
+syncProfileSummary();
 
 /* ── 我的公司：档案 + 新增 / 删除（订单中禁删）── */
 var MY_COMPANIES = [
