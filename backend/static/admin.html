@@ -141,6 +141,10 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
 .order-customer-preview .k{font-size:10px;color:var(--text3)}.order-customer-preview .v{font-size:11.5px;font-weight:600;margin-top:2px;word-break:break-word}
 .order-item-select{min-width:210px}.order-number{width:76px;text-align:right}.order-currency{font-size:10px;color:var(--text3);margin-left:3px}
 .req-dot{color:var(--red);margin-left:2px}.order-error{border-color:var(--red)!important;background:var(--red-bg)!important}
+.lead-service{font-weight:700;color:var(--text);margin-bottom:3px}.lead-service-meta{font-size:10.5px;color:var(--text3)}
+.lead-person{display:flex;align-items:flex-start;gap:9px;min-width:220px}.lead-avatar{width:32px;height:32px;border-radius:9px;background:var(--gold-bg);color:var(--gold);display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0}
+.lead-person b{font-size:12.5px}.lead-contact{font-size:10.5px;color:var(--text3);line-height:1.55;margin-top:2px}.lead-actions{display:flex;align-items:center;gap:6px;white-space:nowrap}
+.lead-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:14px}.lead-summary>div{padding:11px 12px;border:1px solid var(--line);border-radius:8px;background:#FAFAF8}.lead-summary .k{font-size:10.5px;color:var(--text3)}.lead-summary .v{font-size:12.5px;font-weight:700;margin-top:3px;word-break:break-word}
 /* 按节点面板（KYC / 注册 / 核名 通用） */
 .node-card{border:1px solid var(--line2);border-radius:9px;margin-bottom:11px;overflow:hidden;background:var(--card)}
 .node-hd{display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--bg2);border-bottom:1px solid var(--line)}
@@ -197,6 +201,7 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
 
       <div class="ng">03 · 订单管理</div>
       <div class="ni" data-p="orders" onclick="go(this)"><i class="ti ti-clipboard-list"></i>订单列表</div>
+      <div class="ni" data-p="leads" onclick="go(this)"><i class="ti ti-phone-call"></i>商业线索<span class="nb" id="lead-nav-badge">1</span></div>
       <div class="ni" data-p="bills" onclick="go(this)"><i class="ti ti-receipt"></i>账单 / 回单确认<span class="nb">4</span></div>
 
       <div class="ng">04 · 商品管理</div>
@@ -540,9 +545,27 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
           <thead><tr><th>订单号</th><th>客户</th><th>商品</th><th>渠道</th><th>金额</th><th>状态</th><th>创建时间</th><th></th></tr></thead>
           <tbody id="order-tb">
             <tr><td>ORD-2026-0188</td><td>陈大文</td><td>标准公司注册</td><td><span class="pill p-gold">AGT001</span></td><td>HKD 5,500</td><td><span class="pill p-blue">服务中</span></td><td>06-05</td><td><button class="btn btn-xs btn-p" onclick="openOrder('ORD-2026-0188')">查看详情</button></td></tr>
+            <tr><td>ORD-2026-0210</td><td>王志强</td><td>审计（含理账）</td><td><span class="pill p-gold">AGT002</span></td><td>HKD 18,000</td><td><span class="pill p-amber">待支付</span></td><td>08-08</td><td><button class="btn btn-xs btn-p" onclick="openOrder('ORD-2026-0210')">查看详情</button></td></tr>
             <tr><td>ORD-2026-0205</td><td>李美琪</td><td>年审服务</td><td><span class="pill p-gray">直营</span></td><td>HKD 2,800</td><td><span class="pill p-amber">待支付</span></td><td>06-08</td><td><button class="btn btn-xs btn-p" onclick="openOrder('ORD-2026-0205')">查看详情</button></td></tr>
             <tr><td>ORD-2026-0142</td><td>恒丰贸易</td><td>年审 + 董事变更</td><td><span class="pill p-gold">AGT001</span></td><td>HKD 2,300</td><td><span class="pill p-green">已完成</span></td><td>05-20</td><td><button class="btn btn-xs btn-p" onclick="openOrder('ORD-2026-0142')">查看详情</button></td></tr>
           </tbody>
+        </table></div>
+      </div>
+
+      <!-- ════ 商业线索 ════ -->
+      <div class="page" id="p-leads">
+        <div class="filters">
+          <span class="chip on" onclick="filterLeads(this,'全部')">全部 <b id="lead-count-all">0</b></span>
+          <span class="chip" onclick="filterLeads(this,'未处理')">未处理 <b id="lead-count-new">0</b></span>
+          <span class="chip" onclick="filterLeads(this,'已处理')">已处理 <b id="lead-count-done">0</b></span>
+          <span class="chip" onclick="filterLeads(this,'已生成订单')">已生成订单 <b id="lead-count-order">0</b></span>
+          <input class="inp" id="lead-search" placeholder="线索编号 / 客户 / 手机 / 服务" style="margin-left:auto;width:230px" oninput="renderLeads()">
+          <button class="btn btn-p" onclick="openNewLead()"><i class="ti ti-plus"></i>新增线索</button>
+        </div>
+        <div class="card cp" style="background:var(--blue-bg);border-color:var(--blue)"><div style="font-size:12px;color:var(--blue)"><i class="ti ti-info-circle"></i> 小程序中，客户对<b>面议商品</b>点击「预约沟通」后自动生成商业线索。运营人员完成跟进后可直接<b>生成订单</b>，客户与预约服务将自动带入「新增订单」。</div></div>
+        <div class="card" style="overflow-x:auto"><table style="min-width:1120px">
+          <thead><tr><th>线索编号</th><th>申请时间</th><th>预约服务</th><th>用户个人信息</th><th>来源</th><th>跟进运营</th><th>处理状态</th><th>操作</th></tr></thead>
+          <tbody id="lead-tb"></tbody>
         </table></div>
       </div>
 
@@ -648,20 +671,6 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
           </div>
         </div>
         <div class="card cp" style="background:var(--bg2)"><div style="font-size:12px;color:var(--text2)"><i class="ti ti-info-circle"></i> 结算只对<b>已完成</b>订单生效：订单状态变更为「已完成」后，该供应商的结算项才进入「订单结算」待结算列表。</div></div>
-      </div>
-
-      <!-- ════ 企微线索 ════ -->
-      <div class="page" id="p-leads">
-        <div class="filters"><span class="chip on">待跟进 9</span><span class="chip">跟进中</span><span class="chip">已转化</span><span class="chip">关闭</span></div>
-        <div class="card"><table>
-          <thead><tr><th>客户</th><th>来源</th><th>意向服务</th><th>状态</th><th>负责顾问</th><th>时间</th><th></th></tr></thead>
-          <tbody>
-            <tr><td>王先生</td><td><span class="pill p-gold">下单确认页</span></td><td>标准注册套餐</td><td><span class="pill p-amber">待跟进</span></td><td>—</td><td>13:42</td><td><button class="btn btn-xs btn-p">分配跟进</button></td></tr>
-            <tr><td>李女士</td><td><span class="pill p-blue">服务详情</span></td><td>香港移民</td><td><span class="pill p-blue">跟进中</span></td><td>陈顾问</td><td>11:20</td><td><button class="btn btn-xs">记录</button></td></tr>
-            <tr><td>赵总</td><td><span class="pill p-purple">合作方服务</span></td><td>办公租赁</td><td><span class="pill p-green">已转化</span></td><td>陈顾问</td><td>昨天</td><td><button class="btn btn-xs">详情</button></td></tr>
-          </tbody>
-        </table></div>
-        <div class="card cp" style="background:var(--blue-bg);border-color:var(--blue)"><div style="font-size:12px;color:var(--blue)"><i class="ti ti-headset"></i> 小程序「问顾问 / 预约咨询」按来源（服务详情 / 下单确认 / 悬浮 / 合作方）埋点进线索池，用于定位最佳承接时点与转化分析。</div></div>
       </div>
 
       <!-- ════ 合规与审计 ════ -->
@@ -1249,6 +1258,46 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
   </div>
 </div>
 
+<!-- 新增商业线索 Modal -->
+<div class="mask" id="m-lead-create" onclick="if(event.target===this)closeM('m-lead-create')">
+  <div class="modal" style="max-width:680px">
+    <div class="mh"><div><b style="font-size:14px">新增商业线索</b><div style="font-size:11px;color:var(--text3)">补录电话、微信或线下渠道收到的面议服务预约</div></div><button class="x" onclick="closeM('m-lead-create')">×</button></div>
+    <div class="mb">
+      <div class="form-grid">
+        <div><label class="flbl">预约服务<span class="req-dot">*</span></label><select class="inp" id="lead-new-service"></select></div>
+        <div><label class="flbl">申请时间<span class="req-dot">*</span></label><input class="inp" id="lead-new-time" type="datetime-local"></div>
+        <div><label class="flbl">客户姓名<span class="req-dot">*</span></label><input class="inp" id="lead-new-name" placeholder="请输入姓名"></div>
+        <div><label class="flbl">手机号<span class="req-dot">*</span></label><input class="inp" id="lead-new-phone" placeholder="如：+86 138 0000 0000"></div>
+        <div><label class="flbl">邮箱</label><input class="inp" id="lead-new-email" type="email" placeholder="用于发送报价与订单通知"></div>
+        <div><label class="flbl">微信号</label><input class="inp" id="lead-new-wechat" placeholder="选填"></div>
+        <div><label class="flbl">线索来源</label><select class="inp" id="lead-new-source"><option>运营后台新增</option><option>电话咨询</option><option>微信咨询</option><option>线下活动</option><option>渠道转介</option></select></div>
+        <div><label class="flbl">跟进运营</label><select class="inp" id="lead-new-owner"><option value="">暂不分配</option><option>王倩</option><option>李昊</option><option>陈妍</option></select></div>
+        <div class="full"><label class="flbl">客户需求 / 备注信息</label><textarea class="inp" id="lead-new-note" rows="4" placeholder="记录沟通诉求、预算、计划办理时间等，仅后台可见" style="resize:vertical"></textarea></div>
+      </div>
+    </div>
+    <div class="mf"><button class="btn" onclick="closeM('m-lead-create')">取消</button><button class="btn btn-p" onclick="createLead()"><i class="ti ti-check"></i>保存线索</button></div>
+  </div>
+</div>
+
+<!-- 商业线索详情 Modal -->
+<div class="mask" id="m-lead" onclick="if(event.target===this)closeM('m-lead')">
+  <div class="modal" style="max-width:700px">
+    <div class="mh"><div><b style="font-size:14px" id="lead-detail-title">商业线索</b><div style="font-size:11px;color:var(--text3)" id="lead-detail-sub"></div></div><button class="x" onclick="closeM('m-lead')">×</button></div>
+    <div class="mb">
+      <div class="lead-summary" id="lead-detail-summary"></div>
+      <div class="order-sec-title"><i class="ti ti-user"></i>用户个人信息</div>
+      <div class="card cp"><div class="order-kv-grid" id="lead-detail-person"></div></div>
+      <div class="order-sec-title"><i class="ti ti-message-dots"></i>运营跟进</div>
+      <div class="form-grid">
+        <div><label class="flbl">跟进运营</label><select class="inp" id="lead-detail-owner"><option value="">暂不分配</option><option>王倩</option><option>李昊</option><option>陈妍</option></select></div>
+        <div><label class="flbl">处理状态</label><div id="lead-detail-status" style="padding-top:7px"></div></div>
+        <div class="full"><label class="flbl">跟进记录</label><textarea class="inp" id="lead-detail-note" rows="4" placeholder="记录客户诉求、沟通结果和下一步计划" style="resize:vertical"></textarea></div>
+      </div>
+    </div>
+    <div class="mf" id="lead-detail-actions"></div>
+  </div>
+</div>
+
 <!-- 新增订单 Modal -->
 <div class="mask" id="m-order-create" onclick="if(event.target===this)closeM('m-order-create')">
   <div class="modal" style="max-width:900px">
@@ -1273,7 +1322,7 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
       <div class="form-grid" style="margin-bottom:13px">
         <div class="full"><label class="flbl">调价原因<span style="font-weight:400;color:var(--text3)">（成交价与标准价不一致时必填）</span></label><textarea class="inp" id="no-price-reason" rows="2" placeholder="如：线下协商价、历史客户优惠、组合服务折扣" style="resize:vertical"></textarea></div>
         <div><label class="flbl">支付期限</label><select class="inp" id="no-pay-deadline"><option>创建后 24 小时</option><option>创建后 3 天</option><option>创建后 7 天</option><option>不设期限</option></select></div>
-        <div><label class="flbl">订单来源</label><select class="inp" id="no-source"><option>运营后台代客下单</option><option>线下签约转订单</option><option>渠道客户补录</option></select></div>
+        <div><label class="flbl">订单来源</label><select class="inp" id="no-source"><option>运营后台代客下单</option><option>商业线索转订单</option><option>线下签约转订单</option><option>渠道客户补录</option></select></div>
         <div class="full"><label class="flbl">内部备注</label><textarea class="inp" id="no-remark" rows="2" placeholder="仅后台可见，不向客户展示" style="resize:vertical"></textarea></div>
       </div>
 
@@ -1776,7 +1825,7 @@ function go(el){
   var p=el.dataset.p;
   document.querySelectorAll('.page').forEach(pg=>pg.classList.remove('on'));
   document.getElementById('p-'+p).classList.add('on');
-  var meta={dash:['数据驾驶舱','实时运营总览'],supplierwt:['供应商工作台','供应商自助：分配订单 / 更新进度 / 结算对账（不在线结算）'],partner:['渠道商工作台','渠道商自助：归属订单 / 佣金对账（不在线结算）'],customers:['客户信息管理','客户档案与画像'],companies:['客户公司管理','法人主体 / CI·BR / SCR / 年审'],kyc:['KYC 审核','AMLO 尽职调查 · 客户身份 / 地址 / 业务资料核对'],register:['注册公司','公司注册服务执行 · 维护进度 / 资料'],'svc-annual':['年审服务','法定秘书 + 注册地址 + 周年申报 NAR1（注册处·42 天内）'],'svc-acct':['记账报税','审计（含理账）+ 利得税 PTR / 薪俸税 IR56 / 个税 BIR60（IRD）'],'svc-addr':['地址租赁','独立地址 6000/年 · 工位 3000/月 · 办公室面议（达利直签）'],'chg-address':['地址变更','NR1 · 关键信息 → 线下备表 → 文件签字 → 递交'],'chg-director':['董事变更','ND2A · 关键信息 + 新董事 KYC → 线下备表 → 文件签字'],'chg-secretary':['变更秘书','ND2A · 秘书部分 Leapex 利柏思 填 → 文件签字 → 递交'],'chg-rename':['公司更名','NNC2 · 先付费后查名 → 备 NNC2 + 决议 → 文件签字'],'chg-transfer':['股份转让','转让文书 + 印花税 0.2% · 作价估值 → 缴印花 → 更新名册'],'chg-deregister':['公司注销','NDR1 + IR1263 不反对通知书 · 宪报公告约 8 个月'],namecheck:['核名&商标','人工核名（繁体/英文）+ 商标查询 · 无智能预检'],'svc-tm':['商标办理','商标注册 IPD（宪报公告 3 个月）/ 续期（每 10 年）'],orders:['订单列表','商品 / 支付信息分区 · 支持后台新增订单'],bills:['账单 / 回单确认','服务人员核验回单 · 确认付款 / 未收到付款（不含退款·重开）'],products:['商品','商品目录 · 基础信息 + 价格与本位币'],coupons:['卡券','卡券模板 + 发放 + 核销统计（承接小程序优惠券）'],messages:['消息','消息模板 + 小程序页面路由 + 发送记录'],supplier:['供应商管理','超管新增 · 支持服务 + 结算规则'],assign:['订单分配','派单给供应商履约'],suppliersettle:['订单结算','已完成订单 → 供应商结算（线下）'],channel:['渠道商管理','超管新增 · 口令码 + 佣金（弹窗配置）'],'chanapply':['渠道商申请审核','待审核 → 待签约 / 签约过期 → 已签约 / 已驳回'],commission:['佣金结算','已完成订单 → 渠道返点（线下）'],rbac:['员工和角色','RBAC 7 角色 + 自定义'],menuperm:['菜单权限','角色 × 菜单可见性配置'],compliance:['合规与审计','制裁 / SCR / 哈希链'],config:['系统参数','时效 / 额度 / 税率']};
+  var meta={dash:['数据驾驶舱','实时运营总览'],supplierwt:['供应商工作台','供应商自助：分配订单 / 更新进度 / 结算对账（不在线结算）'],partner:['渠道商工作台','渠道商自助：归属订单 / 佣金对账（不在线结算）'],customers:['客户信息管理','客户档案与画像'],companies:['客户公司管理','法人主体 / CI·BR / SCR / 年审'],kyc:['KYC 审核','AMLO 尽职调查 · 客户身份 / 地址 / 业务资料核对'],register:['注册公司','公司注册服务执行 · 维护进度 / 资料'],'svc-annual':['年审服务','法定秘书 + 注册地址 + 周年申报 NAR1（注册处·42 天内）'],'svc-acct':['记账报税','审计（含理账）+ 利得税 PTR / 薪俸税 IR56 / 个税 BIR60（IRD）'],'svc-addr':['地址租赁','独立地址 6000/年 · 工位 3000/月 · 办公室面议（达利直签）'],'chg-address':['地址变更','NR1 · 关键信息 → 线下备表 → 文件签字 → 递交'],'chg-director':['董事变更','ND2A · 关键信息 + 新董事 KYC → 线下备表 → 文件签字'],'chg-secretary':['变更秘书','ND2A · 秘书部分 Leapex 利柏思 填 → 文件签字 → 递交'],'chg-rename':['公司更名','NNC2 · 先付费后查名 → 备 NNC2 + 决议 → 文件签字'],'chg-transfer':['股份转让','转让文书 + 印花税 0.2% · 作价估值 → 缴印花 → 更新名册'],'chg-deregister':['公司注销','NDR1 + IR1263 不反对通知书 · 宪报公告约 8 个月'],namecheck:['核名&商标','人工核名（繁体/英文）+ 商标查询 · 无智能预检'],'svc-tm':['商标办理','商标注册 IPD（宪报公告 3 个月）/ 续期（每 10 年）'],orders:['订单列表','商品 / 支付信息分区 · 支持后台新增订单'],leads:['商业线索','面议服务预约 · 运营跟进 · 生成订单'],bills:['账单 / 回单确认','服务人员核验回单 · 确认付款 / 未收到付款（不含退款·重开）'],products:['商品','商品目录 · 基础信息 + 价格与本位币'],coupons:['卡券','卡券模板 + 发放 + 核销统计（承接小程序优惠券）'],messages:['消息','消息模板 + 小程序页面路由 + 发送记录'],supplier:['供应商管理','超管新增 · 支持服务 + 结算规则'],assign:['订单分配','派单给供应商履约'],suppliersettle:['订单结算','已完成订单 → 供应商结算（线下）'],channel:['渠道商管理','超管新增 · 口令码 + 佣金（弹窗配置）'],'chanapply':['渠道商申请审核','待审核 → 待签约 / 签约过期 → 已签约 / 已驳回'],commission:['佣金结算','已完成订单 → 渠道返点（线下）'],rbac:['员工和角色','RBAC 7 角色 + 自定义'],menuperm:['菜单权限','角色 × 菜单可见性配置'],compliance:['合规与审计','制裁 / SCR / 哈希链'],config:['系统参数','时效 / 额度 / 税率']};
   var m=meta[p]||['',''];document.getElementById('pt').textContent=m[0];document.getElementById('ps').textContent=m[1];
   document.querySelector('.content').scrollTop=0;
 }
@@ -1899,18 +1948,32 @@ var ORDER_CATALOG=[
   {id:'P005',sku:'HK-ADDR',name:'独立注册地址',spec:'租约 + 厘印税单 + 水电单',hkd:6000,cny:5400},
   {id:'P006',sku:'HK-TM-REG',name:'商标注册申请',spec:'IPD · 单类别',hkd:3311,cny:2980},
   {id:'P007',sku:'HK-RENAME',name:'公司更名',spec:'NNC2 + 决议 + 新印章',hkd:1667,cny:1500},
-  {id:'P008',sku:'HK-AUDIT',name:'审计（含理账）',spec:'按业务规模人工报价',hkd:0,cny:0}
+  {id:'P008',sku:'HK-AUDIT',name:'审计（含理账）',spec:'按业务规模人工报价',hkd:0,cny:0},
+  {id:'P009',sku:'HK-DESK',name:'工位租赁',spec:'实体工位 · 按需求报价',hkd:0,cny:0},
+  {id:'P010',sku:'HK-OFFICE',name:'独立办公室租赁',spec:'甲级物业 · 按面积与楼层报价',hkd:0,cny:0},
+  {id:'P011',sku:'HK-SHARE-CHG',name:'股份转让（股东变更）',spec:'转股文书 + 印花税核算',hkd:0,cny:0},
+  {id:'P012',sku:'HK-DEREG',name:'公司注销（撤销注册）',spec:'IR1263 + NDR1',hkd:0,cny:0}
 ];
 var ORDER_DATA={
   'ORD-2026-0188':{customer:'陈大文',channel:'AGT001',status:'服务中',created:'2026-06-05 14:22',currency:'HKD',priceReason:'渠道客户线下协商价',items:[{sku:'HK-REG-STD',name:'新设香港本地有限公司',spec:'标准注册 · 香港',standard:5533,price:5500,qty:1}],payment:{paid:5500,status:'已支付',method:'微信支付',billNo:'LEA-2026-0188-1',txnNo:'WX2026060810185533',time:'2026-06-08 10:18',payee:'TimeLeap Technology (Hong Kong) Limited'}},
+  'ORD-2026-0210':{customer:'王志强',channel:'AGT002',status:'待支付',created:'2026-08-08 16:40',currency:'HKD',priceReason:'商业线索沟通后确认审计报价',items:[{sku:'HK-AUDIT',name:'审计（含理账）',spec:'按业务规模人工报价',standard:0,price:18000,qty:1}],payment:{paid:0,status:'待支付',method:'—',billNo:'LEA-2026-0210-1',txnNo:'—',time:'—',payee:'TimeLeap Technology (Hong Kong) Limited'}},
   'ORD-2026-0205':{customer:'李美琪',channel:'直营',status:'待支付',created:'2026-06-08 09:16',currency:'HKD',priceReason:'老客户续费优惠',items:[{sku:'HK-ANNUAL',name:'年审服务',spec:'秘书 + 地址 + NAR1',standard:4422,price:2800,qty:1}],payment:{paid:0,status:'待支付',method:'—',billNo:'LEA-2026-0205-1',txnNo:'—',time:'—',payee:'TimeLeap Technology (Hong Kong) Limited'}},
   'ORD-2026-0142':{customer:'恒丰贸易',channel:'AGT001',status:'已完成',created:'2026-05-20 16:42',currency:'HKD',priceReason:'组合服务协议价',items:[{sku:'HK-ANNUAL',name:'年审服务',spec:'秘书 + 地址 + NAR1',standard:4422,price:2000,qty:1},{sku:'HK-DIR-CHG',name:'董事变更',spec:'ND2A / ND4',standard:333,price:300,qty:1}],payment:{paid:2300,status:'已支付',method:'银行转账',billNo:'LEA-2026-0142-2',txnNo:'FPS202605201642',time:'2026-05-20 16:42',payee:'TimeLeap Technology (Hong Kong) Limited'}},
   'ORD-2026-0143':{customer:'王志强',channel:'AGT002',status:'待支付',created:'2026-08-03 10:20',currency:'HKD',priceReason:'',items:[{sku:'HK-DIR-CHG',name:'董事变更',spec:'ND2A / ND4',standard:333,price:333,qty:1}],payment:{paid:0,status:'待支付',method:'—',billNo:'LEA-2026-0143-1',txnNo:'—',time:'—',payee:'TimeLeap Technology (Hong Kong) Limited'}}
 };
 var NEW_ORDER_ITEMS=[];
 var NEW_ORDER_CURRENCY='HKD';
+var NEW_ORDER_CONTEXT={};
 var ORDER_SEQ=211;
 var CURRENT_ADMIN_ORDER='';
+var LEAD_FILTER='全部';
+var LEAD_SEQ=91;
+var CURRENT_LEAD='';
+var LEAD_DATA=[
+  {id:'CL-2026-0090',applied:'2026-08-12 10:32',serviceId:'P010',customerId:'C004',wechat:'qian_hk',source:'小程序预约沟通',owner:'',status:'未处理',note:'希望在中环附近租用 4–6 人独立办公室，计划 9 月起租。',orderId:''},
+  {id:'CL-2026-0089',applied:'2026-08-11 15:18',serviceId:'P009',customerId:'C002',wechat:'marylee88',source:'小程序预约沟通',owner:'王倩',status:'已处理',note:'已电话沟通，需要 2 个实体工位，等待客户确认到港时间。',orderId:''},
+  {id:'CL-2026-0088',applied:'2026-08-08 09:46',serviceId:'P008',customerId:'C003',wechat:'wzq_fortune',source:'小程序预约沟通',owner:'李昊',status:'已生成订单',note:'已收集上年度账目规模，协商报价 HKD 18,000。',orderId:'ORD-2026-0210'}
+];
 function orderNum(v){return Number(v||0).toLocaleString('en-US',{maximumFractionDigits:2});}
 function orderMoney(v,currency){return (currency||'HKD')+' '+orderNum(v);}
 function orderAdjustMoney(v,currency){return (v>0?'+ ':v<0?'- ':'')+(currency||'HKD')+' '+orderNum(Math.abs(v));}
@@ -1919,14 +1982,68 @@ function orderCustomer(id){return ORDER_CUSTOMERS.find(function(x){return x.id==
 function orderProduct(id){return ORDER_CATALOG.find(function(x){return x.id===id;})||ORDER_CATALOG[0];}
 function orderStandard(p,currency){return Number(currency==='CNY'?p.cny:p.hkd)||0;}
 function setOrderText(id,value){var e=document.getElementById(id);if(e)e.textContent=value;}
-function openNewOrder(){
+function leadById(id){return LEAD_DATA.find(function(x){return x.id===id;});}
+function leadStatusClass(s){return {'未处理':'p-amber','已处理':'p-blue','已生成订单':'p-green'}[s]||'p-gray';}
+function leadInitial(name){return String(name||'客').trim().slice(0,1);}
+function renderLeads(){
+  var tb=document.getElementById('lead-tb');if(!tb)return;
+  var q=((document.getElementById('lead-search')||{}).value||'').trim().toLowerCase();
+  var rows=LEAD_DATA.filter(function(l){
+    var c=orderCustomer(l.customerId),p=orderProduct(l.serviceId),hit=[l.id,c.name,c.phone,c.email,p.name,l.source,l.owner].join(' ').toLowerCase().indexOf(q)>=0;
+    return (!LEAD_FILTER||LEAD_FILTER==='全部'||l.status===LEAD_FILTER)&&hit;
+  });
+  tb.innerHTML=rows.map(function(l){
+    var c=orderCustomer(l.customerId),p=orderProduct(l.serviceId),owner=l.owner?escMsg(l.owner):'<span class="pill p-gray">未分配</span>',actions='';
+    if(l.status==='已生成订单')actions='<button class="btn btn-xs btn-p" onclick="viewLeadOrder(\''+l.id+'\')"><i class="ti ti-clipboard-list"></i>查看订单</button>';
+    else actions='<button class="btn btn-xs" onclick="openLead(\''+l.id+'\')">查看 / 跟进</button><button class="btn btn-xs btn-p" onclick="leadToOrder(\''+l.id+'\')">生成订单</button>';
+    return '<tr><td><b>'+escMsg(l.id)+'</b></td><td style="white-space:nowrap">'+escMsg(l.applied)+'</td>'
+      +'<td><div class="lead-service">'+escMsg(p.name)+'</div><div class="lead-service-meta">'+escMsg(p.spec)+'</div></td>'
+      +'<td><div class="lead-person"><div class="lead-avatar">'+escMsg(leadInitial(c.name))+'</div><div><b>'+escMsg(c.name)+'</b><div class="lead-contact">'+escMsg(c.phone)+'<br>'+escMsg(c.email||'未填写邮箱')+'</div></div></div></td>'
+      +'<td>'+escMsg(l.source)+'</td><td>'+owner+'</td><td><span class="pill '+leadStatusClass(l.status)+'">'+escMsg(l.status)+'</span>'+(l.orderId?'<div class="lead-service-meta" style="margin-top:4px">'+escMsg(l.orderId)+'</div>':'')+'</td><td><div class="lead-actions">'+actions+'</div></td></tr>';
+  }).join('')||'<tr><td colspan="8" style="text-align:center;padding:32px;color:var(--text3)">暂无符合条件的商业线索</td></tr>';
+  var counts={all:LEAD_DATA.length,new:LEAD_DATA.filter(function(x){return x.status==='未处理';}).length,done:LEAD_DATA.filter(function(x){return x.status==='已处理';}).length,order:LEAD_DATA.filter(function(x){return x.status==='已生成订单';}).length};
+  setOrderText('lead-count-all',counts.all);setOrderText('lead-count-new',counts.new);setOrderText('lead-count-done',counts.done);setOrderText('lead-count-order',counts.order);setOrderText('lead-nav-badge',counts.new);
+}
+function filterLeads(el,status){LEAD_FILTER=status;el.parentNode.querySelectorAll('.chip').forEach(function(n){n.classList.remove('on');});el.classList.add('on');renderLeads();}
+function leadLocalTime(){var d=new Date(),pad=function(v){return String(v).padStart(2,'0');};return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())+'T'+pad(d.getHours())+':'+pad(d.getMinutes());}
+function openNewLead(){
+  var sel=document.getElementById('lead-new-service');sel.innerHTML=ORDER_CATALOG.filter(function(p){return !p.hkd&&!p.cny;}).map(function(p){return '<option value="'+p.id+'">'+escMsg(p.name)+'</option>';}).join('');
+  document.getElementById('lead-new-time').value=leadLocalTime();['lead-new-name','lead-new-phone','lead-new-email','lead-new-wechat','lead-new-note'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('lead-new-source').selectedIndex=0;document.getElementById('lead-new-owner').selectedIndex=0;document.getElementById('m-lead-create').classList.add('on');
+}
+function createLead(){
+  var name=document.getElementById('lead-new-name').value.trim(),phone=document.getElementById('lead-new-phone').value.trim(),serviceId=document.getElementById('lead-new-service').value,time=document.getElementById('lead-new-time').value;
+  if(!name||!phone||!serviceId||!time){toast('请填写预约服务、申请时间、客户姓名和手机号');return;}
+  var customer=ORDER_CUSTOMERS.find(function(c){return c.phone.replace(/\s/g,'')===phone.replace(/\s/g,'');});
+  if(!customer){customer={id:'C'+String(ORDER_CUSTOMERS.length+1).padStart(3,'0'),name:name,phone:phone,email:document.getElementById('lead-new-email').value.trim()||'未填写',channel:'直营',channelName:'商业线索',kyc:'未开始'};ORDER_CUSTOMERS.push(customer);}
+  var applied=time.replace('T',' '),id='CL-2026-'+String(LEAD_SEQ++).padStart(4,'0');
+  LEAD_DATA.unshift({id:id,applied:applied,serviceId:serviceId,customerId:customer.id,wechat:document.getElementById('lead-new-wechat').value.trim(),source:document.getElementById('lead-new-source').value,owner:document.getElementById('lead-new-owner').value,status:'未处理',note:document.getElementById('lead-new-note').value.trim(),orderId:''});
+  closeM('m-lead-create');renderLeads();toast('商业线索 '+id+' 已创建');
+}
+function openLead(id){
+  var l=leadById(id);if(!l)return;CURRENT_LEAD=id;var c=orderCustomer(l.customerId),p=orderProduct(l.serviceId);
+  setOrderText('lead-detail-title','商业线索 · '+l.id);setOrderText('lead-detail-sub',l.applied+' · '+l.source);
+  document.getElementById('lead-detail-summary').innerHTML='<div><div class="k">预约服务</div><div class="v">'+escMsg(p.name)+'</div></div><div><div class="k">申请时间</div><div class="v">'+escMsg(l.applied)+'</div></div><div><div class="k">线索来源</div><div class="v">'+escMsg(l.source)+'</div></div>';
+  document.getElementById('lead-detail-person').innerHTML='<div class="order-kv"><div class="k">姓名</div><div class="v">'+escMsg(c.name)+'</div></div><div class="order-kv"><div class="k">手机号</div><div class="v">'+escMsg(c.phone)+'</div></div><div class="order-kv"><div class="k">邮箱</div><div class="v">'+escMsg(c.email||'未填写')+'</div></div><div class="order-kv"><div class="k">微信号</div><div class="v">'+escMsg(l.wechat||'未填写')+'</div></div>';
+  document.getElementById('lead-detail-owner').value=l.owner||'';document.getElementById('lead-detail-note').value=l.note||'';document.getElementById('lead-detail-status').innerHTML='<span class="pill '+leadStatusClass(l.status)+'">'+escMsg(l.status)+'</span>'+(l.orderId?' <span style="font-size:11px;color:var(--text3)">'+escMsg(l.orderId)+'</span>':'');
+  document.getElementById('lead-detail-actions').innerHTML=l.status==='已生成订单'?'<button class="btn" onclick="closeM(\'m-lead\')">关闭</button><button class="btn btn-p" onclick="viewLeadOrder(\''+l.id+'\')">查看订单</button>':'<button class="btn" onclick="closeM(\'m-lead\')">取消</button><button class="btn" onclick="saveLeadFollowup(false)">保存跟进</button><button class="btn btn-green" onclick="markLeadHandled(\''+l.id+'\')">标记已处理</button><button class="btn btn-p" onclick="leadToOrder(\''+l.id+'\')">生成订单</button>';
+  document.getElementById('m-lead').classList.add('on');
+}
+function saveLeadFollowup(showToast){var l=leadById(CURRENT_LEAD);if(!l)return;l.owner=document.getElementById('lead-detail-owner').value;l.note=document.getElementById('lead-detail-note').value.trim();renderLeads();if(showToast!==false)toast('跟进信息已保存');}
+function markLeadHandled(id){CURRENT_LEAD=id;saveLeadFollowup(false);var l=leadById(id);if(l&&l.status!=='已生成订单')l.status='已处理';closeM('m-lead');renderLeads();toast('线索已标记为已处理');}
+function leadToOrder(id){var l=leadById(id);if(!l||l.status==='已生成订单')return;if(CURRENT_LEAD===id&&document.getElementById('m-lead').classList.contains('on'))saveLeadFollowup(false);closeM('m-lead');openNewOrder({leadId:id,customerId:l.customerId,productId:l.serviceId,source:'商业线索转订单',remark:'来源商业线索 '+l.id+' · 预约服务：'+orderProduct(l.serviceId).name+(l.note?'\n客户需求：'+l.note:'')});}
+function viewLeadOrder(id){var l=leadById(id);if(!l||!l.orderId)return;closeM('m-lead');var nav=document.querySelector('.ni[data-p="orders"]');if(nav)go(nav);openOrder(l.orderId);}
+function openNewOrder(options){
+  options=options||{};NEW_ORDER_CONTEXT={leadId:options.leadId||''};
   NEW_ORDER_CURRENCY='HKD';
-  NEW_ORDER_ITEMS=[{pid:'P001',qty:1,price:orderStandard(ORDER_CATALOG[0],'HKD')}];
+  var selectedProduct=orderProduct(options.productId||'P001');
+  NEW_ORDER_ITEMS=[{pid:selectedProduct.id,qty:1,price:orderStandard(selectedProduct,'HKD')}];
   var cur=document.getElementById('no-currency');if(cur)cur.value='HKD';
   var sel=document.getElementById('no-customer');
   if(sel)sel.innerHTML=ORDER_CUSTOMERS.map(function(c){return '<option value="'+c.id+'">'+escMsg(c.name)+' · '+escMsg(c.phone)+'</option>';}).join('');
-  var reason=document.getElementById('no-price-reason');if(reason){reason.value='';reason.classList.remove('order-error');}
-  var remark=document.getElementById('no-remark');if(remark)remark.value='';
+  if(sel&&options.customerId)sel.value=options.customerId;
+  var reason=document.getElementById('no-price-reason');if(reason){reason.value=options.leadId?'商业线索沟通后确认报价':'';reason.classList.remove('order-error');}
+  var source=document.getElementById('no-source');if(source)source.value=options.source||'运营后台代客下单';
+  var remark=document.getElementById('no-remark');if(remark)remark.value=options.remark||'';
   syncNewOrderCustomer();renderNewOrderItems();
   document.getElementById('m-order-create').classList.add('on');
 }
@@ -1978,7 +2095,9 @@ function createNewOrder(){
   ORDER_DATA[id]={customer:c.name,channel:c.channel,status:'待支付',created:full,currency:NEW_ORDER_CURRENCY,priceReason:reason.value.trim(),items:items,payment:{paid:0,status:'待支付',method:'—',billNo:'LEA-'+id.replace('ORD-','')+'-1',txnNo:'—',time:'—',payee:'TimeLeap Technology (Hong Kong) Limited'}};
   var tb=document.getElementById('order-tb'),tr=document.createElement('tr'),names=items.map(function(x){return x.name;}).join(' + '),channelClass=c.channel==='直营'?'p-gray':'p-gold';
   tr.innerHTML='<td>'+id+'</td><td>'+escMsg(c.name)+'</td><td>'+escMsg(names)+'</td><td><span class="pill '+channelClass+'">'+escMsg(c.channel)+'</span></td><td>'+orderMoney(total.payable,NEW_ORDER_CURRENCY)+'</td><td><span class="pill p-amber">待支付</span></td><td>'+md+'</td><td><button class="btn btn-xs btn-p" onclick="openOrder(\''+id+'\')">查看详情</button></td>';
-  tb.insertBefore(tr,tb.firstChild);closeM('m-order-create');toast('订单 '+id+' 已创建 · 待客户支付');
+  tb.insertBefore(tr,tb.firstChild);
+  if(NEW_ORDER_CONTEXT.leadId){var lead=leadById(NEW_ORDER_CONTEXT.leadId);if(lead){lead.status='已生成订单';lead.orderId=id;lead.owner=lead.owner||'当前运营';lead.note=(lead.note?lead.note+'\n':'')+'已于 '+full+' 生成订单 '+id;renderLeads();}}
+  NEW_ORDER_CONTEXT={};closeM('m-order-create');toast('订单 '+id+' 已创建 · 待客户支付');
 }
 function openOrder(id){
   var d=ORDER_DATA[id]||ORDER_DATA['ORD-2026-0188'];CURRENT_ADMIN_ORDER=id;
@@ -2470,7 +2589,7 @@ function billConfirm(){closeM('m-bill');toast('已确认付款 · 订单进入�
 function billReject(){closeM('m-bill');toast('已标记未收到付款 · 通知客户');if(_bid)jpost('/bills/'+_bid+'/reject').then(()=>{renderBills();loadDash()}).catch(()=>{})}
 function settleComm(id){jpost('/commissions/'+id+'/settle').then(()=>{toast('佣金已标记结算');renderComm();loadDash()})}
 
-(function boot(){loadDash();renderKyc();renderBills();renderComm();renderMessageTemplates('全部');})();
+(function boot(){loadDash();renderKyc();renderBills();renderComm();renderMessageTemplates('全部');renderLeads();})();
 </script>
 </body>
 </html>
