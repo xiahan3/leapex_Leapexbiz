@@ -145,6 +145,18 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
 .lead-person{display:flex;align-items:flex-start;gap:9px;min-width:220px}.lead-avatar{width:32px;height:32px;border-radius:9px;background:var(--gold-bg);color:var(--gold);display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0}
 .lead-person b{font-size:12.5px}.lead-contact{font-size:10.5px;color:var(--text3);line-height:1.55;margin-top:2px}.lead-actions{display:flex;align-items:center;gap:6px;white-space:nowrap}
 .lead-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:14px}.lead-summary>div{padding:11px 12px;border:1px solid var(--line);border-radius:8px;background:#FAFAF8}.lead-summary .k{font-size:10.5px;color:var(--text3)}.lead-summary .v{font-size:12.5px;font-weight:700;margin-top:3px;word-break:break-word}
+/* 经营数据日报 */
+.report-hero{position:relative;overflow:hidden;border-radius:14px;padding:22px 24px;margin-bottom:16px;background:linear-gradient(125deg,#1C1B19 0%,#29251D 62%,#5B4315 100%);color:#fff;box-shadow:0 12px 32px rgba(35,28,13,.16)}
+.report-hero::after{content:'';position:absolute;right:-70px;top:-110px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(212,168,83,.28),transparent 66%)}
+.report-hero-top{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;position:relative;z-index:1}.report-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:13px;background:rgba(212,168,83,.18);border:1px solid rgba(212,168,83,.35);color:#F1CE89;font-size:11px;font-weight:700}
+.report-title{font-size:23px;font-weight:800;margin-top:9px;letter-spacing:.2px}.report-sub{font-size:11.5px;color:rgba(255,255,255,.58);margin-top:5px}.report-tools{display:flex;align-items:center;gap:8px;position:relative;z-index:1}.report-tools .inp{border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.09);color:#fff;color-scheme:dark}.report-tools .btn{border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.09);color:#fff}.report-tools .btn:hover{background:rgba(255,255,255,.16)}
+.report-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;margin-top:20px;position:relative;z-index:1}.report-kpi{padding:13px 14px;border-radius:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(5px)}.report-kpi .rk-l{font-size:10.5px;color:rgba(255,255,255,.58)}.report-kpi .rk-v{font-size:21px;line-height:1.2;font-weight:800;margin-top:5px}.report-kpi .rk-d{font-size:10px;color:rgba(255,255,255,.48);margin-top:4px}.report-up{color:#80D7A8!important}.report-down{color:#FFAC96!important}
+.report-section{background:var(--card);border:1px solid var(--line);border-radius:11px;margin-bottom:16px;overflow:hidden}.report-section-hd{padding:13px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}.report-section-title{font-size:14px;font-weight:800;display:flex;align-items:center;gap:7px}.report-section-title i{color:var(--gold);font-size:17px}.report-section-note{font-size:10.5px;color:var(--text3);margin-top:2px}.report-section-body{padding:16px}.report-two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.report-funnel{display:flex;align-items:stretch;gap:5px;min-height:132px}.report-funnel-step{flex:1;display:flex;flex-direction:column;justify-content:center;position:relative;padding:12px 8px;border-radius:8px;background:linear-gradient(180deg,#FBF7EE,#F5E8C8);border:1px solid #EAD7A9;text-align:center}.report-funnel-step.blue{background:linear-gradient(180deg,#F1F6FB,#E6EFF8);border-color:#C9DCEC}.report-funnel-step .n{font-size:21px;font-weight:800}.report-funnel-step .l{font-size:11px;color:var(--text2);margin-top:2px}.report-funnel-step .r{font-size:9.5px;color:var(--gold);margin-top:7px;font-weight:700}.report-funnel-step.blue .r{color:var(--blue)}.report-funnel-arrow{align-self:center;color:var(--text3);font-size:14px;flex:0 0 12px;text-align:center}
+.report-insight{display:flex;align-items:flex-start;gap:8px;margin-top:12px;padding:9px 11px;border-radius:8px;background:var(--amber-bg);color:var(--amber);font-size:11px;line-height:1.6}.report-insight.blue{background:var(--blue-bg);color:var(--blue)}
+.report-trend{height:172px;display:flex;align-items:flex-end;gap:12px;padding:10px 5px 0}.report-day{flex:1;display:flex;flex-direction:column;align-items:center;height:100%;justify-content:flex-end}.report-bars{height:125px;width:100%;display:flex;gap:4px;align-items:flex-end;justify-content:center}.report-bar{width:17px;min-height:3px;border-radius:4px 4px 0 0;background:linear-gradient(180deg,#D4A853,#B8860B)}.report-bar.blue{background:linear-gradient(180deg,#72A1D1,#3B6EA5)}.report-bar.green{background:linear-gradient(180deg,#72BB91,#2E8B57)}.report-day .val{font-size:9px;color:var(--text3);margin:3px 0}.report-day .date{font-size:9.5px;color:var(--text3)}.report-legend{display:flex;justify-content:center;gap:14px;margin-top:9px;font-size:10.5px;color:var(--text3)}.report-legend span::before{content:'';display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:4px}.report-legend .gold::before{background:var(--gold)}.report-legend .blue::before{background:var(--blue)}.report-legend .green::before{background:var(--green)}
+.report-table-wrap{overflow-x:auto}.report-table{min-width:1120px}.report-table td{vertical-align:top}.report-metric{font-size:11px;color:var(--text3);margin-top:3px}.report-conv{display:flex;align-items:center;gap:7px;min-width:105px}.report-conv-track{width:62px;height:6px;border-radius:3px;background:var(--line);overflow:hidden}.report-conv-fill{height:100%;border-radius:3px;background:var(--gold)}
+.intent-score{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800}.intent-high{background:var(--red-bg);color:var(--red)}.intent-mid{background:var(--amber-bg);color:var(--amber)}.intent-user{font-weight:700}.intent-signal{font-size:11px;color:var(--text2);line-height:1.65}.intent-actions{display:flex;gap:6px;white-space:nowrap}.report-highlight{background:#FFFDF7}.journey{display:flex;flex-direction:column}.journey-row{display:grid;grid-template-columns:72px 20px 1fr;gap:8px;min-height:60px}.journey-time{font-size:10.5px;color:var(--text3);padding-top:2px;text-align:right}.journey-axis{display:flex;flex-direction:column;align-items:center}.journey-dot{width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px var(--gold-bg)}.journey-line{width:1px;flex:1;background:var(--line2);margin-top:5px}.journey-row:last-child .journey-line{display:none}.journey-copy b{font-size:12px}.journey-copy p{font-size:10.5px;color:var(--text3);margin-top:2px}.report-footnote{font-size:10.5px;color:var(--text3);line-height:1.75;padding:13px 16px;background:#FAFAF8;border-top:1px solid var(--line)}
 /* 按节点面板（KYC / 注册 / 核名 通用） */
 .node-card{border:1px solid var(--line2);border-radius:9px;margin-bottom:11px;overflow:hidden;background:var(--card)}
 .node-hd{display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--bg2);border-bottom:1px solid var(--line)}
@@ -193,6 +205,7 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
     <nav class="nav">
       <div class="ng">01 · 概览</div>
       <div class="ni on" data-p="dash" onclick="go(this)"><i class="ti ti-layout-dashboard"></i>数据驾驶舱</div>
+      <div class="ni" data-p="dailyreport" onclick="go(this)"><i class="ti ti-chart-funnel"></i>经营数据日报<span class="nb">7</span></div>
 
       <div class="ng">02 · 客户管理</div>
       <div class="ni" data-p="customers" onclick="go(this)"><i class="ti ti-users"></i>客户信息管理</div>
@@ -295,6 +308,101 @@ select.inp{appearance:none;-webkit-appearance:none;cursor:pointer}
             <div class="todo"><span class="mini" style="background:var(--amber)"></span><div style="flex:1">待分配订单</div><span class="pill p-amber">2 中</span></div>
           </div>
         </div>
+      </div>
+
+      <!-- ════ 经营数据日报 ════ -->
+      <div class="page" id="p-dailyreport">
+        <div class="report-hero">
+          <div class="report-hero-top">
+            <div><div class="report-badge"><i class="ti ti-chart-line"></i>经营数据日报</div><div class="report-title"><span id="report-date-title">2026 年 8 月 12 日</span> <span style="font-size:13px;color:#D9CBA9;font-weight:500">星期三</span></div><div class="report-sub">Leapex 小程序使用 · 商品与支付转化 · 营销 H5 渠道商入驻</div></div>
+            <div class="report-tools"><input class="inp" id="report-date" type="date" value="2026-08-12" onchange="changeReportDate(this.value)"><button class="btn" onclick="toast('经营日报已导出为 Excel')"><i class="ti ti-file-spreadsheet"></i>导出明细</button><button class="btn" onclick="shareDailyReport()"><i class="ti ti-share"></i>分享日报</button></div>
+          </div>
+          <div class="report-kpis">
+            <div class="report-kpi"><div class="rk-l">今日实收金额</div><div class="rk-v">HKD 42,680</div><div class="rk-d report-up">较昨日 +18.6% · 8 笔支付</div></div>
+            <div class="report-kpi"><div class="rk-l">小程序活跃用户</div><div class="rk-v">186</div><div class="rk-d report-up">新增注册 37 · 次日留存 41.2%</div></div>
+            <div class="report-kpi"><div class="rk-l">订单支付转化率</div><div class="rk-v">34.8%</div><div class="rk-d report-up">提交订单 23 · 支付成功 8</div></div>
+            <div class="report-kpi"><div class="rk-l">H5 渠道入驻申请</div><div class="rk-v">12</div><div class="rk-d report-down">较昨日 -2 · 待审核 5</div></div>
+            <div class="report-kpi"><div class="rk-l">商品详情访问用户</div><div class="rk-v">128</div><div class="rk-d">详情页访问 246 次 · 人均 1.9 次</div></div>
+            <div class="report-kpi"><div class="rk-l">高意向未下单客户</div><div class="rk-v">7</div><div class="rk-d report-down">3 人尚未分配运营跟进</div></div>
+            <div class="report-kpi"><div class="rk-l">商业线索新增</div><div class="rk-v">9</div><div class="rk-d">小程序预约 6 · 后台补录 3</div></div>
+            <div class="report-kpi"><div class="rk-l">渠道贡献实收</div><div class="rk-v">HKD 28,300</div><div class="rk-d report-up">占今日实收 66.3%</div></div>
+          </div>
+        </div>
+
+        <div class="report-two">
+          <div class="report-section">
+            <div class="report-section-hd"><div><div class="report-section-title"><i class="ti ti-device-mobile-analytics"></i>小程序订单支付漏斗</div><div class="report-section-note">按去重用户统计，展示前后环节转化</div></div><span class="pill p-green">整体支付转化 6.2%</span></div>
+            <div class="report-section-body">
+              <div class="report-funnel">
+                <div class="report-funnel-step blue"><div class="n">186</div><div class="l">活跃用户</div><div class="r">链路起点</div></div><div class="report-funnel-arrow">›</div>
+                <div class="report-funnel-step blue"><div class="n">128</div><div class="l">访问商品</div><div class="r">68.8%</div></div><div class="report-funnel-arrow">›</div>
+                <div class="report-funnel-step blue"><div class="n">66</div><div class="l">开始下单</div><div class="r">51.6%</div></div><div class="report-funnel-arrow">›</div>
+                <div class="report-funnel-step blue"><div class="n">23</div><div class="l">提交订单</div><div class="r">34.8%</div></div><div class="report-funnel-arrow">›</div>
+                <div class="report-funnel-step blue"><div class="n">8</div><div class="l">支付成功</div><div class="r">34.8%</div></div>
+              </div>
+              <div class="report-insight blue"><i class="ti ti-bulb"></i><div><b>今日主要流失点：</b>开始下单 → 提交订单仅 34.8%，其中 19 人停留在「选择办理公司」，建议优先检查公司资料新增流程。</div></div>
+            </div>
+          </div>
+          <div class="report-section">
+            <div class="report-section-hd"><div><div class="report-section-title"><i class="ti ti-affiliate"></i>营销 H5 渠道入驻漏斗</div><div class="report-section-note">从 H5 访问到完成电子签约</div></div><span class="pill p-amber">签约转化 4.8%</span></div>
+            <div class="report-section-body">
+              <div class="report-funnel">
+                <div class="report-funnel-step"><div class="n">1,284</div><div class="l">H5 访问 UV</div><div class="r">链路起点</div></div><div class="report-funnel-arrow">›</div>
+                <div class="report-funnel-step"><div class="n">318</div><div class="l">点击申请</div><div class="r">24.8%</div></div><div class="report-funnel-arrow">›</div>
+                <div class="report-funnel-step"><div class="n">12</div><div class="l">提交申请</div><div class="r">3.8%</div></div><div class="report-funnel-arrow">›</div>
+                <div class="report-funnel-step"><div class="n">8</div><div class="l">审核通过</div><div class="r">66.7%</div></div><div class="report-funnel-arrow">›</div>
+                <div class="report-funnel-step"><div class="n">5</div><div class="l">完成签约</div><div class="r">62.5%</div></div>
+              </div>
+              <div class="report-insight"><i class="ti ti-bulb"></i><div><b>转化异常：</b>318 人点击申请，仅 12 人提交，表单提交率 3.8%。手机号输入与企业资料字段是主要退出位置。</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="report-section">
+          <div class="report-section-hd"><div><div class="report-section-title"><i class="ti ti-chart-histogram"></i>近 7 日经营趋势</div><div class="report-section-note">新增注册 / 提交订单 / 支付成功，便于观察获客与收入同步变化</div></div><div class="report-legend" style="margin:0"><span class="gold">新增注册</span><span class="blue">提交订单</span><span class="green">支付成功</span></div></div>
+          <div class="report-section-body"><div class="report-trend">
+            <div class="report-day"><div class="report-bars"><i class="report-bar" style="height:52%"></i><i class="report-bar blue" style="height:26%"></i><i class="report-bar green" style="height:13%"></i></div><div class="val">26 / 13 / 6</div><div class="date">08-06</div></div>
+            <div class="report-day"><div class="report-bars"><i class="report-bar" style="height:58%"></i><i class="report-bar blue" style="height:31%"></i><i class="report-bar green" style="height:16%"></i></div><div class="val">29 / 15 / 8</div><div class="date">08-07</div></div>
+            <div class="report-day"><div class="report-bars"><i class="report-bar" style="height:46%"></i><i class="report-bar blue" style="height:22%"></i><i class="report-bar green" style="height:10%"></i></div><div class="val">23 / 11 / 5</div><div class="date">08-08</div></div>
+            <div class="report-day"><div class="report-bars"><i class="report-bar" style="height:64%"></i><i class="report-bar blue" style="height:36%"></i><i class="report-bar green" style="height:17%"></i></div><div class="val">32 / 18 / 8</div><div class="date">08-09</div></div>
+            <div class="report-day"><div class="report-bars"><i class="report-bar" style="height:60%"></i><i class="report-bar blue" style="height:32%"></i><i class="report-bar green" style="height:15%"></i></div><div class="val">30 / 16 / 7</div><div class="date">08-10</div></div>
+            <div class="report-day"><div class="report-bars"><i class="report-bar" style="height:68%"></i><i class="report-bar blue" style="height:38%"></i><i class="report-bar green" style="height:18%"></i></div><div class="val">34 / 19 / 9</div><div class="date">08-11</div></div>
+            <div class="report-day"><div class="report-bars"><i class="report-bar" style="height:74%"></i><i class="report-bar blue" style="height:46%"></i><i class="report-bar green" style="height:16%"></i></div><div class="val">37 / 23 / 8</div><div class="date">08-12</div></div>
+          </div></div>
+        </div>
+
+        <div class="report-section">
+          <div class="report-section-hd"><div><div class="report-section-title"><i class="ti ti-package"></i>商品使用与支付转化明细</div><div class="report-section-note">按商品分析曝光、深度浏览、下单及支付；面议商品同时统计预约沟通</div></div><div class="filters" style="margin:0"><span class="chip on">全部商品</span><span class="chip">固定价</span><span class="chip">面议</span></div></div>
+          <div class="report-table-wrap"><table class="report-table"><thead><tr><th>商品</th><th>详情访问</th><th>平均停留</th><th>开始下单</th><th>提交订单</th><th>支付成功</th><th>访问→支付</th><th>预约沟通</th><th>实收金额</th></tr></thead><tbody>
+            <tr><td><b>新设香港本地有限公司</b><div class="report-metric">固定价 · 注册</div></td><td>86 UV<div class="report-metric">142 PV</div></td><td>2分18秒</td><td>41</td><td>15</td><td>5</td><td><div class="report-conv"><div class="report-conv-track"><div class="report-conv-fill" style="width:5.8%"></div></div><b>5.8%</b></div></td><td>—</td><td><b>HKD 27,665</b></td></tr>
+            <tr><td><b>年审服务</b><div class="report-metric">固定价 · 秘书 & 地址</div></td><td>49 UV<div class="report-metric">70 PV</div></td><td>1分36秒</td><td>18</td><td>6</td><td>3</td><td><div class="report-conv"><div class="report-conv-track"><div class="report-conv-fill" style="width:6.1%"></div></div><b>6.1%</b></div></td><td>—</td><td><b>HKD 13,266</b></td></tr>
+            <tr class="report-highlight"><td><b>审计（含理账）</b><div class="report-metric">面议 · 记账报税</div></td><td>38 UV<div class="report-metric">64 PV</div></td><td><b style="color:var(--amber)">4分42秒</b></td><td>—</td><td>—</td><td>—</td><td><span class="pill p-gray">面议</span></td><td><b>6</b><div class="report-metric">预约率 15.8%</div></td><td>待报价</td></tr>
+            <tr class="report-highlight"><td><b>独立办公室租赁</b><div class="report-metric">面议 · 地址租赁</div></td><td>27 UV<div class="report-metric">51 PV</div></td><td><b style="color:var(--amber)">5分16秒</b></td><td>—</td><td>—</td><td>—</td><td><span class="pill p-gray">面议</span></td><td><b>3</b><div class="report-metric">预约率 11.1%</div></td><td>待报价</td></tr>
+            <tr><td><b>公司名称查册 + 商标查询</b><div class="report-metric">固定价 · 核名商标</div></td><td>24 UV<div class="report-metric">31 PV</div></td><td>1分12秒</td><td>7</td><td>2</td><td>0</td><td><div class="report-conv"><div class="report-conv-track"><div class="report-conv-fill" style="width:0"></div></div><b>0%</b></div></td><td>—</td><td>HKD 0</td></tr>
+          </tbody></table></div>
+        </div>
+
+        <div class="report-section">
+          <div class="report-section-hd"><div><div class="report-section-title"><i class="ti ti-user-search"></i>高意向未下单客户</div><div class="report-section-note">规则：商品详情停留 ≥ 120 秒，或 24 小时重复访问 ≥ 2 次，且未提交订单 / 预约沟通</div></div><div><span class="pill p-red">7 人待跟进</span> <button class="btn btn-xs" onclick="toast('高意向客户明细已导出')"><i class="ti ti-download"></i>导出</button></div></div>
+          <div class="report-table-wrap"><table class="report-table"><thead><tr><th>意向分</th><th>用户</th><th>意向商品</th><th>关键信号</th><th>最后行为</th><th>来源</th><th>跟进状态</th><th>操作</th></tr></thead><tbody id="intent-tb"></tbody></table></div>
+        </div>
+
+        <div class="report-two">
+          <div class="report-section">
+            <div class="report-section-hd"><div><div class="report-section-title"><i class="ti ti-route"></i>重点用户行为路径</div><div class="report-section-note" id="journey-user">张倩 · 独立办公室租赁</div></div><span class="pill p-red">高意向</span></div>
+            <div class="report-section-body"><div class="journey" id="intent-journey"></div></div>
+          </div>
+          <div class="report-section">
+            <div class="report-section-hd"><div><div class="report-section-title"><i class="ti ti-users-group"></i>渠道来源与入驻质量</div><div class="report-section-note">营销 H5 来源、申请与签约质量对比</div></div></div>
+            <div class="report-table-wrap"><table><thead><tr><th>来源</th><th>访问 UV</th><th>申请</th><th>签约</th><th>签约率</th></tr></thead><tbody>
+              <tr><td><b>818 大会二维码</b></td><td>486</td><td>6</td><td>3</td><td><span class="pill p-green">50.0%</span></td></tr>
+              <tr><td><b>微信朋友圈</b></td><td>372</td><td>3</td><td>1</td><td><span class="pill p-blue">33.3%</span></td></tr>
+              <tr><td><b>合作机构转发</b></td><td>268</td><td>2</td><td>1</td><td><span class="pill p-green">50.0%</span></td></tr>
+              <tr><td><b>自然访问</b></td><td>158</td><td>1</td><td>0</td><td><span class="pill p-gray">0%</span></td></tr>
+            </tbody></table></div>
+          </div>
+        </div>
+        <div class="report-section"><div class="report-footnote"><b>统计口径：</b>访问、活跃与转化均按账号 / OpenID 去重；详情停留剔除页面切入后台时间；支付成功以财务到账或在线支付成功为准；渠道入驻按申请提交时间统计，签约按电子协议签署完成时间统计。<br><b>生成时间：</b>2026-08-13 08:05 · 日报数据截至 2026-08-12 23:59:59。当前为高保真数据原型，正式上线需接入小程序埋点、支付、订单及渠道申请事件。</div></div>
       </div>
 
       <!-- ════ 客户管理 ════ -->
@@ -1819,13 +1927,41 @@ function renderMessageTemplates(cat){
 function filterMsgTpl(el,cat){
   el.parentNode.querySelectorAll('.chip').forEach(function(n){n.classList.remove('on');}); el.classList.add('on'); renderMessageTemplates(cat);
 }
+var INTENT_USERS=[
+  {id:'IU-001',score:92,name:'张倩',phone:'+86 186 8899 1024',email:'zhang@peak.hk',customerId:'C004',productId:'P010',product:'独立办公室租赁',signal:'详情停留 6分42秒 · 24小时访问 4 次 · 查看交付清单',last:'08-12 22:16',source:'小程序 · 自然流量',status:'未跟进',journey:[['21:48','进入小程序首页','从微信会话进入，浏览香港企业服务'],['21:51','进入服务列表','筛选「地址租赁」分类'],['21:53','访问独立办公室详情','停留 3分18秒，展开服务流程与常见问答'],['22:07','再次访问商品详情','停留 2分31秒，点击查看交付清单'],['22:16','退出小程序','未点击预约沟通，未生成订单']]},
+  {id:'IU-002',score:88,name:'周敏',phone:'+852 9655 1208',email:'zhoumin@nova.hk',customerId:'',productId:'P008',product:'审计（含理账）',signal:'详情停留 5分58秒 · 访问 3 次 · 查看办理材料',last:'08-12 20:44',source:'小程序 · AGT003',status:'未跟进',journey:[['20:12','进入服务详情','通过渠道推荐链接打开审计服务'],['20:15','查看办理材料','展开全年流水、凭证与审计资料要求'],['20:31','第二次访问详情','停留 2分07秒'],['20:44','退出小程序','未预约沟通']]},
+  {id:'IU-003',score:84,name:'刘建国',phone:'+86 139 8852 7710',email:'liujg@trade.cn',customerId:'',productId:'P001',product:'新设香港本地有限公司',signal:'详情停留 4分25秒 · 开始下单 · 停在选择办理公司',last:'08-12 18:32',source:'小程序 · 朋友圈',status:'跟进中',journey:[['18:18','访问公司注册详情','阅读交付清单与办理流程'],['18:25','点击立即办理','进入选择办理公司页面'],['18:27','点击新增已有公司','进入公司基本信息'],['18:32','离开填写页面','未保存公司信息，订单未提交']]},
+  {id:'IU-004',score:78,name:'林晓雯',phone:'+852 6138 9201',email:'lin@crossborder.hk',customerId:'',productId:'P006',product:'商标注册申请',signal:'详情停留 3分36秒 · 访问 2 次 · 查看常见问答',last:'08-12 16:08',source:'小程序 · 自然流量',status:'未跟进',journey:[['15:42','进入商标服务详情','查看价格与办理周期'],['15:47','展开常见问答','关注申请人及类别问题'],['16:08','再次进入详情','停留 1分44秒后退出']]},
+  {id:'IU-005',score:74,name:'赵一鸣',phone:'+86 136 2290 3341',email:'zhao@ecom.cn',customerId:'',productId:'P002',product:'年审服务',signal:'详情停留 3分02秒 · 提交订单未支付',last:'08-12 14:25',source:'小程序 · AGT001',status:'已联系',journey:[['14:09','进入年审详情','浏览服务内容'],['14:17','提交订单','生成待支付订单'],['14:25','离开支付页面','未完成支付，运营已电话联系']]}
+];
+function renderIntentUsers(){
+  var tb=document.getElementById('intent-tb');if(!tb)return;
+  tb.innerHTML=INTENT_USERS.map(function(u){var cls=u.score>=85?'intent-high':'intent-mid',st=u.status==='未跟进'?'p-red':u.status==='跟进中'?'p-blue':'p-green';return '<tr'+(u.score>=85?' class="report-highlight"':'')+'><td><div class="intent-score '+cls+'">'+u.score+'</div></td><td><div class="intent-user">'+escMsg(u.name)+'</div><div class="report-metric">'+escMsg(u.phone)+'<br>'+escMsg(u.email)+'</div></td><td><b>'+escMsg(u.product)+'</b></td><td><div class="intent-signal">'+escMsg(u.signal)+'</div></td><td>'+escMsg(u.last)+'</td><td>'+escMsg(u.source)+'</td><td><span class="pill '+st+'">'+escMsg(u.status)+'</span></td><td><div class="intent-actions"><button class="btn btn-xs" onclick="showIntentJourney(\''+u.id+'\')">看路径</button>'+(u.status==='未跟进'?'<button class="btn btn-xs btn-p" onclick="intentToLead(\''+u.id+'\')">转商业线索</button>':'<button class="btn btn-xs" onclick="toast(\'已打开客户跟进记录\')">跟进记录</button>')+'</div></td></tr>';}).join('');
+  if(INTENT_USERS.length)showIntentJourney(INTENT_USERS[0].id);
+}
+function showIntentJourney(id){var u=INTENT_USERS.find(function(x){return x.id===id;});if(!u)return;setOrderText('journey-user',u.name+' · '+u.product);var box=document.getElementById('intent-journey');if(box)box.innerHTML=u.journey.map(function(j){return '<div class="journey-row"><div class="journey-time">'+escMsg(j[0])+'</div><div class="journey-axis"><span class="journey-dot"></span><span class="journey-line"></span></div><div class="journey-copy"><b>'+escMsg(j[1])+'</b><p>'+escMsg(j[2])+'</p></div></div>';}).join('');}
+function intentToLead(id){
+  var u=INTENT_USERS.find(function(x){return x.id===id;});if(!u)return;
+  var customer=ORDER_CUSTOMERS.find(function(c){return c.phone.replace(/\s/g,'')===u.phone.replace(/\s/g,'');});
+  if(!customer){customer={id:'C'+String(ORDER_CUSTOMERS.length+1).padStart(3,'0'),name:u.name,phone:u.phone,email:u.email,channel:'直营',channelName:u.source,kyc:'未开始'};ORDER_CUSTOMERS.push(customer);}
+  var exists=LEAD_DATA.find(function(l){return l.customerId===customer.id&&l.serviceId===u.productId&&l.status!=='已生成订单';});
+  if(!exists){var id2='CL-2026-'+String(LEAD_SEQ++).padStart(4,'0');LEAD_DATA.unshift({id:id2,applied:'2026-08-12 '+u.last.split(' ')[1],serviceId:u.productId,customerId:customer.id,wechat:'',source:'经营日报 · 高意向识别',owner:'',status:'未处理',note:'系统识别信号：'+u.signal,orderId:''});}
+  u.status='跟进中';renderIntentUsers();renderLeads();toast('已转为商业线索，并进入待跟进队列');
+}
+function changeReportDate(value){if(!value)return;var p=value.split('-');setOrderText('report-date-title',p[0]+' 年 '+Number(p[1])+' 月 '+Number(p[2])+' 日');toast('已切换 '+value+' 经营日报（原型示例数据）');}
+function shareDailyReport(){
+  var date=(document.getElementById('report-date')||{}).value||'2026-08-12';
+  var url=location.origin+'/daily-report?date='+encodeURIComponent(date);
+  if(navigator.clipboard&&location.protocol!=='file:')navigator.clipboard.writeText(url).then(function(){toast('独立经营日报链接已复制');}).catch(function(){window.open(url,'_blank');});
+  else window.open(url,'_blank');
+}
 function go(el){
   document.querySelectorAll('.ni').forEach(n=>n.classList.remove('on'));
   el.classList.add('on');
   var p=el.dataset.p;
   document.querySelectorAll('.page').forEach(pg=>pg.classList.remove('on'));
   document.getElementById('p-'+p).classList.add('on');
-  var meta={dash:['数据驾驶舱','实时运营总览'],supplierwt:['供应商工作台','供应商自助：分配订单 / 更新进度 / 结算对账（不在线结算）'],partner:['渠道商工作台','渠道商自助：归属订单 / 佣金对账（不在线结算）'],customers:['客户信息管理','客户档案与画像'],companies:['客户公司管理','法人主体 / CI·BR / SCR / 年审'],kyc:['KYC 审核','AMLO 尽职调查 · 客户身份 / 地址 / 业务资料核对'],register:['注册公司','公司注册服务执行 · 维护进度 / 资料'],'svc-annual':['年审服务','法定秘书 + 注册地址 + 周年申报 NAR1（注册处·42 天内）'],'svc-acct':['记账报税','审计（含理账）+ 利得税 PTR / 薪俸税 IR56 / 个税 BIR60（IRD）'],'svc-addr':['地址租赁','独立地址 6000/年 · 工位 3000/月 · 办公室面议（达利直签）'],'chg-address':['地址变更','NR1 · 关键信息 → 线下备表 → 文件签字 → 递交'],'chg-director':['董事变更','ND2A · 关键信息 + 新董事 KYC → 线下备表 → 文件签字'],'chg-secretary':['变更秘书','ND2A · 秘书部分 Leapex 利柏思 填 → 文件签字 → 递交'],'chg-rename':['公司更名','NNC2 · 先付费后查名 → 备 NNC2 + 决议 → 文件签字'],'chg-transfer':['股份转让','转让文书 + 印花税 0.2% · 作价估值 → 缴印花 → 更新名册'],'chg-deregister':['公司注销','NDR1 + IR1263 不反对通知书 · 宪报公告约 8 个月'],namecheck:['核名&商标','人工核名（繁体/英文）+ 商标查询 · 无智能预检'],'svc-tm':['商标办理','商标注册 IPD（宪报公告 3 个月）/ 续期（每 10 年）'],orders:['订单列表','商品 / 支付信息分区 · 支持后台新增订单'],leads:['商业线索','面议服务预约 · 运营跟进 · 生成订单'],bills:['账单 / 回单确认','服务人员核验回单 · 确认付款 / 未收到付款（不含退款·重开）'],products:['商品','商品目录 · 基础信息 + 价格与本位币'],coupons:['卡券','卡券模板 + 发放 + 核销统计（承接小程序优惠券）'],messages:['消息','消息模板 + 小程序页面路由 + 发送记录'],supplier:['供应商管理','超管新增 · 支持服务 + 结算规则'],assign:['订单分配','派单给供应商履约'],suppliersettle:['订单结算','已完成订单 → 供应商结算（线下）'],channel:['渠道商管理','超管新增 · 口令码 + 佣金（弹窗配置）'],'chanapply':['渠道商申请审核','待审核 → 待签约 / 签约过期 → 已签约 / 已驳回'],commission:['佣金结算','已完成订单 → 渠道返点（线下）'],rbac:['员工和角色','RBAC 7 角色 + 自定义'],menuperm:['菜单权限','角色 × 菜单可见性配置'],compliance:['合规与审计','制裁 / SCR / 哈希链'],config:['系统参数','时效 / 额度 / 税率']};
+  var meta={dash:['数据驾驶舱','实时运营总览'],dailyreport:['经营数据日报','小程序使用 · 商品与支付转化 · 营销 H5 渠道商入驻'],supplierwt:['供应商工作台','供应商自助：分配订单 / 更新进度 / 结算对账（不在线结算）'],partner:['渠道商工作台','渠道商自助：归属订单 / 佣金对账（不在线结算）'],customers:['客户信息管理','客户档案与画像'],companies:['客户公司管理','法人主体 / CI·BR / SCR / 年审'],kyc:['KYC 审核','AMLO 尽职调查 · 客户身份 / 地址 / 业务资料核对'],register:['注册公司','公司注册服务执行 · 维护进度 / 资料'],'svc-annual':['年审服务','法定秘书 + 注册地址 + 周年申报 NAR1（注册处·42 天内）'],'svc-acct':['记账报税','审计（含理账）+ 利得税 PTR / 薪俸税 IR56 / 个税 BIR60（IRD）'],'svc-addr':['地址租赁','独立地址 6000/年 · 工位 3000/月 · 办公室面议（达利直签）'],'chg-address':['地址变更','NR1 · 关键信息 → 线下备表 → 文件签字 → 递交'],'chg-director':['董事变更','ND2A · 关键信息 + 新董事 KYC → 线下备表 → 文件签字'],'chg-secretary':['变更秘书','ND2A · 秘书部分 Leapex 利柏思 填 → 文件签字 → 递交'],'chg-rename':['公司更名','NNC2 · 先付费后查名 → 备 NNC2 + 决议 → 文件签字'],'chg-transfer':['股份转让','转让文书 + 印花税 0.2% · 作价估值 → 缴印花 → 更新名册'],'chg-deregister':['公司注销','NDR1 + IR1263 不反对通知书 · 宪报公告约 8 个月'],namecheck:['核名&商标','人工核名（繁体/英文）+ 商标查询 · 无智能预检'],'svc-tm':['商标办理','商标注册 IPD（宪报公告 3 个月）/ 续期（每 10 年）'],orders:['订单列表','商品 / 支付信息分区 · 支持后台新增订单'],leads:['商业线索','面议服务预约 · 运营跟进 · 生成订单'],bills:['账单 / 回单确认','服务人员核验回单 · 确认付款 / 未收到付款（不含退款·重开）'],products:['商品','商品目录 · 基础信息 + 价格与本位币'],coupons:['卡券','卡券模板 + 发放 + 核销统计（承接小程序优惠券）'],messages:['消息','消息模板 + 小程序页面路由 + 发送记录'],supplier:['供应商管理','超管新增 · 支持服务 + 结算规则'],assign:['订单分配','派单给供应商履约'],suppliersettle:['订单结算','已完成订单 → 供应商结算（线下）'],channel:['渠道商管理','超管新增 · 口令码 + 佣金（弹窗配置）'],'chanapply':['渠道商申请审核','待审核 → 待签约 / 签约过期 → 已签约 / 已驳回'],commission:['佣金结算','已完成订单 → 渠道返点（线下）'],rbac:['员工和角色','RBAC 7 角色 + 自定义'],menuperm:['菜单权限','角色 × 菜单可见性配置'],compliance:['合规与审计','制裁 / SCR / 哈希链'],config:['系统参数','时效 / 额度 / 税率']};
   var m=meta[p]||['',''];document.getElementById('pt').textContent=m[0];document.getElementById('ps').textContent=m[1];
   document.querySelector('.content').scrollTop=0;
 }
@@ -2589,7 +2725,7 @@ function billConfirm(){closeM('m-bill');toast('已确认付款 · 订单进入�
 function billReject(){closeM('m-bill');toast('已标记未收到付款 · 通知客户');if(_bid)jpost('/bills/'+_bid+'/reject').then(()=>{renderBills();loadDash()}).catch(()=>{})}
 function settleComm(id){jpost('/commissions/'+id+'/settle').then(()=>{toast('佣金已标记结算');renderComm();loadDash()})}
 
-(function boot(){loadDash();renderKyc();renderBills();renderComm();renderMessageTemplates('全部');renderLeads();})();
+(function boot(){loadDash();renderKyc();renderBills();renderComm();renderMessageTemplates('全部');renderLeads();renderIntentUsers();})();
 </script>
 </body>
 </html>

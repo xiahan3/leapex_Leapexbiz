@@ -58,4 +58,11 @@ def admin():
     return FileResponse(page) if page.exists() else JSONResponse({"msg": "admin not found"})
 
 
+@app.get("/daily-report")
+def daily_report():
+    """经营数据日报独立 H5。"""
+    page = STATIC_DIR / "daily-report.html"
+    return FileResponse(page) if page.exists() else JSONResponse({"msg": "daily report not found"})
+
+
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
